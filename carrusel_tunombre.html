@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloque 1 · Tu nombre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: transparent; font-family: sans-serif; padding: 10px; }
+
+    .wrap { max-width: 700px; margin: 0 auto; }
+
+    .titulo { text-align: center; margin-bottom: 30px; }
+    .titulo-badge {
+      display: inline-block;
+      background: linear-gradient(135deg,#C0392B,#E74C3C);
+      padding: 8px 24px; border-radius: 30px; margin-bottom: 12px;
+    }
+    .titulo-badge span { color: white; font-size: 0.85em; font-weight: bold; letter-spacing: 3px; }
+    .titulo h2 { font-family: 'Playfair Display', serif; font-size: 2.2em; color: #1a1a2e; margin: 0 0 6px 0; }
+    .titulo p { color: #888; font-size: 0.9em; }
+
+    .slide { display: none; border-radius: 20px; padding: 40px; position: relative; overflow: hidden; min-height: 380px; }
+    .slide.active { display: block; }
+
+    .blob1 { position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; }
+    .blob2 { position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; border-radius: 50%; }
+
+    .slide-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1; }
+    .slide-badge { padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px; }
+    .slide-icon { font-size: 2em; }
+    .slide-body { position: relative; z-index: 1; }
+
+    .tag { font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0; }
+    .slide-title { font-family: 'Playfair Display', serif; color: white; font-size: 1.9em; margin: 0 0 18px 0; }
+
+    .box { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+    .box p { color: white; line-height: 1.7; margin: 0; font-size: 1em; }
+    .box p + p { margin-top: 12px; color: rgba(255,255,255,0.7); font-size: 0.95em; font-style: italic; }
+
+    .label-gold { color: #f1c40f; font-weight: bold; font-size: 0.82em; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 10px 0; }
+    .items { display: flex; flex-direction: column; gap: 8px; }
+    .item { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px; }
+    .item span { font-size: 1.1em; }
+    .item p { color: white; margin: 0; font-size: 0.93em; }
+
+    .tip { background: rgba(241,196,15,0.12); border: 1px solid rgba(241,196,15,0.3); border-radius: 12px; padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start; }
+    .tip p { color: #f1c40f; margin: 0; font-size: 0.88em; line-height: 1.5; }
+
+    .rows { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+    .row-item { display: flex; align-items: center; gap: 12px; border-radius: 0 10px 10px 0; padding: 12px 16px; }
+    .row-item .ri-text p:first-child { color: white; margin: 0 0 4px 0; font-size: 0.95em; font-weight: bold; }
+    .row-item .ri-text p:last-child { color: rgba(255,255,255,0.7); margin: 0; font-size: 0.85em; font-style: italic; }
+
+    .subbox { border-radius: 8px; padding: 12px; margin-bottom: 8px; }
+    .subbox p:first-child { color: white; margin: 0 0 4px 0; font-size: 0.95em; font-weight: bold; }
+    .subbox p:last-child { color: rgba(255,255,255,0.7); margin: 0; font-size: 0.88em; }
+
+    .check-list { display: flex; flex-direction: column; gap: 7px; }
+    .check-item { display: flex; gap: 8px; align-items: center; }
+    .check-item p { color: white; margin: 0; font-size: 0.9em; }
+
+    .dialog-box { border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+    .dialog-label { font-size: 0.78em; font-weight: bold; margin: 0 0 12px 0; letter-spacing: 1px; }
+    .dialog-lines { display: flex; flex-direction: column; gap: 8px; }
+    .dialog-lines p { color: white; margin: 0; font-size: 0.95em; line-height: 1.6; }
+
+    .example-box { border-radius: 0 10px 10px 0; padding: 12px 16px; margin-bottom: 0; }
+    .example-box p { color: white; margin: 0 0 6px 0; font-size: 0.92em; }
+    .example-box p.sub { color: rgba(255,255,255,0.6); font-size: 0.82em; padding-left: 15px; margin-bottom: 10px; }
+
+    .practice-box { background: linear-gradient(135deg,#667eea,#764ba2); border-radius: 12px; padding: 20px; margin-bottom: 18px; text-align: center; }
+    .practice-box p:first-child { color: white; font-size: 0.85em; font-weight: bold; margin-bottom: 10px; }
+    .practice-box p:last-child { color: rgba(255,255,255,0.95); font-size: 0.92em; line-height: 1.6; }
+
+    .cta-box { background: rgba(231,76,60,0.15); border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; gap: 10px; }
+    .cta-box p { color: rgba(255,255,255,0.85); margin: 0; font-size: 0.92em; font-weight: 600; line-height: 1.5; }
+
+    /* NAV */
+    .nav { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; flex-wrap: wrap; }
+    .nav-btn {
+      width: 44px; height: 44px; border-radius: 50%; background: white;
+      border: none; cursor: pointer; font-size: 1.2em;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      display: flex; align-items: center; justify-content: center;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav-btn:active { transform: scale(0.93); }
+    .dots { display: flex; gap: 7px; align-items: center; }
+    .dot {
+      width: 11px; height: 11px; border-radius: 50%; background: #ddd;
+      border: none; cursor: pointer; padding: 0;
+      transition: all 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .dot.active { width: 13px; height: 13px; transform: scale(1.35); }
+
+    .contador { text-align: center; color: #999; font-size: 0.85em; margin-top: 10px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TÍTULO -->
+  <div class="titulo">
+    <div class="titulo-badge"><span>BLOQUE 1 · Tu nombre</span></div>
+    <h2>¡Habla de tu nombre!</h2>
+    <p>Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- TARJETA 1 -->
+  <div id="card1" class="slide active" style="background: linear-gradient(145deg,#1a1a2e,#16213e);">
+    <div class="blob1" style="background: rgba(231,76,60,0.15);"></div>
+    <div class="blob2" style="background: rgba(241,196,15,0.06);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(231,76,60,0.3);color:#e74c3c;">01 / 07</span>
+      <span class="slide-icon">👤</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#e74c3c;">Introducción</p>
+      <h3 class="slide-title">¿Por qué es importante tu nombre?</h3>
+      <div class="box">
+        <p>Tu nombre es lo más <strong style="color:#f1c40f;">personal que tienes</strong>. Es la primera información que compartimos cuando conocemos a alguien.</p>
+        <p>¡Es tu identidad en cada conversación!</p>
+      </div>
+      <p class="label-gold">¿Cuándo dices tu nombre?</p>
+      <div class="items">
+        <div class="item"><span>👋</span><p>Al <strong>presentarte</strong> por primera vez</p></div>
+        <div class="item"><span>📋</span><p>Al <strong>llenar formularios</strong> o documentos</p></div>
+        <div class="item"><span>📞</span><p>Al hacer <strong>reservaciones</strong> o citas</p></div>
+        <div class="item"><span>💼</span><p>En <strong>entrevistas de trabajo</strong> o reuniones formales</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 2 -->
+  <div id="card2" class="slide" style="background: linear-gradient(145deg,#1B4332,#2D6A4F);">
+    <div class="blob1" style="background: rgba(82,183,136,0.15);"></div>
+    <div class="blob2" style="background: rgba(255,255,255,0.04);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(82,183,136,0.3);color:#52b788;">02 / 07</span>
+      <span class="slide-icon">❓</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#52b788;">Preguntar</p>
+      <h3 class="slide-title">¿Cómo preguntar el nombre?</h3>
+      <div class="box"><p>Existen diferentes formas de preguntar el nombre según el <strong style="color:#f1c40f;">nivel de formalidad</strong>.</p></div>
+      <div class="rows">
+        <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
+          <span style="font-size:1.2em;">😊</span>
+          <div class="ri-text"><p>¿Cómo te llamas?</p><p>Informal - con amigos, personas de tu edad</p></div>
+        </div>
+        <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
+          <span style="font-size:1.2em;">🤝</span>
+          <div class="ri-text"><p>¿Cuál es tu nombre?</p><p>Neutral - situaciones cotidianas</p></div>
+        </div>
+        <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
+          <span style="font-size:1.2em;">👔</span>
+          <div class="ri-text"><p>¿Cómo se llama usted?</p><p>Formal - con personas mayores, en el trabajo</p></div>
+        </div>
+        <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
+          <span style="font-size:1.2em;">📋</span>
+          <div class="ri-text"><p>¿Cuál es su nombre completo?</p><p>Formal - en oficinas, hospitales, trámites</p></div>
+        </div>
+      </div>
+      <div class="tip"><span style="font-size:1.2em;">💡</span><p>La diferencia clave está en usar <strong>"tú"</strong> (informal) o <strong>"usted"</strong> (formal)</p></div>
+    </div>
+  </div>
+
+  <!-- TARJETA 3 -->
+  <div id="card3" class="slide" style="background: linear-gradient(145deg,#1a1a6e,#2d2d8e);">
+    <div class="blob1" style="background: rgba(100,100,255,0.15);"></div>
+    <div class="blob2" style="background: rgba(241,196,15,0.06);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(100,100,255,0.3);color:#8888ff;">03 / 07</span>
+      <span class="slide-icon">💬</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#8888ff;">Responder</p>
+      <h3 class="slide-title">¿Cómo decir tu nombre?</h3>
+      <div class="box">
+        <p style="color:#f1c40f;font-size:0.78em;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">TRES FORMAS PRINCIPALES</p>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div class="subbox" style="background:rgba(100,100,255,0.2);"><p>1️⃣ Me llamo + [tu nombre]</p><p>"Me llamo Ana" / "Me llamo Carlos"</p></div>
+          <div class="subbox" style="background:rgba(100,100,255,0.2);"><p>2️⃣ Mi nombre es + [tu nombre]</p><p>"Mi nombre es Ana" / "Mi nombre es Carlos"</p></div>
+          <div class="subbox" style="background:rgba(100,100,255,0.2);"><p>3️⃣ Soy + [tu nombre]</p><p>"Soy Ana" / "Soy Carlos"</p></div>
+        </div>
+      </div>
+      <p class="label-gold">¿CUÁL USAR?</p>
+      <div class="check-list">
+        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Me llamo"</strong> → La más común y segura</p></div>
+        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Mi nombre es"</strong> → Más formal</p></div>
+        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Soy"</strong> → Más informal y rápida</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 4 -->
+  <div id="card4" class="slide" style="background: linear-gradient(145deg,#2a1a6e,#3d2d8e);">
+    <div class="blob1" style="background: rgba(150,100,255,0.15);"></div>
+    <div class="blob2" style="background: rgba(241,196,15,0.06);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(150,100,255,0.3);color:#bb88ff;">04 / 07</span>
+      <span class="slide-icon">🗣️</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#bb88ff;">En contexto</p>
+      <h3 class="slide-title">Diálogos de ejemplo</h3>
+      <div class="dialog-box" style="background:rgba(100,255,150,0.1);border:1px solid rgba(100,255,150,0.25);">
+        <p class="dialog-label" style="color:#52b788;">😊 SITUACIÓN INFORMAL (En una fiesta)</p>
+        <div class="dialog-lines">
+          <p><strong style="color:#52b788;">Luis:</strong> "¡Hola! ¿Cómo te llamas?"</p>
+          <p><strong style="color:#52b788;">María:</strong> "Me llamo María. ¿Y tú?"</p>
+          <p><strong style="color:#52b788;">Luis:</strong> "Yo soy Luis. ¡Mucho gusto!"</p>
+          <p><strong style="color:#52b788;">María:</strong> "¡Encantada!"</p>
+        </div>
+      </div>
+      <div class="dialog-box" style="background:rgba(93,173,226,0.1);border:1px solid rgba(93,173,226,0.25);">
+        <p class="dialog-label" style="color:#7fb3d3;">🤝 SITUACIÓN FORMAL (En una entrevista)</p>
+        <div class="dialog-lines">
+          <p><strong style="color:#7fb3d3;">Entrevistador:</strong> "Buenos días. ¿Cómo se llama usted?"</p>
+          <p><strong style="color:#7fb3d3;">Candidato:</strong> "Buenos días. Mi nombre es Roberto García."</p>
+          <p><strong style="color:#7fb3d3;">Entrevistador:</strong> "Mucho gusto, Sr. García."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 5 -->
+  <div id="card5" class="slide" style="background: linear-gradient(145deg,#1B3A6B,#1a5276);">
+    <div class="blob1" style="background: rgba(52,152,219,0.15);"></div>
+    <div class="blob2" style="background: rgba(255,255,255,0.04);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(52,152,219,0.3);color:#5dade2;">05 / 07</span>
+      <span class="slide-icon">📝</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#5dade2;">Información completa</p>
+      <h3 class="slide-title">Tu nombre completo</h3>
+      <div class="box"><p>En español, el nombre completo generalmente incluye <strong style="color:#f1c40f;">nombre(s) + apellido(s)</strong>.</p></div>
+      <div class="rows">
+        <div class="row-item" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
+          <span style="font-size:1.2em;">1️⃣</span>
+          <div class="ri-text"><p>Nombre(s)</p><p>Pueden ser uno o varios: "Ana", "Juan Carlos"</p></div>
+        </div>
+        <div class="row-item" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
+          <span style="font-size:1.2em;">2️⃣</span>
+          <div class="ri-text"><p>Primer apellido</p><p>Apellido paterno: "García", "Rodríguez"</p></div>
+        </div>
+        <div class="row-item" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
+          <span style="font-size:1.2em;">3️⃣</span>
+          <div class="ri-text"><p>Segundo apellido (opcional)</p><p>Apellido materno: "López", "Martínez"</p></div>
+        </div>
+      </div>
+      <p class="label-gold">EJEMPLOS</p>
+      <div class="example-box" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
+        <p>✓ <strong>Ana María García López</strong></p>
+        <p class="sub">Nombre: Ana María | Apellidos: García López</p>
+        <p>✓ <strong>Carlos Rodríguez</strong></p>
+        <p style="color:rgba(255,255,255,0.6);font-size:0.82em;padding-left:15px;margin:0;">Nombre: Carlos | Apellido: Rodríguez</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 6 -->
+  <div id="card6" class="slide" style="background: linear-gradient(145deg,#4A1942,#6D2B5E);">
+    <div class="blob1" style="background: rgba(255,100,200,0.12);"></div>
+    <div class="blob2" style="background: rgba(255,255,255,0.04);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(255,100,200,0.3);color:#ff88d8;">06 / 07</span>
+      <span class="slide-icon">🔤</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#ff88d8;">Deletrear</p>
+      <h3 class="slide-title">¿Cómo se deletrea?</h3>
+      <div class="box"><p>A veces necesitas <strong style="color:#f1c40f;">deletrear tu nombre</strong> para que lo escriban correctamente.</p></div>
+      <p class="label-gold">FRASES ÚTILES</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;"><p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Pregunta:</strong> "¿Cómo se escribe?"</p></div>
+        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;"><p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Respuesta:</strong> "Se escribe: A-N-A"</p></div>
+        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;"><p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Alternativa:</strong> "¿Puede deletrearlo?"</p></div>
+      </div>
+      <p class="label-gold">EJEMPLO COMPLETO</p>
+      <div style="background:rgba(255,100,200,0.15);border-left:3px solid #ff88d8;border-radius:0 10px 10px 0;padding:14px 18px;">
+        <p style="color:white;margin:0;font-size:0.95em;line-height:1.7;">
+          <strong style="color:#ff88d8;">Recepcionista:</strong> "¿Cuál es su nombre?"<br>
+          <strong style="color:#ff88d8;">Cliente:</strong> "Me llamo Xiomara."<br>
+          <strong style="color:#ff88d8;">Recepcionista:</strong> "¿Cómo se escribe?"<br>
+          <strong style="color:#ff88d8;">Cliente:</strong> "Se escribe X-I-O-M-A-R-A"
+        </p>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:8px;align-items:start;">
+        <span style="font-size:1.1em;">💡</span>
+        <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.85em;line-height:1.5;font-style:italic;">Es especialmente útil cuando tu nombre tiene letras poco comunes o puede escribirse de diferentes formas</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA 7 -->
+  <div id="card7" class="slide" style="background: linear-gradient(145deg,#2C3E50,#3D5166);">
+    <div class="blob1" style="background: rgba(241,196,15,0.1);"></div>
+    <div class="blob2" style="background: rgba(231,76,60,0.07);"></div>
+    <div class="slide-header">
+      <span class="slide-badge" style="background:rgba(241,196,15,0.3);color:#f1c40f;">07 / 07</span>
+      <span class="slide-icon">🌟</span>
+    </div>
+    <div class="slide-body">
+      <p class="tag" style="color:#f1c40f;">Resumen</p>
+      <h3 class="slide-title">¡Repasemos!</h3>
+      <div style="background:rgba(241,196,15,0.1);border:1px solid rgba(241,196,15,0.3);border-radius:12px;padding:20px;margin-bottom:18px;">
+        <p style="color:#f1c40f;font-size:0.78em;font-weight:bold;margin:0 0 12px 0;letter-spacing:1px;text-align:center;">📋 RESUMEN RÁPIDO</p>
+        <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;margin-bottom:10px;">
+          <p style="color:#52b788;margin:0 0 6px 0;font-size:0.85em;font-weight:bold;">PREGUNTAR EL NOMBRE</p>
+          <p style="color:white;margin:0;font-size:0.88em;">Informal: <strong>"¿Cómo te llamas?"</strong><br>Formal: <strong>"¿Cómo se llama usted?"</strong></p>
+        </div>
+        <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
+          <p style="color:#8888ff;margin:0 0 6px 0;font-size:0.85em;font-weight:bold;">DECIR TU NOMBRE</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✓ <strong>Me llamo</strong> [nombre]<br>✓ <strong>Mi nombre es</strong> [nombre]<br>✓ <strong>Soy</strong> [nombre]</p>
+        </div>
+      </div>
+      <div class="practice-box">
+        <p>✏️ PRACTICA AHORA</p>
+        <p>Completa estas frases con tu información:<br><br>Me llamo <strong>____________</strong><br>Mi nombre completo es <strong>____________</strong><br>Se escribe <strong>____________</strong></p>
+      </div>
+      <div class="cta-box"><span style="font-size:1.3em;">🎯</span><p>¡Ahora estás listo para presentarte y preguntar el nombre de otras personas en español!</p></div>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <div class="nav">
+    <button class="nav-btn" id="btnPrev" onclick="cambiar(-1)">←</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn" id="btnNext" onclick="cambiar(1)">→</button>
+  </div>
+  <p class="contador" id="contador">Tarjeta 1 de 7</p>
+
+</div>
+
+<script>
+  var TOTAL = 7;
+  var current = 1;
+  var colores = ['','#E74C3C','#52B788','#8888ff','#bb88ff','#5dade2','#ff88d8','#F1C40F'];
+
+  // Crear puntos
+  var dotsEl = document.getElementById('dots');
+  for (var i = 1; i <= TOTAL; i++) {
+    var btn = document.createElement('button');
+    btn.className = 'dot';
+    btn.id = 'dot' + i;
+    btn.setAttribute('data-i', i);
+    btn.addEventListener('click', function(){ mostrar(parseInt(this.getAttribute('data-i'))); });
+    btn.addEventListener('touchend', function(e){ e.preventDefault(); mostrar(parseInt(this.getAttribute('data-i'))); });
+    dotsEl.appendChild(btn);
+  }
+
+  function mostrar(n) {
+    document.getElementById('card' + current).classList.remove('active');
+    document.getElementById('dot' + current).classList.remove('active');
+    document.getElementById('dot' + current).style.background = '#ddd';
+    current = n;
+    document.getElementById('card' + current).classList.add('active');
+    var d = document.getElementById('dot' + current);
+    d.classList.add('active');
+    d.style.background = colores[current];
+    document.getElementById('contador').textContent = 'Tarjeta ' + current + ' de ' + TOTAL;
+  }
+
+  function cambiar(dir) {
+    var nuevo = current + dir;
+    if (nuevo < 1) nuevo = TOTAL;
+    if (nuevo > TOTAL) nuevo = 1;
+    mostrar(nuevo);
+  }
+
+  // Soporte táctil para flechas
+  document.getElementById('btnPrev').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(-1); });
+  document.getElementById('btnNext').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(1); });
+
+  mostrar(1);
+</script>
+</body>
+</html>
