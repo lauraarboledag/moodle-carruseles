@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0; padding:20px; background:#FFF8F0; font-family:'Nunito',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- TÍTULO -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#7C3AED,#8B5CF6); padding:8px 24px; border-radius:30px; margin-bottom:12px;">
+      <span style="color:white; font-size:0.85em; font-weight:700; letter-spacing:3px;">TEMÁTICA 1 · PRONOMBRES PERSONALES</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.2em; color:#1a1a2e; margin:0 0 6px 0;">Los Pronombres Personales 👥</h2>
+    <p style="color:#888; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIO BUTTONS OCULTOS -->
+  <input type="radio" name="slide" id="s1" style="display:none;" checked>
+  <input type="radio" name="slide" id="s2" style="display:none;">
+  <input type="radio" name="slide" id="s3" style="display:none;">
+  <input type="radio" name="slide" id="s4" style="display:none;">
+  <input type="radio" name="slide" id="s5" style="display:none;">
+  <input type="radio" name="slide" id="s6" style="display:none;">
+  <input type="radio" name="slide" id="s7" style="display:none;">
+  <input type="radio" name="slide" id="s8" style="display:none;">
+
+  <!-- ==================== TARJETA 1: ¿Qué son los pronombres? ==================== -->
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#6366F1,#8B5CF6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(139,92,246,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(241,196,15,0.06); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(139,92,246,0.3); color:#C4B5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">01 / 08</span>
+      <span style="font-size:2em;">📖</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#C4B5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Introducción</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">¿Qué son los pronombres?</h3>
+      
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los <strong style="color:#FCD34D;">pronombres personales</strong> son palabras que sustituyen a los nombres de las personas. En lugar de repetir "María", decimos "ella".</p>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:#FCD34D; font-weight:700; font-size:0.85em; margin:0 0 10px 0;">💡 EJEMPLO PRÁCTICO</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px; margin-bottom:8px;">
+          <p style="color:white; margin:0; font-size:0.92em;">❌ <span style="opacity:0.7;">María es estudiante. María tiene 20 años. María vive en Bogotá.</span></p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:white; margin:0; font-size:0.92em;">✅ María es estudiante. <strong style="color:#FCD34D;">Ella</strong> tiene 20 años. <strong style="color:#FCD34D;">Ella</strong> vive en Bogotá.</p>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="background:rgba(139,92,246,0.2); border-left:3px solid #C4B5FD; border-radius:0 8px 8px 0; padding:12px;">
+          <p style="color:#C4B5FD; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">🎯 FUNCIÓN PRINCIPAL</p>
+          <p style="color:white; margin:0; font-size:0.9em;">Evitan la repetición y hacen el lenguaje más fluido</p>
+        </div>
+        
+        <div style="background:rgba(139,92,246,0.2); border-left:3px solid #C4B5FD; border-radius:0 8px 8px 0; padding:12px;">
+          <p style="color:#C4B5FD; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">📝 IMPORTANTE</p>
+          <p style="color:white; margin:0; font-size:0.9em;">En español, cada pronombre tiene su propia conjugación verbal</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 2: Pronombres de sujeto - Singular ==================== -->
+  <div id="card2" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#2563EB,#3B82F6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(59,130,246,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(59,130,246,0.3); color:#93C5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">02 / 08</span>
+      <span style="font-size:2em;">👤</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#93C5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Singular</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Pronombres en singular</h3>
+      
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los pronombres singulares se usan cuando hablamos de <strong style="color:#FCD34D;">una sola persona</strong>.</p>
+      </div>
+
+      <!-- YO -->
+      <div style="background:linear-gradient(to right, rgba(59,130,246,0.3), rgba(59,130,246,0.1)); border-radius:12px; padding:20px; margin-bottom:14px; border-left:4px solid #60A5FA;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="background:#60A5FA; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em;">😊</div>
+          <div>
+            <p style="color:#93C5FD; margin:0; font-size:1.3em; font-weight:700;">YO</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">Primera persona singular</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">CUÁNDO SE USA:</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.9em;">Cuando hablo de mí mismo/a</p>
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">EJEMPLOS:</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Yo</strong> soy estudiante</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Yo</strong> vivo en Colombia</p>
+        </div>
+      </div>
+
+      <!-- TÚ / USTED -->
+      <div style="background:linear-gradient(to right, rgba(59,130,246,0.3), rgba(59,130,246,0.1)); border-radius:12px; padding:20px; margin-bottom:14px; border-left:4px solid #60A5FA;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="background:#60A5FA; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em;">👋</div>
+          <div>
+            <p style="color:#93C5FD; margin:0; font-size:1.3em; font-weight:700;">TÚ / USTED</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">Segunda persona singular</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">CUÁNDO SE USA:</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.9em;">Cuando hablo con otra persona</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#60A5FA;">TÚ</strong> = informal (amigos, familia)</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#60A5FA;">USTED</strong> = formal (profesores, jefes, desconocidos)</p>
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">EJEMPLOS:</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Tú</strong> eres mi amigo</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Usted</strong> es el profesor</p>
+        </div>
+      </div>
+
+      <!-- ÉL / ELLA -->
+      <div style="background:linear-gradient(to right, rgba(59,130,246,0.3), rgba(59,130,246,0.1)); border-radius:12px; padding:20px; border-left:4px solid #60A5FA;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="background:#60A5FA; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em;">👨</div>
+          <div>
+            <p style="color:#93C5FD; margin:0; font-size:1.3em; font-weight:700;">ÉL / ELLA</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">Tercera persona singular</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">CUÁNDO SE USA:</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.9em;">Cuando hablo de otra persona</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#60A5FA;">ÉL</strong> = masculino</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#60A5FA;">ELLA</strong> = femenino</p>
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">EJEMPLOS:</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Él</strong> es doctor</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Ella</strong> es profesora</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 3: Pronombres de sujeto - Plural ==================== -->
+  <div id="card3" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#059669,#10B981); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(16,185,129,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(16,185,129,0.3); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">03 / 08</span>
+      <span style="font-size:2em;">👥</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#6EE7B7; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Plural</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Pronombres en plural</h3>
+      
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los pronombres plurales se usan cuando hablamos de <strong style="color:#FCD34D;">dos o más personas</strong>.</p>
+      </div>
+
+      <!-- NOSOTROS / NOSOTRAS -->
+      <div style="background:linear-gradient(to right, rgba(16,185,129,0.3), rgba(16,185,129,0.1)); border-radius:12px; padding:20px; margin-bottom:14px; border-left:4px solid #4ADE80;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="background:#4ADE80; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em;">😊😊</div>
+          <div>
+            <p style="color:#6EE7B7; margin:0; font-size:1.3em; font-weight:700;">NOSOTROS / NOSOTRAS</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">Primera persona plural</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">CUÁNDO SE USA:</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.9em;">Cuando hablo de mí mismo/a + otras personas</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#4ADE80;">NOSOTROS</strong> = grupo masculino o mixto</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#4ADE80;">NOSOTRAS</strong> = grupo solo femenino</p>
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">EJEMPLOS:</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Nosotros</strong> somos estudiantes</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Nosotras</strong> vivimos en México</p>
+        </div>
+      </div>
+
+      <!-- VOSOTROS / USTEDES -->
+      <div style="background:linear-gradient(to right, rgba(16,185,129,0.3), rgba(16,185,129,0.1)); border-radius:12px; padding:20px; margin-bottom:14px; border-left:4px solid #4ADE80;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="background:#4ADE80; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em;">👋👋</div>
+          <div>
+            <p style="color:#6EE7B7; margin:0; font-size:1.3em; font-weight:700;">VOSOTROS / USTEDES</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">Segunda persona plural</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">CUÁNDO SE USA:</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.9em;">Cuando hablo con varias personas</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#4ADE80;">VOSOTROS</strong> = España (informal)</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#4ADE80;">USTEDES</strong> = América Latina (formal e informal)</p>
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">EJEMPLOS:</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Ustedes</strong> son profesores</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Ustedes</strong> viven en Colombia</p>
+        </div>
+      </div>
+
+      <!-- ELLOS / ELLAS -->
+      <div style="background:linear-gradient(to right, rgba(16,185,129,0.3), rgba(16,185,129,0.1)); border-radius:12px; padding:20px; border-left:4px solid #4ADE80;">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+          <div style="background:#4ADE80; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em;">👨👩</div>
+          <div>
+            <p style="color:#6EE7B7; margin:0; font-size:1.3em; font-weight:700;">ELLOS / ELLAS</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">Tercera persona plural</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">CUÁNDO SE USA:</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.9em;">Cuando hablo de varias personas</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#4ADE80;">ELLOS</strong> = grupo masculino o mixto</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.88em;"><strong style="color:#4ADE80;">ELLAS</strong> = grupo solo femenino</p>
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">EJEMPLOS:</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Ellos</strong> son médicos</p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <strong>Ellas</strong> son enfermeras</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:10px; padding:12px 16px; margin-top:16px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.85em; line-height:1.6;"><strong>⚠️ En este curso:</strong> Usaremos <strong>USTEDES</strong> (América Latina), no "vosotros"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 4: Tabla resumen completa ==================== -->
+  <div id="card4" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#DC2626,#EF4444); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(239,68,68,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(239,68,68,0.3); color:#FCA5A5; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">04 / 08</span>
+      <span style="font-size:2em;">📊</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FCA5A5; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Tabla completa</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Todos los pronombres</h3>
+      
+      <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:20px; margin-bottom:16px;">
+        
+        <!-- SINGULAR -->
+        <div style="background:linear-gradient(to right, rgba(59,130,246,0.3), rgba(59,130,246,0.1)); border-radius:10px; padding:15px; margin-bottom:15px;">
+          <p style="color:#93C5FD; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase; text-align:center;">SINGULAR</p>
+          
+          <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; margin-bottom:8px;">
+            <div style="background:#60A5FA; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1em;">1ª</div>
+            <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:8px;">
+              <p style="color:white; margin:0; font-size:1em; font-weight:700;">YO</p>
+            </div>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">hablo de mí</p>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; margin-bottom:8px;">
+            <div style="background:#60A5FA; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1em;">2ª</div>
+            <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:8px;">
+              <p style="color:white; margin:0; font-size:1em; font-weight:700;">TÚ / USTED</p>
+            </div>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">hablo contigo</p>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center;">
+            <div style="background:#60A5FA; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1em;">3ª</div>
+            <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:8px;">
+              <p style="color:white; margin:0; font-size:1em; font-weight:700;">ÉL / ELLA</p>
+            </div>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">hablo de otro/a</p>
+          </div>
+        </div>
+
+        <!-- PLURAL -->
+        <div style="background:linear-gradient(to right, rgba(16,185,129,0.3), rgba(16,185,129,0.1)); border-radius:10px; padding:15px;">
+          <p style="color:#6EE7B7; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase; text-align:center;">PLURAL</p>
+          
+          <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; margin-bottom:8px;">
+            <div style="background:#4ADE80; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1em;">1ª</div>
+            <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:8px;">
+              <p style="color:white; margin:0; font-size:1em; font-weight:700;">NOSOTROS / NOSOTRAS</p>
+            </div>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">yo + otros</p>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center; margin-bottom:8px;">
+            <div style="background:#4ADE80; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1em;">2ª</div>
+            <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:8px;">
+              <p style="color:white; margin:0; font-size:1em; font-weight:700;">USTEDES</p>
+            </div>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">varios tú</p>
+          </div>
+          
+          <div style="display:grid; grid-template-columns:auto 1fr auto; gap:10px; align-items:center;">
+            <div style="background:#4ADE80; width:35px; height:35px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1em;">3ª</div>
+            <div style="background:rgba(255,255,255,0.1); padding:10px; border-radius:8px;">
+              <p style="color:white; margin:0; font-size:1em; font-weight:700;">ELLOS / ELLAS</p>
+            </div>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.8em;">varios otros</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:10px; padding:12px 16px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.85em; line-height:1.6;"><strong>🎯 Memoriza:</strong> 1ª persona = yo hablo | 2ª persona = tú hablas | 3ª persona = él habla</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 5: Formal vs Informal ==================== -->
+  <div id="card5" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#EA580C,#F97316); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(249,115,22,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(249,115,22,0.3); color:#FDBA74; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">05 / 08</span>
+      <span style="font-size:2em;">🎭</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDBA74; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Formalidad</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">TÚ vs USTED</h3>
+      
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">En español, el nivel de <strong style="color:#FCD34D;">formalidad</strong> es muy importante. Usamos diferentes pronombres según con quién hablamos.</p>
+      </div>
+
+      <!-- Comparación TÚ vs USTED -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-bottom:16px;">
+        
+        <!-- TÚ - Informal -->
+        <div style="background:rgba(34,197,94,0.2); border-radius:12px; padding:18px; border:2px solid #22C55E;">
+          <div style="text-align:center; margin-bottom:12px;">
+            <div style="background:#22C55E; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em; margin:0 auto 8px auto;">😊</div>
+            <p style="color:#86EFAC; margin:0; font-size:1.2em; font-weight:700;">TÚ</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.75em;">INFORMAL</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.75em; font-weight:700;">CUÁNDO USAR:</p>
+            <p style="color:white; margin:0; font-size:0.82em; line-height:1.5;">
+              • Amigos<br>
+              • Familia<br>
+              • Niños<br>
+              • Personas de tu edad<br>
+              • Ambiente casual
+            </p>
+          </div>
+        </div>
+
+        <!-- USTED - Formal -->
+        <div style="background:rgba(59,130,246,0.2); border-radius:12px; padding:18px; border:2px solid #3B82F6;">
+          <div style="text-align:center; margin-bottom:12px;">
+            <div style="background:#3B82F6; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5em; margin:0 auto 8px auto;">🤵</div>
+            <p style="color:#93C5FD; margin:0; font-size:1.2em; font-weight:700;">USTED</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.75em;">FORMAL</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.75em; font-weight:700;">CUÁNDO USAR:</p>
+            <p style="color:white; margin:0; font-size:0.82em; line-height:1.5;">
+              • Personas mayores<br>
+              • Profesores<br>
+              • Jefes<br>
+              • Desconocidos<br>
+              • Ambiente profesional
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; padding:16px; margin-bottom:12px;">
+        <p style="color:#FCD34D; font-weight:700; font-size:0.85em; margin:0 0 8px 0;">💡 EJEMPLOS COMPARATIVOS</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; margin-bottom:6px;">
+          <p style="color:white; margin:0; font-size:0.88em;"><strong style="color:#22C55E;">TÚ:</strong> "¿Cómo estás?" (amigo)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+          <p style="color:white; margin:0; font-size:0.88em;"><strong style="color:#3B82F6;">USTED:</strong> "¿Cómo está?" (profesor)</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(239,68,68,0.15); border:1px solid rgba(239,68,68,0.3); border-radius:10px; padding:12px 16px;">
+        <p style="color:#FCA5A5; margin:0; font-size:0.85em; line-height:1.6;"><strong>⚠️ Importante:</strong> Si tienes duda, usa <strong>USTED</strong>. Es mejor ser demasiado formal que irrespetuoso</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 6: Género en los pronombres ==================== -->
+  <div id="card6" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#A21CAF,#C026D3); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(192,38,211,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(192,38,211,0.3); color:#F0ABFC; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">06 / 08</span>
+      <span style="font-size:2em;">♀️♂️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#F0ABFC; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Género</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Masculino y femenino</h3>
+      
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Algunos pronombres tienen <strong style="color:#FCD34D;">forma masculina y femenina</strong>, dependiendo del género del grupo de personas.</p>
+      </div>
+
+      <p style="color:#FCD34D; font-weight:700; font-size:0.82em; letter-spacing:2px; text-transform:uppercase; margin:0 0 12px 0;">PRONOMBRES CON GÉNERO</p>
+
+      <!-- ÉL / ELLA -->
+      <div style="background:rgba(192,38,211,0.2); border-radius:12px; padding:16px; margin-bottom:12px;">
+        <p style="color:#F0ABFC; margin:0 0 10px 0; font-size:0.9em; font-weight:700;">TERCERA PERSONA SINGULAR</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:rgba(59,130,246,0.2); border:2px solid #3B82F6; border-radius:8px; padding:12px; text-align:center;">
+            <p style="color:#93C5FD; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">MASCULINO</p>
+            <p style="color:white; margin:0; font-size:1.1em; font-weight:700;">ÉL</p>
+            <p style="color:rgba(255,255,255,0.7); margin:4px 0 0 0; font-size:0.8em;">Carlos → Él es doctor</p>
+          </div>
+          <div style="background:rgba(236,72,153,0.2); border:2px solid #EC4899; border-radius:8px; padding:12px; text-align:center;">
+            <p style="color:#F9A8D4; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">FEMENINO</p>
+            <p style="color:white; margin:0; font-size:1.1em; font-weight:700;">ELLA</p>
+            <p style="color:rgba(255,255,255,0.7); margin:4px 0 0 0; font-size:0.8em;">Ana → Ella es doctora</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOSOTROS / NOSOTRAS -->
+      <div style="background:rgba(192,38,211,0.2); border-radius:12px; padding:16px; margin-bottom:12px;">
+        <p style="color:#F0ABFC; margin:0 0 10px 0; font-size:0.9em; font-weight:700;">PRIMERA PERSONA PLURAL</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:rgba(59,130,246,0.2); border:2px solid #3B82F6; border-radius:8px; padding:12px; text-align:center;">
+            <p style="color:#93C5FD; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">MASCULINO / MIXTO</p>
+            <p style="color:white; margin:0; font-size:1.1em; font-weight:700;">NOSOTROS</p>
+            <p style="color:rgba(255,255,255,0.7); margin:4px 0 0 0; font-size:0.8em;">Grupo de hombres o mixto</p>
+          </div>
+          <div style="background:rgba(236,72,153,0.2); border:2px solid #EC4899; border-radius:8px; padding:12px; text-align:center;">
+            <p style="color:#F9A8D4; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">FEMENINO</p>
+            <p style="color:white; margin:0; font-size:1.1em; font-weight:700;">NOSOTRAS</p>
+            <p style="color:rgba(255,255,255,0.7); margin:4px 0 0 0; font-size:0.8em;">Solo mujeres</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELLOS / ELLAS -->
+      <div style="background:rgba(192,38,211,0.2); border-radius:12px; padding:16px; margin-bottom:12px;">
+        <p style="color:#F0ABFC; margin:0 0 10px 0; font-size:0.9em; font-weight:700;">TERCERA PERSONA PLURAL</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:rgba(59,130,246,0.2); border:2px solid #3B82F6; border-radius:8px; padding:12px; text-align:center;">
+            <p style="color:#93C5FD; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">MASCULINO / MIXTO</p>
+            <p style="color:white; margin:0; font-size:1.1em; font-weight:700;">ELLOS</p>
+            <p style="color:rgba(255,255,255,0.7); margin:4px 0 0 0; font-size:0.8em;">Grupo de hombres o mixto</p>
+          </div>
+          <div style="background:rgba(236,72,153,0.2); border:2px solid #EC4899; border-radius:8px; padding:12px; text-align:center;">
+            <p style="color:#F9A8D4; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">FEMENINO</p>
+            <p style="color:white; margin:0; font-size:1.1em; font-weight:700;">ELLAS</p>
+            <p style="color:rgba(255,255,255,0.7); margin:4px 0 0 0; font-size:0.8em;">Solo mujeres</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:10px; padding:12px 16px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.85em; line-height:1.6;"><strong>📌 Regla:</strong> Si hay <strong>al menos un hombre</strong> en el grupo, se usa la forma masculina (nosotros, ellos)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 7: Errores comunes ==================== -->
+  <div id="card7" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#CA8A04,#EAB308); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(234,179,8,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(234,179,8,0.3); color:#FEF08A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">07 / 08</span>
+      <span style="font-size:2em;">⚠️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FEF08A; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Errores comunes</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">¡Evita estos errores!</h3>
+      
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Estos son los errores más frecuentes que cometen los estudiantes con los pronombres personales.</p>
+      </div>
+
+      <!-- Error 1 -->
+      <div style="background:rgba(239,68,68,0.15); border-left:4px solid #EF4444; border-radius:0 10px 10px 0; padding:16px; margin-bottom:12px;">
+        <p style="color:#FCA5A5; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">❌ ERROR 1: Confundir TÚ y USTED</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; margin-bottom:6px;">
+          <p style="color:white; margin:0; font-size:0.88em;">❌ "Profesor, ¿<strong style="color:#FCA5A5;">tú</strong> puedes ayudarme?"</p>
+        </div>
+        <div style="background:rgba(34,197,94,0.2); border-radius:8px; padding:10px;">
+          <p style="color:white; margin:0; font-size:0.88em;">✓ "Profesor, ¿<strong style="color:#4ADE80;">usted</strong> puede ayudarme?"</p>
+        </div>
+      </div>
+
+      <!-- Error 2 -->
+      <div style="background:rgba(239,68,68,0.15); border-left:4px solid #EF4444; border-radius:0 10px 10px 0; padding:16px; margin-bottom:12px;">
+        <p style="color:#FCA5A5; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">❌ ERROR 2: Usar pronombres innecesarios</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; margin-bottom:6px;">
+          <p style="color:white; margin:0; font-size:0.88em;">❌ "<strong style="color:#FCA5A5;">Yo yo</strong> soy estudiante"</p>
+        </div>
+        <div style="background:rgba(34,197,94,0.2); border-radius:8px; padding:10px;">
+          <p style="color:white; margin:0; font-size:0.88em;">✓ "<strong style="color:#4ADE80;">Yo</strong> soy estudiante" o solo "Soy estudiante"</p>
+        </div>
+        <p style="color:rgba(255,255,255,0.7); margin:8px 0 0 0; font-size:0.8em; font-style:italic;">En español, el pronombre es opcional porque el verbo ya indica la persona</p>
+      </div>
+
+      <!-- Error 3 -->
+      <div style="background:rgba(239,68,68,0.15); border-left:4px solid #EF4444; border-radius:0 10px 10px 0; padding:16px; margin-bottom:12px;">
+        <p style="color:#FCA5A5; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">❌ ERROR 3: Mezclar género en grupos mixtos</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; margin-bottom:6px;">
+          <p style="color:white; margin:0; font-size:0.88em;">❌ "Juan y María → <strong style="color:#FCA5A5;">Ellas</strong> son amigos"</p>
+        </div>
+        <div style="background:rgba(34,197,94,0.2); border-radius:8px; padding:10px;">
+          <p style="color:white; margin:0; font-size:0.88em;">✓ "Juan y María → <strong style="color:#4ADE80;">Ellos</strong> son amigos"</p>
+        </div>
+        <p style="color:rgba(255,255,255,0.7); margin:8px 0 0 0; font-size:0.8em; font-style:italic;">Un grupo mixto siempre usa el masculino</p>
+      </div>
+
+      <!-- Error 4 -->
+      <div style="background:rgba(239,68,68,0.15); border-left:4px solid #EF4444; border-radius:0 10px 10px 0; padding:16px;">
+        <p style="color:#FCA5A5; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">❌ ERROR 4: Usar "vosotros" en América Latina</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; margin-bottom:6px;">
+          <p style="color:white; margin:0; font-size:0.88em;">❌ En Colombia: "¿<strong style="color:#FCA5A5;">Vosotros</strong> sois estudiantes?"</p>
+        </div>
+        <div style="background:rgba(34,197,94,0.2); border-radius:8px; padding:10px;">
+          <p style="color:white; margin:0; font-size:0.88em;">✓ En Colombia: "¿<strong style="color:#4ADE80;">Ustedes</strong> son estudiantes?"</p>
+        </div>
+        <p style="color:rgba(255,255,255,0.7); margin:8px 0 0 0; font-size:0.8em; font-style:italic;">En este curso usamos "ustedes", no "vosotros"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 8: Resumen y práctica ==================== -->
+  <div id="card8" style="display:none; border-radius:20px; padding:40px; background:linear-gradient(145deg,#2C3E50,#3D5166); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(59,130,246,0.1); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(16,185,129,0.07); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(59,130,246,0.3); color:#93C5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">08 / 08</span>
+      <span style="font-size:2em;">🌟</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#93C5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Resumen</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 16px 0;">¡Repasemos!</h3>
+      
+      <div style="background:rgba(59,130,246,0.1); border:1px solid rgba(59,130,246,0.3); border-radius:12px; padding:20px; margin-bottom:18px;">
+        <p style="color:#93C5FD; font-size:0.78em; font-weight:700; margin:0 0 12px 0; letter-spacing:1px; text-align:center;">📋 PUNTOS CLAVE</p>
+        
+        <div style="background:rgba(255,255,255,0.05); border-radius:8px; padding:12px; margin-bottom:10px;">
+          <p style="color:#60A5FA; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">SINGULAR</p>
+          <p style="color:white; margin:0; font-size:0.88em;">YO | TÚ/USTED | ÉL/ELLA</p>
+        </div>
+        
+        <div style="background:rgba(255,255,255,0.05); border-radius:8px; padding:12px; margin-bottom:10px;">
+          <p style="color:#4ADE80; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">PLURAL</p>
+          <p style="color:white; margin:0; font-size:0.88em;">NOSOTROS/AS | USTEDES | ELLOS/ELLAS</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border-radius:8px; padding:12px; margin-bottom:10px;">
+          <p style="color:#FDBA74; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">FORMALIDAD</p>
+          <p style="color:white; margin:0; font-size:0.88em;">TÚ = informal | USTED = formal</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.05); border-radius:8px; padding:12px;">
+          <p style="color:#F0ABFC; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">GÉNERO</p>
+          <p style="color:white; margin:0; font-size:0.88em;">Grupo mixto → masculino (ellos, nosotros)</p>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#667eea,#764ba2); border-radius:12px; padding:20px; margin-bottom:18px;">
+        <p style="color:white; font-size:0.85em; font-weight:700; margin:0 0 10px 0; text-align:center;">✏️ PRACTICA AHORA</p>
+        <p style="color:rgba(255,255,255,0.95); margin:0; font-size:0.92em; line-height:1.6; text-align:center;">
+          Completa con el pronombre correcto:<br><br>
+          <strong>____</strong> soy estudiante (yo)<br>
+          <strong>____</strong> eres amable (tú)<br>
+          <strong>____</strong> somos amigos (nosotros)<br>
+          María y Pedro → <strong>____</strong> (ellos/ellas)
+        </p>
+      </div>
+
+      <div style="background:rgba(16,185,129,0.15); border-radius:10px; padding:14px 18px; display:flex; align-items:center; gap:10px;">
+        <span style="font-size:1.3em;">🎯</span>
+        <p style="color:rgba(255,255,255,0.85); margin:0; font-size:0.92em; font-weight:600; line-height:1.5;">¡Ahora conoces todos los pronombres personales en español!</p>
+      </div>
+<!-- CTA -->
+        <div style="text-align: center;">
+          <p
+            style="color: #888; font-size: 0.88em; font-style: italic; margin: 0 0 14px;">
+            Haz clic en <strong
+              style="color: #1a2e4a;">Regresar</strong> para volver al aula virtual.</p>
+          <a style="display: inline-block; background: linear-gradient(135deg, #c9a84c, #e8c96a); color: #1a2e4a; padding: 12px 36px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.97em; letter-spacing: 0.5px; box-shadow: 0 3px 10px rgba(201,168,76,0.3);"
+            href="#">Continuar
+            →</a>
+        </div>
+    </div>
+  </div>
+
+  <!-- NAVEGACIÓN -->
+  <div style="display:flex; justify-content:center; align-items:center; gap:20px; margin-top:20px; flex-wrap:wrap;">
+
+    <!-- FLECHAS IZQUIERDA -->
+    <label for="s8" onclick="mostrar(8)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev1">←</label>
+    <label for="s1" onclick="mostrar(1)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev2">←</label>
+    <label for="s2" onclick="mostrar(2)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev3">←</label>
+    <label for="s3" onclick="mostrar(3)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev4">←</label>
+    <label for="s4" onclick="mostrar(4)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev5">←</label>
+    <label for="s5" onclick="mostrar(5)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev6">←</label>
+    <label for="s6" onclick="mostrar(6)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev7">←</label>
+    <label for="s7" onclick="mostrar(7)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="prev8">←</label>
+
+    <!-- PUNTOS -->
+    <div style="display:flex; gap:7px; align-items:center;">
+      <label for="s1" onclick="mostrar(1)" style="width:11px;height:11px;border-radius:50%;background:#8B5CF6;cursor:pointer;display:inline-block;transition:all 0.2s;" id="dot1"></label>
+      <label for="s2" onclick="mostrar(2)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot2"></label>
+      <label for="s3" onclick="mostrar(3)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot3"></label>
+      <label for="s4" onclick="mostrar(4)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot4"></label>
+      <label for="s5" onclick="mostrar(5)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot5"></label>
+      <label for="s6" onclick="mostrar(6)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot6"></label>
+      <label for="s7" onclick="mostrar(7)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot7"></label>
+      <label for="s8" onclick="mostrar(8)" style="width:11px;height:11px;border-radius:50%;background:#ddd;cursor:pointer;display:inline-block;" id="dot8"></label>
+    </div>
+
+    <!-- FLECHAS DERECHA -->
+    <label for="s2" onclick="mostrar(2)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:inline-block;" id="next1">→</label>
+    <label for="s3" onclick="mostrar(3)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next2">→</label>
+    <label for="s4" onclick="mostrar(4)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next3">→</label>
+    <label for="s5" onclick="mostrar(5)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next4">→</label>
+    <label for="s6" onclick="mostrar(6)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next5">→</label>
+    <label for="s7" onclick="mostrar(7)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next6">→</label>
+    <label for="s8" onclick="mostrar(8)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next7">→</label>
+    <label for="s1" onclick="mostrar(1)" style="width:44px;height:44px;line-height:44px;text-align:center;border-radius:50%;background:white;cursor:pointer;font-size:1.2em;box-shadow:0 4px 15px rgba(0,0,0,0.15);display:none;" id="next8">→</label>
+
+  </div>
+
+  <!-- CONTADOR -->
+  <p id="contador" style="text-align:center; color:#999; font-size:0.85em; margin-top:10px;">Tarjeta 1 de 8</p>
+
+</div>
+
+<script>
+const TOTAL = 8;
+const colores = ['','#8B5CF6','#3B82F6','#10B981','#EF4444','#F97316','#C026D3','#EAB308','#3B82F6'];
+
+function mostrar(n) {
+  for (let i = 1; i <= TOTAL; i++) {
+    document.getElementById('card'+i).style.display = 'none';
+    document.getElementById('dot'+i).style.background = '#ddd';
+    document.getElementById('dot'+i).style.transform = 'scale(1)';
+    document.getElementById('dot'+i).style.width = '11px';
+    document.getElementById('dot'+i).style.height = '11px';
+    document.getElementById('prev'+i).style.display = 'none';
+    document.getElementById('next'+i).style.display = 'none';
+  }
+  document.getElementById('card'+n).style.display = 'block';
+  document.getElementById('dot'+n).style.background = colores[n];
+  document.getElementById('dot'+n).style.transform = 'scale(1.35)';
+  document.getElementById('dot'+n).style.width = '13px';
+  document.getElementById('dot'+n).style.height = '13px';
+  document.getElementById('contador').textContent = 'Tarjeta ' + n + ' de ' + TOTAL;
+
+  const prev = n === 1 ? TOTAL : n - 1;
+  const next = n === TOTAL ? 1 : n + 1;
+
+  const prevEl = document.getElementById('prev'+n);
+  prevEl.style.display = 'inline-block';
+  prevEl.setAttribute('for', 's'+prev);
+  prevEl.onclick = function(){ mostrar(prev); };
+
+  const nextEl = document.getElementById('next'+n);
+  nextEl.style.display = 'inline-block';
+  nextEl.setAttribute('for', 's'+next);
+  nextEl.onclick = function(){ mostrar(next); };
+}
+
+mostrar(1);
+</script>
+
+</body>
+</html>
