@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pronombres Personales · Actividad Interactiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2e4a;
+      --navy-mid: #2c4a72;
+      --navy-light: #3d6494;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --success: #52b788;
+      --error: #e05c5c;
+      --bg: #f0f4f8;
+      --white: #ffffff;
+      --text: #2d3748;
+      --muted: #718096;
+      --border: #e2e8f0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding: 0 0 60px;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 28px 24px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 20%;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.07);
+    }
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(201,168,76,0.18);
+      border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold-light);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.72em;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      color: white;
+      font-size: 1.9em;
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+    .header h1 span { color: var(--gold-light); }
+    .header p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9em;
+      font-weight: 300;
+    }
+
+    /* PROGRESS */
+    .progress-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px 24px 0;
+    }
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .progress-label {
+      font-size: 0.78em;
+      font-weight: 600;
+      color: var(--navy-mid);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .progress-count {
+      font-size: 0.82em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .progress-bar-bg {
+      height: 6px;
+      background: var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--navy), var(--gold));
+      border-radius: 10px;
+      transition: width 0.5s ease;
+    }
+
+    /* SCORE */
+    .score-strip {
+      max-width: 720px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+      display: flex;
+      gap: 12px;
+    }
+    .score-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 0.8em;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .score-chip .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+    }
+    .dot-success { background: var(--success); }
+    .dot-error { background: var(--error); }
+
+    /* MAIN */
+    .main {
+      max-width: 720px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    /* CARD DE EJERCICIO */
+    .exercise-card {
+      background: white;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(26,46,74,0.08);
+      overflow: hidden;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .exercise-top {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ex-num {
+      background: rgba(201,168,76,0.25);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold-light);
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85em;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .ex-instruction {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85em;
+      font-weight: 400;
+    }
+
+    .exercise-body {
+      padding: 32px 28px 24px;
+    }
+
+    /* ORACIÓN CON SLOT */
+    .sentence-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 32px;
+      min-height: 56px;
+    }
+    .word {
+      font-size: 1.25em;
+      font-weight: 500;
+      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+    }
+    .drop-slot {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 110px;
+      height: 44px;
+      border: 2px dashed #b0bec5;
+      border-radius: 10px;
+      background: #f7f9fc;
+      font-size: 1.1em;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all 0.2s;
+      cursor: pointer;
+      position: relative;
+      padding: 0 12px;
+    }
+    .drop-slot.drag-over {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.08);
+      transform: scale(1.04);
+    }
+    .drop-slot.filled {
+      border: 2px solid var(--navy-mid);
+      background: rgba(44,74,114,0.06);
+      color: var(--navy);
+    }
+    .drop-slot.correct {
+      border-color: var(--success);
+      background: rgba(82,183,136,0.1);
+      color: var(--success);
+    }
+    .drop-slot.incorrect {
+      border-color: var(--error);
+      background: rgba(224,92,92,0.1);
+      color: var(--error);
+      animation: shake 0.3s ease;
+    }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    /* OPCIONES ARRASTRABLES */
+    .options-label {
+      font-size: 0.72em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--navy-mid);
+      margin-bottom: 12px;
+    }
+    .options-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .draggable {
+      background: white;
+      border: 2px solid var(--navy-mid);
+      color: var(--navy);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.95em;
+      font-weight: 600;
+      cursor: grab;
+      transition: all 0.15s;
+      user-select: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .draggable:hover {
+      background: var(--navy);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26,46,74,0.2);
+    }
+    .draggable:active { cursor: grabbing; }
+    .draggable.dragging {
+      opacity: 0.4;
+      transform: scale(0.96);
+    }
+    .draggable.used {
+      opacity: 0.25;
+      pointer-events: none;
+      border-style: dashed;
+    }
+
+    /* FEEDBACK */
+    .feedback-box {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 0.9em;
+      font-weight: 500;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: fadeIn 0.3s ease;
+    }
+    .feedback-box.show { display: flex; }
+    .feedback-box.success {
+      background: rgba(82,183,136,0.12);
+      border: 1px solid rgba(82,183,136,0.3);
+      color: #2d6a4f;
+    }
+    .feedback-box.error {
+      background: rgba(224,92,92,0.1);
+      border: 1px solid rgba(224,92,92,0.25);
+      color: #9b2226;
+    }
+    .feedback-icon { font-size: 1.2em; flex-shrink: 0; }
+
+    /* BOTONES */
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 11px 28px;
+      border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9em;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: white;
+      box-shadow: 0 4px 14px rgba(26,46,74,0.25);
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(26,46,74,0.3);
+    }
+    .btn-secondary {
+      background: white;
+      color: var(--navy);
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--navy-mid);
+      background: #f7f9fc;
+    }
+    .btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    /* HINT */
+    .hint-box {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.83em;
+      color: #7a5c1e;
+      margin-top: 16px;
+      display: none;
+    }
+    .hint-box.show { display: block; }
+    .hint-box strong { color: var(--navy); }
+
+    /* PANTALLA FINAL */
+    .results-screen {
+      display: none;
+      background: white;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(26,46,74,0.08);
+      padding: 40px 32px;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+    .results-screen.show { display: block; }
+    .results-emoji {
+      font-size: 3.5em;
+      margin-bottom: 16px;
+    }
+    .results-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7em;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .results-subtitle {
+      color: var(--muted);
+      font-size: 0.95em;
+      margin-bottom: 28px;
+    }
+    .results-score {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: white;
+      font-size: 2em;
+      font-weight: 700;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(26,46,74,0.25);
+      font-family: 'Playfair Display', serif;
+    }
+    .results-breakdown {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .breakdown-item {
+      text-align: center;
+    }
+    .breakdown-num {
+      font-size: 1.6em;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+    .breakdown-label {
+      font-size: 0.78em;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .color-success { color: var(--success); }
+    .color-error { color: var(--error); }
+    .color-navy { color: var(--navy); }
+
+    /* TOUCH support indicator */
+    .touch-hint {
+      background: rgba(44,74,114,0.06);
+      border: 1px solid rgba(44,74,114,0.12);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.78em;
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">📌 Temática 1 · Bloque 2</div>
+    <h1>Arrastra el <span>pronombre</span> correcto</h1>
+    <p>Completa cada oración con el pronombre personal que corresponde</p>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-info">
+    <span class="progress-label">Progreso</span>
+    <span class="progress-count" id="progressCount">Ejercicio 1 de 8</span>
+  </div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+  </div>
+</div>
+
+<!-- SCORE -->
+<div class="score-strip">
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctas</div>
+  <div class="score-chip"><span class="dot dot-error"></span> <span id="wrongCount">0</span> incorrectas</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="touch-hint" id="touchHint">💡 Toca un pronombre y luego toca el espacio en blanco para colocarlo</div>
+
+  <!-- EJERCICIO -->
+  <div class="exercise-card" id="exerciseCard">
+    <div class="exercise-top">
+      <div class="ex-num" id="exNum">1</div>
+      <span class="ex-instruction">Arrastra el pronombre correcto al espacio en blanco</span>
+    </div>
+    <div class="exercise-body">
+      <div class="sentence-wrap" id="sentenceWrap"></div>
+
+      <div class="options-label">Pronombres disponibles</div>
+      <div class="options-grid" id="optionsGrid"></div>
+
+      <div class="feedback-box" id="feedbackBox">
+        <span class="feedback-icon" id="feedbackIcon"></span>
+        <span id="feedbackText"></span>
+      </div>
+
+      <div class="hint-box" id="hintBox"></div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="btnCheck" onclick="checkAnswer()" disabled>Verificar</button>
+        <button class="btn btn-secondary" id="btnHint" onclick="showHint()">💡 Pista</button>
+        <button class="btn btn-secondary" id="btnNext" onclick="nextExercise()" style="display:none">Siguiente →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="results-screen" id="resultsScreen">
+    <div class="results-emoji" id="resultsEmoji">🎉</div>
+    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
+    <div class="results-subtitle" id="resultsSubtitle">Has completado todos los ejercicios</div>
+    <div class="results-score" id="resultsScore">8/8</div>
+    <div class="results-breakdown">
+      <div class="breakdown-item">
+        <div class="breakdown-num color-success" id="finalCorrect">0</div>
+        <div class="breakdown-label">Correctas</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-num color-error" id="finalWrong">0</div>
+        <div class="breakdown-label">Incorrectas</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-num color-navy" id="finalPct">0%</div>
+        <div class="breakdown-label">Puntuación</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="restartGame()" style="margin: 0 auto; display: inline-block;">🔄 Intentar de nuevo</button>
+  </div>
+<!-- CTA -->
+        <div style="text-align: center;">
+          <p
+            style="color: #888; font-size: 0.88em; font-style: italic; margin: 0 0 14px;">
+            Haz clic en <strong
+              style="color: #1a2e4a;">Regresar</strong> para volver al aula virtual.</p>
+          <a style="display: inline-block; background: linear-gradient(135deg, #c9a84c, #e8c96a); color: #1a2e4a; padding: 12px 36px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.97em; letter-spacing: 0.5px; box-shadow: 0 3px 10px rgba(201,168,76,0.3);"
+            href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=69">Regresar
+            →</a>
+        </div>
+</div>
+
+<script>
+const exercises = [
+  {
+    parts: ['___', 'soy', 'estudiante', 'de', 'español.'],
+    slot: 0,
+    answer: 'Yo',
+    options: ['Yo', 'Tú', 'Él', 'Nosotros'],
+    hint: 'Primera persona del singular — hablas de ti mismo.',
+    feedback: '¡Correcto! <strong>Yo</strong> = I en inglés. Primera persona del singular.'
+  },
+  {
+    parts: ['Mi', 'amigo', 'James', '___ ', 'de', 'Nueva', 'York.'],
+    slot: 3,
+    answer: 'es',
+    pronoun: true,
+    actualParts: ['Mi', 'amigo', 'James', '___', 'de', 'Nueva', 'York.'],
+    realAnswer: 'es',
+    override: true,
+    sentence: ['Mi', 'amigo', 'James', '___', 'de', 'Nueva', 'York.'],
+    correct: 'es',
+    opts: ['es', 'soy', 'eres', 'son'],
+    hintText: 'James es una tercera persona (él). Usa la forma correcta del verbo SER.',
+    feedbackText: '¡Correcto! Para <strong>él / ella</strong>, el verbo SER se conjuga como <strong>es</strong>.'
+  },
+  {
+    parts: ['___ ', 'eres', 'muy', 'inteligente.'],
+    slot: 0,
+    answer: 'Tú',
+    options: ['Yo', 'Tú', 'Ella', 'Ellos'],
+    hint: 'Segunda persona singular informal — le hablas directamente a alguien.',
+    feedback: '¡Correcto! <strong>Tú</strong> = You (informal) en inglés.'
+  },
+  {
+    parts: ['___ ', 'somos', 'estudiantes', 'de', 'nivel', 'A1.'],
+    slot: 0,
+    answer: 'Nosotros',
+    options: ['Yo', 'Tú', 'Nosotros', 'Ellas'],
+    hint: 'Primera persona del plural — hablas de un grupo que te incluye a ti.',
+    feedback: '¡Correcto! <strong>Nosotros</strong> = We en inglés.'
+  },
+  {
+    parts: ['___ ', 'se', 'llama', 'Sophie', 'y', 'es', 'francesa.'],
+    slot: 0,
+    answer: 'Ella',
+    options: ['Él', 'Ella', 'Usted', 'Ellas'],
+    hint: 'Sophie es una mujer. Usa el pronombre femenino singular.',
+    feedback: '¡Correcto! <strong>Ella</strong> = She en inglés. Se usa para personas femeninas.'
+  },
+  {
+    parts: ['Profesor,', '___ ', 'habla', 'muy', 'rápido.'],
+    slot: 1,
+    answer: 'usted',
+    options: ['tú', 'usted', 'él', 'yo'],
+    hint: 'Se habla con respeto a un profesor. ¿Cuál es el pronombre formal?',
+    feedback: '¡Correcto! <strong>Usted</strong> es el pronombre formal. Se usa con personas mayores, jefes o desconocidos.'
+  },
+  {
+    parts: ['James', 'y', 'Kenji', '___ ', 'son', 'compañeros', 'de', 'clase.'],
+    slot: 3,
+    answer: '—',
+    options: ['ellos', 'ellas', 'nosotros', 'ustedes'],
+    hint: 'James y Kenji son dos hombres. ¿Qué pronombre representa a un grupo masculino o mixto?',
+    feedback: '¡Correcto! <strong>Ellos</strong> = They (masc. o mixto). <strong>Ellas</strong> se usa solo cuando todas son mujeres.',
+    answerOverride: 'ellos'
+  },
+  {
+    parts: ['Sophie', 'y', 'Claire', '___ ', 'estudian', 'español', 'juntas.'],
+    slot: 3,
+    answer: '—',
+    options: ['ellos', 'ellas', 'ustedes', 'nosotras'],
+    hint: 'Sophie y Claire son dos mujeres. ¿Cuál es el pronombre femenino plural?',
+    feedback: '¡Correcto! <strong>Ellas</strong> = They (femenino). Se usa cuando todas las personas del grupo son mujeres.',
+    answerOverride: 'ellas'
+  }
+];
+
+let current = 0;
+let correct = 0;
+let wrong = 0;
+let selectedDraggable = null;
+let answered = false;
+
+function initExercise() {
+  answered = false;
+  selectedDraggable = null;
+  const ex = exercises[current];
+
+  document.getElementById('exNum').textContent = current + 1;
+  document.getElementById('progressCount').textContent = `Ejercicio ${current + 1} de ${exercises.length}`;
+  document.getElementById('progressBar').style.width = `${(current / exercises.length) * 100}%`;
+
+  // Sentence
+  const wrap = document.getElementById('sentenceWrap');
+  wrap.innerHTML = '';
+  const parts = ex.sentence || ex.parts;
+  parts.forEach((p, i) => {
+    if (p === '___' || (ex.slot !== undefined && i === ex.slot && p.trim() === '___') || (i === ex.slot)) {
+      const slot = document.createElement('div');
+      slot.className = 'drop-slot';
+      slot.id = 'dropSlot';
+      slot.textContent = '?';
+      slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('drag-over'); });
+      slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+      slot.addEventListener('drop', e => { e.preventDefault(); handleDrop(); });
+      slot.addEventListener('click', () => handleSlotClick(slot));
+      wrap.appendChild(slot);
+    } else if (p.trim() !== '___') {
+      const word = document.createElement('span');
+      word.className = 'word';
+      word.textContent = p;
+      wrap.appendChild(word);
+    }
+  });
+
+  // Options
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  const opts = ex.opts || ex.options;
+  opts.forEach(opt => {
+    const btn = document.createElement('div');
+    btn.className = 'draggable';
+    btn.textContent = opt;
+    btn.draggable = true;
+    btn.dataset.value = opt;
+    btn.addEventListener('dragstart', () => handleDragStart(btn));
+    btn.addEventListener('dragend', () => btn.classList.remove('dragging'));
+    btn.addEventListener('click', () => handleOptionClick(btn));
+    grid.appendChild(btn);
+  });
+
+  // Reset UI
+  document.getElementById('feedbackBox').className = 'feedback-box';
+  document.getElementById('hintBox').className = 'hint-box';
+  document.getElementById('btnCheck').disabled = true;
+  document.getElementById('btnCheck').style.display = 'inline-block';
+  document.getElementById('btnHint').style.display = 'inline-block';
+  document.getElementById('btnNext').style.display = 'none';
+}
+
+function handleDragStart(el) {
+  selectedDraggable = el;
+  el.classList.add('dragging');
+}
+
+function handleOptionClick(el) {
+  if (answered) return;
+  document.querySelectorAll('.draggable').forEach(d => d.classList.remove('selected'));
+  if (selectedDraggable === el) {
+    selectedDraggable = null;
+    return;
+  }
+  selectedDraggable = el;
+  el.style.background = 'var(--navy)';
+  el.style.color = 'white';
+
+  // If slot is empty, place automatically
+  const slot = document.getElementById('dropSlot');
+  if (slot.dataset.value === undefined || slot.textContent === '?') {
+    handleDrop();
+  }
+}
+
+function handleSlotClick(slot) {
+  if (answered) return;
+  if (selectedDraggable) {
+    handleDrop();
+  } else if (slot.dataset.value) {
+    // Return to options
+    const val = slot.dataset.value;
+    slot.textContent = '?';
+    slot.className = 'drop-slot';
+    delete slot.dataset.value;
+    document.querySelectorAll('.draggable').forEach(d => {
+      if (d.dataset.value === val) d.classList.remove('used');
+    });
+    document.getElementById('btnCheck').disabled = true;
+  }
+}
+
+function handleDrop() {
+  if (!selectedDraggable || answered) return;
+  const slot = document.getElementById('dropSlot');
+
+  // Return previous value if slot was filled
+  if (slot.dataset.value) {
+    const prev = slot.dataset.value;
+    document.querySelectorAll('.draggable').forEach(d => {
+      if (d.dataset.value === prev) d.classList.remove('used');
+    });
+  }
+
+  slot.textContent = selectedDraggable.dataset.value;
+  slot.dataset.value = selectedDraggable.dataset.value;
+  slot.classList.add('filled');
+  slot.classList.remove('drag-over');
+
+  // Reset all option styles
+  document.querySelectorAll('.draggable').forEach(d => {
+    d.style.background = '';
+    d.style.color = '';
+    d.classList.remove('used');
+  });
+  selectedDraggable.classList.add('used');
+  selectedDraggable = null;
+
+  document.getElementById('btnCheck').disabled = false;
+}
+
+function checkAnswer() {
+  if (answered) return;
+  answered = true;
+  const ex = exercises[current];
+  const slot = document.getElementById('dropSlot');
+  const given = (slot.dataset.value || '').toLowerCase().trim();
+  const expected = (ex.answerOverride || ex.correct || ex.answer).toLowerCase().trim();
+  const isCorrect = given === expected;
+
+  const feedback = document.getElementById('feedbackBox');
+  const icon = document.getElementById('feedbackIcon');
+  const text = document.getElementById('feedbackText');
+
+  if (isCorrect) {
+    correct++;
+    slot.className = 'drop-slot correct';
+    feedback.className = 'feedback-box success show';
+    icon.textContent = '✅';
+    text.innerHTML = ex.feedbackText || ex.feedback;
+    document.getElementById('correctCount').textContent = correct;
+  } else {
+    wrong++;
+    slot.className = 'drop-slot incorrect';
+    feedback.className = 'feedback-box error show';
+    icon.textContent = '❌';
+    text.innerHTML = `Incorrecto. La respuesta correcta es <strong>${ex.answerOverride || ex.correct || ex.answer}</strong>. ${ex.feedbackText || ex.feedback}`;
+    document.getElementById('wrongCount').textContent = wrong;
+  }
+
+  document.getElementById('btnCheck').style.display = 'none';
+  document.getElementById('btnHint').style.display = 'none';
+
+  if (current < exercises.length - 1) {
+    document.getElementById('btnNext').style.display = 'inline-block';
+  } else {
+    setTimeout(showResults, 800);
+  }
+}
+
+function showHint() {
+  const ex = exercises[current];
+  const hint = document.getElementById('hintBox');
+  hint.innerHTML = `💡 <strong>Pista:</strong> ${ex.hintText || ex.hint}`;
+  hint.className = 'hint-box show';
+}
+
+function nextExercise() {
+  current++;
+  document.getElementById('exerciseCard').style.animation = 'none';
+  document.getElementById('exerciseCard').offsetHeight;
+  document.getElementById('exerciseCard').style.animation = '';
+  initExercise();
+}
+
+function showResults() {
+  document.getElementById('exerciseCard').style.display = 'none';
+  document.getElementById('progressBar').style.width = '100%';
+  const pct = Math.round((correct / exercises.length) * 100);
+  const screen = document.getElementById('resultsScreen');
+  screen.classList.add('show');
+
+  document.getElementById('resultsScore').textContent = `${correct}/${exercises.length}`;
+  document.getElementById('finalCorrect').textContent = correct;
+  document.getElementById('finalWrong').textContent = wrong;
+  document.getElementById('finalPct').textContent = `${pct}%`;
+
+  if (pct === 100) {
+    document.getElementById('resultsEmoji').textContent = '🏆';
+    document.getElementById('resultsTitle').textContent = '¡Perfecto! ¡Excelente!';
+    document.getElementById('resultsSubtitle').textContent = 'Dominaste todos los pronombres. ¡Sigue así!';
+  } else if (pct >= 75) {
+    document.getElementById('resultsEmoji').textContent = '🎉';
+    document.getElementById('resultsTitle').textContent = '¡Muy bien hecho!';
+    document.getElementById('resultsSubtitle').textContent = 'Casi perfecto. Revisa los errores y sigue practicando.';
+  } else if (pct >= 50) {
+    document.getElementById('resultsEmoji').textContent = '💪';
+    document.getElementById('resultsTitle').textContent = '¡Buen intento!';
+    document.getElementById('resultsSubtitle').textContent = 'Vas por buen camino. ¡Inténtalo de nuevo!';
+  } else {
+    document.getElementById('resultsEmoji').textContent = '📚';
+    document.getElementById('resultsTitle').textContent = '¡Sigue practicando!';
+    document.getElementById('resultsSubtitle').textContent = 'Repasa el bloque de pronombres y vuelve a intentarlo.';
+  }
+}
+
+function restartGame() {
+  current = 0; correct = 0; wrong = 0;
+  document.getElementById('correctCount').textContent = 0;
+  document.getElementById('wrongCount').textContent = 0;
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('exerciseCard').style.display = 'block';
+  initExercise();
+}
+
+// Detect touch device
+if ('ontouchstart' in window) {
+  document.getElementById('touchHint').style.display = 'block';
+} else {
+  document.getElementById('touchHint').style.display = 'none';
+}
+
+initExercise();
+</script>
+</body>
+</html>
