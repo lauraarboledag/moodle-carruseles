@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Árbol Genealógico · Actividad Interactiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2e4a;
+      --navy-mid: #2c4a72;
+      --navy-light: #3d6494;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --success: #52b788;
+      --error: #e05c5c;
+      --bg: #f0f4f8;
+      --white: #ffffff;
+      --text: #2d3748;
+      --muted: #718096;
+      --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      min-height: 100vh;
+      padding-bottom: 60px;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 28px 24px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: ''; position: absolute;
+      top: -50px; right: -50px;
+      width: 220px; height: 220px;
+      border-radius: 50%; background: rgba(255,255,255,0.04);
+    }
+    .header::after {
+      content: ''; position: absolute;
+      bottom: -60px; left: 20%;
+      width: 260px; height: 260px;
+      border-radius: 50%; background: rgba(201,168,76,0.07);
+    }
+    .header-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(201,168,76,0.18); border: 1px solid rgba(201,168,76,0.35);
+      color: var(--gold-light); padding: 4px 12px; border-radius: 20px;
+      font-size: 0.72em; font-weight: 600; letter-spacing: 1.5px;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      color: white; font-size: 1.9em; margin-bottom: 6px; line-height: 1.2;
+    }
+    .header h1 span { color: var(--gold-light); }
+    .header p { color: rgba(255,255,255,0.6); font-size: 0.9em; font-weight: 300; }
+
+    /* SCORE STRIP */
+    .score-strip {
+      max-width: 900px; margin: 16px auto 0; padding: 0 24px;
+      display: flex; gap: 12px; flex-wrap: wrap;
+    }
+    .score-chip {
+      display: flex; align-items: center; gap: 6px;
+      background: white; border: 1px solid var(--border);
+      border-radius: 20px; padding: 6px 14px;
+      font-size: 0.8em; color: var(--muted); font-weight: 500;
+    }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-success { background: var(--success); }
+    .dot-error { background: var(--error); }
+    .dot-pending { background: var(--gold); }
+
+    /* MAIN */
+    .main { max-width: 900px; margin: 24px auto 0; padding: 0 24px; }
+
+    /* INSTRUCCIÓN */
+    .instruction-card {
+      background: white; border-radius: 14px; padding: 18px 22px;
+      border: 1px solid var(--border); border-left: 4px solid var(--gold);
+      box-shadow: 0 2px 10px rgba(26,46,74,0.06);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .instruction-icon {
+      width: 42px; height: 42px; border-radius: 10px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center; font-size: 1.3em;
+    }
+    .instruction-text p:first-child {
+      font-size: 0.72em; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--navy-mid); margin-bottom: 4px;
+    }
+    .instruction-text p:last-child { font-size: 0.9em; color: var(--muted); line-height: 1.6; }
+
+    /* LAYOUT PRINCIPAL */
+    .game-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 20px;
+    }
+    @media (max-width: 700px) {
+      .game-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ÁRBOL */
+    .tree-card {
+      background: white; border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(26,46,74,0.08);
+      overflow: hidden;
+    }
+    .tree-card-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      padding: 14px 22px; display: flex; align-items: center; gap: 10px;
+    }
+    .tree-card-header span:first-child { color: var(--gold-light); font-size: 1em; }
+    .tree-card-header span:last-child {
+      color: white; font-size: 0.9em; font-weight: 600; letter-spacing: 0.3px;
+    }
+    .tree-body { padding: 28px 20px; }
+
+    /* ÁRBOL SVG VISUAL */
+    .tree-svg-wrap { text-align: center; margin-bottom: 24px; }
+    .tree-svg-wrap svg { max-width: 100%; }
+
+    /* NIVELES DEL ÁRBOL */
+    .tree-level { display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+    .tree-connector {
+      display: flex; justify-content: center;
+      margin-bottom: 8px;
+    }
+    .connector-line {
+      width: 2px; height: 24px;
+      background: linear-gradient(180deg, var(--gold), var(--navy-mid));
+      border-radius: 2px;
+    }
+    .connector-h {
+      height: 2px; flex: 1; max-width: 300px;
+      background: linear-gradient(90deg, var(--navy-mid), var(--gold), var(--navy-mid));
+      border-radius: 2px; align-self: center;
+    }
+
+    /* NODO */
+    .node {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .node-emoji {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, #f0f4f8, #e2e8f0);
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6em;
+      box-shadow: 0 2px 8px rgba(26,46,74,0.1);
+    }
+    .slot {
+      min-width: 110px; min-height: 38px;
+      border: 2px dashed #b0c4d8;
+      border-radius: 30px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 6px 12px;
+      font-size: 0.85em; font-weight: 600;
+      color: var(--muted);
+      background: #f7f9fc;
+      transition: all 0.2s;
+      cursor: pointer;
+      text-align: center;
+    }
+    .slot.drag-over {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+      transform: scale(1.04);
+    }
+    .slot.filled {
+      border: 2px solid var(--navy-mid);
+      background: rgba(44,74,114,0.07);
+      color: var(--navy);
+    }
+    .slot.correct {
+      border-color: var(--success);
+      background: rgba(82,183,136,0.1);
+      color: #2d6a4f;
+    }
+    .slot.incorrect {
+      border-color: var(--error);
+      background: rgba(224,92,92,0.1);
+      color: #9b2226;
+      animation: shake 0.35s ease;
+    }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)}
+      25%{transform:translateX(-5px)}
+      75%{transform:translateX(5px)}
+    }
+    .slot .chip {
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .slot .chip-remove {
+      font-size: 0.75em; cursor: pointer; opacity: 0.6;
+      background: rgba(0,0,0,0.1); border-radius: 50%;
+      width: 16px; height: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .slot .chip-remove:hover { opacity: 1; }
+
+    /* SIDEBAR */
+    .sidebar { display: flex; flex-direction: column; gap: 16px; }
+
+    .words-card {
+      background: white; border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(26,46,74,0.08);
+      overflow: hidden;
+    }
+    .words-card-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      padding: 12px 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .words-card-header span:first-child { color: var(--gold-light); }
+    .words-card-header span:last-child { color: white; font-size: 0.88em; font-weight: 600; }
+    .words-body { padding: 16px; }
+    .words-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .word-chip {
+      background: white; border: 2px solid var(--navy-mid);
+      color: var(--navy); padding: 7px 14px; border-radius: 30px;
+      font-size: 0.88em; font-weight: 600;
+      cursor: grab; transition: all 0.15s;
+      user-select: none;
+    }
+    .word-chip:hover {
+      background: var(--navy); color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(26,46,74,0.2);
+    }
+    .word-chip.dragging { opacity: 0.4; transform: scale(0.96); }
+    .word-chip.used { opacity: 0.25; pointer-events: none; border-style: dashed; }
+    .word-chip.selected { background: var(--navy); color: white; }
+
+    /* FEEDBACK CARD */
+    .feedback-card {
+      background: white; border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(26,46,74,0.08);
+      overflow: hidden;
+    }
+    .feedback-card-header {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      padding: 12px 18px; display: flex; align-items: center; gap: 8px;
+    }
+    .feedback-card-header span:first-child { color: var(--gold-light); }
+    .feedback-card-header span:last-child { color: white; font-size: 0.88em; font-weight: 600; }
+    .feedback-body { padding: 16px; }
+    .feedback-msg {
+      font-size: 0.88em; line-height: 1.6;
+      color: var(--muted); font-style: italic;
+      min-height: 48px;
+    }
+    .feedback-msg.success { color: #2d6a4f; font-style: normal; font-weight: 500; }
+    .feedback-msg.error { color: #9b2226; font-style: normal; font-weight: 500; }
+
+    /* BOTONES */
+    .btn-row {
+      display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .btn {
+      padding: 11px 22px; border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88em; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.15s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: white; box-shadow: 0 4px 14px rgba(26,46,74,0.25);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(26,46,74,0.3); }
+    .btn-secondary {
+      background: white; color: var(--navy);
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--navy-mid); }
+
+    /* PANTALLA RESULTADOS */
+    .results-screen {
+      display: none; background: white; border-radius: 18px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(26,46,74,0.08);
+      padding: 40px 32px; text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+    .results-screen.show { display: block; }
+    @keyframes fadeIn {
+      from{opacity:0;transform:translateY(12px)}
+      to{opacity:1;transform:translateY(0)}
+    }
+    .results-emoji { font-size: 3.5em; margin-bottom: 16px; }
+    .results-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.7em; color: var(--navy); margin-bottom: 8px;
+    }
+    .results-sub { color: var(--muted); font-size: 0.95em; margin-bottom: 28px; }
+    .results-score {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+      color: white; font-size: 2em; font-weight: 700;
+      margin-bottom: 28px;
+      box-shadow: 0 8px 24px rgba(26,46,74,0.25);
+      font-family: 'Playfair Display', serif;
+    }
+    .results-breakdown {
+      display: flex; justify-content: center; gap: 32px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .breakdown-item { text-align: center; }
+    .breakdown-num { font-size: 1.6em; font-weight: 700; font-family: 'Playfair Display', serif; }
+    .breakdown-label { font-size: 0.78em; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+    .color-success { color: var(--success); }
+    .color-error { color: var(--error); }
+    .color-navy { color: var(--navy); }
+
+    /* BOTÓN REGRESAR */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--navy); text-decoration: none;
+      padding: 13px 28px; border-radius: 30px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95em; font-weight: 700;
+      box-shadow: 0 4px 14px rgba(201,168,76,0.35);
+      transition: all 0.15s; border: none; cursor: pointer;
+      margin-top: 8px;
+    }
+    .back-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.45); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">🌳 Unidad 2 · Mi familia y mi casa</div>
+    <h1>El <span>árbol genealógico</span></h1>
+    <p>Arrastra cada miembro de la familia a su lugar correcto en el árbol</p>
+  </div>
+</div>
+
+<!-- SCORE -->
+<div class="score-strip">
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctos</div>
+  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">8</span> pendientes</div>
+  <div class="score-chip"><span class="dot dot-error"></span> <span id="wrongCount">0</span> incorrectos</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- INSTRUCCIÓN -->
+  <div class="instruction-card">
+    <div class="instruction-icon">📋</div>
+    <div class="instruction-text">
+      <p>Instrucciones</p>
+      <p>Arrastra o toca cada palabra y colócala en el miembro de la familia que corresponde. Cuando termines, usa el botón <strong>Comprobar</strong> para verificar tus respuestas.</p>
+    </div>
+  </div>
+
+  <div class="game-layout" id="gameLayout">
+
+    <!-- ÁRBOL GENEALÓGICO -->
+    <div class="tree-card">
+      <div class="tree-card-header">
+        <span>🌳</span>
+        <span>Árbol genealógico · La familia García</span>
+      </div>
+      <div class="tree-body">
+
+        <!-- NIVEL 1: ABUELOS -->
+        <div style="text-align:center; margin-bottom:4px;">
+          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generación 1</span>
+        </div>
+        <div class="tree-level">
+          <div class="node">
+            <div class="node-emoji">👴</div>
+            <div class="slot" data-answer="abuelo" id="slot-abuelo">?</div>
+          </div>
+          <div style="width:40px;"></div>
+          <div class="node">
+            <div class="node-emoji">👵</div>
+            <div class="slot" data-answer="abuela" id="slot-abuela">?</div>
+          </div>
+        </div>
+
+        <!-- CONECTOR -->
+        <div style="display:flex; justify-content:center; margin-bottom:0;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:0;">
+            <div style="width:2px; height:20px; background:linear-gradient(180deg,#c9a84c,#2c4a72);"></div>
+          </div>
+        </div>
+
+        <!-- NIVEL 2: PADRES + TÍO/TÍA -->
+        <div style="text-align:center; margin-bottom:4px;">
+          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generación 2</span>
+        </div>
+        <div class="tree-level" style="gap:12px;">
+          <div class="node">
+            <div class="node-emoji">👨</div>
+            <div class="slot" data-answer="padre" id="slot-padre">?</div>
+          </div>
+          <div class="node">
+            <div class="node-emoji">👩</div>
+            <div class="slot" data-answer="madre" id="slot-madre">?</div>
+          </div>
+          <div style="width:16px; border-top:2px dashed #e2e8f0; align-self:center;"></div>
+          <div class="node">
+            <div class="node-emoji">🧑</div>
+            <div class="slot" data-answer="tío" id="slot-tio">?</div>
+          </div>
+          <div class="node">
+            <div class="node-emoji">👩‍🦱</div>
+            <div class="slot" data-answer="tía" id="slot-tia">?</div>
+          </div>
+        </div>
+
+        <!-- CONECTOR -->
+        <div style="display:flex; justify-content:center; margin-bottom:0;">
+          <div style="width:2px; height:20px; background:linear-gradient(180deg,#c9a84c,#2c4a72);"></div>
+        </div>
+
+        <!-- NIVEL 3: HIJOS + PRIMO/PRIMA -->
+        <div style="text-align:center; margin-bottom:4px;">
+          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generación 3</span>
+        </div>
+        <div class="tree-level" style="gap:12px;">
+          <div class="node">
+            <div class="node-emoji">👦</div>
+            <div class="slot" data-answer="hijo" id="slot-hijo">?</div>
+          </div>
+          <div class="node">
+            <div class="node-emoji">👧</div>
+            <div class="slot" data-answer="hija" id="slot-hija">?</div>
+          </div>
+          <div style="width:16px; border-top:2px dashed #e2e8f0; align-self:center;"></div>
+          <div class="node">
+            <div class="node-emoji">👦</div>
+            <div class="slot" data-answer="primo" id="slot-primo">?</div>
+          </div>
+          <div class="node">
+            <div class="node-emoji">👧</div>
+            <div class="slot" data-answer="prima" id="slot-prima">?</div>
+          </div>
+        </div>
+
+        <!-- BOTONES -->
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="checkAll()">✅ Comprobar</button>
+          <button class="btn btn-secondary" onclick="resetAll()">🔄 Reiniciar</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+      <!-- PALABRAS -->
+      <div class="words-card">
+        <div class="words-card-header">
+          <span>🏷️</span>
+          <span>Miembros de la familia</span>
+        </div>
+        <div class="words-body">
+          <p style="font-size:0.78em; color:#718096; margin-bottom:12px; font-family:sans-serif;">Arrastra o toca cada palabra</p>
+          <div class="words-grid" id="wordsGrid"></div>
+        </div>
+      </div>
+
+      <!-- FEEDBACK -->
+      <div class="feedback-card">
+        <div class="feedback-card-header">
+          <span>💬</span>
+          <span>Retroalimentación</span>
+        </div>
+        <div class="feedback-body">
+          <div class="feedback-msg" id="feedbackMsg">Arrastra un miembro de la familia para comenzar...</div>
+        </div>
+      </div>
+
+      <!-- LEYENDA -->
+      <div style="background:white; border-radius:14px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 2px 10px rgba(26,46,74,0.06);">
+        <div style="background:linear-gradient(135deg,#1a2e4a,#2c4a72); padding:10px 16px; display:flex; align-items:center; gap:8px;">
+          <span style="color:#e8c96a;">💡</span>
+          <span style="color:white; font-size:0.85em; font-weight:600;">¿Sabías que?</span>
+        </div>
+        <div style="padding:14px 16px;">
+          <p style="font-size:0.82em; color:#718096; line-height:1.65; font-family:sans-serif;">En español, los sustantivos tienen género. <strong style="color:#1a2e4a;">Abuelo/abuela, tío/tía, primo/prima</strong>. El masculino plural también se usa para grupos mixtos: <strong style="color:#1a2e4a;">"los abuelos"</strong> puede referirse al abuelo y la abuela juntos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="results-screen" id="resultsScreen">
+    <div class="results-emoji" id="resultsEmoji">🎉</div>
+    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
+    <div class="results-sub" id="resultsSub">Completaste el árbol genealógico</div>
+    <div class="results-score" id="resultsScore">8/8</div>
+    <div class="results-breakdown">
+      <div class="breakdown-item">
+        <div class="breakdown-num color-success" id="finalCorrect">0</div>
+        <div class="breakdown-label">Correctos</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-num color-error" id="finalWrong">0</div>
+        <div class="breakdown-label">Incorrectos</div>
+      </div>
+      <div class="breakdown-item">
+        <div class="breakdown-num color-navy" id="finalPct">0%</div>
+        <div class="breakdown-label">Puntuación</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Intentar de nuevo</button>
+      <a href="https://institutoinnova.moodlecloud.com" class="back-btn">🏫 Regresar al aula virtual</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const members = [
+    { id: 'abuelo', label: 'abuelo',  feedback: '✅ ¡Correcto! El <strong>abuelo</strong> es el padre del padre o de la madre.' },
+    { id: 'abuela', label: 'abuela',  feedback: '✅ ¡Correcto! La <strong>abuela</strong> es la madre del padre o de la madre.' },
+    { id: 'padre',  label: 'padre',   feedback: '✅ ¡Correcto! El <strong>padre</strong> es el hombre de la familia que tiene hijos.' },
+    { id: 'madre',  label: 'madre',   feedback: '✅ ¡Correcto! La <strong>madre</strong> es la mujer de la familia que tiene hijos.' },
+    { id: 'tío',    label: 'tío',     feedback: '✅ ¡Correcto! El <strong>tío</strong> es el hermano del padre o de la madre.' },
+    { id: 'tía',    label: 'tía',     feedback: '✅ ¡Correcto! La <strong>tía</strong> es la hermana del padre o de la madre.' },
+    { id: 'hijo',   label: 'hijo',    feedback: '✅ ¡Correcto! El <strong>hijo</strong> es el niño de la familia.' },
+    { id: 'hija',   label: 'hija',    feedback: '✅ ¡Correcto! La <strong>hija</strong> es la niña de la familia.' },
+    { id: 'primo',  label: 'primo',   feedback: '✅ ¡Correcto! El <strong>primo</strong> es el hijo del tío o de la tía.' },
+    { id: 'prima',  label: 'prima',   feedback: '✅ ¡Correcto! La <strong>prima</strong> es la hija del tío o de la tía.' },
+  ];
+
+  const slots = document.querySelectorAll('.slot');
+  const grid  = document.getElementById('wordsGrid');
+  let selected = null;
+  let correctCount = 0;
+  let wrongCount = 0;
+
+  // Build word chips
+  function buildWords() {
+    grid.innerHTML = '';
+    shuffle([...members]).forEach(m => {
+      const chip = document.createElement('div');
+      chip.className = 'word-chip';
+      chip.textContent = m.label;
+      chip.dataset.value = m.label;
+      chip.draggable = true;
+      chip.addEventListener('dragstart', () => { selected = chip; chip.classList.add('dragging'); });
+      chip.addEventListener('dragend',   () => chip.classList.remove('dragging'));
+      chip.addEventListener('click',     () => handleChipClick(chip));
+      grid.appendChild(chip);
+    });
+  }
+
+  // Slot setup
+  slots.forEach(slot => {
+    slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('drag-over'); });
+    slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+    slot.addEventListener('drop', e => { e.preventDefault(); slot.classList.remove('drag-over'); placeWord(slot, selected); });
+    slot.addEventListener('click', () => handleSlotClick(slot));
+  });
+
+  function handleChipClick(chip) {
+    if (chip.classList.contains('used')) return;
+    if (selected === chip) {
+      chip.classList.remove('selected');
+      selected = null;
+      return;
+    }
+    document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('selected'));
+    selected = chip;
+    chip.classList.add('selected');
+  }
+
+  function handleSlotClick(slot) {
+    if (slot.dataset.locked) return;
+    if (selected) {
+      placeWord(slot, selected);
+    } else if (slot.dataset.placed) {
+      returnWord(slot);
+    }
+  }
+
+  function placeWord(slot, chip) {
+    if (!chip || slot.dataset.locked) return;
+
+    // Return existing word if slot was filled
+    if (slot.dataset.placed) returnWord(slot);
+
+    const word = chip.dataset.value;
+    const expected = slot.dataset.answer;
+    const isCorrect = normalize(word) === normalize(expected);
+
+    slot.dataset.placed = word;
+    slot.innerHTML = `<span class="chip">${word} <span class="chip-remove" onclick="returnWord(document.getElementById('${slot.id}'))">✕</span></span>`;
+
+    document.querySelectorAll('.word-chip').forEach(c => {
+      if (c.dataset.value === word) { c.classList.add('used'); c.classList.remove('selected'); }
+    });
+    selected = null;
+
+    if (isCorrect) {
+      slot.className = 'slot correct';
+      slot.dataset.locked = 'true';
+      const member = members.find(m => normalize(m.label) === normalize(word));
+      setFeedback(member ? member.feedback : `✅ ¡Correcto!`, 'success');
+      // Remove remove button since it's locked
+      const btn = slot.querySelector('.chip-remove');
+      if (btn) btn.remove();
+    } else {
+      slot.className = 'slot incorrect filled';
+      setFeedback(`❌ <strong>${word}</strong> no va aquí. Piensa en la posición en el árbol e inténtalo de nuevo.`, 'error');
+      setTimeout(() => {
+        if (!slot.dataset.locked) returnWord(slot);
+      }, 900);
+    }
+
+    updateCounts();
+  }
+
+  function returnWord(slot) {
+    if (slot.dataset.locked) return;
+    const word = slot.dataset.placed;
+    if (!word) return;
+    slot.innerHTML = '?';
+    slot.className = 'slot';
+    delete slot.dataset.placed;
+    document.querySelectorAll('.word-chip').forEach(c => {
+      if (c.dataset.value === word) c.classList.remove('used');
+    });
+    updateCounts();
+  }
+
+  function checkAll() {
+    let correct = 0; let wrong = 0;
+    slots.forEach(slot => {
+      const placed = slot.dataset.placed;
+      const expected = slot.dataset.answer;
+      if (!placed) { wrong++; slot.classList.add('incorrect'); return; }
+      if (normalize(placed) === normalize(expected)) {
+        correct++;
+        slot.className = 'slot correct';
+        slot.dataset.locked = 'true';
+        const btn = slot.querySelector('.chip-remove');
+        if (btn) btn.remove();
+      } else {
+        wrong++;
+        slot.className = 'slot incorrect filled';
+      }
+    });
+    const total = slots.length;
+    const pct = Math.round((correct / total) * 100);
+
+    if (correct === total) {
+      setTimeout(() => showResults(correct, wrong, pct), 600);
+    } else {
+      setFeedback(`Tienes <strong>${correct} de ${total}</strong> correctos. Revisa los marcados en rojo e inténtalo de nuevo.`, correct > wrong ? 'success' : 'error');
+    }
+    updateCounts();
+  }
+
+  function showResults(correct, wrong, pct) {
+    document.getElementById('gameLayout').style.display = 'none';
+    document.getElementById('resultsScreen').classList.add('show');
+    document.getElementById('resultsScore').textContent = `${correct}/${slots.length}`;
+    document.getElementById('finalCorrect').textContent = correct;
+    document.getElementById('finalWrong').textContent = wrong;
+    document.getElementById('finalPct').textContent = `${pct}%`;
+
+    if (pct === 100) {
+      document.getElementById('resultsEmoji').textContent = '🏆';
+      document.getElementById('resultsTitle').textContent = '¡Perfecto! ¡Excelente!';
+      document.getElementById('resultsSub').textContent = 'Conoces todos los miembros de la familia. ¡Sigue así!';
+    } else if (pct >= 75) {
+      document.getElementById('resultsEmoji').textContent = '🎉';
+      document.getElementById('resultsTitle').textContent = '¡Muy bien hecho!';
+      document.getElementById('resultsSub').textContent = 'Casi perfecto. Repasa los que fallaste.';
+    } else {
+      document.getElementById('resultsEmoji').textContent = '💪';
+      document.getElementById('resultsTitle').textContent = '¡Buen intento!';
+      document.getElementById('resultsSub').textContent = 'Sigue practicando el vocabulario familiar.';
+    }
+  }
+
+  function resetAll() {
+    document.getElementById('resultsScreen').classList.remove('show');
+    document.getElementById('gameLayout').style.display = 'grid';
+    slots.forEach(slot => {
+      slot.innerHTML = '?';
+      slot.className = 'slot';
+      delete slot.dataset.placed;
+      delete slot.dataset.locked;
+    });
+    correctCount = 0; wrongCount = 0;
+    buildWords();
+    updateCounts();
+    setFeedback('Arrastra un miembro de la familia para comenzar...', '');
+  }
+
+  function updateCounts() {
+    let c = 0; let p = 0;
+    slots.forEach(s => { if (s.dataset.locked) c++; else if (!s.dataset.placed) p++; });
+    document.getElementById('correctCount').textContent = c;
+    document.getElementById('pendingCount').textContent = p;
+    document.getElementById('wrongCount').textContent = slots.length - c - p;
+  }
+
+  function setFeedback(msg, type) {
+    const el = document.getElementById('feedbackMsg');
+    el.innerHTML = msg;
+    el.className = 'feedback-msg' + (type ? ' ' + type : '');
+  }
+
+  function normalize(s) {
+    return String(s).toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu, '');
+  }
+
+  function shuffle(arr) {
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  buildWords();
+</script>
+</body>
+</html>
