@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== NAVEGACIÓN CSS PURA ===== */
+  #card1, #card2, #card3, #card4, #card5,
+  #card6, #card7, #card8, #card9, #card10 { display: none; }
+
+  #s1:checked ~ #card1  { display: block; }
+  #s2:checked ~ #card2  { display: block; }
+  #s3:checked ~ #card3  { display: block; }
+  #s4:checked ~ #card4  { display: block; }
+  #s5:checked ~ #card5  { display: block; }
+  #s6:checked ~ #card6  { display: block; }
+  #s7:checked ~ #card7  { display: block; }
+  #s8:checked ~ #card8  { display: block; }
+  #s9:checked ~ #card9  { display: block; }
+  #s10:checked ~ #card10 { display: block; }
+
+  /* Dots */
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"] {
+    background: #2563EB;
+    transform: scale(1.3);
+  }
+
+  /* Botones prev/next: visibles solo en la tarjeta activa */
+  .btn-nav { display: none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10 { display: flex; }
+</style>
+</head>
+<body style="margin:0; padding:20px; background:#FFF8F0; font-family:'Nunito',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- TÍTULO -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#2563EB,#3B82F6); padding:8px 24px; border-radius:30px; margin-bottom:12px;">
+      <span style="color:white; font-size:0.85em; font-weight:700; letter-spacing:3px;">UNIDAD 2 · MI FAMILIA Y MI CASA</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.2em; color:#1a1a2e; margin:0 0 6px 0;">Tipos de Vivienda 🏠</h2>
+    <p style="color:#888; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIO BUTTONS OCULTOS -->
+  <input type="radio" name="slide" id="s1" style="display:none;" checked>
+  <input type="radio" name="slide" id="s2" style="display:none;">
+  <input type="radio" name="slide" id="s3" style="display:none;">
+  <input type="radio" name="slide" id="s4" style="display:none;">
+  <input type="radio" name="slide" id="s5" style="display:none;">
+  <input type="radio" name="slide" id="s6" style="display:none;">
+  <input type="radio" name="slide" id="s7" style="display:none;">
+  <input type="radio" name="slide" id="s8" style="display:none;">
+  <input type="radio" name="slide" id="s9" style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+
+  <!-- ==================== TARJETA 1: La casa ==================== -->
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#2563EB,#3B82F6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(59,130,246,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(241,196,15,0.06); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(59,130,246,0.3); color:#93C5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">01 / 10</span>
+      <span style="font-size:2em;">🏡</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#93C5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Vivienda independiente</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">La casa</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Una <strong style="color:#FCD34D;">casa</strong> es una vivienda <strong style="color:#FCD34D;">independiente</strong> que no comparte paredes con otras viviendas. Generalmente tiene su propio terreno.</p>
+      </div>
+      <div style="background:rgba(59,130,246,0.2); border-left:4px solid #93C5FD; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#93C5FD; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">✓ CARACTERÍSTICAS</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">ESTRUCTURA:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Edificación separada, con paredes propias que no tocan otras casas</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">TERRENO:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Tiene su propio jardín, patio o espacio exterior privado</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">NIVELES:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Puede tener uno o varios pisos (planta baja, primer piso, segundo piso...)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">PRIVACIDAD:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Mayor privacidad - no compartes paredes con vecinos</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(59,130,246,0.2); border-left:4px solid #93C5FD; border-radius:0 10px 10px 0; padding:16px;">
+        <p style="color:#93C5FD; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">TIPOS COMUNES</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-weight:600;">Casa de una planta</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Todo en un solo nivel</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-weight:600;">Casa de dos plantas</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Con segundo piso</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-weight:600;">Casa campestre</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">En zona rural</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-weight:600;">Casa urbana</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">En la ciudad</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 2: El apartamento ==================== -->
+  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C3AED,#8B5CF6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(139,92,246,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(139,92,246,0.3); color:#C4B5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">02 / 10</span>
+      <span style="font-size:2em;">🏢</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#C4B5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Vivienda en edificio</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">El apartamento</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Un <strong style="color:#FCD34D;">apartamento</strong> (también llamado <strong style="color:#FCD34D;">piso</strong> o <strong style="color:#FCD34D;">departamento</strong>) es una vivienda dentro de un edificio con muchas otras viviendas.</p>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:#FCD34D; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-align:center;">🌎 NOMBRES SEGÚN EL PAÍS</p>
+        <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.9em;"><strong style="color:#C4B5FD;">APARTAMENTO:</strong> Colombia, Venezuela, algunos países de Centroamérica</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.9em;"><strong style="color:#C4B5FD;">DEPARTAMENTO:</strong> México, Argentina, Chile, Perú</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.9em;"><strong style="color:#C4B5FD;">PISO:</strong> España</p>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,0.7); margin:12px 0 0 0; font-size:0.85em; text-align:center; font-style:italic;">¡Son la misma cosa! Solo cambia el nombre.</p>
+      </div>
+      <div style="background:rgba(139,92,246,0.2); border-left:4px solid #C4B5FD; border-radius:0 10px 10px 0; padding:16px;">
+        <p style="color:#C4B5FD; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">✓ CARACTERÍSTICAS</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">UBICACIÓN:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Está dentro de un edificio con varios pisos y múltiples apartamentos</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">PAREDES COMPARTIDAS:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Compartes paredes con vecinos de los lados, arriba y/o abajo</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">ÁREAS COMUNES:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Escaleras, ascensor, lobby, estacionamiento son compartidos</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">IDENTIFICACIÓN:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Se identifica por número: Apartamento 301, Piso 5B, Depto. 12</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 3: El estudio o loft ==================== -->
+  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#059669,#10B981); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(16,185,129,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(16,185,129,0.3); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">03 / 10</span>
+      <span style="font-size:2em;">🏠</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#6EE7B7; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Espacio abierto</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">El estudio o loft</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Un <strong style="color:#FCD34D;">estudio</strong> o <strong style="color:#FCD34D;">loft</strong> es un apartamento pequeño donde la sala, el comedor y la habitación están en el mismo espacio abierto, <strong style="color:#FCD34D;">sin paredes que los separen</strong>.</p>
+      </div>
+      <div style="background:rgba(16,185,129,0.2); border-left:4px solid #6EE7B7; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#6EE7B7; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">¿QUÉ LO HACE ESPECIAL?</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:14px; margin-bottom:12px;">
+          <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">CONCEPTO ABIERTO:</p>
+          <p style="color:white; margin:0 0 10px 0; font-size:0.9em; line-height:1.6;">Todo está en <strong>UN SOLO ESPACIO GRANDE</strong> sin divisiones:<br>• La cama está en el mismo lugar que la sala<br>• La cocina está abierta (integrada)<br>• No hay habitación separada</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:14px;">
+          <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">ÚNICA HABITACIÓN PRIVADA:</p>
+          <p style="color:white; margin:0; font-size:0.9em; line-height:1.6;">El <strong>único cuarto cerrado</strong> es el baño. Todo lo demás es un gran espacio compartido.</p>
+        </div>
+      </div>
+      <div style="background:rgba(16,185,129,0.2); border-left:4px solid #6EE7B7; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#6EE7B7; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">✓ CARACTERÍSTICAS</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">Tamaño pequeño</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">20-50 m² típicamente</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">Espacios abiertos</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Sin divisiones internas</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">Para 1-2 personas</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Ideal para solteros</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">Más económico</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Menor costo que apartamento</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:2px solid #FCD34D; border-radius:10px; padding:14px;">
+        <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-align:center;">DISTRIBUCIÓN TÍPICA:</p>
+        <p style="color:white; margin:0; font-size:0.9em; text-align:center; line-height:1.7;">Cocina integrada | Área de cama | Área de sala<br>↓<br><strong style="color:#6EE7B7;">TODO EN UN SOLO ESPACIO ABIERTO</strong><br>↓<br>Solo el baño está separado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 4: La casa adosada ==================== -->
+  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#DC2626,#EF4444); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(239,68,68,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(239,68,68,0.3); color:#FCA5A5; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">04 / 10</span>
+      <span style="font-size:2em;">🏘️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FCA5A5; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Casas unidas</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">La casa adosada</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Una <strong style="color:#FCD34D;">casa adosada</strong> (también llamada <strong style="color:#FCD34D;">casa en hilera</strong> o <strong style="color:#FCD34D;">townhouse</strong>) son casas construidas <strong style="color:#FCD34D;">pegadas unas a otras</strong>, compartiendo una o dos paredes laterales.</p>
+      </div>
+      <div style="background:rgba(239,68,68,0.15); border-left:4px solid #FCA5A5; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FCA5A5; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">¿CÓMO ES UNA CASA ADOSADA?</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:14px; margin-bottom:12px;">
+          <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">IMAGINALO ASÍ:</p>
+          <p style="color:white; margin:0; font-size:0.9em; line-height:1.7; text-align:center;">🏠 | 🏠 | 🏠 | 🏠 | 🏠<br>↑<br>Varias casas construidas una al lado de la otra,<br>compartiendo las paredes laterales</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:14px;">
+          <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">CARACTERÍSTICAS ÚNICAS:</p>
+          <p style="color:white; margin:0; font-size:0.9em; line-height:1.6;">• Cada casa tiene su <strong>propia entrada independiente</strong><br>• Comparte 1 o 2 paredes con las casas vecinas<br>• La pared del frente y la de atrás son propias<br>• Generalmente tiene 2-3 pisos de altura<br>• Pequeño patio o jardín privado (adelante o atrás)</p>
+        </div>
+      </div>
+      <div style="background:rgba(239,68,68,0.15); border-left:4px solid #FCA5A5; border-radius:0 10px 10px 0; padding:16px;">
+        <p style="color:#FCA5A5; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">DIFERENCIA CON UNA CASA NORMAL</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:rgba(59,130,246,0.2); border:2px solid #3B82F6; border-radius:10px; padding:12px;">
+            <p style="color:#93C5FD; margin:0 0 6px 0; font-size:0.8em; font-weight:700; text-align:center;">CASA NORMAL</p>
+            <p style="color:white; margin:0; font-size:0.85em; text-align:center;">Completamente separada de otras casas</p>
+          </div>
+          <div style="background:rgba(239,68,68,0.2); border:2px solid #EF4444; border-radius:10px; padding:12px;">
+            <p style="color:#FCA5A5; margin:0 0 6px 0; font-size:0.8em; font-weight:700; text-align:center;">CASA ADOSADA</p>
+            <p style="color:white; margin:0; font-size:0.85em; text-align:center;">Comparte paredes laterales con vecinos</p>
+          </div>
+        </div>
+        <p style="color:rgba(255,255,255,0.7); margin:12px 0 0 0; font-size:0.85em; text-align:center; font-style:italic;">Es como un punto medio entre casa y apartamento</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 5: El dúplex ==================== -->
+  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#EA580C,#F97316); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(249,115,22,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(249,115,22,0.3); color:#FDBA74; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">05 / 10</span>
+      <span style="font-size:2em;">🏢</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDBA74; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Dos niveles</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">El dúplex</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Un <strong style="color:#FCD34D;">dúplex</strong> es un apartamento o vivienda que tiene <strong style="color:#FCD34D;">dos pisos conectados por una escalera interna</strong>. Es como tener dos apartamentos uno encima del otro, pero son una sola vivienda.</p>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:2px solid #FCD34D; border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:#FCD34D; margin:0 0 10px 0; font-size:0.9em; font-weight:700; text-align:center;">SIGNIFICADO DE "DÚPLEX"</p>
+        <p style="color:white; margin:0; font-size:0.95em; text-align:center; line-height:1.7;"><strong style="color:#FDBA74;">DÚ</strong> = DOS<br><strong style="color:#FDBA74;">PLEX</strong> = NIVELES<br><br><strong style="color:#FCD34D;">→ DOS NIVELES en una misma vivienda</strong></p>
+      </div>
+      <div style="background:rgba(249,115,22,0.2); border-left:4px solid #FDBA74; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FDBA74; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">¿CÓMO FUNCIONA UN DÚPLEX?</p>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:14px; margin-bottom:10px;">
+          <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700;">DISTRIBUCIÓN TÍPICA:</p>
+          <div style="background:rgba(249,115,22,0.2); border-radius:8px; padding:12px; margin-bottom:8px;">
+            <p style="color:#FDBA74; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">PRIMER PISO (ABAJO):</p>
+            <p style="color:white; margin:0; font-size:0.85em;">Sala, comedor, cocina, a veces un baño de visitas</p>
+          </div>
+          <div style="text-align:center; margin:8px 0;">
+            <p style="color:#FCD34D; margin:0; font-size:1.2em;">⬍ ESCALERA INTERNA ⬍</p>
+          </div>
+          <div style="background:rgba(249,115,22,0.2); border-radius:8px; padding:12px;">
+            <p style="color:#FDBA74; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">SEGUNDO PISO (ARRIBA):</p>
+            <p style="color:white; margin:0; font-size:0.85em;">Habitaciones y baños (área privada)</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:10px; padding:12px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">IMPORTANTE:</p>
+          <p style="color:white; margin:0; font-size:0.9em;">La escalera está <strong>DENTRO</strong> de tu vivienda. No es una escalera compartida del edificio, es privada solo para ti.</p>
+        </div>
+      </div>
+      <div style="background:rgba(249,115,22,0.2); border-left:4px solid #FDBA74; border-radius:0 10px 10px 0; padding:16px;">
+        <p style="color:#FDBA74; margin:0 0 10px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">✓ VENTAJAS</p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <p style="color:white; margin:0; font-size:0.9em;">• Más espacio que un apartamento normal</p>
+          <p style="color:white; margin:0; font-size:0.9em;">• Separación entre zonas sociales y privadas</p>
+          <p style="color:white; margin:0; font-size:0.9em;">• Sensación de vivir en una casa pequeña</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 6: El penthouse ==================== -->
+  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#BE185D,#DB2777); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(219,39,119,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(219,39,119,0.3); color:#FBB6CE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">06 / 10</span>
+      <span style="font-size:2em;">🏰</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FBB6CE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Apartamento de lujo</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">El penthouse (ático)</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Un <strong style="color:#FCD34D;">penthouse</strong> (también llamado <strong style="color:#FCD34D;">ático</strong>) es un apartamento de lujo ubicado en el <strong style="color:#FCD34D;">último piso</strong> de un edificio, generalmente con terraza privada y vistas privilegiadas.</p>
+      </div>
+      <div style="background:rgba(219,39,119,0.2); border-left:4px solid #FBB6CE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FBB6CE; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">¿QUÉ LO HACE ESPECIAL?</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">UBICACIÓN PRIVILEGIADA:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Está en el <strong>piso más alto</strong> del edificio (último piso)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">TERRAZA PRIVADA:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Tiene una <strong>terraza o balcón muy grande</strong>, a veces con jardín, piscina o área de BBQ</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">VISTAS ESPECTACULARES:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Vista panorámica de 360° de la ciudad — no hay edificios encima que bloqueen</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">MAYOR TAMAÑO:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Generalmente es <strong>mucho más grande</strong> que otros apartamentos del edificio</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700;">ACABADOS DE LUJO:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Materiales premium, techos más altos, diseño exclusivo</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:2px solid #FCD34D; border-radius:10px; padding:14px;">
+        <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-align:center;">💰 PRECIO</p>
+        <p style="color:white; margin:0; font-size:0.9em; text-align:center; line-height:1.7;">Es el tipo de vivienda <strong style="color:#FBB6CE;">más costoso</strong> en un edificio.<br>Se asocia con lujo, exclusividad y alto estatus.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 7: La finca / chalet ==================== -->
+  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F766E,#14B8A6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(20,184,166,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(20,184,166,0.3); color:#99F6E4; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">07 / 10</span>
+      <span style="font-size:2em;">🌿</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#99F6E4; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Vivienda rural / vacacional</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">La finca / el chalet</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Una <strong style="color:#FCD34D;">finca</strong> (Latinoamérica) o <strong style="color:#FCD34D;">chalet</strong> (España) es una casa ubicada en <strong style="color:#FCD34D;">zona rural o periurbana</strong>, con terrenos amplios, naturaleza y espacio para actividades al aire libre.</p>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:#FCD34D; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-align:center;">🌎 NOMBRES SEGÚN EL PAÍS</p>
+        <div style="display:grid; grid-template-columns:1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.9em;"><strong style="color:#99F6E4;">FINCA:</strong> Colombia, Venezuela, Centroamérica — puede ser recreativa o agrícola</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.9em;"><strong style="color:#99F6E4;">CHALET:</strong> España — casa unifamiliar con jardín en zona residencial</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:white; margin:0; font-size:0.9em;"><strong style="color:#99F6E4;">RANCHO / HACIENDA:</strong> México — propiedad rural grande</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(20,184,166,0.2); border-left:4px solid #99F6E4; border-radius:0 10px 10px 0; padding:16px;">
+        <p style="color:#99F6E4; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">✓ CARACTERÍSTICAS</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">TERRENO AMPLIO:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Grandes áreas verdes, jardines, huertos, árboles frutales</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">INSTALACIONES:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Piscina, BBQ, canchas, establos, galpones según el tamaño</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">UBICACIÓN:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Fuera de la ciudad — campo, montaña, zona costera</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">USO:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Vacaciones, descanso de fin de semana o vivienda permanente</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 8: La residencia estudiantil ==================== -->
+  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#3B82F6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(59,130,246,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(59,130,246,0.3); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">08 / 10</span>
+      <span style="font-size:2em;">🎓</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BFDBFE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Vivienda compartida</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">La residencia estudiantil</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Una <strong style="color:#FCD34D;">residencia estudiantil</strong> (también llamada <strong style="color:#FCD34D;">dormitorio universitario</strong> o <strong style="color:#FCD34D;">colegio mayor</strong>) es un edificio donde viven <strong style="color:#FCD34D;">estudiantes universitarios</strong>, generalmente cerca del campus.</p>
+      </div>
+      <div style="background:rgba(59,130,246,0.2); border-left:4px solid #BFDBFE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#BFDBFE; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">✓ CARACTERÍSTICAS</p>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">HABITACIÓN:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Cuarto individual o compartido con otro(s) estudiante(s)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">ÁREAS COMUNES:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Baños, cocina, sala de estudio, lavandería — todos compartidos</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">SERVICIOS:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Comedor, wifi, seguridad incluidos en la mayoría de los casos</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">COSTO:</p>
+            <p style="color:white; margin:0; font-size:0.9em;">Más económico que un apartamento — ideal para estudiantes</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:2px solid #FCD34D; border-radius:10px; padding:14px;">
+        <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-align:center;">📚 VOCABULARIO RELACIONADO</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">Compañero de cuarto</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Roommate</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">El cuarto / la habitación</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">The room</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">El comedor</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Dining hall</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:0.85em; font-weight:600;">La sala de estudio</p>
+            <p style="color:rgba(255,255,255,0.6); margin:4px 0 0 0; font-size:0.75em;">Study room</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 9: Comparación general ==================== -->
+  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#374151,#4B5563); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(75,85,99,0.3); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.03); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(75,85,99,0.5); color:#D1D5DB; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">09 / 10</span>
+      <span style="font-size:2em;">📊</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#D1D5DB; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Resumen visual</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Comparación general</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Aquí tienes una comparación rápida de todos los tipos de vivienda según sus características más importantes.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div style="background:rgba(37,99,235,0.25); border-left:4px solid #3B82F6; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#93C5FD; margin:0; font-size:0.9em; font-weight:700;">🏡 Casa</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">Independiente · Jardín propio · Alta privacidad</p>
+          </div>
+        </div>
+        <div style="background:rgba(124,58,237,0.25); border-left:4px solid #8B5CF6; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#C4B5FD; margin:0; font-size:0.9em; font-weight:700;">🏢 Apartamento</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">En edificio · Paredes compart. · Áreas comunes</p>
+          </div>
+        </div>
+        <div style="background:rgba(5,150,105,0.25); border-left:4px solid #10B981; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#6EE7B7; margin:0; font-size:0.9em; font-weight:700;">🏠 Estudio/Loft</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">Espacio abierto · Pequeño · Económico</p>
+          </div>
+        </div>
+        <div style="background:rgba(220,38,38,0.25); border-left:4px solid #EF4444; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCA5A5; margin:0; font-size:0.9em; font-weight:700;">🏘️ Casa adosada</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">Paredes laterales compart. · Entrada propia</p>
+          </div>
+        </div>
+        <div style="background:rgba(234,88,12,0.25); border-left:4px solid #F97316; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FDBA74; margin:0; font-size:0.9em; font-weight:700;">🏢 Dúplex</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">2 pisos · Escalera interna · Más espacio</p>
+          </div>
+        </div>
+        <div style="background:rgba(190,24,93,0.25); border-left:4px solid #DB2777; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FBB6CE; margin:0; font-size:0.9em; font-weight:700;">🏰 Penthouse</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">Último piso · Terraza · Lujo · Costoso</p>
+          </div>
+        </div>
+        <div style="background:rgba(15,118,110,0.25); border-left:4px solid #14B8A6; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#99F6E4; margin:0; font-size:0.9em; font-weight:700;">🌿 Finca/Chalet</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">Rural · Terreno amplio · Vacacional</p>
+          </div>
+        </div>
+        <div style="background:rgba(29,78,216,0.25); border-left:4px solid #3B82F6; border-radius:0 10px 10px 0; padding:12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#BFDBFE; margin:0; font-size:0.9em; font-weight:700;">🎓 Residencia estudiantil</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em;">Para estudiantes · Compartida · Económica</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 10: Vocabulario clave ==================== -->
+  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#92400E,#D97706); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(217,119,6,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(217,119,6,0.3); color:#FDE68A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">10 / 10</span>
+      <span style="font-size:2em;">📝</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDE68A; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Repaso final</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Vocabulario clave</h3>
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Palabras esenciales para hablar de tu vivienda en español.</p>
+      </div>
+      <div style="background:rgba(217,119,6,0.2); border-left:4px solid #FDE68A; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FDE68A; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🏠 TIPOS DE VIVIENDA</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">la vivienda</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">housing / dwelling</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">el hogar</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">home</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">el edificio</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">building</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">el piso / la planta</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">floor / story</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(217,119,6,0.2); border-left:4px solid #FDE68A; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FDE68A; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🔑 ALQUILER Y COMPRA</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">alquilar / arrendar</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">to rent</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">comprar</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">to buy</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">el/la inquilino/a</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">tenant</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">el/la propietario/a</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">owner / landlord</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">el arriendo / la renta</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">rent (payment)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">mudarse</p>
+            <p style="color:rgba(255,255,255,0.7); margin:2px 0 0 0; font-size:0.8em;">to move (houses)</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(251,191,36,0.15); border:2px solid #FCD34D; border-radius:10px; padding:14px;">
+        <p style="color:#FCD34D; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 FRASES ÚTILES</p>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <p style="color:white; margin:0; font-size:0.88em;">• <em>"Vivo en un apartamento en el centro."</em></p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <em>"Mi casa tiene dos plantas y jardín."</em></p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <em>"Estoy buscando un estudio para alquilar."</em></p>
+          <p style="color:white; margin:0; font-size:0.88em;">• <em>"¿En qué piso vives?"</em></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DOTS DE NAVEGACIÓN ===== -->
+  <div class="nav-dots" style="display:flex; justify-content:center; gap:10px; margin-top:24px; flex-wrap:wrap;">
+    <label for="s1"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s2"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s3"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s4"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s5"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s6"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s7"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s8"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s9"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s10" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+  </div>
+
+  <!-- ===== FLECHAS DE NAVEGACIÓN ===== -->
+  <div class="nav-arrows" style="display:flex; justify-content:center; gap:16px; margin-top:18px;">
+
+    <!-- Tarjeta 1: solo siguiente -->
+    <div class="btn-nav arr-1" style="gap:16px;">
+      <label for="s2" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 2 -->
+    <div class="btn-nav arr-2" style="gap:16px;">
+      <label for="s1" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s3" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 3 -->
+    <div class="btn-nav arr-3" style="gap:16px;">
+      <label for="s2" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s4" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 4 -->
+    <div class="btn-nav arr-4" style="gap:16px;">
+      <label for="s3" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s5" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 5 -->
+    <div class="btn-nav arr-5" style="gap:16px;">
+      <label for="s4" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s6" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 6 -->
+    <div class="btn-nav arr-6" style="gap:16px;">
+      <label for="s5" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s7" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 7 -->
+    <div class="btn-nav arr-7" style="gap:16px;">
+      <label for="s6" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s8" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 8 -->
+    <div class="btn-nav arr-8" style="gap:16px;">
+      <label for="s7" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s9" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 9 -->
+    <div class="btn-nav arr-9" style="gap:16px;">
+      <label for="s8" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s10" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <!-- Tarjeta 10: solo anterior -->
+    <div class="btn-nav arr-10" style="gap:16px;">
+      <label for="s9" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s1" style="background:linear-gradient(135deg,#2563EB,#3B82F6); border:none; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:white; font-family:'Nunito',sans-serif; font-size:0.95em;">🔁 Reiniciar</label>
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
