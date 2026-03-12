@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== NAVEGACIÓN CSS PURA ===== */
+  #card1,#card2,#card3,#card4,#card5,
+  #card6,#card7,#card8,#card9,#card10,#card11 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+
+  /* Dots activos */
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"] {
+    background:#16A34A;
+    transform:scale(1.35);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11 { display:flex; }
+</style>
+</head>
+<body style="margin:0; padding:20px; background:#F0FDF4; font-family:'Nunito',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- TÍTULO -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#15803D,#16A34A); padding:8px 24px; border-radius:30px; margin-bottom:12px;">
+      <span style="color:white; font-size:0.85em; font-weight:700; letter-spacing:3px;">TEMÁTICA 4 · BLOQUE 1 · DIRECCIONES SIMPLES</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.2em; color:#1a1a2e; margin:0 0 6px 0;">¿Cómo llego? 🗺️</h2>
+    <p style="color:#888; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIO BUTTONS OCULTOS -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+
+  <!-- ==================== TARJETA 1: Introducción ==================== -->
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#15803D); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(21,128,61,0.2); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <!-- Decoración de cuadrícula tipo mapa -->
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(21,128,61,0.4); color:#BBF7D0; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">01 / 11</span>
+      <span style="font-size:2em;">🗺️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BBF7D0; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Bienvenida al bloque</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Pedir y dar direcciones</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Saber <strong style="color:#FCD34D;">pedir y dar direcciones</strong> es una habilidad esencial en español. Te permite moverte con confianza por cualquier ciudad hispanohablante.</p>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:#FCD34D; margin:0 0 10px 0; font-size:0.9em; font-weight:700; text-align:center;">📍 ¿EN QUÉ SITUACIONES LO USAS?</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.3em;">🚶</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-weight:600;">Caminar por la ciudad</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.3em;">🏪</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-weight:600;">Encontrar un lugar</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.3em;">🚕</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-weight:600;">Hablar con el taxista</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.3em;">📱</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-weight:600;">Explicar tu ubicación</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(21,128,61,0.3); border-left:4px solid #BBF7D0; border-radius:0 10px 10px 0; padding:14px;">
+        <p style="color:#BBF7D0; margin:0 0 10px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">📚 EN ESTE BLOQUE APRENDERÁS</p>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Verbos para dar indicaciones</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Puntos cardinales y referencias</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Frases para pedir y dar direcciones</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Lugares y puntos de referencia</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Preposiciones y expresiones de ubicación</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 2: Verbos esenciales ==================== -->
+  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#2563EB); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(37,99,235,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(37,99,235,0.4); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">02 / 11</span>
+      <span style="font-size:2em;">🏃</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BFDBFE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Gramática en acción</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Verbos para direcciones</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Al dar direcciones usamos verbos en <strong style="color:#FCD34D;">imperativo</strong> (modo de dar órdenes amables) o en construcciones con <strong style="color:#FCD34D;">infinitivo</strong>.</p>
+      </div>
+
+      <div style="background:rgba(37,99,235,0.25); border-left:4px solid #BFDBFE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#BFDBFE; margin:0 0 14px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🔑 VERBOS CLAVE</p>
+        <div style="display:flex; flex-direction:column; gap:9px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:1em; font-weight:700;">seguir / continuar</p>
+              <p style="color:rgba(255,255,255,0.65); margin:3px 0 0 0; font-size:0.82em;">to continue / to keep going</p>
+            </div>
+            <span style="font-size:1.5em;">➡️</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:1em; font-weight:700;">girar / doblar / torcer</p>
+              <p style="color:rgba(255,255,255,0.65); margin:3px 0 0 0; font-size:0.82em;">to turn</p>
+            </div>
+            <span style="font-size:1.5em;">↪️</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:1em; font-weight:700;">cruzar</p>
+              <p style="color:rgba(255,255,255,0.65); margin:3px 0 0 0; font-size:0.82em;">to cross</p>
+            </div>
+            <span style="font-size:1.5em;">🚦</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:1em; font-weight:700;">subir / bajar</p>
+              <p style="color:rgba(255,255,255,0.65); margin:3px 0 0 0; font-size:0.82em;">to go up / to go down</p>
+            </div>
+            <span style="font-size:1.5em;">⬆️⬇️</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:1em; font-weight:700;">llegar (a)</p>
+              <p style="color:rgba(255,255,255,0.65); margin:3px 0 0 0; font-size:0.82em;">to arrive (at) / to reach</p>
+            </div>
+            <span style="font-size:1.5em;">🏁</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:1em; font-weight:700;">quedar (a / en)</p>
+              <p style="color:rgba(255,255,255,0.65); margin:3px 0 0 0; font-size:0.82em;">to be located / to be situated</p>
+            </div>
+            <span style="font-size:1.5em;">📍</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 VARIACIÓN REGIONAL</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#BFDBFE;">Doblar</strong> (México, España) = <strong style="color:#BFDBFE;">Girar</strong> (Colombia, Argentina) = <strong style="color:#BFDBFE;">Torcer</strong> (España, formal)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 3: Puntos cardinales y orientación ==================== -->
+  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(194,65,12,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(194,65,12,0.4); color:#FED7AA; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">03 / 11</span>
+      <span style="font-size:2em;">🧭</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FED7AA; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Orientación espacial</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Puntos cardinales</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los <strong style="color:#FCD34D;">puntos cardinales</strong> son la base de la orientación geográfica. Se usan para dar direcciones amplias o en ciudades con cuadrícula urbana.</p>
+      </div>
+
+      <!-- Rosa de los vientos visual -->
+      <div style="background:rgba(194,65,12,0.25); border-left:4px solid #FED7AA; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FED7AA; margin:0 0 14px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🧭 LOS CUATRO PUNTOS CARDINALES</p>
+        <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin-bottom:12px;">
+          <div style="text-align:center; margin-bottom:8px;">
+            <p style="color:#FCD34D; margin:0; font-size:1.1em; font-weight:700;">Norte ⬆️</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.78em;">North</p>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div style="text-align:center;">
+              <p style="color:#FCD34D; margin:0; font-size:1.1em; font-weight:700;">⬅️ Oeste</p>
+              <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.78em;">West</p>
+            </div>
+            <span style="font-size:2em;">🧭</span>
+            <div style="text-align:center;">
+              <p style="color:#FCD34D; margin:0; font-size:1.1em; font-weight:700;">Este ➡️</p>
+              <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.78em;">East</p>
+            </div>
+          </div>
+          <div style="text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:1.1em; font-weight:700;">⬇️ Sur</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.78em;">South</p>
+          </div>
+        </div>
+
+        <p style="color:#FED7AA; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🗺️ PUNTOS INTERMEDIOS</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">Noreste</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">Northeast</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">Noroeste</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">Northwest</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">Sureste</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">Southeast</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">Suroeste</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">Southwest</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLO EN CONTEXTO</p>
+        <p style="color:white; margin:0; font-size:0.9em; text-align:center; font-style:italic;">"El aeropuerto queda al <strong style="color:#FED7AA;">norte</strong> de la ciudad."<br>"Camina hacia el <strong style="color:#FED7AA;">sur</strong> por esa avenida."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 4: Izquierda, derecha y recto ==================== -->
+  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A5F,#0369A1); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(3,105,161,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(3,105,161,0.4); color:#BAE6FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">04 / 11</span>
+      <span style="font-size:2em;">↕️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BAE6FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Directions básicas</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Izquierda, derecha y recto</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Las tres direcciones más usadas al navegar son <strong style="color:#FCD34D;">izquierda</strong>, <strong style="color:#FCD34D;">derecha</strong> y <strong style="color:#FCD34D;">recto/derecho</strong>. Son la base de cualquier indicación.</p>
+      </div>
+
+      <!-- Diagrama visual de direcciones -->
+      <div style="background:rgba(3,105,161,0.25); border-left:4px solid #BAE6FD; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center;">
+            <p style="color:white; margin:0; font-size:2em;">⬅️</p>
+            <p style="color:#FCD34D; margin:8px 0 4px 0; font-size:1em; font-weight:700;">a la izquierda</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.75em;">to the left</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center;">
+            <p style="color:white; margin:0; font-size:2em;">⬆️</p>
+            <p style="color:#FCD34D; margin:8px 0 4px 0; font-size:1em; font-weight:700;">recto / derecho</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.75em;">straight ahead</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center;">
+            <p style="color:white; margin:0; font-size:2em;">➡️</p>
+            <p style="color:#FCD34D; margin:8px 0 4px 0; font-size:1em; font-weight:700;">a la derecha</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.75em;">to the right</p>
+          </div>
+        </div>
+
+        <p style="color:#BAE6FD; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🔄 DAR VUELTA</p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Gira / Dobla a la izquierda</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Turn left</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Gira / Dobla a la derecha</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Turn right</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Sigue / Continúa recto</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Keep going straight</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Da la vuelta / Regresa</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Turn around / Go back</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLO</p>
+        <p style="color:white; margin:0; font-size:0.9em; text-align:center; font-style:italic;">"Sigue recto dos cuadras, luego gira a la derecha y el banco está a la izquierda."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 5: Preposiciones y expresiones de lugar ==================== -->
+  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#6D28D9); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(109,40,217,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(109,40,217,0.4); color:#DDD6FE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">05 / 11</span>
+      <span style="font-size:2em;">📍</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#DDD6FE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Gramática en contexto</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Expresiones de ubicación</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Para decir <strong style="color:#FCD34D;">dónde está un lugar</strong> usamos estas expresiones. Son esenciales para entender y dar cualquier dirección.</p>
+      </div>
+
+      <div style="background:rgba(109,40,217,0.25); border-left:4px solid #DDD6FE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#DDD6FE; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">📌 EXPRESIONES CLAVE</p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">a la vuelta de</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">around the corner from</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">al cruzar la calle</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">across the street</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">a dos cuadras de aquí</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">two blocks from here</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">frente a / enfrente de</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">in front of / facing</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">al lado de / junto a</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">next to / beside</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">cerca de / lejos de</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">close to / far from</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">entre … y …</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.82em; font-style:italic;">between … and …</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLO</p>
+        <p style="color:white; margin:0; font-size:0.9em; text-align:center; font-style:italic;">"La farmacia está <strong style="color:#DDD6FE;">entre</strong> el banco y la panadería, <strong style="color:#DDD6FE;">frente a</strong> la plaza."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 6: Pedir direcciones ==================== -->
+  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#065F46,#059669); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(5,150,105,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(5,150,105,0.4); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">06 / 11</span>
+      <span style="font-size:2em;">🙋</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#6EE7B7; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Comunicación real</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">¿Cómo pedir direcciones?</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Antes de pedir la dirección, es importante hacer una <strong style="color:#FCD34D;">introducción cortés</strong>. En español siempre se saluda antes de pedir ayuda.</p>
+      </div>
+
+      <div style="background:rgba(5,150,105,0.25); border-left:4px solid #6EE7B7; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#6EE7B7; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">💬 FRASES PARA PEDIR DIRECCIONES</p>
+
+        <div style="background:rgba(251,191,36,0.15); border-radius:10px; padding:12px; margin-bottom:10px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.8em; font-weight:700;">🌟 INTRODUCCIÓN (siempre primero)</p>
+          <div style="display:flex; flex-direction:column; gap:5px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"Disculpe / Perdone..."</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"Buenas tardes, ¿me puede ayudar?"</p>
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">PREGUNTA DIRECTA:</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Dónde está / queda el banco?"</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">"Where is the bank?"</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">PREGUNTA CON "SABER":</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Sabe usted cómo llegar al hospital?"</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">"Do you know how to get to the hospital?"</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">PREGUNTA DE DISTANCIA:</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Está lejos de aquí la estación del metro?"</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">"Is the metro station far from here?"</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">PEDIR REPETICIÓN:</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Puede repetir más despacio, por favor?"</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">"Can you repeat more slowly, please?"</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 CONSEJO CULTURAL</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;">En países hispanohablantes es muy común que la gente se detenga y ayude con las indicaciones. ¡No tengas miedo de preguntar!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 7: Dar direcciones ==================== -->
+  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#DC2626,#EF4444); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(239,68,68,0.15); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(239,68,68,0.4); color:#FCA5A5; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">07 / 11</span>
+      <span style="font-size:2em;">🗣️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FCA5A5; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Comunicación real</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">¿Cómo dar direcciones?</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Al dar indicaciones usamos <strong style="color:#FCD34D;">conectores de secuencia</strong> para ordenar los pasos, y <strong style="color:#FCD34D;">referencias visuales</strong> para orientar mejor a la persona.</p>
+      </div>
+
+      <div style="background:rgba(239,68,68,0.2); border-left:4px solid #FCA5A5; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FCA5A5; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🔢 CONECTORES DE SECUENCIA</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Primero...</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">First...</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Luego / Después...</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">Then / After that...</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Al llegar a...</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">When you reach...</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Por último / Al final...</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">Finally / At the end...</p>
+          </div>
+        </div>
+
+        <p style="color:#FCA5A5; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🗺️ EJEMPLO COMPLETO DE INDICACIÓN</p>
+        <div style="background:rgba(255,255,255,0.08); border-radius:10px; padding:14px;">
+          <p style="color:white; margin:0; font-size:0.9em; line-height:1.8;">
+            "<strong style="color:#FCA5A5;">Primero</strong>, siga recto por esta calle dos cuadras.<br>
+            <strong style="color:#FCA5A5;">Luego</strong>, gire a la derecha en la avenida principal.<br>
+            <strong style="color:#FCA5A5;">Al llegar al</strong> semáforo, cruce la calle.<br>
+            <strong style="color:#FCA5A5;">Por último</strong>, el hotel queda justo enfrente del parque, a la izquierda."
+          </p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 REFERENCIAS VISUALES ÚTILES</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;">"...donde hay un semáforo" · "...frente al árbol grande"<br>"...a mano izquierda" · "...no tiene pérdida"</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 8: Lugares de referencia ==================== -->
+  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#92400E,#B45309); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(180,83,9,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(180,83,9,0.4); color:#FDE68A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">08 / 11</span>
+      <span style="font-size:2em;">🏙️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDE68A; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Vocabulario urbano</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Lugares de referencia</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los <strong style="color:#FCD34D;">puntos de referencia</strong> son lugares conocidos que usamos como guía al dar indicaciones. Hacen las instrucciones más claras y concretas.</p>
+      </div>
+
+      <div style="background:rgba(180,83,9,0.25); border-left:4px solid #FDE68A; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FDE68A; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🏢 LUGARES COMUNES EN LA CIUDAD</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🏦</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">el banco</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">bank</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🏥</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">el hospital</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">hospital</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🚉</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">la estación</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">station</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🛒</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">el supermercado</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">supermarket</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🌳</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">el parque</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">park</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">⛪</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">la iglesia</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">church</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">💊</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">la farmacia</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">pharmacy</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🏨</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">el hotel</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">hotel</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">🚔</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">la estación de policía</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">police station</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px; text-align:center;">
+            <p style="color:white; margin:0; font-size:1.1em;">✈️</p>
+            <p style="color:#FCD34D; margin:4px 0 2px 0; font-size:0.88em; font-weight:700;">el aeropuerto</p>
+            <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.73em;">airport</p>
+          </div>
+        </div>
+      </div>
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLO</p>
+        <p style="color:white; margin:0; font-size:0.9em; text-align:center; font-style:italic;">"Sigue hasta la <strong style="color:#FDE68A;">iglesia</strong>, dobla a la izquierda y la <strong style="color:#FDE68A;">farmacia</strong> está frente al <strong style="color:#FDE68A;">parque</strong>."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 9: Vocabulario de calles ==================== -->
+  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#374151,#4B5563); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(75,85,99,0.3); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(75,85,99,0.5); color:#E5E7EB; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">09 / 11</span>
+      <span style="font-size:2em;">🛣️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#E5E7EB; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Vocabulario urbano</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Calles y vías</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Conocer el <strong style="color:#FCD34D;">vocabulario de vías y calles</strong> te permite entender las indicaciones con mayor precisión y orientarte en cualquier ciudad.</p>
+      </div>
+
+      <div style="background:rgba(75,85,99,0.4); border-left:4px solid #E5E7EB; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#E5E7EB; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🛣️ TIPOS DE VÍA</p>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">la calle</p>
+              <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.78em;">street (any road)</p>
+            </div>
+            <span style="font-size:1.3em;">🛤️</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">la avenida</p>
+              <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.78em;">avenue (wide, main road)</p>
+            </div>
+            <span style="font-size:1.3em;">🛣️</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">el bulevar / paseo</p>
+              <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.78em;">boulevard / promenade</p>
+            </div>
+            <span style="font-size:1.3em;">🌳</span>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">el callejón</p>
+              <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.78em;">alley / narrow lane</p>
+            </div>
+            <span style="font-size:1.3em;">🏚️</span>
+          </div>
+        </div>
+
+        <p style="color:#E5E7EB; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🚦 ELEMENTOS DE LA CALLE</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">la esquina</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.73em;">corner (intersection)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">el semáforo</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.73em;">traffic light</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">la cuadra / el bloque</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.73em;">city block</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">la rotonda / glorieta</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.73em;">roundabout</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">el puente</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.73em;">bridge</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">el paso peatonal</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.73em;">crosswalk / pedestrian crossing</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 10: Diálogo modelo ==================== -->
+  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F766E,#14B8A6); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(20,184,166,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(20,184,166,0.4); color:#99F6E4; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">10 / 11</span>
+      <span style="font-size:2em;">💬</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#99F6E4; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">En la práctica</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Diálogo modelo</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Observa cómo se combinan todos los elementos del bloque en una <strong style="color:#FCD34D;">conversación real</strong>. ¡Practica este diálogo en voz alta!</p>
+      </div>
+
+      <div style="background:rgba(20,184,166,0.2); border-left:4px solid #99F6E4; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#99F6E4; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🎭 SITUACIÓN: Encontrar una farmacia</p>
+
+        <!-- Turno A -->
+        <div style="margin-bottom:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <span style="background:#FCD34D; color:#1a1a2e; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85em; flex-shrink:0;">A</span>
+            <p style="color:#FDE68A; margin:0; font-size:0.82em; font-weight:700;">TURISTA</p>
+          </div>
+          <div style="background:rgba(252,211,77,0.12); border-radius:0 10px 10px 10px; padding:12px; margin-left:34px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"Disculpe, ¿sabe dónde hay una farmacia cerca de aquí?"</p>
+          </div>
+        </div>
+
+        <!-- Turno B -->
+        <div style="margin-bottom:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; justify-content:flex-end;">
+            <p style="color:#99F6E4; margin:0; font-size:0.82em; font-weight:700;">HABITANTE LOCAL</p>
+            <span style="background:#99F6E4; color:#1a1a2e; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85em; flex-shrink:0;">B</span>
+          </div>
+          <div style="background:rgba(153,246,228,0.12); border-radius:10px 0 10px 10px; padding:12px; margin-right:34px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic; line-height:1.7;">"Sí, claro. Siga recto por esta calle dos cuadras. Luego gire a la izquierda en la avenida. Al llegar al semáforo, cruce la calle. La farmacia está justo enfrente, al lado del banco. No tiene pérdida."</p>
+          </div>
+        </div>
+
+        <!-- Turno A -->
+        <div style="margin-bottom:10px;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <span style="background:#FCD34D; color:#1a1a2e; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85em; flex-shrink:0;">A</span>
+            <p style="color:#FDE68A; margin:0; font-size:0.82em; font-weight:700;">TURISTA</p>
+          </div>
+          <div style="background:rgba(252,211,77,0.12); border-radius:0 10px 10px 10px; padding:12px; margin-left:34px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Está lejos? ¿Cuánto tiempo camino?"</p>
+          </div>
+        </div>
+
+        <!-- Turno B -->
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; justify-content:flex-end;">
+            <p style="color:#99F6E4; margin:0; font-size:0.82em; font-weight:700;">HABITANTE LOCAL</p>
+            <span style="background:#99F6E4; color:#1a1a2e; border-radius:50%; width:26px; height:26px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.85em; flex-shrink:0;">B</span>
+          </div>
+          <div style="background:rgba(153,246,228,0.12); border-radius:10px 0 10px 10px; padding:12px; margin-right:34px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"No, está a unos cinco minutos a pie. ¡Buena suerte!"</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">📝 EXPRESIÓN NUEVA</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#99F6E4;">"No tiene pérdida"</strong> = You can't miss it (very easy to find)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 11: FINAL - Resumen y botón aula ==================== -->
+  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#16A34A); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(22,163,74,0.2); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
+    <div style="position:absolute; top:16px; left:50%; transform:translateX(-50%); font-size:1.1em; opacity:0.13; letter-spacing:8px; white-space:nowrap;">⭐⭐⭐⭐⭐</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(22,163,74,0.4); color:#BBF7D0; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">11 / 11</span>
+      <span style="font-size:2em;">🎉</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BBF7D0; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">¡Bloque completado!</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 14px 0;">Vocabulario esencial 🏆</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; line-height:1.6; margin:0 0 12px 0; font-size:0.95em;">¡Excelente! 🌟 Ya puedes <strong style="color:#FCD34D;">pedir y dar direcciones</strong> en español con confianza.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:7px;">
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">seguir / girar</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">to continue / to turn</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">a la izquierda / derecha</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">to the left / right</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">recto / derecho</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">straight ahead</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">cerca de / lejos de</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">close to / far from</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">la esquina / la cuadra</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">corner / block</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">frente a / al lado de</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">in front of / next to</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">¿Dónde queda...?</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">Where is...?</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09); border-radius:8px; padding:8px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700;">No tiene pérdida</p>
+            <p style="color:rgba(255,255,255,0.55); margin:2px 0 0 0; font-size:0.72em;">You can't miss it</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTÓN REGRESAR AL AULA VIRTUAL -->
+      <div style="text-align:center; margin-top:10px;">
+        <a href="#" onclick="alert('Redirigiendo al aula virtual...')" style="display:inline-block; background:linear-gradient(135deg,#FCD34D,#F59E0B); color:#1a1a2e; font-family:'Nunito',sans-serif; font-weight:700; font-size:1em; padding:14px 36px; border-radius:50px; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 20px rgba(252,211,77,0.35);">
+          🏫 Regresar al Aula Virtual
+        </a>
+        <p style="color:rgba(255,255,255,0.45); font-size:0.78em; margin:12px 0 0 0;">Temática 4 · Bloque 1 completado · Direcciones simples</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DOTS DE NAVEGACIÓN ===== -->
+  <div class="nav-dots" style="display:flex; justify-content:center; gap:9px; margin-top:24px; flex-wrap:wrap;">
+    <label for="s1"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s2"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s3"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s4"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s5"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s6"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s7"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s8"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s9"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s10" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s11" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+  </div>
+
+  <!-- ===== FLECHAS DE NAVEGACIÓN ===== -->
+  <div class="nav-arrows" style="display:flex; justify-content:center; gap:16px; margin-top:18px;">
+    <div class="btn-nav arr-1" style="gap:16px;">
+      <label for="s2" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-2" style="gap:16px;">
+      <label for="s1" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s3" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-3" style="gap:16px;">
+      <label for="s2" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s4" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-4" style="gap:16px;">
+      <label for="s3" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s5" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-5" style="gap:16px;">
+      <label for="s4" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s6" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-6" style="gap:16px;">
+      <label for="s5" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s7" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-7" style="gap:16px;">
+      <label for="s6" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s8" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-8" style="gap:16px;">
+      <label for="s7" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s9" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-9" style="gap:16px;">
+      <label for="s8" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s10" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-10" style="gap:16px;">
+      <label for="s9" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s11" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-11" style="gap:16px;">
+      <label for="s10" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s1" style="background:linear-gradient(135deg,#15803D,#16A34A); border:none; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:white; font-family:'Nunito',sans-serif; font-size:0.95em;">🔁 Reiniciar</label>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
