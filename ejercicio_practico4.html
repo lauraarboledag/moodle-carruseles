@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¿A dónde voy? · Actividad de direcciones</title>
+<style>
+  :root {
+    --navy: #1a2e4a;
+    --navy-mid: #2c4a72;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --success: #52b788;
+    --error: #e05c5c;
+    --bg: #f7f8fa;
+    --white: #ffffff;
+    --text: #4a5568;
+    --border: #e2e8f0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    padding: 0 0 60px;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 28px 24px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    color: white;
+    font-size: 1.7em;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .header h1 span { color: var(--gold-light); }
+  .header p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9em;
+  }
+
+  /* SCORE STRIP */
+  .score-strip {
+    background: var(--navy);
+    padding: 10px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .score-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.82em;
+  }
+  .score-item strong { color: var(--gold-light); font-size: 1.1em; }
+
+  /* MAIN */
+  .main { max-width: 680px; margin: 0 auto; padding: 28px 16px 0; }
+
+  /* BANCO DE PALABRAS */
+  .bank-section {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(26,46,74,0.06);
+  }
+  .bank-label {
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--navy-mid);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bank-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 44px;
+  }
+  .chip {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: white;
+    padding: 9px 18px;
+    border-radius: 24px;
+    font-size: 0.88em;
+    font-weight: 600;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+    box-shadow: 0 3px 10px rgba(26,46,74,0.2);
+    touch-action: none;
+  }
+  .chip:active { cursor: grabbing; }
+  .chip.dragging {
+    opacity: 0.45;
+    transform: scale(0.96);
+  }
+  .chip.used { opacity: 0; pointer-events: none; width: 0; padding: 0; margin: 0; overflow: hidden; }
+
+  /* EJERCICIOS */
+  .exercise {
+    background: white;
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(26,46,74,0.05);
+    transition: border-color 0.25s;
+  }
+  .exercise.correct { border-color: var(--success); }
+  .exercise.wrong   { border-color: var(--error); }
+
+  .exercise-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .phone-icon {
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2em;
+    flex-shrink: 0;
+  }
+  .situation {
+    font-size: 0.93em;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  .situation strong { color: var(--navy); }
+
+  .drop-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .drop-label {
+    font-size: 0.82em;
+    color: #718096;
+    font-style: italic;
+  }
+  .drop-zone {
+    min-width: 180px;
+    min-height: 40px;
+    border: 2px dashed var(--border);
+    border-radius: 24px;
+    padding: 7px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.88em;
+    color: #a0aec0;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .drop-zone.over {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.08);
+    color: var(--navy);
+  }
+  .drop-zone.filled {
+    border-style: solid;
+    border-color: var(--navy-mid);
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .drop-zone.filled.correct-ans {
+    border-color: var(--success);
+    background: linear-gradient(135deg, #2d6a4f, var(--success));
+  }
+  .drop-zone.filled.wrong-ans {
+    border-color: var(--error);
+    background: linear-gradient(135deg, #9b2335, var(--error));
+  }
+
+  .feedback-icon {
+    font-size: 1.1em;
+    display: none;
+  }
+  .exercise.correct .feedback-icon { display: inline; }
+  .exercise.wrong   .feedback-icon { display: inline; }
+
+  /* FEEDBACK BAR */
+  .feedback-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 14px 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.95em;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+  .feedback-bar.show { transform: translateY(0); }
+  .feedback-bar.ok  { background: var(--success); color: white; }
+  .feedback-bar.ko  { background: var(--error);   color: white; }
+
+  /* RESULTS */
+  .results {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 36px 28px;
+    text-align: center;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(26,46,74,0.1);
+    margin-bottom: 24px;
+  }
+  .results.show { display: block; }
+  .results-emoji { font-size: 3em; margin-bottom: 12px; }
+  .results h2 {
+    font-size: 1.4em;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .results p { color: var(--text); font-size: 0.95em; line-height: 1.7; margin-bottom: 24px; }
+  .results-score {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .results-score span { color: var(--gold); }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    font-size: 0.92em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration: none;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+    color: white;
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+  }
+  .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* MOBILE tap-to-select */
+  .chip.selected {
+    box-shadow: 0 0 0 3px var(--gold-light);
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">📍 Actividad · Temática 4</div>
+  <h1>¿A dónde voy? <span>Sigue las instrucciones</span></h1>
+  <p>Arrastra la instrucción correcta según lo que dice el turista</p>
+</div>
+
+<!-- SCORE STRIP -->
+<div class="score-strip">
+  <div class="score-item">📍 <strong id="total-count">8</strong> situaciones</div>
+  <div class="score-item">✅ <strong id="correct-count">0</strong> correctas</div>
+  <div class="score-item">⏱️ <strong>~8 min</strong></div>
+</div>
+
+<div class="main">
+
+  <!-- BANCO -->
+  <div class="bank-section">
+    <div class="bank-label">Banco de instrucciones</div>
+    <div class="word-bank" id="word-bank">
+      <div class="chip" draggable="true" data-word="Gira a la derecha">Gira a la derecha</div>
+      <div class="chip" draggable="true" data-word="Gira a la izquierda">Gira a la izquierda</div>
+      <div class="chip" draggable="true" data-word="Sigue recto">Sigue recto</div>
+      <div class="chip" draggable="true" data-word="Cruza la calle">Cruza la calle</div>
+      <div class="chip" draggable="true" data-word="Sube por la calle">Sube por la calle</div>
+      <div class="chip" draggable="true" data-word="Está enfrente de">Está enfrente de</div>
+      <div class="chip" draggable="true" data-word="Está cerca de">Está cerca de</div>
+      <div class="chip" draggable="true" data-word="Está a la izquierda">Está a la izquierda</div>
+    </div>
+  </div>
+
+  <!-- EJERCICIOS -->
+  <div id="exercises">
+
+    <!-- 1 -->
+    <div class="exercise" data-answer="Sigue recto">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 1:</strong> El turista está en la calle principal. El mapa de su teléfono indica que debe continuar por la misma calle sin doblar en ningún cruce. ¿Qué instrucción necesita?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">La instrucción es:</span>
+        <div class="drop-zone" data-index="0">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="exercise" data-answer="Gira a la derecha">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 2:</strong> El turista llega a una intersección. El teléfono vibra y muestra una flecha que apunta hacia el lado de su mano dominante. ¿Qué instrucción necesita?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">La instrucción es:</span>
+        <div class="drop-zone" data-index="1">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="exercise" data-answer="Cruza la calle">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 3:</strong> El turista ve el parque que busca, pero está al otro lado de la avenida. El semáforo está en verde para los peatones. ¿Qué instrucción necesita?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">La instrucción es:</span>
+        <div class="drop-zone" data-index="2">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="exercise" data-answer="Gira a la izquierda">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 4:</strong> El turista camina hacia el norte. Su teléfono indica que debe doblar hacia el oeste en la próxima esquina. ¿Qué instrucción necesita?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">La instrucción es:</span>
+        <div class="drop-zone" data-index="3">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="exercise" data-answer="Está enfrente de">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 5:</strong> El turista busca la farmacia. Alguien le explica que está justo al otro lado de la calle, mirando directamente al banco. ¿Cómo se describe su ubicación?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">La farmacia:</span>
+        <div class="drop-zone" data-index="4">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="exercise" data-answer="Sube por la calle">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 6:</strong> El turista está en la parte baja de una calle con pendiente. El hotel que busca está más arriba, en dirección norte. ¿Qué instrucción necesita?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">La instrucción es:</span>
+        <div class="drop-zone" data-index="5">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="exercise" data-answer="Está cerca de">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 7:</strong> El turista pregunta dónde está el supermercado. Le responden que no está lejos: solo hay que caminar dos minutos desde donde está. ¿Cómo se describe su ubicación?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">El supermercado:</span>
+        <div class="drop-zone" data-index="6">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="exercise" data-answer="Está a la izquierda">
+      <div class="exercise-header">
+        <div class="phone-icon">📱</div>
+        <div class="situation">
+          <strong>Situación 8:</strong> El turista llega a la plaza central. El restaurante que busca está en el mismo lado de la calle, pero en la dirección opuesta a su mano dominante. ¿Cómo se describe su ubicación?
+        </div>
+      </div>
+      <div class="drop-row">
+        <span class="drop-label">El restaurante:</span>
+        <div class="drop-zone" data-index="7">Arrastra aquí</div>
+        <span class="feedback-icon"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESULTADOS -->
+  <div class="results" id="results">
+    <div class="results-emoji" id="results-emoji">🎉</div>
+    <div class="results-score" id="results-score">0<span>/8</span></div>
+    <h2 id="results-title">¡Bien hecho!</h2>
+    <p id="results-msg">Sigue practicando para dominar las direcciones en español.</p>
+    <div class="btn-group">
+      <button class="btn btn-gold" onclick="resetActivity()">🔄 Reintentar</button>
+      <a class="btn btn-primary" href="https://institutoinnova.moodlecloud.com" target="_blank">← Volver al curso</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FEEDBACK BAR -->
+<div class="feedback-bar" id="feedback-bar"></div>
+
+<script>
+  // ── Estado ──────────────────────────────────────────────
+  let draggedWord = null;
+  let selectedChip = null;
+  let correctCount = 0;
+  const TOTAL = 8;
+
+  // ── Helpers ─────────────────────────────────────────────
+  function getChip(word) {
+    return document.querySelector(`.chip[data-word="${word}"]`);
+  }
+
+  function showFeedback(msg, type) {
+    const bar = document.getElementById('feedback-bar');
+    bar.textContent = msg;
+    bar.className = `feedback-bar show ${type}`;
+    setTimeout(() => bar.classList.remove('show'), 1800);
+  }
+
+  function updateScore() {
+    document.getElementById('correct-count').textContent = correctCount;
+  }
+
+  function checkAllDone() {
+    const zones = document.querySelectorAll('.drop-zone');
+    const done = [...zones].every(z => z.dataset.placed);
+    if (done) showResults();
+  }
+
+  function showResults() {
+    const pct = correctCount / TOTAL;
+    const emoji = pct === 1 ? '🏆' : pct >= 0.75 ? '🎉' : pct >= 0.5 ? '👍' : '💪';
+    const title = pct === 1 ? '¡Perfecto! ¡Eres un experto en direcciones!' :
+                  pct >= 0.75 ? '¡Muy bien! Casi lo tienes.' :
+                  pct >= 0.5 ? '¡Buen intento! Sigue practicando.' :
+                  '¡Puedes mejorar! Vuelve a intentarlo.';
+    const msg = pct === 1 ? 'Has colocado todas las instrucciones correctamente. ¡Ya puedes guiar a cualquier turista en español!' :
+                pct >= 0.75 ? `Acertaste ${correctCount} de ${TOTAL} situaciones. Repasa las que fallaste y vuelve a intentarlo.` :
+                `Acertaste ${correctCount} de ${TOTAL} situaciones. Revisa el carrusel de vocabulario y vuelve a practicar.`;
+
+    document.getElementById('results-emoji').textContent = emoji;
+    document.getElementById('results-score').innerHTML = `${correctCount}<span>/${TOTAL}</span>`;
+    document.getElementById('results-title').textContent = title;
+    document.getElementById('results-msg').textContent = msg;
+    document.getElementById('results').classList.add('show');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function placeWord(zone, word) {
+    const exercise = zone.closest('.exercise');
+    const answer = exercise.dataset.answer;
+    const icon = exercise.querySelector('.feedback-icon');
+    const isCorrect = word === answer;
+
+    // Marcar zona
+    zone.textContent = word;
+    zone.classList.add('filled');
+    zone.dataset.placed = word;
+
+    // Quitar chip del banco
+    const chip = getChip(word);
+    if (chip) chip.classList.add('used');
+
+    if (isCorrect) {
+      zone.classList.add('correct-ans');
+      exercise.classList.add('correct');
+      icon.textContent = '✅';
+      correctCount++;
+      updateScore();
+      showFeedback('✅ ¡Correcto!', 'ok');
+    } else {
+      zone.classList.add('wrong-ans');
+      exercise.classList.add('wrong');
+      icon.textContent = '❌';
+      showFeedback('❌ Incorrecto. El chip vuelve al banco.', 'ko');
+      // Devolver chip al banco tras 950ms
+      setTimeout(() => {
+        if (chip) chip.classList.remove('used');
+        zone.textContent = 'Arrastra aquí';
+        zone.classList.remove('filled', 'wrong-ans');
+        zone.dataset.placed = '';
+        exercise.classList.remove('wrong');
+        icon.textContent = '';
+      }, 950);
+      return; // No check all done aún
+    }
+
+    checkAllDone();
+  }
+
+  // ── DRAG & DROP (desktop) ───────────────────────────────
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('dragstart', e => {
+      draggedWord = chip.dataset.word;
+      chip.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    chip.addEventListener('dragend', () => {
+      chip.classList.remove('dragging');
+      draggedWord = null;
+    });
+  });
+
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => {
+      e.preventDefault();
+      if (!zone.dataset.placed) zone.classList.add('over');
+    });
+    zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('over');
+      if (zone.dataset.placed || !draggedWord) return;
+      placeWord(zone, draggedWord);
+    });
+  });
+
+  // ── TAP TO SELECT (mobile) ──────────────────────────────
+  document.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (chip.classList.contains('used')) return;
+      // Deseleccionar anterior
+      if (selectedChip && selectedChip !== chip) {
+        selectedChip.classList.remove('selected');
+      }
+      if (selectedChip === chip) {
+        chip.classList.remove('selected');
+        selectedChip = null;
+      } else {
+        chip.classList.add('selected');
+        selectedChip = chip;
+      }
+    });
+  });
+
+  document.querySelectorAll('.drop-zone').forEach(zone => {
+    zone.addEventListener('click', () => {
+      if (zone.dataset.placed) return;
+      if (!selectedChip) return;
+      const word = selectedChip.dataset.word;
+      selectedChip.classList.remove('selected');
+      selectedChip = null;
+      placeWord(zone, word);
+    });
+  });
+
+  // ── RESET ───────────────────────────────────────────────
+  function resetActivity() {
+    correctCount = 0;
+    updateScore();
+    draggedWord = null;
+    selectedChip = null;
+
+    document.querySelectorAll('.chip').forEach(c => {
+      c.classList.remove('used', 'selected', 'dragging');
+    });
+    document.querySelectorAll('.drop-zone').forEach(z => {
+      z.textContent = 'Arrastra aquí';
+      z.classList.remove('filled', 'correct-ans', 'wrong-ans', 'over');
+      z.dataset.placed = '';
+    });
+    document.querySelectorAll('.exercise').forEach(ex => {
+      ex.classList.remove('correct', 'wrong');
+      ex.querySelector('.feedback-icon').textContent = '';
+    });
+    document.getElementById('results').classList.remove('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
