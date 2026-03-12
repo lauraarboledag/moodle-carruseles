@@ -13,8 +13,6 @@
     --success: #52b788;
     --error: #e05c5c;
     --bg: #f7f8fa;
-    --white: #ffffff;
-    --text: #4a5568;
     --border: #e2e8f0;
   }
 
@@ -24,7 +22,7 @@
     font-family: 'Segoe UI', sans-serif;
     background: var(--bg);
     min-height: 100vh;
-    padding: 0 0 60px;
+    padding: 0 0 80px;
   }
 
   /* HEADER */
@@ -65,17 +63,9 @@
     text-transform: uppercase;
     margin-bottom: 12px;
   }
-  .header h1 {
-    color: white;
-    font-size: 1.7em;
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
+  .header h1 { color: white; font-size: 1.7em; font-weight: 700; margin-bottom: 6px; }
   .header h1 span { color: var(--gold-light); }
-  .header p {
-    color: rgba(255,255,255,0.65);
-    font-size: 0.9em;
-  }
+  .header p { color: rgba(255,255,255,0.65); font-size: 0.9em; }
 
   /* SCORE STRIP */
   .score-strip {
@@ -96,16 +86,19 @@
   .score-item strong { color: var(--gold-light); font-size: 1.1em; }
 
   /* MAIN */
-  .main { max-width: 680px; margin: 0 auto; padding: 28px 16px 0; }
+  .main { max-width: 860px; margin: 0 auto; padding: 28px 16px 0; }
 
-  /* BANCO DE PALABRAS */
+  /* BANCO DE PALABRAS — horizontal fijo arriba */
   .bank-section {
     background: white;
     border-radius: 16px;
-    padding: 20px 24px;
+    padding: 18px 24px;
     margin-bottom: 24px;
     border: 1px solid var(--border);
     box-shadow: 0 2px 12px rgba(26,46,74,0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
   }
   .bank-label {
     font-size: 0.72em;
@@ -113,7 +106,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--navy-mid);
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -127,85 +120,114 @@
   .word-bank {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    min-height: 44px;
+    gap: 9px;
   }
   .chip {
     background: linear-gradient(135deg, var(--navy), var(--navy-mid));
     color: white;
-    padding: 9px 18px;
+    padding: 8px 16px;
     border-radius: 24px;
-    font-size: 0.88em;
+    font-size: 0.85em;
     font-weight: 600;
     cursor: grab;
     user-select: none;
     transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
     box-shadow: 0 3px 10px rgba(26,46,74,0.2);
     touch-action: none;
+    white-space: nowrap;
   }
   .chip:active { cursor: grabbing; }
-  .chip.dragging {
-    opacity: 0.45;
-    transform: scale(0.96);
-  }
-  .chip.used { opacity: 0; pointer-events: none; width: 0; padding: 0; margin: 0; overflow: hidden; }
+  .chip.dragging { opacity: 0.4; transform: scale(0.95); }
+  .chip.selected { box-shadow: 0 0 0 3px var(--gold-light); transform: scale(1.05); }
+  .chip.used { opacity: 0; pointer-events: none; width: 0; padding: 0; margin: 0; overflow: hidden; transition: all 0.2s; }
 
-  /* EJERCICIOS */
+  /* EJERCICIOS — dos columnas */
   .exercise {
     background: white;
-    border-radius: 16px;
-    padding: 22px 24px;
-    margin-bottom: 16px;
+    border-radius: 14px;
     border: 1px solid var(--border);
-    box-shadow: 0 2px 12px rgba(26,46,74,0.05);
+    box-shadow: 0 2px 10px rgba(26,46,74,0.05);
+    margin-bottom: 12px;
+    overflow: hidden;
     transition: border-color 0.25s;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
   }
   .exercise.correct { border-color: var(--success); }
   .exercise.wrong   { border-color: var(--error); }
 
-  .exercise-header {
+  /* Columna izquierda: situación */
+  .ex-left {
+    padding: 18px 20px;
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 16px;
+    gap: 12px;
+    border-right: 1px solid var(--border);
   }
-  .phone-icon {
-    width: 42px; height: 42px;
-    border-radius: 12px;
+  .ex-num {
+    width: 28px; height: 28px;
+    border-radius: 50%;
     background: linear-gradient(135deg, var(--navy), var(--navy-mid));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.2em;
-    flex-shrink: 0;
-  }
-  .situation {
-    font-size: 0.93em;
-    line-height: 1.7;
-    color: var(--text);
-  }
-  .situation strong { color: var(--navy); }
-
-  .drop-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .drop-label {
-    font-size: 0.82em;
-    color: #718096;
-    font-style: italic;
-  }
-  .drop-zone {
-    min-width: 180px;
-    min-height: 40px;
-    border: 2px dashed var(--border);
-    border-radius: 24px;
-    padding: 7px 18px;
+    color: var(--gold-light);
+    font-size: 0.78em;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .phone-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(26,46,74,0.07);
+    color: var(--navy-mid);
+    font-size: 0.72em;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+  }
+  .situation-text {
     font-size: 0.88em;
+    line-height: 1.7;
+    color: #4a5568;
+  }
+  .situation-text strong { color: var(--navy); }
+
+  /* Columna derecha: zona de respuesta */
+  .ex-right {
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 190px;
+    background: #fafbfc;
+  }
+  .drop-label {
+    font-size: 0.72em;
     color: #a0aec0;
+    font-style: italic;
+    text-align: center;
+  }
+  .drop-zone {
+    width: 164px;
+    min-height: 40px;
+    border: 2px dashed var(--border);
+    border-radius: 24px;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82em;
+    color: #a0aec0;
+    text-align: center;
     transition: border-color 0.2s, background 0.2s;
     cursor: pointer;
   }
@@ -221,22 +243,18 @@
     color: white;
     font-weight: 600;
     cursor: pointer;
+    font-size: 0.8em;
+    text-align: center;
   }
-  .drop-zone.filled.correct-ans {
+  .drop-zone.correct-ans {
     border-color: var(--success);
     background: linear-gradient(135deg, #2d6a4f, var(--success));
   }
-  .drop-zone.filled.wrong-ans {
+  .drop-zone.wrong-ans {
     border-color: var(--error);
     background: linear-gradient(135deg, #9b2335, var(--error));
   }
-
-  .feedback-icon {
-    font-size: 1.1em;
-    display: none;
-  }
-  .exercise.correct .feedback-icon { display: inline; }
-  .exercise.wrong   .feedback-icon { display: inline; }
+  .feedback-icon { font-size: 1.2em; }
 
   /* FEEDBACK BAR */
   .feedback-bar {
@@ -267,19 +285,10 @@
   }
   .results.show { display: block; }
   .results-emoji { font-size: 3em; margin-bottom: 12px; }
-  .results h2 {
-    font-size: 1.4em;
-    color: var(--navy);
-    margin-bottom: 8px;
-  }
-  .results p { color: var(--text); font-size: 0.95em; line-height: 1.7; margin-bottom: 24px; }
-  .results-score {
-    font-size: 2.2em;
-    font-weight: 800;
-    color: var(--navy);
-    margin-bottom: 6px;
-  }
+  .results-score { font-size: 2.4em; font-weight: 800; color: var(--navy); margin-bottom: 6px; }
   .results-score span { color: var(--gold); }
+  .results h2 { font-size: 1.3em; color: var(--navy); margin-bottom: 8px; }
+  .results p { color: #718096; font-size: 0.92em; line-height: 1.7; margin-bottom: 24px; }
 
   .btn {
     display: inline-flex;
@@ -295,20 +304,16 @@
     text-decoration: none;
   }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
-  .btn-primary {
-    background: linear-gradient(135deg, var(--navy), var(--navy-mid));
-    color: white;
-  }
-  .btn-gold {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    color: var(--navy);
-  }
-  .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: linear-gradient(135deg, var(--navy), var(--navy-mid)); color: white; }
+  .btn-gold    { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); }
+  .btn-group   { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-  /* MOBILE tap-to-select */
-  .chip.selected {
-    box-shadow: 0 0 0 3px var(--gold-light);
-    transform: scale(1.05);
+  /* RESPONSIVE */
+  @media (max-width: 560px) {
+    .exercise { grid-template-columns: 1fr; }
+    .ex-left  { border-right: none; border-bottom: 1px solid var(--border); }
+    .ex-right { min-width: unset; background: white; }
+    .drop-zone { width: 100%; }
   }
 </style>
 </head>
@@ -323,14 +328,14 @@
 
 <!-- SCORE STRIP -->
 <div class="score-strip">
-  <div class="score-item">📍 <strong id="total-count">8</strong> situaciones</div>
+  <div class="score-item">📍 <strong>8</strong> situaciones</div>
   <div class="score-item">✅ <strong id="correct-count">0</strong> correctas</div>
   <div class="score-item">⏱️ <strong>~8 min</strong></div>
 </div>
 
 <div class="main">
 
-  <!-- BANCO -->
+  <!-- BANCO — sticky -->
   <div class="bank-section">
     <div class="bank-label">Banco de instrucciones</div>
     <div class="word-bank" id="word-bank">
@@ -350,121 +355,129 @@
 
     <!-- 1 -->
     <div class="exercise" data-answer="Sigue recto">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 1:</strong> El turista está en la calle principal. El mapa de su teléfono indica que debe continuar por la misma calle sin doblar en ningún cruce. ¿Qué instrucción necesita?
+      <div class="ex-left">
+        <div class="ex-num">1</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista está en la calle principal. El mapa de su teléfono indica que debe <strong>continuar por la misma calle</strong> sin doblar en ningún cruce.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">La instrucción es:</span>
+      <div class="ex-right">
+        <div class="drop-label">La instrucción es:</div>
         <div class="drop-zone" data-index="0">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 2 -->
     <div class="exercise" data-answer="Gira a la derecha">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 2:</strong> El turista llega a una intersección. El teléfono vibra y muestra una flecha que apunta hacia el lado de su mano dominante. ¿Qué instrucción necesita?
+      <div class="ex-left">
+        <div class="ex-num">2</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista llega a una intersección. El teléfono muestra una flecha que apunta hacia el lado de su <strong>mano dominante</strong>.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">La instrucción es:</span>
+      <div class="ex-right">
+        <div class="drop-label">La instrucción es:</div>
         <div class="drop-zone" data-index="1">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 3 -->
     <div class="exercise" data-answer="Cruza la calle">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 3:</strong> El turista ve el parque que busca, pero está al otro lado de la avenida. El semáforo está en verde para los peatones. ¿Qué instrucción necesita?
+      <div class="ex-left">
+        <div class="ex-num">3</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista ve el parque que busca, pero está <strong>al otro lado de la avenida</strong>. El semáforo está en verde para los peatones.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">La instrucción es:</span>
+      <div class="ex-right">
+        <div class="drop-label">La instrucción es:</div>
         <div class="drop-zone" data-index="2">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 4 -->
     <div class="exercise" data-answer="Gira a la izquierda">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 4:</strong> El turista camina hacia el norte. Su teléfono indica que debe doblar hacia el oeste en la próxima esquina. ¿Qué instrucción necesita?
+      <div class="ex-left">
+        <div class="ex-num">4</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista camina hacia el <strong>norte</strong>. Su teléfono indica que debe doblar hacia el <strong>oeste</strong> en la próxima esquina.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">La instrucción es:</span>
+      <div class="ex-right">
+        <div class="drop-label">La instrucción es:</div>
         <div class="drop-zone" data-index="3">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 5 -->
     <div class="exercise" data-answer="Está enfrente de">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 5:</strong> El turista busca la farmacia. Alguien le explica que está justo al otro lado de la calle, mirando directamente al banco. ¿Cómo se describe su ubicación?
+      <div class="ex-left">
+        <div class="ex-num">5</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista busca la farmacia. Le explican que está <strong>justo al otro lado de la calle</strong>, mirando directamente al banco.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">La farmacia:</span>
+      <div class="ex-right">
+        <div class="drop-label">La farmacia:</div>
         <div class="drop-zone" data-index="4">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 6 -->
     <div class="exercise" data-answer="Sube por la calle">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 6:</strong> El turista está en la parte baja de una calle con pendiente. El hotel que busca está más arriba, en dirección norte. ¿Qué instrucción necesita?
+      <div class="ex-left">
+        <div class="ex-num">6</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista está en la parte <strong>baja de una calle con pendiente</strong>. El hotel está más arriba, en dirección norte.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">La instrucción es:</span>
+      <div class="ex-right">
+        <div class="drop-label">La instrucción es:</div>
         <div class="drop-zone" data-index="5">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 7 -->
     <div class="exercise" data-answer="Está cerca de">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 7:</strong> El turista pregunta dónde está el supermercado. Le responden que no está lejos: solo hay que caminar dos minutos desde donde está. ¿Cómo se describe su ubicación?
+      <div class="ex-left">
+        <div class="ex-num">7</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista pregunta dónde está el supermercado. Le responden que <strong>no está lejos</strong>: solo hay que caminar dos minutos.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">El supermercado:</span>
+      <div class="ex-right">
+        <div class="drop-label">El supermercado:</div>
         <div class="drop-zone" data-index="6">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
     <!-- 8 -->
     <div class="exercise" data-answer="Está a la izquierda">
-      <div class="exercise-header">
-        <div class="phone-icon">📱</div>
-        <div class="situation">
-          <strong>Situación 8:</strong> El turista llega a la plaza central. El restaurante que busca está en el mismo lado de la calle, pero en la dirección opuesta a su mano dominante. ¿Cómo se describe su ubicación?
+      <div class="ex-left">
+        <div class="ex-num">8</div>
+        <div>
+          <div class="phone-tag">📱 Turista</div>
+          <div class="situation-text">El turista llega a la plaza central. El restaurante está en el mismo lado de la calle, pero en la <strong>dirección opuesta a su mano dominante</strong>.</div>
         </div>
       </div>
-      <div class="drop-row">
-        <span class="drop-label">El restaurante:</span>
+      <div class="ex-right">
+        <div class="drop-label">El restaurante:</div>
         <div class="drop-zone" data-index="7">Arrastra aquí</div>
-        <span class="feedback-icon"></span>
+        <div class="feedback-icon"></div>
       </div>
     </div>
 
@@ -488,16 +501,10 @@
 <div class="feedback-bar" id="feedback-bar"></div>
 
 <script>
-  // ── Estado ──────────────────────────────────────────────
   let draggedWord = null;
   let selectedChip = null;
   let correctCount = 0;
   const TOTAL = 8;
-
-  // ── Helpers ─────────────────────────────────────────────
-  function getChip(word) {
-    return document.querySelector(`.chip[data-word="${word}"]`);
-  }
 
   function showFeedback(msg, type) {
     const bar = document.getElementById('feedback-bar');
@@ -512,8 +519,7 @@
 
   function checkAllDone() {
     const zones = document.querySelectorAll('.drop-zone');
-    const done = [...zones].every(z => z.dataset.placed);
-    if (done) showResults();
+    if ([...zones].every(z => z.dataset.placed)) showResults();
   }
 
   function showResults() {
@@ -521,11 +527,10 @@
     const emoji = pct === 1 ? '🏆' : pct >= 0.75 ? '🎉' : pct >= 0.5 ? '👍' : '💪';
     const title = pct === 1 ? '¡Perfecto! ¡Eres un experto en direcciones!' :
                   pct >= 0.75 ? '¡Muy bien! Casi lo tienes.' :
-                  pct >= 0.5 ? '¡Buen intento! Sigue practicando.' :
+                  pct >= 0.5  ? '¡Buen intento! Sigue practicando.' :
                   '¡Puedes mejorar! Vuelve a intentarlo.';
-    const msg = pct === 1 ? 'Has colocado todas las instrucciones correctamente. ¡Ya puedes guiar a cualquier turista en español!' :
-                pct >= 0.75 ? `Acertaste ${correctCount} de ${TOTAL} situaciones. Repasa las que fallaste y vuelve a intentarlo.` :
-                `Acertaste ${correctCount} de ${TOTAL} situaciones. Revisa el carrusel de vocabulario y vuelve a practicar.`;
+    const msg   = pct === 1 ? '¡Has colocado todas las instrucciones correctamente!' :
+                  `Acertaste ${correctCount} de ${TOTAL} situaciones. Repasa el vocabulario y vuelve a intentarlo.`;
 
     document.getElementById('results-emoji').textContent = emoji;
     document.getElementById('results-score').innerHTML = `${correctCount}<span>/${TOTAL}</span>`;
@@ -540,14 +545,11 @@
     const answer = exercise.dataset.answer;
     const icon = exercise.querySelector('.feedback-icon');
     const isCorrect = word === answer;
+    const chip = document.querySelector(`.chip[data-word="${word}"]`);
 
-    // Marcar zona
     zone.textContent = word;
     zone.classList.add('filled');
     zone.dataset.placed = word;
-
-    // Quitar chip del banco
-    const chip = getChip(word);
     if (chip) chip.classList.add('used');
 
     if (isCorrect) {
@@ -557,12 +559,12 @@
       correctCount++;
       updateScore();
       showFeedback('✅ ¡Correcto!', 'ok');
+      checkAllDone();
     } else {
       zone.classList.add('wrong-ans');
       exercise.classList.add('wrong');
       icon.textContent = '❌';
       showFeedback('❌ Incorrecto. El chip vuelve al banco.', 'ko');
-      // Devolver chip al banco tras 950ms
       setTimeout(() => {
         if (chip) chip.classList.remove('used');
         zone.textContent = 'Arrastra aquí';
@@ -571,13 +573,10 @@
         exercise.classList.remove('wrong');
         icon.textContent = '';
       }, 950);
-      return; // No check all done aún
     }
-
-    checkAllDone();
   }
 
-  // ── DRAG & DROP (desktop) ───────────────────────────────
+  // DRAG & DROP
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('dragstart', e => {
       draggedWord = chip.dataset.word;
@@ -604,14 +603,11 @@
     });
   });
 
-  // ── TAP TO SELECT (mobile) ──────────────────────────────
+  // TAP TO SELECT (móvil)
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('click', () => {
       if (chip.classList.contains('used')) return;
-      // Deseleccionar anterior
-      if (selectedChip && selectedChip !== chip) {
-        selectedChip.classList.remove('selected');
-      }
+      if (selectedChip && selectedChip !== chip) selectedChip.classList.remove('selected');
       if (selectedChip === chip) {
         chip.classList.remove('selected');
         selectedChip = null;
@@ -624,8 +620,7 @@
 
   document.querySelectorAll('.drop-zone').forEach(zone => {
     zone.addEventListener('click', () => {
-      if (zone.dataset.placed) return;
-      if (!selectedChip) return;
+      if (zone.dataset.placed || !selectedChip) return;
       const word = selectedChip.dataset.word;
       selectedChip.classList.remove('selected');
       selectedChip = null;
@@ -633,16 +628,13 @@
     });
   });
 
-  // ── RESET ───────────────────────────────────────────────
+  // RESET
   function resetActivity() {
     correctCount = 0;
     updateScore();
     draggedWord = null;
     selectedChip = null;
-
-    document.querySelectorAll('.chip').forEach(c => {
-      c.classList.remove('used', 'selected', 'dragging');
-    });
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('used', 'selected', 'dragging'));
     document.querySelectorAll('.drop-zone').forEach(z => {
       z.textContent = 'Arrastra aquí';
       z.classList.remove('filled', 'correct-ans', 'wrong-ans', 'over');
