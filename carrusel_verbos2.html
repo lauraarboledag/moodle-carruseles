@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== NAVEGACIÓN CSS PURA ===== */
+  #card1,#card2,#card3,#card4,#card5,#card6,
+  #card7,#card8,#card9,#card10,#card11,#card12 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+  #s12:checked ~ #card12 { display:block; }
+
+  /* Dots activos */
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"],
+  #s12:checked ~ .nav-dots label[for="s12"] {
+    background:#D97706;
+    transform:scale(1.35);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11,
+  #s12:checked ~ .nav-arrows .arr-12 { display:flex; }
+</style>
+</head>
+<body style="margin:0; padding:20px; background:#FFFBEB; font-family:'Nunito',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- TÍTULO -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#92400E,#D97706); padding:8px 24px; border-radius:30px; margin-bottom:12px;">
+      <span style="color:white; font-size:0.85em; font-weight:700; letter-spacing:3px;">TEMÁTICA 5 · BLOQUE 1 · VERBOS ESENCIALES</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.2em; color:#1a1a2e; margin:0 0 6px 0;">Tener, Hay y Estar 📚</h2>
+    <p style="color:#888; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIO BUTTONS OCULTOS -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+  <input type="radio" name="slide" id="s12" style="display:none;">
+
+  <!-- ==================== TARJETA 1: Introducción ==================== -->
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#78350F,#92400E); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(146,64,14,0.2); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <!-- Textura de líneas tipo cuaderno -->
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.04) 31px, rgba(255,255,255,0.04) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(146,64,14,0.45); color:#FDE68A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">01 / 12</span>
+      <span style="font-size:2em;">📚</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDE68A; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Bienvenida al bloque</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">Tres verbos esenciales</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;"><strong style="color:#FCD34D;">TENER</strong>, <strong style="color:#FCD34D;">HAY</strong> y <strong style="color:#FCD34D;">ESTAR</strong> son tres de los verbos más usados en español. Aunque todos pueden traducirse con "there is/are" o "to be/have", cada uno tiene un uso muy diferente.</p>
+      </div>
+
+      <!-- Los tres verbos en tarjetas visuales -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px;">
+        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center;">
+          <p style="color:white; margin:0; font-size:2em;">🤝</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0 4px 0; font-size:1.3em; font-weight:700;">TENER</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.78em; line-height:1.4;">posesión y relaciones personales</p>
+        </div>
+        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center;">
+          <p style="color:white; margin:0; font-size:2em;">✨</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0 4px 0; font-size:1.3em; font-weight:700;">HAY</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.78em; line-height:1.4;">existencia de algo en un lugar</p>
+        </div>
+        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center;">
+          <p style="color:white; margin:0; font-size:2em;">📍</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0 4px 0; font-size:1.3em; font-weight:700;">ESTAR</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.78em; line-height:1.4;">ubicación y estados temporales</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(146,64,14,0.3); border-left:4px solid #FDE68A; border-radius:0 10px 10px 0; padding:14px;">
+        <p style="color:#FDE68A; margin:0 0 10px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">📚 EN ESTE BLOQUE APRENDERÁS</p>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Conjugación completa de cada verbo</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Cuándo usar TENER vs HAY vs ESTAR</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Expresiones idiomáticas con TENER</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Errores comunes que debes evitar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 2: TENER — Introducción y conjugación ==================== -->
+  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#2563EB); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(37,99,235,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(37,99,235,0.4); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">02 / 12</span>
+      <span style="font-size:2em;">🤝</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BFDBFE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Verbo 1 de 3</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2em; margin:0 0 6px 0;">TENER</h3>
+      <p style="color:#FCD34D; font-size:0.95em; margin:0 0 18px 0; font-style:italic;">to have · posesión y características</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">TENER</strong> es un verbo irregular que se usa para hablar de <strong style="color:#FCD34D;">posesión</strong> (cosas que tienes), <strong style="color:#FCD34D;">relaciones</strong> (familia, amigos) y <strong style="color:#FCD34D;">características personales</strong>.</p>
+      </div>
+
+      <!-- Tabla de conjugación -->
+      <div style="background:rgba(37,99,235,0.25); border-left:4px solid #BFDBFE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#BFDBFE; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">📋 CONJUGACIÓN — PRESENTE</p>
+        <div style="background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+          <!-- Encabezado -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; background:rgba(255,255,255,0.1); padding:8px 14px;">
+            <p style="color:#BFDBFE; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase;">Pronombre</p>
+            <p style="color:#BFDBFE; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase;">Forma</p>
+          </div>
+          <!-- Filas -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">yo</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">tengo</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">tú</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">tienes</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">él / ella / usted</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">tiene</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">nosotros/as</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">tenemos</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">vosotros/as</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">tenéis</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">ellos/as / ustedes</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">tienen</p>
+          </div>
+        </div>
+        <div style="background:rgba(251,191,36,0.15); border-radius:8px; padding:10px; margin-top:10px;">
+          <p style="color:#FCD34D; margin:0; font-size:0.8em; font-weight:700; text-align:center;">⚠️ VERBO IRREGULAR: "yo tengo" (no "yo teno")</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLOS RÁPIDOS</p>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Yo <strong style="color:#BFDBFE;">tengo</strong> un perro y dos gatos."</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Ella <strong style="color:#BFDBFE;">tiene</strong> veintiocho años."</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Nosotros <strong style="color:#BFDBFE;">tenemos</strong> tres habitaciones."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 3: TENER — Usos principales ==================== -->
+  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A8A,#1D4ED8); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(29,78,216,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(29,78,216,0.4); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">03 / 12</span>
+      <span style="font-size:2em;">🤝</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BFDBFE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Verbo 1 — Usos</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2em; margin:0 0 6px 0;">TENER: ¿cuándo usarlo?</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 18px 0; font-style:italic;">Los cuatro usos fundamentales</p>
+
+      <div style="background:rgba(29,78,216,0.25); border-left:4px solid #BFDBFE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#1D4ED8; border:2px solid #BFDBFE; color:#BFDBFE; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">1</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">POSESIÓN — cosas que tienes</p>
+            </div>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic; line-height:1.5;">"<strong style="color:#93C5FD;">Tengo</strong> un apartamento en el centro."<br>"¿<strong style="color:#93C5FD;">Tienes</strong> carro?"</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#1D4ED8; border:2px solid #BFDBFE; color:#BFDBFE; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">2</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">RELACIONES — familia y personas</p>
+            </div>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic; line-height:1.5;">"<strong style="color:#93C5FD;">Tengo</strong> dos hermanos y una hermana."<br>"Ella <strong style="color:#93C5FD;">tiene</strong> un novio muy simpático."</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#1D4ED8; border:2px solid #BFDBFE; color:#BFDBFE; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">3</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">EDAD — cuántos años tienes</p>
+            </div>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic; line-height:1.5;">"¿Cuántos años <strong style="color:#93C5FD;">tienes</strong>?" — "<strong style="color:#93C5FD;">Tengo</strong> treinta años."</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#1D4ED8; border:2px solid #BFDBFE; color:#BFDBFE; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">4</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">OBLIGACIÓN — tener que + infinitivo</p>
+            </div>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic; line-height:1.5;">"<strong style="color:#93C5FD;">Tengo que</strong> estudiar español."<br>"Ella <strong style="color:#93C5FD;">tiene que</strong> trabajar mañana."</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 RECUERDA</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#BFDBFE;">TENER</strong> siempre necesita un sujeto (yo, tú, él...).<br>No se usa solo para decir "existe algo en un lugar".</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 4: TENER — Expresiones idiomáticas ==================== -->
+  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F172A,#1E3A8A); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(30,58,138,0.3); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(30,58,138,0.5); color:#93C5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">04 / 12</span>
+      <span style="font-size:2em;">💡</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#93C5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Verbo 1 — Expresiones</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">TENER: expresiones con sensaciones</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 18px 0; font-style:italic;">En español usamos TENER donde el inglés usa "to be"</p>
+
+      <div style="background:rgba(30,58,138,0.3); border-left:4px solid #93C5FD; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#93C5FD; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🌡️ SENSACIONES FÍSICAS Y ESTADOS</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener hambre</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be hungry</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener sed</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be thirsty</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener frío</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be cold</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener calor</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be hot</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener sueño</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be sleepy</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener miedo</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be afraid</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener prisa</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be in a hurry</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener razón</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be right</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener suerte</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be lucky</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
+            <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener vergüenza</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be embarrassed</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLOS</p>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"<strong style="color:#93C5FD;">Tengo mucha hambre</strong>, ¿vamos a comer?"</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Ella <strong style="color:#93C5FD;">tiene razón</strong>, ese camino es más corto."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 5: HAY — Introducción y uso ==================== -->
+  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#16A34A); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(22,163,74,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(22,163,74,0.4); color:#BBF7D0; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">05 / 12</span>
+      <span style="font-size:2em;">✨</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BBF7D0; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Verbo 2 de 3</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2em; margin:0 0 6px 0;">HAY</h3>
+      <p style="color:#FCD34D; font-size:0.95em; margin:0 0 18px 0; font-style:italic;">there is / there are · existencia impersonal</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">HAY</strong> es una forma impersonal del verbo <em>haber</em>. Se usa para indicar que algo <strong style="color:#FCD34D;">existe</strong> o <strong style="color:#FCD34D;">se encuentra disponible</strong> en un lugar. Es invariable: no cambia según la persona.</p>
+      </div>
+
+      <div style="background:rgba(22,163,74,0.25); border-left:4px solid #BBF7D0; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#BBF7D0; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🔑 CARACTERÍSTICAS DE HAY</p>
+
+        <div style="background:rgba(251,191,36,0.2); border-radius:10px; padding:14px; margin-bottom:12px; text-align:center;">
+          <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">HAY ES SIEMPRE IGUAL</p>
+          <p style="color:white; margin:0; font-size:1.1em; line-height:1.8;">
+            <strong style="color:#BBF7D0;">Hay</strong> un libro. (singular)<br>
+            <strong style="color:#BBF7D0;">Hay</strong> dos libros. (plural)<br>
+            <strong style="color:#BBF7D0;">Hay</strong> mucha gente. (incontable)
+          </p>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:9px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 5px 0; font-size:0.85em; font-weight:700;">USO 1 — EXISTENCIA EN UN LUGAR</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"En la sala <strong style="color:#BBF7D0;">hay</strong> un sofá y dos sillones."</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">In the living room there is/are a sofa and two armchairs.</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 5px 0; font-size:0.85em; font-weight:700;">USO 2 — DISPONIBILIDAD</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿<strong style="color:#BBF7D0;">Hay</strong> agua fría en el refrigerador?"</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">Is there cold water in the fridge?</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#FCD34D; margin:0 0 5px 0; font-size:0.85em; font-weight:700;">USO 3 — NEGACIÓN</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"No <strong style="color:#BBF7D0;">hay</strong> nadie en casa."</p>
+            <p style="color:rgba(255,255,255,0.55); margin:3px 0 0 0; font-size:0.8em;">There is nobody at home.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#BBF7D0;">HAY</strong> introduce algo <strong style="color:#FCD34D;">nuevo o desconocido</strong> para el oyente.<br>Se usa siempre con artículo indefinido (un, una, unos, unas) o sin artículo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 6: HAY vs ESTÁ/ESTÁN ==================== -->
+  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#064E3B,#059669); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(5,150,105,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(5,150,105,0.4); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">06 / 12</span>
+      <span style="font-size:2em;">⚡</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#6EE7B7; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Contraste clave</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">HAY vs ESTÁ / ESTÁN</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 18px 0; font-style:italic;">El error más frecuente de los estudiantes</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;">Tanto <strong style="color:#FCD34D;">HAY</strong> como <strong style="color:#FCD34D;">ESTÁ/ESTÁN</strong> indican ubicación, pero con una diferencia fundamental: la <strong style="color:#FCD34D;">información nueva vs. conocida</strong>.</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+        <div style="background:rgba(22,163,74,0.2); border:2px solid #16A34A; border-radius:12px; padding:14px;">
+          <p style="color:#BBF7D0; margin:0 0 8px 0; font-size:0.9em; font-weight:700; text-align:center;">✨ HAY</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.82em; line-height:1.5; text-align:center;">Introduce algo <strong style="color:#FCD34D;">nuevo o desconocido</strong> para quien escucha</p>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:8px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-style:italic; text-align:center;">"En mi barrio <strong style="color:#BBF7D0;">hay</strong> un parque."</p>
+            <p style="color:rgba(255,255,255,0.5); margin:3px 0 0 0; font-size:0.75em; text-align:center;">(No sabes del parque todavía)</p>
+          </div>
+        </div>
+
+        <div style="background:rgba(5,150,105,0.2); border:2px solid #059669; border-radius:12px; padding:14px;">
+          <p style="color:#6EE7B7; margin:0 0 8px 0; font-size:0.9em; font-weight:700; text-align:center;">📍 ESTÁ / ESTÁN</p>
+          <p style="color:white; margin:0 0 8px 0; font-size:0.82em; line-height:1.5; text-align:center;">Ubica algo <strong style="color:#FCD34D;">ya conocido</strong> por quien escucha</p>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:8px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-style:italic; text-align:center;">"El parque <strong style="color:#6EE7B7;">está</strong> cerca de mi casa."</p>
+            <p style="color:rgba(255,255,255,0.5); margin:3px 0 0 0; font-size:0.75em; text-align:center;">(Ya conoces el parque)</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(5,150,105,0.2); border-left:4px solid #6EE7B7; border-radius:0 10px 10px 0; padding:14px; margin-bottom:12px;">
+        <p style="color:#6EE7B7; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🧪 PRACTICA LA DIFERENCIA</p>
+        <div style="display:flex; flex-direction:column; gap:6px;">
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"En la cocina <strong style="color:#FCD34D;">hay</strong> una mesa nueva." → nueva información</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"La mesa <strong style="color:#6EE7B7;">está</strong> en la cocina." → ubicación de algo conocido</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"En ese edificio <strong style="color:#FCD34D;">hay</strong> tres apartamentos." → cantidad nueva</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Los apartamentos <strong style="color:#6EE7B7;">están</strong> en el tercer piso." → ubicación conocida</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:10px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.85em; font-weight:700; text-align:center;">⚠️ ERROR COMÚN: ❌ "El baño hay a la derecha." → ✅ "El baño <strong style="color:#6EE7B7;">está</strong> a la derecha."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 7: ESTAR — Introducción y conjugación ==================== -->
+  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(194,65,12,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(194,65,12,0.4); color:#FED7AA; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">07 / 12</span>
+      <span style="font-size:2em;">📍</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FED7AA; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Verbo 3 de 3</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2em; margin:0 0 6px 0;">ESTAR</h3>
+      <p style="color:#FCD34D; font-size:0.95em; margin:0 0 18px 0; font-style:italic;">to be (location & temporary states)</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">ESTAR</strong> es un verbo irregular que se usa para hablar de <strong style="color:#FCD34D;">ubicación</strong> de personas y cosas conocidas, y de <strong style="color:#FCD34D;">estados temporales</strong> o condiciones.</p>
+      </div>
+
+      <div style="background:rgba(194,65,12,0.25); border-left:4px solid #FED7AA; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FED7AA; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">📋 CONJUGACIÓN — PRESENTE</p>
+        <div style="background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; background:rgba(255,255,255,0.1); padding:8px 14px;">
+            <p style="color:#FED7AA; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase;">Pronombre</p>
+            <p style="color:#FED7AA; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase;">Forma</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">yo</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">estoy</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">tú</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">estás</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">él / ella / usted</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">está</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">nosotros/as</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">estamos</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">vosotros/as</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">estáis</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.04);">
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.9em;">ellos/as / ustedes</p>
+            <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">están</p>
+          </div>
+        </div>
+        <div style="background:rgba(251,191,36,0.15); border-radius:8px; padding:10px; margin-top:10px;">
+          <p style="color:#FCD34D; margin:0; font-size:0.8em; font-weight:700; text-align:center;">⚠️ VERBO IRREGULAR: todas las formas llevan tilde excepto "estamos" y "estáis"</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-align:center;">💬 EJEMPLOS RÁPIDOS</p>
+        <div style="display:flex; flex-direction:column; gap:4px;">
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Yo <strong style="color:#FED7AA;">estoy</strong> en la oficina ahora."</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"¿Dónde <strong style="color:#FED7AA;">está</strong> el supermercado?"</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Ellos <strong style="color:#FED7AA;">están</strong> muy cansados hoy."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 8: ESTAR — Usos principales ==================== -->
+  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#991B1B,#DC2626); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(220,38,38,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(220,38,38,0.4); color:#FCA5A5; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">08 / 12</span>
+      <span style="font-size:2em;">📍</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FCA5A5; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Verbo 3 — Usos</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 6px 0;">ESTAR: ¿cuándo usarlo?</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">Los tres usos fundamentales</p>
+
+      <div style="background:rgba(220,38,38,0.2); border-left:4px solid #FCA5A5; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#DC2626; border:2px solid #FCA5A5; color:#FCA5A5; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">1</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">UBICACIÓN — ¿dónde está algo o alguien?</p>
+            </div>
+            <p style="color:white; margin:0 0 4px 0; font-size:0.88em; font-style:italic;">"El museo <strong style="color:#FCA5A5;">está</strong> en el centro de la ciudad."</p>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Mis llaves <strong style="color:#FCA5A5;">están</strong> encima de la mesa."</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#DC2626; border:2px solid #FCA5A5; color:#FCA5A5; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">2</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">ESTADOS TEMPORALES — condiciones cambiantes</p>
+            </div>
+            <p style="color:white; margin:0 0 4px 0; font-size:0.88em; font-style:italic;">"Hoy <strong style="color:#FCA5A5;">estoy</strong> muy cansado." (hoy, no siempre)</p>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"La sopa <strong style="color:#FCA5A5;">está</strong> fría." (se puede calentar)</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+              <span style="background:#DC2626; border:2px solid #FCA5A5; color:#FCA5A5; border-radius:50%; width:24px; height:24px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.8em; flex-shrink:0;">3</span>
+              <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">GERUNDIO — acciones en progreso</p>
+            </div>
+            <p style="color:white; margin:0 0 4px 0; font-size:0.88em; font-style:italic;">"<strong style="color:#FCA5A5;">Estoy</strong> comiendo ahora mismo."</p>
+            <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Ella <strong style="color:#FCA5A5;">está</strong> hablando por teléfono."</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 CLAVE MENTAL</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#FCA5A5;">ESTAR</strong> = cosas que pueden <strong style="color:#FCD34D;">cambiar</strong> (ubicación, estados, acciones en curso)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 9: SER vs ESTAR (estados) ==================== -->
+  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#7C3AED); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(124,58,237,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(124,58,237,0.4); color:#DDD6FE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">09 / 12</span>
+      <span style="font-size:2em;">⚖️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#DDD6FE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Contraste difícil</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">ESTAR con adjetivos de estado</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">Expresar cómo te sientes o cómo está algo</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">ESTAR + adjetivo</strong> describe un <strong style="color:#FCD34D;">estado que puede cambiar</strong>. Es diferente a usar SER, que describe características permanentes.</p>
+      </div>
+
+      <div style="background:rgba(124,58,237,0.25); border-left:4px solid #DDD6FE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#DDD6FE; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">😊 ADJETIVOS DE ESTADO CON ESTAR</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar contento/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be happy</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar triste</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be sad</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar cansado/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be tired</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar enfermo/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be sick</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar ocupado/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be busy</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar listo/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be ready</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar nervioso/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be nervous</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar aburrido/a</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be bored</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08); border-radius:8px; padding:10px;">
+          <p style="color:#FCD34D; margin:0 0 6px 0; font-size:0.82em; font-weight:700;">⚠️ ¡CUIDADO! El adjetivo concuerda con el sujeto:</p>
+          <p style="color:white; margin:0; font-size:0.88em; font-style:italic;">"Él <strong style="color:#DDD6FE;">está cansado</strong>." / "Ella <strong style="color:#DDD6FE;">está cansada</strong>."<br>"Ellos <strong style="color:#DDD6FE;">están contentos</strong>." / "Ellas <strong style="color:#DDD6FE;">están contentas</strong>."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 10: Los tres verbos en comparación ==================== -->
+  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1F2937,#374151); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(55,65,81,0.3); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(55,65,81,0.5); color:#E5E7EB; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">10 / 12</span>
+      <span style="font-size:2em;">🔎</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#E5E7EB; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Comparación completa</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">TENER vs HAY vs ESTAR</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">El cuadro resumen que necesitas</p>
+
+      <!-- Tabla comparativa -->
+      <div style="background:rgba(255,255,255,0.06); border-radius:12px; overflow:hidden; margin-bottom:14px;">
+        <!-- Encabezado -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; background:rgba(255,255,255,0.12); padding:10px 8px; gap:4px;">
+          <div style="background:rgba(37,99,235,0.4); border-radius:6px; padding:8px; text-align:center;">
+            <p style="color:#BFDBFE; margin:0; font-size:0.88em; font-weight:700;">🤝 TENER</p>
+          </div>
+          <div style="background:rgba(22,163,74,0.4); border-radius:6px; padding:8px; text-align:center;">
+            <p style="color:#BBF7D0; margin:0; font-size:0.88em; font-weight:700;">✨ HAY</p>
+          </div>
+          <div style="background:rgba(194,65,12,0.4); border-radius:6px; padding:8px; text-align:center;">
+            <p style="color:#FED7AA; margin:0; font-size:0.88em; font-weight:700;">📍 ESTAR</p>
+          </div>
+        </div>
+        <!-- Fila: pregunta -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:10px 10px; border-top:1px solid rgba(255,255,255,0.07); gap:6px;">
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em; text-align:center; line-height:1.5;">¿Qué posees?<br>¿Cuántos años?<br>¿Qué relaciones?</p>
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em; text-align:center; line-height:1.5;">¿Existe algo?<br>¿Cuántas cosas hay?<br>¿Qué hay allí?</p>
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em; text-align:center; line-height:1.5;">¿Dónde está?<br>¿Cómo está?<br>¿Qué está haciendo?</p>
+        </div>
+        <!-- Fila: ejemplo -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:10px; border-top:1px solid rgba(255,255,255,0.07); gap:6px; background:rgba(255,255,255,0.03);">
+          <p style="color:#FCD34D; margin:0; font-size:0.82em; text-align:center; font-style:italic; line-height:1.5;">"Yo <strong>tengo</strong> un libro."</p>
+          <p style="color:#FCD34D; margin:0; font-size:0.82em; text-align:center; font-style:italic; line-height:1.5;">"En la mesa <strong>hay</strong> un libro."</p>
+          <p style="color:#FCD34D; margin:0; font-size:0.82em; text-align:center; font-style:italic; line-height:1.5;">"El libro <strong>está</strong> en la mesa."</p>
+        </div>
+        <!-- Fila: sujeto -->
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; padding:10px; border-top:1px solid rgba(255,255,255,0.07); gap:6px;">
+          <div style="background:rgba(37,99,235,0.2); border-radius:6px; padding:7px; text-align:center;">
+            <p style="color:#BFDBFE; margin:0; font-size:0.8em;">Necesita sujeto personal</p>
+          </div>
+          <div style="background:rgba(22,163,74,0.2); border-radius:6px; padding:7px; text-align:center;">
+            <p style="color:#BBF7D0; margin:0; font-size:0.8em;">Impersonal, no varía</p>
+          </div>
+          <div style="background:rgba(194,65,12,0.2); border-radius:6px; padding:7px; text-align:center;">
+            <p style="color:#FED7AA; margin:0; font-size:0.8em;">Necesita sujeto definido</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini diálogo de ejemplo conjunto -->
+      <div style="background:rgba(55,65,81,0.4); border-left:4px solid #E5E7EB; border-radius:0 10px 10px 0; padding:14px;">
+        <p style="color:#E5E7EB; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🏠 LOS TRES EN UNA SOLA SITUACIÓN</p>
+        <p style="color:white; margin:0; font-size:0.9em; line-height:1.9; font-style:italic;">
+          "<strong style="color:#BFDBFE;">Tengo</strong> un apartamento nuevo. En el salón <strong style="color:#BBF7D0;">hay</strong> un sofá grande y dos sillones. El baño <strong style="color:#FED7AA;">está</strong> al final del pasillo."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 11: Errores frecuentes ==================== -->
+  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#BE185D,#DB2777); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(219,39,119,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(219,39,119,0.4); color:#FBB6CE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">11 / 12</span>
+      <span style="font-size:2em;">🚨</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FBB6CE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">¡Atención!</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">Errores frecuentes</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">Los más comunes entre estudiantes de español</p>
+
+      <div style="background:rgba(219,39,119,0.2); border-left:4px solid #FBB6CE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FBB6CE; margin:0 0 6px 0; font-size:0.82em; font-weight:700; text-transform:uppercase;">❌ ERROR 1 — Confundir HAY con ESTÁ</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.9em; text-decoration:line-through; font-style:italic;">"El banco hay en la avenida principal."</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.9em; font-style:italic;">✅ "El banco <strong>está</strong> en la avenida principal."</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FBB6CE; margin:0 0 6px 0; font-size:0.82em; font-weight:700; text-transform:uppercase;">❌ ERROR 2 — Usar TENER para existencia</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.9em; text-decoration:line-through; font-style:italic;">"En la ciudad tiene muchos restaurantes."</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.9em; font-style:italic;">✅ "En la ciudad <strong>hay</strong> muchos restaurantes."</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FBB6CE; margin:0 0 6px 0; font-size:0.82em; font-weight:700; text-transform:uppercase;">❌ ERROR 3 — Olvidar la irregularidad de TENER</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.9em; text-decoration:line-through; font-style:italic;">"Yo teno veinte años."</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.9em; font-style:italic;">✅ "Yo <strong>tengo</strong> veinte años."</p>
+          </div>
+
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:12px;">
+            <p style="color:#FBB6CE; margin:0 0 6px 0; font-size:0.82em; font-weight:700; text-transform:uppercase;">❌ ERROR 4 — Usar HAY con artículo definido</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.9em; text-decoration:line-through; font-style:italic;">"Hay el libro en la mesa."</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.9em; font-style:italic;">✅ "Hay <strong>un</strong> libro en la mesa." / "El libro <strong>está</strong> en la mesa."</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:11px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.88em; text-align:center; line-height:1.6;">💡 <strong>Regla de oro:</strong> HAY + artículo indefinido (un/una) · ESTAR + artículo definido (el/la)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 12: FINAL — Resumen y botón aula ==================== -->
+  <div id="card12" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#78350F,#D97706); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(217,119,6,0.2); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; top:16px; left:50%; transform:translateX(-50%); font-size:1.1em; opacity:0.13; letter-spacing:8px; white-space:nowrap;">⭐⭐⭐⭐⭐</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(217,119,6,0.45); color:#FDE68A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">12 / 12</span>
+      <span style="font-size:2em;">🎉</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDE68A; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">¡Bloque completado!</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 14px 0;">Repaso final 🏆</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; margin:0 0 12px 0; font-size:0.95em; line-height:1.7;">¡Excelente! 🌟 Ya dominas los tres verbos más importantes para hablar de posesión, existencia y ubicación.</p>
+
+        <!-- Resumen de los tres verbos -->
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <div style="background:rgba(37,99,235,0.3); border-left:3px solid #93C5FD; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#93C5FD; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">🤝 TENER — tengo, tienes, tiene, tenemos, tenéis, tienen</p>
+            <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em;">Posesión · relaciones · edad · obligación · sensaciones físicas</p>
+          </div>
+          <div style="background:rgba(22,163,74,0.3); border-left:3px solid #86EFAC; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#86EFAC; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">✨ HAY — invariable (siempre igual)</p>
+            <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em;">Existencia · disponibilidad · cantidad · con artículo indefinido</p>
+          </div>
+          <div style="background:rgba(194,65,12,0.3); border-left:3px solid #FCA5A5; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#FCA5A5; margin:0 0 4px 0; font-size:0.85em; font-weight:700;">📍 ESTAR — estoy, estás, está, estamos, estáis, están</p>
+            <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em;">Ubicación · estados temporales · acciones en progreso (gerundio)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTÓN REGRESAR AL AULA VIRTUAL -->
+      <div style="text-align:center; margin-top:10px;">
+        <a href="#" onclick="alert('Redirigiendo al aula virtual...')" style="display:inline-block; background:linear-gradient(135deg,#FCD34D,#F59E0B); color:#1a1a2e; font-family:'Nunito',sans-serif; font-weight:700; font-size:1em; padding:14px 36px; border-radius:50px; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 20px rgba(252,211,77,0.4);">
+          🏫 Regresar al Aula Virtual
+        </a>
+        <p style="color:rgba(255,255,255,0.45); font-size:0.78em; margin:12px 0 0 0;">Temática 5 · Bloque 1 completado · Verbos: Tener, Hay, Estar</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DOTS DE NAVEGACIÓN ===== -->
+  <div class="nav-dots" style="display:flex; justify-content:center; gap:9px; margin-top:24px; flex-wrap:wrap;">
+    <label for="s1"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s2"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s3"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s4"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s5"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s6"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s7"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s8"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s9"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s10" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s11" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s12" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+  </div>
+
+  <!-- ===== FLECHAS DE NAVEGACIÓN ===== -->
+  <div class="nav-arrows" style="display:flex; justify-content:center; gap:16px; margin-top:18px;">
+    <div class="btn-nav arr-1" style="gap:16px;">
+      <label for="s2" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-2" style="gap:16px;">
+      <label for="s1" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s3" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-3" style="gap:16px;">
+      <label for="s2" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s4" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-4" style="gap:16px;">
+      <label for="s3" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s5" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-5" style="gap:16px;">
+      <label for="s4" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s6" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-6" style="gap:16px;">
+      <label for="s5" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s7" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-7" style="gap:16px;">
+      <label for="s6" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s8" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-8" style="gap:16px;">
+      <label for="s7" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s9" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-9" style="gap:16px;">
+      <label for="s8" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s10" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-10" style="gap:16px;">
+      <label for="s9" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s11" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-11" style="gap:16px;">
+      <label for="s10" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s12" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-12" style="gap:16px;">
+      <label for="s11" style="background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:#374151; font-family:'Nunito',sans-serif; font-size:0.95em;">← Anterior</label>
+      <label for="s1" style="background:linear-gradient(135deg,#D97706,#F59E0B); border:none; border-radius:12px; padding:10px 28px; cursor:pointer; font-weight:700; color:white; font-family:'Nunito',sans-serif; font-size:0.95em;">🔁 Reiniciar</label>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
