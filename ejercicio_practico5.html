@@ -25,7 +25,6 @@
     padding: 0 0 80px;
   }
 
-  /* HEADER */
   .header {
     background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     padding: 28px 24px 32px;
@@ -67,7 +66,6 @@
   .header h1 span { color: var(--gold-light); }
   .header p { color: rgba(255,255,255,0.65); font-size: 0.88em; }
 
-  /* SCORE STRIP */
   .score-strip {
     background: var(--navy);
     padding: 10px 24px;
@@ -85,10 +83,8 @@
   }
   .score-item strong { color: var(--gold-light); font-size: 1.1em; }
 
-  /* MAIN */
   .main { max-width: 820px; margin: 0 auto; padding: 28px 16px 0; }
 
-  /* BANCO sticky */
   .bank-section {
     background: white;
     border-radius: 16px;
@@ -123,7 +119,6 @@
     gap: 9px;
   }
 
-  /* CHIPS */
   .chip {
     background: linear-gradient(135deg, var(--navy), var(--navy-mid));
     color: white;
@@ -143,7 +138,6 @@
   .chip.selected { box-shadow: 0 0 0 3px var(--gold-light); transform: scale(1.06); }
   .chip.used { opacity: 0; pointer-events: none; width: 0; padding: 0; margin: 0; overflow: hidden; transition: all 0.2s; }
 
-  /* EJERCICIO — dos columnas */
   .exercise {
     background: white;
     border-radius: 14px;
@@ -159,7 +153,6 @@
   .exercise.correct { border-color: var(--success); }
   .exercise.wrong   { border-color: var(--error); }
 
-  /* Columna izquierda: oración */
   .ex-left {
     padding: 20px 22px;
     display: flex;
@@ -192,7 +185,6 @@
     font-size: 0.88em;
   }
 
-  /* Columna derecha: zona de respuesta */
   .ex-right {
     padding: 18px 20px;
     display: flex;
@@ -248,7 +240,6 @@
   }
   .feedback-icon { font-size: 1.2em; min-height: 1.4em; }
 
-  /* FEEDBACK BAR */
   .feedback-bar {
     position: fixed;
     bottom: 0; left: 0; right: 0;
@@ -264,7 +255,6 @@
   .feedback-bar.ok  { background: var(--success); color: white; }
   .feedback-bar.ko  { background: var(--error);   color: white; }
 
-  /* RESULTS */
   .results {
     display: none;
     background: white;
@@ -300,7 +290,6 @@
   .btn-gold    { background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: var(--navy); }
   .btn-group   { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-  /* RESPONSIVE */
   @media (max-width: 520px) {
     .exercise { grid-template-columns: 1fr; }
     .ex-left  { border-right: none; border-bottom: 1px solid var(--border); }
@@ -311,14 +300,12 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-badge">📝 Actividad · Temática 5</div>
   <h1>Completa con <span>hay</span>, <span>estar</span> o <span>tener</span></h1>
   <p>Arrastra la forma verbal correcta para completar cada oración</p>
 </div>
 
-<!-- SCORE STRIP -->
 <div class="score-strip">
   <div class="score-item">📋 <strong>8</strong> oraciones</div>
   <div class="score-item">✅ <strong id="correct-count">0</strong> correctas</div>
@@ -327,22 +314,22 @@
 
 <div class="main">
 
-  <!-- BANCO sticky -->
   <div class="bank-section">
     <div class="bank-label">Banco de verbos</div>
     <div class="word-bank" id="word-bank">
-      <div class="chip" draggable="true" data-word="hay">hay</div>
-      <div class="chip" draggable="true" data-word="está">está</div>
-      <div class="chip" draggable="true" data-word="están">están</div>
-      <div class="chip" draggable="true" data-word="tengo">tengo</div>
-      <div class="chip" draggable="true" data-word="tienes">tienes</div>
-      <div class="chip" draggable="true" data-word="tiene">tiene</div>
-      <div class="chip" draggable="true" data-word="tenemos">tenemos</div>
-      <div class="chip" draggable="true" data-word="tienen">tienen</div>
+      <!-- hay aparece dos veces: ejercicios 1 y 4 lo necesitan -->
+      <div class="chip" draggable="true" data-word="hay" data-id="hay-1">hay</div>
+      <div class="chip" draggable="true" data-word="hay" data-id="hay-2">hay</div>
+      <div class="chip" draggable="true" data-word="está" data-id="esta-1">está</div>
+      <div class="chip" draggable="true" data-word="están" data-id="estan-1">están</div>
+      <div class="chip" draggable="true" data-word="tengo" data-id="tengo-1">tengo</div>
+      <div class="chip" draggable="true" data-word="tienes" data-id="tienes-1">tienes</div>
+      <div class="chip" draggable="true" data-word="tiene" data-id="tiene-1">tiene</div>
+      <div class="chip" draggable="true" data-word="tenemos" data-id="tenemos-1">tenemos</div>
+      <div class="chip" draggable="true" data-word="tienen" data-id="tienen-1">tienen</div>
     </div>
   </div>
 
-  <!-- EJERCICIOS -->
   <div id="exercises">
 
     <!-- 1 -->
@@ -451,7 +438,6 @@
 
   </div>
 
-  <!-- RESULTADOS -->
   <div class="results" id="results">
     <div class="results-emoji" id="results-emoji">🎉</div>
     <div class="results-score" id="results-score">0<span>/8</span></div>
@@ -465,13 +451,12 @@
 
 </div>
 
-<!-- FEEDBACK BAR -->
 <div class="feedback-bar" id="feedback-bar"></div>
 
 <script>
   const TOTAL = 8;
   let correctCount = 0;
-  let draggedWord = null;
+  let draggedChipId = null;
   let selectedChip = null;
 
   function showFeedback(msg, type) {
@@ -509,16 +494,26 @@
     document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
-  function placeWord(zone, word) {
+  // Obtiene un chip disponible por data-word (el primero no usado)
+  function getAvailableChip(word) {
+    return document.querySelector(`.chip[data-word="${word}"]:not(.used)`);
+  }
+
+  function placeWord(zone, word, chipId) {
     const exercise = zone.closest('.exercise');
     const answer = exercise.dataset.answer;
     const icon = exercise.querySelector('.feedback-icon');
     const isCorrect = word === answer;
-    const chip = document.querySelector(`.chip[data-word="${word}"]:not(.used)`);
+
+    // Busca el chip concreto por id si lo hay, si no el primero disponible
+    const chip = chipId
+      ? document.querySelector(`.chip[data-id="${chipId}"]`)
+      : getAvailableChip(word);
 
     zone.textContent = word;
     zone.classList.add('filled');
     zone.dataset.placed = 'true';
+    zone.dataset.chipId = chip ? chip.dataset.id : '';
     if (chip) chip.classList.add('used');
 
     if (isCorrect) {
@@ -534,27 +529,32 @@
       exercise.classList.add('wrong');
       icon.textContent = '❌';
       showFeedback('❌ Incorrecto. El verbo vuelve al banco.', 'ko');
+      const usedChipId = zone.dataset.chipId;
       setTimeout(() => {
-        if (chip) chip.classList.remove('used');
+        const returnChip = usedChipId
+          ? document.querySelector(`.chip[data-id="${usedChipId}"]`)
+          : getAvailableChip(word);
+        if (returnChip) returnChip.classList.remove('used');
         zone.textContent = 'Arrastra aquí';
         zone.classList.remove('filled', 'wrong-ans');
         zone.dataset.placed = '';
+        zone.dataset.chipId = '';
         exercise.classList.remove('wrong');
         icon.textContent = '';
       }, 950);
     }
   }
 
-  // DRAG & DROP
+  // DRAG & DROP — guarda el data-id del chip arrastrado
   document.querySelectorAll('.chip').forEach(chip => {
     chip.addEventListener('dragstart', e => {
-      draggedWord = chip.dataset.word;
+      draggedChipId = chip.dataset.id;
       chip.classList.add('dragging');
       e.dataTransfer.effectAllowed = 'move';
     });
     chip.addEventListener('dragend', () => {
       chip.classList.remove('dragging');
-      draggedWord = null;
+      draggedChipId = null;
     });
   });
 
@@ -567,8 +567,11 @@
     zone.addEventListener('drop', e => {
       e.preventDefault();
       zone.classList.remove('over');
-      if (zone.dataset.placed === 'true' || !draggedWord) return;
-      placeWord(zone, draggedWord);
+      if (zone.dataset.placed === 'true' || !draggedChipId) return;
+      const chip = document.querySelector(`.chip[data-id="${draggedChipId}"]`);
+      if (!chip) return;
+      placeWord(zone, chip.dataset.word, draggedChipId);
+      draggedChipId = null;
     });
   });
 
@@ -577,7 +580,9 @@
     chip.addEventListener('click', () => {
       if (chip.classList.contains('used')) return;
       if (selectedChip && selectedChip !== chip) selectedChip.classList.remove('selected');
-      selectedChip = (selectedChip === chip) ? (chip.classList.remove('selected'), null) : (chip.classList.add('selected'), chip);
+      selectedChip = (selectedChip === chip)
+        ? (chip.classList.remove('selected'), null)
+        : (chip.classList.add('selected'), chip);
     });
   });
 
@@ -585,9 +590,10 @@
     zone.addEventListener('click', () => {
       if (zone.dataset.placed === 'true' || !selectedChip) return;
       const word = selectedChip.dataset.word;
+      const chipId = selectedChip.dataset.id;
       selectedChip.classList.remove('selected');
       selectedChip = null;
-      placeWord(zone, word);
+      placeWord(zone, word, chipId);
     });
   });
 
@@ -595,13 +601,14 @@
   function resetActivity() {
     correctCount = 0;
     updateScore();
-    draggedWord = null;
+    draggedChipId = null;
     selectedChip = null;
     document.querySelectorAll('.chip').forEach(c => c.classList.remove('used', 'selected', 'dragging'));
     document.querySelectorAll('.drop-zone').forEach(z => {
       z.textContent = 'Arrastra aquí';
       z.classList.remove('filled', 'correct-ans', 'wrong-ans', 'over');
       z.dataset.placed = '';
+      z.dataset.chipId = '';
     });
     document.querySelectorAll('.exercise').forEach(ex => {
       ex.classList.remove('correct', 'wrong');
