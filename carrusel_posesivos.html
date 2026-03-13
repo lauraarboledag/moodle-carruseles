@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  #card1,#card2,#card3,#card4,#card5,#card6,
+  #card7,#card8,#card9,#card10,#card11 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"] {
+    background:#0E7490;
+    transform:scale(1.35);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11 { display:flex; }
+</style>
+</head>
+<body style="margin:0; padding:20px; background:#ECFEFF; font-family:'Nunito',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- TÍTULO -->
+  <div style="text-align:center; margin-bottom:30px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#0E7490,#06B6D4); padding:8px 24px; border-radius:30px; margin-bottom:12px;">
+      <span style="color:white; font-size:0.85em; font-weight:700; letter-spacing:3px;">TEMÁTICA 6 · BLOQUE 1 · POSESIVOS</span>
+    </div>
+    <h2 style="font-family:'Playfair Display',serif; font-size:2.2em; color:#1a1a2e; margin:0 0 6px 0;">Mi, Tu y Su 🏷️</h2>
+    <p style="color:#888; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIO BUTTONS -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+
+  <!-- ==================== TARJETA 1: Introducción ==================== -->
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#164E63,#0E7490); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(14,116,144,0.2); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <!-- Patrón diamante sutil -->
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(14,116,144,0.45); color:#A5F3FC; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">01 / 11</span>
+      <span style="font-size:2em;">🏷️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#A5F3FC; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Bienvenida al bloque</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 18px 0;">¿Qué es un posesivo?</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:18px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los <strong style="color:#FCD34D;">adjetivos posesivos</strong> indican a quién pertenece algo. En este bloque estudiaremos las formas cortas: <strong style="color:#FCD34D;">mi, tu y su</strong>, que van <em>antes</em> del sustantivo.</p>
+      </div>
+
+      <!-- Los tres posesivos -->
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px;">
+        <div style="background:rgba(6,182,212,0.3); border:2px solid #22D3EE; border-radius:12px; padding:16px; text-align:center;">
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0 0 6px 0; font-size:2em; font-weight:700;">Mi</p>
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.78em; line-height:1.4;">de mí<br><em>my</em></p>
+        </div>
+        <div style="background:rgba(6,182,212,0.3); border:2px solid #22D3EE; border-radius:12px; padding:16px; text-align:center;">
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0 0 6px 0; font-size:2em; font-weight:700;">Tu</p>
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.78em; line-height:1.4;">de ti<br><em>your</em></p>
+        </div>
+        <div style="background:rgba(6,182,212,0.3); border:2px solid #22D3EE; border-radius:12px; padding:16px; text-align:center;">
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0 0 6px 0; font-size:2em; font-weight:700;">Su</p>
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.78em; line-height:1.4;">de él/ella/usted<br><em>his/her/your</em></p>
+        </div>
+      </div>
+
+      <div style="background:rgba(14,116,144,0.3); border-left:4px solid #A5F3FC; border-radius:0 10px 10px 0; padding:14px;">
+        <p style="color:#A5F3FC; margin:0 0 10px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">📚 EN ESTE BLOQUE APRENDERÁS</p>
+        <div style="display:flex; flex-direction:column; gap:5px;">
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Las formas singular y plural de cada posesivo</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Concordancia con el sustantivo (no con el dueño)</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ MI sin tilde vs. MÍ con tilde</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ TU sin tilde vs. TÚ con tilde</p>
+          <p style="color:white; margin:0; font-size:0.9em;">✦ Usos contextuales y expresiones frecuentes</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 2: MI / MIS ==================== -->
+  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A8A,#2563EB); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(37,99,235,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(37,99,235,0.4); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">02 / 11</span>
+      <span style="font-size:2em;">👤</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#BFDBFE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Posesivo 1 de 3</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2.4em; margin:0 0 4px 0;">MI / MIS</h3>
+      <p style="color:#FCD34D; font-size:0.95em; margin:0 0 18px 0; font-style:italic;">my — pertenece a quien habla (yo)</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">MI</strong> se usa con sustantivos <strong style="color:#FCD34D;">singulares</strong>. <strong style="color:#FCD34D;">MIS</strong> se usa con sustantivos <strong style="color:#FCD34D;">plurales</strong>. El posesivo concuerda con la cosa poseída, <em>no</em> con el dueño.</p>
+      </div>
+
+      <div style="background:rgba(37,99,235,0.25); border-left:4px solid #BFDBFE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <!-- Tabla singular/plural -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:10px; padding:14px; text-align:center;">
+            <p style="color:#A5F3FC; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">SINGULAR</p>
+            <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:2em;">mi</p>
+            <p style="color:rgba(255,255,255,0.55); margin:4px 0 0 0; font-size:0.75em;">un objeto / una persona</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.12); border-radius:10px; padding:14px; text-align:center;">
+            <p style="color:#A5F3FC; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">PLURAL</p>
+            <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:2em;">mis</p>
+            <p style="color:rgba(255,255,255,0.55); margin:4px 0 0 0; font-size:0.75em;">varios objetos / varias personas</p>
+          </div>
+        </div>
+
+        <p style="color:#BFDBFE; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">📋 EJEMPLOS CON MI / MIS</p>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;"><strong style="color:#FCD34D;">mi</strong> casa · <strong style="color:#FCD34D;">mi</strong> perro · <strong style="color:#FCD34D;">mi</strong> mamá</p>
+            <p style="color:rgba(255,255,255,0.5); margin:0; font-size:0.8em;">singular</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;"><strong style="color:#FCD34D;">mis</strong> libros · <strong style="color:#FCD34D;">mis</strong> amigos · <strong style="color:#FCD34D;">mis</strong> llaves</p>
+            <p style="color:rgba(255,255,255,0.5); margin:0; font-size:0.8em;">plural</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"<strong style="color:#FCD34D;">Mi</strong> apartamento está en el centro."</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"<strong style="color:#FCD34D;">Mis</strong> padres viven en Medellín."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 IMPORTANTE: NO cambia por género</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#BFDBFE;">mi</strong> libro (masc.) = <strong style="color:#BFDBFE;">mi</strong> casa (fem.) → siempre igual</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 3: MI vs MÍ (tilde) ==================== -->
+  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F172A,#1E3A8A); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(30,58,138,0.3); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(30,58,138,0.5); color:#93C5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">03 / 11</span>
+      <span style="font-size:2em;">✍️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#93C5FD; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Ortografía clave</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2em; margin:0 0 6px 0;">MI sin tilde vs. MÍ con tilde</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 18px 0; font-style:italic;">Un error muy frecuente que debes evitar</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <!-- MI sin tilde -->
+        <div style="background:rgba(37,99,235,0.25); border:2px solid #3B82F6; border-radius:14px; padding:18px; text-align:center;">
+          <p style="color:#93C5FD; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">adjetivo posesivo</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0; font-size:3em; line-height:1;">mi</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0 0 10px 0; font-size:0.85em; line-height:1.5;">Va antes de un sustantivo.<br><em>my</em></p>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:8px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-style:italic;">"<strong style="color:#FCD34D;">Mi</strong> nombre es Ana."</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-style:italic;">"<strong style="color:#FCD34D;">Mi</strong> familia es grande."</p>
+          </div>
+        </div>
+        <!-- MÍ con tilde -->
+        <div style="background:rgba(124,58,237,0.25); border:2px solid #8B5CF6; border-radius:14px; padding:18px; text-align:center;">
+          <p style="color:#C4B5FD; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">pronombre personal</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0; font-size:3em; line-height:1;">mí</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0 0 10px 0; font-size:0.85em; line-height:1.5;">Pronombre después de preposición.<br><em>me / myself</em></p>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:8px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-style:italic;">"Para <strong style="color:#FCD34D;">mí</strong>, el español es fácil."</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-style:italic;">"Ese libro es para <strong style="color:#FCD34D;">mí</strong>."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(30,58,138,0.3); border-left:4px solid #93C5FD; border-radius:0 10px 10px 0; padding:14px; margin-bottom:12px;">
+        <p style="color:#93C5FD; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🧪 TRUCO PARA RECORDARLO</p>
+        <p style="color:white; margin:0; font-size:0.9em; line-height:1.7;">Si puedes reemplazarlo por <strong style="color:#FCD34D;">"nuestro/a"</strong>, es el posesivo <strong style="color:#BFDBFE;">mi</strong> (sin tilde).<br>
+        Si va después de preposición (para, de, por, sin, con…), es el pronombre <strong style="color:#C4B5FD;">mí</strong> (con tilde).</p>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:10px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.85em; text-align:center;">⚠️ "a mí me gusta" → pronombre ✅ · "mi libro" → posesivo ✅</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 4: TU / TUS ==================== -->
+  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#065F46,#059669); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(5,150,105,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(5,150,105,0.4); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">04 / 11</span>
+      <span style="font-size:2em;">👥</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#6EE7B7; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Posesivo 2 de 3</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2.4em; margin:0 0 4px 0;">TU / TUS</h3>
+      <p style="color:#FCD34D; font-size:0.95em; margin:0 0 18px 0; font-style:italic;">your (informal) — pertenece a quien se habla (tú)</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">TU</strong> se usa con sustantivos <strong style="color:#FCD34D;">singulares</strong>. <strong style="color:#FCD34D;">TUS</strong> se usa con sustantivos <strong style="color:#FCD34D;">plurales</strong>. Es el posesivo de confianza: se usa con personas de trato informal.</p>
+      </div>
+
+      <div style="background:rgba(5,150,105,0.25); border-left:4px solid #6EE7B7; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:10px; padding:14px; text-align:center;">
+            <p style="color:#6EE7B7; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">SINGULAR</p>
+            <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:2em;">tu</p>
+            <p style="color:rgba(255,255,255,0.55); margin:4px 0 0 0; font-size:0.75em;">un objeto / una persona</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.12); border-radius:10px; padding:14px; text-align:center;">
+            <p style="color:#6EE7B7; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">PLURAL</p>
+            <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:2em;">tus</p>
+            <p style="color:rgba(255,255,255,0.55); margin:4px 0 0 0; font-size:0.75em;">varios objetos / varias personas</p>
+          </div>
+        </div>
+
+        <p style="color:#6EE7B7; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">📋 EJEMPLOS CON TU / TUS</p>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;"><strong style="color:#FCD34D;">tu</strong> carro · <strong style="color:#FCD34D;">tu</strong> hermano · <strong style="color:#FCD34D;">tu</strong> dirección</p>
+            <p style="color:rgba(255,255,255,0.5); margin:0; font-size:0.8em;">singular</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;"><strong style="color:#FCD34D;">tus</strong> hijos · <strong style="color:#FCD34D;">tus</strong> fotos · <strong style="color:#FCD34D;">tus</strong> cosas</p>
+            <p style="color:rgba(255,255,255,0.5); margin:0; font-size:0.8em;">plural</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Cómo se llama <strong style="color:#FCD34D;">tu</strong> ciudad natal?"</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"<strong style="color:#FCD34D;">Tus</strong> ideas son muy creativas."</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:12px;">
+        <p style="color:#FCD34D; margin:0 0 4px 0; font-size:0.85em; font-weight:700; text-align:center;">💡 IGUAL QUE MI: no cambia por género</p>
+        <p style="color:white; margin:0; font-size:0.88em; text-align:center; line-height:1.6;"><strong style="color:#6EE7B7;">tu</strong> libro (masc.) = <strong style="color:#6EE7B7;">tu</strong> mochila (fem.) → siempre igual</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 5: TU vs TÚ (tilde) ==================== -->
+  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#064E3B,#047857); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(4,120,87,0.25); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(4,120,87,0.4); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">05 / 11</span>
+      <span style="font-size:2em;">✍️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#6EE7B7; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Ortografía clave</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2em; margin:0 0 6px 0;">TU sin tilde vs. TÚ con tilde</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 18px 0; font-style:italic;">La confusión más común en español escrito</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div style="background:rgba(5,150,105,0.25); border:2px solid #10B981; border-radius:14px; padding:18px; text-align:center;">
+          <p style="color:#6EE7B7; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">adjetivo posesivo</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0; font-size:3em; line-height:1;">tu</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0 0 10px 0; font-size:0.85em; line-height:1.5;">Va antes de un sustantivo.<br><em>your</em></p>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:8px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-style:italic;">"<strong style="color:#FCD34D;">Tu</strong> número de teléfono."</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-style:italic;">"<strong style="color:#FCD34D;">Tu</strong> opinión me importa."</p>
+          </div>
+        </div>
+        <div style="background:rgba(16,185,129,0.15); border:2px solid #34D399; border-radius:14px; padding:18px; text-align:center;">
+          <p style="color:#A7F3D0; margin:0 0 4px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">pronombre personal</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0; font-size:3em; line-height:1;">tú</p>
+          <p style="color:rgba(255,255,255,0.7); margin:0 0 10px 0; font-size:0.85em; line-height:1.5;">Sujeto de la oración.<br><em>you</em></p>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:8px;">
+            <p style="color:white; margin:0; font-size:0.85em; font-style:italic;">"<strong style="color:#FCD34D;">Tú</strong> hablas muy bien."</p>
+            <p style="color:white; margin:4px 0 0 0; font-size:0.85em; font-style:italic;">"¿<strong style="color:#FCD34D;">Tú</strong> eres estudiante?"</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(4,120,87,0.3); border-left:4px solid #6EE7B7; border-radius:0 10px 10px 0; padding:14px; margin-bottom:12px;">
+        <p style="color:#6EE7B7; margin:0 0 8px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🧪 TRUCO PARA RECORDARLO</p>
+        <p style="color:white; margin:0; font-size:0.9em; line-height:1.7;">Si puedes reemplazarlo por <strong style="color:#FCD34D;">"mi/mis"</strong>, es el posesivo <strong style="color:#6EE7B7;">tu</strong> (sin tilde).<br>
+        Si es el sujeto de la oración, puedes reemplazarlo por <strong style="color:#A7F3D0;">"yo"</strong> → es el pronombre <strong style="color:#A7F3D0;">tú</strong> (con tilde).</p>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:10px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.85em; text-align:center;">⚠️ "<strong style="color:#6EE7B7;">Tú</strong> tienes razón — <strong style="color:#A7F3D0;">tu</strong> idea es buena." → ambas en la misma oración</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 6: SU / SUS ==================== -->
+  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(194,65,12,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(194,65,12,0.4); color:#FED7AA; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">06 / 11</span>
+      <span style="font-size:2em;">👤👤</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FED7AA; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Posesivo 3 de 3</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:2.4em; margin:0 0 4px 0;">SU / SUS</h3>
+      <p style="color:#FCD34D; font-size:0.95em; margin:0 0 18px 0; font-style:italic;">his / her / its / your (formal) / their</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:16px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;"><strong style="color:#FCD34D;">SU/SUS</strong> es el posesivo más versátil — corresponde a <strong style="color:#FCD34D;">varios sujetos</strong>: él, ella, usted, ellos, ellas, ustedes. <strong style="color:#FCD34D;">SU</strong> = singular · <strong style="color:#FCD34D;">SUS</strong> = plural.</p>
+      </div>
+
+      <div style="background:rgba(194,65,12,0.25); border-left:4px solid #FED7AA; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <!-- Quién lo usa -->
+        <p style="color:#FED7AA; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">👥 ¿DE QUIÉN PUEDE SER SU/SUS?</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:12px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">él</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">his</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">ella</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">her</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">usted</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">your (formal)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">ellos</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">their (masc.)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">ellas</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">their (fem.)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">ustedes</p>
+            <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">your (plural)</p>
+          </div>
+        </div>
+
+        <p style="color:#FED7AA; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">📋 EJEMPLOS CON SU / SUS</p>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"Carlos vive con <strong style="color:#FCD34D;">su</strong> familia." (de él)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"María y <strong style="color:#FCD34D;">sus</strong> amigas van al cine." (de ella)</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"¿Cuál es <strong style="color:#FCD34D;">su</strong> nombre, señor?" (de usted)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 7: SU ambiguo y cómo aclarar ==================== -->
+  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#92400E,#B45309); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(180,83,9,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(180,83,9,0.4); color:#FDE68A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">07 / 11</span>
+      <span style="font-size:2em;">❓</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FDE68A; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Punto importante</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">SU: cuando hay ambigüedad</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">Cómo aclarar a quién pertenece algo</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;">Como <strong style="color:#FCD34D;">SU</strong> puede referirse a varias personas, a veces el contexto no es suficiente. En esos casos usamos <strong style="color:#FCD34D;">artículo + sustantivo + de + pronombre</strong> para aclarar.</p>
+      </div>
+
+      <div style="background:rgba(180,83,9,0.25); border-left:4px solid #FDE68A; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <p style="color:#FDE68A; margin:0 0 12px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🔍 CÓMO ACLARAR LA AMBIGÜEDAD</p>
+        <div style="background:rgba(255,255,255,0.08); border-radius:10px; padding:12px; margin-bottom:10px;">
+          <p style="color:rgba(255,255,255,0.6); margin:0 0 6px 0; font-size:0.8em; text-transform:uppercase;">❓ Ambiguo:</p>
+          <p style="color:white; margin:0; font-size:0.95em; font-style:italic;">"<strong style="color:#FCD34D;">Su</strong> casa es grande." → ¿de quién?</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px 12px;">
+            <p style="color:#FDE68A; margin:0 0 4px 0; font-size:0.8em; font-weight:700;">✅ Alternativas claras:</p>
+            <p style="color:white; margin:0; font-size:0.9em; font-style:italic;">"La casa de <strong style="color:#FCD34D;">él</strong> es grande."</p>
+            <p style="color:white; margin:3px 0 0 0; font-size:0.9em; font-style:italic;">"La casa de <strong style="color:#FCD34D;">ella</strong> es grande."</p>
+            <p style="color:white; margin:3px 0 0 0; font-size:0.9em; font-style:italic;">"La casa de <strong style="color:#FCD34D;">usted</strong> es grande."</p>
+            <p style="color:white; margin:3px 0 0 0; font-size:0.9em; font-style:italic;">"La casa de <strong style="color:#FCD34D;">ellos</strong> es grande."</p>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,0.08); border-radius:10px; padding:12px; margin-top:10px;">
+          <p style="color:#FDE68A; margin:0 0 6px 0; font-size:0.8em; font-weight:700; text-transform:uppercase;">✅ CONTEXTO RESUELVE TODO:</p>
+          <p style="color:white; margin:0; font-size:0.9em; font-style:italic; line-height:1.6;">"Carlos llegó tarde. <strong style="color:#FCD34D;">Su</strong> jefe estaba enojado."<br><span style="color:rgba(255,255,255,0.6); font-size:0.85em;">→ Está claro que es el jefe DE CARLOS.</span></p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:10px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.88em; text-align:center; line-height:1.5;">💡 En la conversación oral, el contexto casi siempre aclara quién es el poseedor. Solo se necesita la forma larga al escribir o en contextos formales.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 8: Concordancia — regla de oro ==================== -->
+  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#7C3AED); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(124,58,237,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(124,58,237,0.4); color:#DDD6FE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">08 / 11</span>
+      <span style="font-size:2em;">⚖️</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#DDD6FE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Regla de oro</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">Concordancia: con la cosa, no con el dueño</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">La diferencia más grande vs. el inglés</p>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;">En español, el posesivo concuerda con el <strong style="color:#FCD34D;">sustantivo que acompaña</strong> (singular/plural), <em>no</em> con el sexo del dueño. Esto es diferente al inglés.</p>
+      </div>
+
+      <div style="background:rgba(124,58,237,0.25); border-left:4px solid #DDD6FE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
+        <!-- Tabla visual comparativa -->
+        <p style="color:#DDD6FE; margin:0 0 12px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">📊 ESPAÑOL VS. INGLÉS</p>
+        <div style="background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden; margin-bottom:12px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; background:rgba(255,255,255,0.1); padding:8px 14px;">
+            <p style="color:#DDD6FE; margin:0; font-size:0.8em; font-weight:700;">ESPAÑOL</p>
+            <p style="color:#DDD6FE; margin:0; font-size:0.8em; font-weight:700;">INGLÉS</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-style:italic;">Carlos: "<strong>su</strong> mamá"</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.88em; font-style:italic;">"<strong>his</strong> mom"</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03);">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-style:italic;">Ana: "<strong>su</strong> mamá"</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.88em; font-style:italic;">"<strong>her</strong> mom"</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07);">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-style:italic;">Carlos: "<strong>sus</strong> libros"</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.88em; font-style:italic;">"<strong>his</strong> books"</p>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; padding:9px 14px; border-top:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03);">
+            <p style="color:#FCD34D; margin:0; font-size:0.88em; font-style:italic;">Ana: "<strong>sus</strong> libros"</p>
+            <p style="color:rgba(255,255,255,0.65); margin:0; font-size:0.88em; font-style:italic;">"<strong>her</strong> books"</p>
+          </div>
+        </div>
+        <div style="background:rgba(251,191,36,0.15); border-radius:8px; padding:10px;">
+          <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700; text-align:center;">En español Carlos y Ana usan exactamente el mismo posesivo: <strong>su / sus</strong></p>
+        </div>
+      </div>
+
+      <div style="background:rgba(251,191,36,0.12); border:2px solid rgba(252,211,77,0.4); border-radius:10px; padding:11px;">
+        <p style="color:#FCD34D; margin:0; font-size:0.88em; text-align:center; line-height:1.6;">💡 El posesivo cambia solo para singular ↔ plural de la <em>cosa poseída</em>, nunca por el género del dueño.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 9: Tabla completa MI / TU / SU ==================== -->
+  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1F2937,#374151); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(55,65,81,0.3); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(55,65,81,0.5); color:#E5E7EB; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">09 / 11</span>
+      <span style="font-size:2em;">📊</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#E5E7EB; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Resumen visual</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 6px 0;">Tabla completa de los tres posesivos</h3>
+      <p style="color:#FCD34D; font-size:0.9em; margin:0 0 16px 0; font-style:italic;">Guarda esta imagen mental para siempre</p>
+
+      <!-- Gran tabla resumen -->
+      <div style="background:rgba(255,255,255,0.05); border-radius:12px; overflow:hidden; margin-bottom:14px;">
+        <!-- Header -->
+        <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; background:rgba(255,255,255,0.12); padding:10px 10px; gap:4px;">
+          <p style="color:#E5E7EB; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase;">Dueño</p>
+          <p style="color:#93C5FD; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase; text-align:center;">Singular</p>
+          <p style="color:#93C5FD; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase; text-align:center;">Plural</p>
+          <p style="color:#E5E7EB; margin:0; font-size:0.8em; font-weight:700; text-transform:uppercase; text-align:center;">En inglés</p>
+        </div>
+        <!-- yo -->
+        <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; padding:10px; border-top:1px solid rgba(255,255,255,0.07); gap:4px; align-items:center;">
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.88em;">yo</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">mi</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">mis</p>
+          <p style="color:rgba(255,255,255,0.55); margin:0; font-size:0.8em; text-align:center; font-style:italic;">my</p>
+        </div>
+        <!-- tú -->
+        <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; padding:10px; border-top:1px solid rgba(255,255,255,0.07); gap:4px; align-items:center; background:rgba(255,255,255,0.03);">
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.88em;">tú</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">tu</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">tus</p>
+          <p style="color:rgba(255,255,255,0.55); margin:0; font-size:0.8em; text-align:center; font-style:italic;">your</p>
+        </div>
+        <!-- él/ella/usted -->
+        <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; padding:10px; border-top:1px solid rgba(255,255,255,0.07); gap:4px; align-items:center;">
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em;">él / ella / usted</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">su</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">sus</p>
+          <p style="color:rgba(255,255,255,0.55); margin:0; font-size:0.8em; text-align:center; font-style:italic;">his/her/your</p>
+        </div>
+        <!-- ellos/ellas/ustedes -->
+        <div style="display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; padding:10px; border-top:1px solid rgba(255,255,255,0.07); gap:4px; align-items:center; background:rgba(255,255,255,0.03);">
+          <p style="color:rgba(255,255,255,0.75); margin:0; font-size:0.82em;">ellos / ellas / ustedes</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">su</p>
+          <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:0; font-size:1.4em; text-align:center;">sus</p>
+          <p style="color:rgba(255,255,255,0.55); margin:0; font-size:0.8em; text-align:center; font-style:italic;">their/your</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(55,65,81,0.4); border-left:4px solid #E5E7EB; border-radius:0 10px 10px 0; padding:12px;">
+        <p style="color:#E5E7EB; margin:0 0 6px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🔑 PATRÓN CLARO</p>
+        <p style="color:white; margin:0; font-size:0.9em; line-height:1.6;">Solo hay <strong style="color:#FCD34D;">6 formas</strong> en total: mi, mis, tu, tus, su, sus. <strong style="color:#FCD34D;">Su/sus</strong> sirve para los cuatro sujetos de tercera persona.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 10: Errores frecuentes + diálogo ==================== -->
+  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#BE185D,#DB2777); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(219,39,119,0.18); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(219,39,119,0.4); color:#FBB6CE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">10 / 11</span>
+      <span style="font-size:2em;">🚨</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#FBB6CE; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">Errores y práctica</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.8em; margin:0 0 16px 0;">Errores frecuentes + diálogo modelo</h3>
+
+      <div style="background:rgba(219,39,119,0.2); border-left:4px solid #FBB6CE; border-radius:0 10px 10px 0; padding:14px; margin-bottom:14px;">
+        <p style="color:#FBB6CE; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🚨 ERRORES COMUNES</p>
+        <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#F87171; margin:0 0 3px 0; font-size:0.82em; font-weight:700;">❌ ERROR 1 — Tilde equivocada</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.88em; text-decoration:line-through; font-style:italic;">"¿Cómo se llama tú hermano?"</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.88em; font-style:italic;">✅ "¿Cómo se llama <strong>tu</strong> hermano?"</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#F87171; margin:0 0 3px 0; font-size:0.82em; font-weight:700;">❌ ERROR 2 — Plural equivocado</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.88em; text-decoration:line-through; font-style:italic;">"Mi amigos son de Colombia."</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.88em; font-style:italic;">✅ "<strong>Mis</strong> amigos son de Colombia."</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px;">
+            <p style="color:#F87171; margin:0 0 3px 0; font-size:0.82em; font-weight:700;">❌ ERROR 3 — Género del dueño</p>
+            <p style="color:#F87171; margin:0 0 4px 0; font-size:0.88em; text-decoration:line-through; font-style:italic;">"Ana llegó con sua hija."</p>
+            <p style="color:#86EFAC; margin:0; font-size:0.88em; font-style:italic;">✅ "Ana llegó con <strong>su</strong> hija." (no existe "sua")</p>
+          </div>
+        </div>
+
+        <p style="color:#FBB6CE; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">💬 DIÁLOGO MODELO</p>
+        <div style="background:rgba(255,255,255,0.08); border-radius:10px; padding:12px;">
+          <p style="color:white; margin:0; font-size:0.9em; line-height:2; font-style:italic;">
+            "¿Cómo se llama <strong style="color:#FCD34D;">tu</strong> ciudad?"<br>
+            "<strong style="color:#FCD34D;">Mi</strong> ciudad se llama Bogotá."<br>
+            "¿Y <strong style="color:#FCD34D;">tus</strong> padres viven allí también?"<br>
+            "Sí, <strong style="color:#FCD34D;">mis</strong> padres y <strong style="color:#FCD34D;">mis</strong> hermanos."<br>
+            "¿Cuál es <strong style="color:#FCD34D;">su</strong> profesión?" (formal)<br>
+            "<strong style="color:#FCD34D;">Mi</strong> profesión es la enseñanza."
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TARJETA 11: FINAL — Resumen y botón aula ==================== -->
+  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#164E63,#0E7490); position:relative; overflow:hidden; min-height:380px;">
+    <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(14,116,144,0.2); border-radius:50%;"></div>
+    <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px); border-radius:20px;"></div>
+    <div style="position:absolute; top:16px; left:50%; transform:translateX(-50%); font-size:1.1em; opacity:0.12; letter-spacing:8px; white-space:nowrap;">⭐⭐⭐⭐⭐</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
+      <span style="background:rgba(14,116,144,0.45); color:#A5F3FC; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">11 / 11</span>
+      <span style="font-size:2em;">🎉</span>
+    </div>
+    <div style="position:relative; z-index:1;">
+      <p style="color:#A5F3FC; font-weight:700; font-size:0.8em; letter-spacing:3px; text-transform:uppercase; margin:0 0 8px 0;">¡Bloque completado!</p>
+      <h3 style="font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin:0 0 14px 0;">Repaso final 🏆</h3>
+
+      <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:16px; margin-bottom:14px;">
+        <p style="color:white; margin:0 0 12px 0; font-size:0.95em; line-height:1.6;">¡Perfecto! 🌟 Ya conoces los posesivos átonos <strong style="color:#FCD34D;">mi, tu</strong> y <strong style="color:#FCD34D;">su</strong> y sus formas plurales.</p>
+        <div style="display:flex; flex-direction:column; gap:7px;">
+          <div style="background:rgba(37,99,235,0.3); border-left:3px solid #93C5FD; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#93C5FD; margin:0 0 2px 0; font-size:0.85em; font-weight:700;">👤 MI / MIS — de yo</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.82em;">mi libro · mis libros · mi casa · mis casas</p>
+          </div>
+          <div style="background:rgba(5,150,105,0.3); border-left:3px solid #6EE7B7; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#6EE7B7; margin:0 0 2px 0; font-size:0.85em; font-weight:700;">👥 TU / TUS — de tú (informal)</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.82em;">tu carro · tus carros · tu idea · tus ideas</p>
+          </div>
+          <div style="background:rgba(194,65,12,0.3); border-left:3px solid #FED7AA; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#FED7AA; margin:0 0 2px 0; font-size:0.85em; font-weight:700;">👤👤 SU / SUS — de él/ella/usted/ellos/ellas/ustedes</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.82em;">su nombre · sus nombres · su familia · sus familias</p>
+          </div>
+          <div style="background:rgba(124,58,237,0.3); border-left:3px solid #C4B5FD; border-radius:0 8px 8px 0; padding:10px 12px;">
+            <p style="color:#C4B5FD; margin:0 0 2px 0; font-size:0.85em; font-weight:700;">✍️ TILDES CLAVE</p>
+            <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.82em;"><strong style="color:#FCD34D;">mi</strong> (posesivo) vs. <strong style="color:#FCD34D;">mí</strong> (pronombre) · <strong style="color:#FCD34D;">tu</strong> (posesivo) vs. <strong style="color:#FCD34D;">tú</strong> (pronombre)</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:10px;">
+        <a href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=150&forceview=1" onclick="alert('Redirigiendo al aula virtual...')" style="display:inline-block; background:linear-gradient(135deg,#22D3EE,#06B6D4); color:#0F172A; font-family:'Nunito',sans-serif; font-weight:700; font-size:1em; padding:14px 36px; border-radius:50px; text-decoration:none; letter-spacing:1px; box-shadow:0 4px 20px rgba(6,182,212,0.4);">
+          🏫 Regresar al Aula Virtual
+        </a>
+        <p style="color:rgba(255,255,255,0.45); font-size:0.78em; margin:12px 0 0 0;">Temática 6 · Bloque 1 completado · Posesivos: Mi, Tu, Su</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DOTS ===== -->
+  <div class="nav-dots" style="display:flex; justify-content:center; gap:9px; margin-top:24px; flex-wrap:wrap;">
+    <label for="s1"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s2"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s3"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s4"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s5"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s6"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s7"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s8"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s9"  style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s10" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+    <label for="s11" style="width:12px; height:12px; border-radius:50%; background:#CBD5E1; cursor:pointer; transition:all 0.3s;"></label>
+  </div>
+
+  <!-- ===== FLECHAS ===== -->
+  <div class="nav-arrows" style="display:flex; justify-content:center; gap:16px; margin-top:18px;">
+    <div class="btn-nav arr-1"  style="gap:16px;"><label for="s2"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-2"  style="gap:16px;"><label for="s1"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s3"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-3"  style="gap:16px;"><label for="s2"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s4"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-4"  style="gap:16px;"><label for="s3"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s5"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-5"  style="gap:16px;"><label for="s4"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s6"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-6"  style="gap:16px;"><label for="s5"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s7"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-7"  style="gap:16px;"><label for="s6"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s8"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-8"  style="gap:16px;"><label for="s7"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s9"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-9"  style="gap:16px;"><label for="s8"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s10" style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-10" style="gap:16px;"><label for="s9"  style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s11" style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">Siguiente →</label></div>
+    <div class="btn-nav arr-11" style="gap:16px;"><label for="s10" style="background:white;border:2px solid #E2E8F0;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:#374151;font-family:'Nunito',sans-serif;font-size:0.95em;">← Anterior</label><label for="s1" style="background:linear-gradient(135deg,#0E7490,#06B6D4);border:none;border-radius:12px;padding:10px 28px;cursor:pointer;font-weight:700;color:white;font-family:'Nunito',sans-serif;font-size:0.95em;">🔁 Reiniciar</label></div>
+  </div>
+
+</div>
+</body>
+</html>
