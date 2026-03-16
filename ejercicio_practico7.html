@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividades Cotidianas – Español A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #132040;
+    --navy-light: #1e3060;
+    --gold: #c9973a;
+    --gold-light: #e8b84b;
+    --gold-pale: #f5d98a;
+    --cream: #fdf6e3;
+    --white: #ffffff;
+    --correct: #1a7a4a;
+    --wrong: #8b1a1a;
+    --correct-bg: #d4f0e2;
+    --wrong-bg: #f0d4d4;
+    --shadow: 0 8px 40px rgba(10,22,40,0.45);
+    --shadow-sm: 0 4px 16px rgba(10,22,40,0.25);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--navy);
+    min-height: 100vh;
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── Background pattern ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,151,58,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(30,48,96,0.6) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(201,151,58,0.025) 40px,
+        rgba(201,151,58,0.025) 41px
+      );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Header ── */
+  .header {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: rgba(10,22,40,0.85);
+    border-bottom: 2px solid rgba(201,151,58,0.3);
+    backdrop-filter: blur(8px);
+  }
+
+  .header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-badge {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    box-shadow: 0 2px 12px rgba(201,151,58,0.4);
+  }
+
+  .header-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+    line-height: 1.2;
+  }
+  .header-sub {
+    font-size: 0.72rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+  }
+
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .score-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .score-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+
+  /* ── Progress ── */
+  .progress-wrap {
+    position: relative;
+    z-index: 2;
+    padding: 12px 40px 0;
+    background: rgba(10,22,40,0.6);
+  }
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 6px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .progress-track {
+    height: 5px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    box-shadow: 0 0 8px rgba(201,151,58,0.6);
+  }
+
+  /* ── Main stage ── */
+  .stage {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 110px);
+    padding: 30px 20px 40px;
+  }
+
+  /* ── Cards ── */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,151,58,0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 740px;
+    animation: cardIn 0.55s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(28px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── Question card ── */
+  .question-card { padding: 40px 44px 32px; }
+
+  .q-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .q-num {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+  .q-category {
+    font-size: 0.72rem;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .question-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--cream);
+    margin-bottom: 32px;
+    min-height: 60px;
+  }
+
+  /* ── Options grid ── */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  @media (max-width: 520px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .question-card { padding: 28px 20px 24px; }
+  }
+
+  .option-btn {
+    position: relative;
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 14px;
+    padding: 16px 20px;
+    color: var(--white);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    line-height: 1.35;
+    overflow: hidden;
+  }
+
+  .option-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,151,58,0.12), transparent);
+    opacity: 0;
+    transition: opacity 0.22s;
+    border-radius: 12px;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    border-color: rgba(201,151,58,0.6);
+    background: rgba(201,151,58,0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(201,151,58,0.2);
+  }
+  .option-btn:hover:not(:disabled)::before { opacity: 1; }
+
+  .option-letter {
+    min-width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+    transition: all 0.22s;
+  }
+
+  .option-btn.correct {
+    background: rgba(26,122,74,0.25);
+    border-color: #2ecc71;
+    color: #a8f0c6;
+  }
+  .option-btn.correct .option-letter {
+    background: #2ecc71;
+    color: var(--navy);
+    border-color: #2ecc71;
+  }
+  .option-btn.wrong {
+    background: rgba(139,26,26,0.25);
+    border-color: #e74c3c;
+    color: #f0a8a8;
+  }
+  .option-btn.wrong .option-letter {
+    background: #e74c3c;
+    color: var(--white);
+    border-color: #e74c3c;
+  }
+  .option-btn.reveal-correct {
+    border-color: rgba(46,204,113,0.4);
+    background: rgba(26,122,74,0.12);
+    color: rgba(168,240,198,0.7);
+  }
+  .option-btn:disabled { cursor: not-allowed; }
+
+  /* ── Feedback overlay ── */
+  .feedback-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10,22,40,0.88);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+    padding: 20px;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  .feedback-card {
+    background: linear-gradient(160deg, var(--navy-mid), var(--navy-light));
+    border-radius: 24px;
+    border: 1px solid rgba(201,151,58,0.3);
+    box-shadow: var(--shadow), 0 0 60px rgba(201,151,58,0.1);
+    padding: 44px 48px;
+    max-width: 520px;
+    width: 100%;
+    text-align: center;
+    animation: popIn 0.45s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.88) translateY(20px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .feedback-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    display: block;
+    animation: bounceIn 0.5s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+  }
+
+  @keyframes bounceIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .feedback-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+  .feedback-title.ok { color: #2ecc71; }
+  .feedback-title.fail { color: #e74c3c; }
+
+  .feedback-correct-answer {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 16px;
+  }
+  .feedback-correct-answer span {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .feedback-msg {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.65;
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+
+  .feedback-score-delta {
+    display: inline-block;
+    padding: 6px 18px;
+    background: rgba(201,151,58,0.15);
+    border: 1px solid rgba(201,151,58,0.35);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin-bottom: 28px;
+  }
+
+  .btn-next {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    border: none;
+    border-radius: 14px;
+    padding: 14px 40px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.22s ease;
+    box-shadow: 0 4px 20px rgba(201,151,58,0.35);
+  }
+  .btn-next:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,151,58,0.5);
+  }
+
+  /* ── Results screen ── */
+  .results-card {
+    padding: 50px 44px 44px;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .results-trophy {
+    font-size: 4rem;
+    margin-bottom: 8px;
+    display: block;
+    animation: trophySpin 0.8s cubic-bezier(0.22,1,0.36,1) both;
+  }
+  @keyframes trophySpin {
+    from { transform: rotate(-15deg) scale(0.5); opacity: 0; }
+    to   { transform: rotate(0) scale(1); opacity: 1; }
+  }
+
+  .results-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+  .results-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 32px;
+  }
+
+  .score-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: 10px;
+  }
+  .score-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .score-total {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+  }
+
+  .score-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .breakdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+  .breakdown-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+  }
+  .breakdown-num.ok { color: #2ecc71; }
+  .breakdown-num.fail { color: #e74c3c; }
+  .breakdown-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .divider {
+    height: 1px;
+    background: rgba(201,151,58,0.2);
+    margin: 28px 0;
+  }
+
+  .results-msg {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    font-style: italic;
+  }
+
+  .results-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-restart {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    border: none;
+    border-radius: 14px;
+    padding: 14px 32px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.22s;
+    box-shadow: 0 4px 20px rgba(201,151,58,0.35);
+  }
+  .btn-restart:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(201,151,58,0.5);
+  }
+
+  .btn-moodle {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid rgba(201,151,58,0.45);
+    border-radius: 14px;
+    padding: 14px 32px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: all 0.22s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-moodle:hover {
+    background: rgba(201,151,58,0.1);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  /* ── Splash ── */
+  .splash-card {
+    padding: 52px 44px 44px;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .splash-icon { font-size: 3.5rem; margin-bottom: 16px; display: block; }
+  .splash-pretitle {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .splash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+  .splash-title em { color: var(--gold-light); font-style: italic; }
+  .splash-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .splash-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .tag {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(201,151,58,0.3);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .btn-start {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--navy);
+    border: none;
+    border-radius: 16px;
+    padding: 16px 48px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.25s;
+    box-shadow: 0 6px 28px rgba(201,151,58,0.4);
+  }
+  .btn-start:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(201,151,58,0.55);
+  }
+
+  /* ── Shimmer on answer reveal ── */
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* ── Timer ── */
+  .timer-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+  }
+  .timer-track {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .timer-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 4px;
+    transition: width 1s linear, background 0.5s;
+  }
+  .timer-fill.urgent {
+    background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+  }
+  .timer-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold-light);
+    min-width: 28px;
+    text-align: right;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-badge">🇪🇸</div>
+    <div>
+      <div class="header-title">Español A1 · Unidad 3</div>
+      <div class="header-sub">Actividades Cotidianas</div>
+    </div>
+  </div>
+  <div class="score-bar">
+    <span class="score-label">Puntos</span>
+    <span class="score-value" id="scoreDisplay">0</span>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-wrap" id="progressSection" style="display:none;">
+  <div class="progress-info">
+    <span id="progressLabel">Pregunta 1 de 10</span>
+    <span id="progressPct">0%</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+</div>
+
+<!-- STAGE -->
+<main class="stage" id="stage"></main>
+
+<!-- FEEDBACK OVERLAY -->
+<div class="feedback-overlay" id="feedbackOverlay" style="display:none;">
+  <div class="feedback-card">
+    <span class="feedback-icon" id="fbIcon"></span>
+    <div class="feedback-title" id="fbTitle"></div>
+    <div class="feedback-correct-answer" id="fbCorrect"></div>
+    <p class="feedback-msg" id="fbMsg"></p>
+    <div class="feedback-score-delta" id="fbDelta"></div>
+    <button class="btn-next" id="btnNext">Continuar →</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════
+//  DATA
+// ═══════════════════════════════════════════
+const questions = [
+  {
+    text: "María se despierta a las 7 de la mañana y hace lo primero que hacemos todos al empezar el día. ¿Qué hace María?",
+    options: ["Cocinar el almuerzo","Levantarse de la cama","Trabajar en la oficina","Ir al gimnasio"],
+    correct: 1,
+    category: "Rutina matutina"
+  },
+  {
+    text: "Carlos entra al baño, abre el grifo y usa jabón y agua para limpiar sus manos y cara. ¿Qué hace Carlos?",
+    options: ["Bañarse con ducha","Lavarse","Cepillarse los dientes","Afeitarse"],
+    correct: 1,
+    category: "Higiene personal"
+  },
+  {
+    text: "Todos los días a las 8:00 a.m., Lucía come pan, toma café y come fruta antes de salir a trabajar. ¿Qué actividad realiza Lucía?",
+    options: ["Preparar la cena","Desayunar","Almorzar","Merendar"],
+    correct: 1,
+    category: "Comidas"
+  },
+  {
+    text: "Pedro sale de su casa, camina hasta la parada y sube al autobús para ir a su lugar de trabajo. ¿Qué hace Pedro?",
+    options: ["Ir de compras","Visitar a un amigo","Ir al trabajo","Regresar a casa"],
+    correct: 2,
+    category: "Desplazamientos"
+  },
+  {
+    text: "Ana termina sus tareas del día, apaga la televisión, se acuesta y cierra los ojos. ¿Qué hace Ana?",
+    options: ["Dormir la siesta","Leer un libro","Acostarse a dormir","Escuchar música"],
+    correct: 2,
+    category: "Rutina nocturna"
+  },
+  {
+    text: "Roberto llega a casa, pone música tranquila, se sienta en el sofá y no hace nada especial. Solo descansa. ¿Qué hace Roberto?",
+    options: ["Estudiar para un examen","Hacer ejercicio","Descansar en casa","Cocinar la cena"],
+    correct: 2,
+    category: "Tiempo libre"
+  },
+  {
+    text: "Sofia va al supermercado, compra frutas, verduras y otros productos. ¿Qué actividad realiza Sofia?",
+    options: ["Cocinar","Limpiar la casa","Hacer las compras","Trabajar en casa"],
+    correct: 2,
+    category: "Tareas del hogar"
+  },
+  {
+    text: "Todos los martes y jueves, Miguel va a un lugar donde hay máquinas y corre en una cinta para mantenerse en forma. ¿A dónde va Miguel?",
+    options: ["A la biblioteca","Al gimnasio","Al parque","Al mercado"],
+    correct: 1,
+    category: "Ejercicio"
+  },
+  {
+    text: "Después del almuerzo, Clara lleva la ropa sucia a la lavadora, añade detergente y la pone en marcha. ¿Qué hace Clara?",
+    options: ["Lavar los platos","Planchar la ropa","Lavar la ropa","Barrer el suelo"],
+    correct: 2,
+    category: "Tareas del hogar"
+  },
+  {
+    text: "Los viernes por la noche, Diego y sus amigos van a un lugar donde sirven comida y bebidas, hablan y ríen juntos. ¿Qué hace Diego?",
+    options: ["Cocinar en casa","Salir a cenar con amigos","Estudiar en la biblioteca","Ver televisión solo"],
+    correct: 1,
+    category: "Vida social"
+  }
+];
+
+const feedbackMessages = {
+  correct: [
+    ["¡Excelente trabajo! 🌟", "Cada respuesta correcta te acerca más a dominar el español. ¡Sigue con esa energía y llegarás muy lejos!"],
+    ["¡Perfecto! ✨", "Tienes un gran ojo para los detalles del idioma. ¡Tu esfuerzo está dando frutos — no te detengas ahora!"],
+    ["¡Muy bien hecho! 🏆", "Vas acumulando puntos y conocimiento al mismo tiempo. ¡El español te espera — sigue adelante!"],
+    ["¡Correcto! 🎯", "Una respuesta más en el camino al éxito. ¡Confía en ti mismo y sigue conquistando el vocabulario!"],
+    ["¡Genial! 🌟", "¡Estás demostrando que practicar vale la pena! Cada pregunta bien respondida es un paso más hacia la fluidez."]
+  ],
+  wrong: [
+    ["¡Casi lo tienes! 💪", "Los errores son los mejores maestros del idioma. Revisa la respuesta correcta y en la próxima pregunta podrás recuperar puntos."],
+    ["¡No te rindas! 🚀", "Aprender un idioma tiene sus retos, pero tú tienes la perseverancia. ¡La próxima es tuya — confía en tu proceso!"],
+    ["¡Sigue intentando! 🌱", "Cada error es semilla de aprendizaje. Ahora ya sabes la respuesta correcta, ¡úsala a tu favor en las siguientes!"],
+    ["¡Buen intento! 🔄", "El español requiere práctica, y tú estás aquí haciéndolo. ¡Esa actitud ya vale mucho! Recupera puntos en las siguientes."],
+    ["¡Tú puedes! 💡", "Recuerda: los mejores hablantes cometieron errores al principio. ¡Observa la respuesta correcta y sigue adelante con fuerza!"]
+  ]
+};
+
+// ═══════════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════════
+let currentQ = 0;
+let score = 0;
+let correctCount = 0;
+let wrongCount = 0;
+let answered = false;
+let timerInterval = null;
+let timeLeft = 20;
+
+// ═══════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════
+const letters = ['A','B','C','D'];
+const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+function updateScore(val) {
+  score = Math.max(0, score + val);
+  document.getElementById('scoreDisplay').textContent = score;
+}
+
+function updateProgress(q) {
+  const pct = Math.round((q / questions.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = `Pregunta ${q} de ${questions.length}`;
+  document.getElementById('progressPct').textContent = pct + '%';
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+// ═══════════════════════════════════════════
+//  SCREENS
+// ═══════════════════════════════════════════
+function showSplash() {
+  document.getElementById('progressSection').style.display = 'none';
+  document.getElementById('scoreDisplay').textContent = '0';
+  const stage = document.getElementById('stage');
+  stage.innerHTML = `
+    <div class="card splash-card" style="animation:cardIn 0.6s cubic-bezier(0.22,1,0.36,1) both;">
+      <span class="splash-icon">📅</span>
+      <div class="splash-pretitle">Español A1 · Unidad 3 · Tema 1</div>
+      <h1 class="splash-title">Actividades<br><em>Cotidianas</em></h1>
+      <p class="splash-desc">Pon a prueba tu vocabulario sobre las rutinas diarias. Lee cada situación con atención y elige la opción correcta.</p>
+      <div class="splash-tags">
+        <span class="tag">10 preguntas</span>
+        <span class="tag">20 seg. por pregunta</span>
+        <span class="tag">Nivel A1</span>
+        <span class="tag">Vocabulario cotidiano</span>
+      </div>
+      <button class="btn-start" onclick="startQuiz()">Comenzar actividad →</button>
+    </div>`;
+}
+
+function startQuiz() {
+  currentQ = 0;
+  score = 0;
+  correctCount = 0;
+  wrongCount = 0;
+  document.getElementById('scoreDisplay').textContent = '0';
+  document.getElementById('progressSection').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  answered = false;
+  stopTimer();
+  timeLeft = 20;
+
+  const q = questions[currentQ];
+  updateProgress(currentQ + 1);
+
+  const stage = document.getElementById('stage');
+  stage.innerHTML = `
+    <div class="card question-card" id="qCard">
+      <div class="q-meta">
+        <span class="q-num">Pregunta ${currentQ + 1} / ${questions.length}</span>
+        <span class="q-category">${q.category}</span>
+      </div>
+      <p class="question-text">${q.text}</p>
+      <div class="options-grid" id="optionsGrid">
+        ${q.options.map((opt, i) => `
+          <button class="option-btn" id="opt-${i}" onclick="selectAnswer(${i})">
+            <span class="option-letter">${letters[i]}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="timer-wrap">
+        <div class="timer-track">
+          <div class="timer-fill" id="timerFill" style="width:100%"></div>
+        </div>
+        <span class="timer-num" id="timerNum">20</span>
+      </div>
+    </div>`;
+
+  // Start timer
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    const pct = (timeLeft / 20) * 100;
+    const fill = document.getElementById('timerFill');
+    const num  = document.getElementById('timerNum');
+    if (fill) fill.style.width = pct + '%';
+    if (num)  num.textContent = timeLeft;
+    if (fill && timeLeft <= 7) fill.classList.add('urgent');
+    if (timeLeft <= 0) {
+      stopTimer();
+      if (!answered) timeOut();
+    }
+  }, 1000);
+}
+
+function timeOut() {
+  answered = true;
+  const q = questions[currentQ];
+  // Disable all buttons & reveal
+  revealAnswers(null, q.correct);
+  showFeedback(false, q.options[q.correct], true);
+}
+
+function selectAnswer(idx) {
+  if (answered) return;
+  answered = true;
+  stopTimer();
+
+  const q = questions[currentQ];
+  const isCorrect = idx === q.correct;
+  const pts = isCorrect ? 100 + (timeLeft * 5) : 0;
+
+  revealAnswers(idx, q.correct);
+
+  if (isCorrect) {
+    correctCount++;
+    updateScore(pts);
+    showFeedback(true, q.options[q.correct], false, pts);
+  } else {
+    wrongCount++;
+    showFeedback(false, q.options[q.correct], false, 0);
+  }
+}
+
+function revealAnswers(selected, correct) {
+  const btns = document.querySelectorAll('.option-btn');
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === correct) {
+      btn.classList.add(selected === correct ? 'correct' : 'reveal-correct');
+      if (selected === correct) btn.classList.add('correct');
+      else btn.classList.add('reveal-correct');
+    } else if (i === selected) {
+      btn.classList.add('wrong');
+    }
+  });
+  // Re-mark correct clearly if wrong selection
+  if (selected !== correct && selected !== null) {
+    document.getElementById('opt-' + correct).classList.remove('reveal-correct');
+    document.getElementById('opt-' + correct).classList.add('correct');
+  }
+}
+
+function showFeedback(isCorrect, correctAnswer, timedOut, pts) {
+  const msgs  = feedbackMessages[isCorrect ? 'correct' : 'wrong'];
+  const pick  = rand(msgs);
+
+  document.getElementById('fbIcon').textContent    = isCorrect ? '🎉' : (timedOut ? '⏰' : '😅');
+  document.getElementById('fbTitle').textContent   = timedOut ? '¡Tiempo agotado!' : pick[0];
+  document.getElementById('fbTitle').className     = 'feedback-title ' + (isCorrect ? 'ok' : 'fail');
+  document.getElementById('fbMsg').textContent     = timedOut
+    ? '¡El tiempo se acabó! Revisa la respuesta correcta y la próxima vez confía más en ti. ¡Tú puedes recuperar esos puntos!'
+    : pick[1];
+
+  if (isCorrect) {
+    document.getElementById('fbCorrect').innerHTML = `Respuesta: <span>${correctAnswer}</span>`;
+    document.getElementById('fbDelta').textContent  = `+${pts} puntos ✨`;
+  } else {
+    document.getElementById('fbCorrect').innerHTML = `La correcta era: <span>${correctAnswer}</span>`;
+    document.getElementById('fbDelta').textContent  = 'Sin puntos esta vez — ¡a la siguiente!';
+  }
+
+  document.getElementById('feedbackOverlay').style.display = 'flex';
+  document.getElementById('btnNext').onclick = nextQuestion;
+}
+
+function nextQuestion() {
+  document.getElementById('feedbackOverlay').style.display = 'none';
+  currentQ++;
+  if (currentQ < questions.length) {
+    showQuestion();
+  } else {
+    showResults();
+  }
+}
+
+function showResults() {
+  stopTimer();
+  document.getElementById('progressSection').style.display = 'none';
+  document.getElementById('feedbackOverlay').style.display = 'none';
+
+  const pct = Math.round((correctCount / questions.length) * 100);
+  let trophy, msg;
+
+  if (pct === 100) {
+    trophy = '🏆';
+    msg = '"¡Perfección absoluta! Tienes un dominio impresionante del vocabulario cotidiano en español. Eres un ejemplo de dedicación y esfuerzo. ¡Sigue así y el español no tendrá secretos para ti!"';
+  } else if (pct >= 80) {
+    trophy = '🌟';
+    msg = '"¡Resultado excelente! Dominas muy bien las actividades cotidianas. Con un poco más de práctica, alcanzarás la perfección. ¡El A1 está casi conquistado!"';
+  } else if (pct >= 60) {
+    trophy = '📚';
+    msg = '"¡Buen trabajo! Ya reconoces muchas actividades del día a día. Te invitamos a repasar las preguntas que fallaste y a volver a intentarlo. ¡Cada intento te hace más fuerte!"';
+  } else if (pct >= 40) {
+    trophy = '💪';
+    msg = '"¡Vas por buen camino! El aprendizaje de un idioma requiere práctica constante. Revisa el vocabulario de esta unidad y vuelve a intentarlo. ¡Tú puedes superar este desafío!"';
+  } else {
+    trophy = '🌱';
+    msg = '"¡No te desanimes! Todos comenzamos desde cero. Cada intento es una oportunidad de aprender. Repasa las actividades cotidianas, practica en voz alta y regresa con más confianza. ¡El español te espera!"';
+  }
+
+  const stage = document.getElementById('stage');
+  stage.innerHTML = `
+    <div class="card results-card" style="animation:cardIn 0.6s cubic-bezier(0.22,1,0.36,1) both;">
+      <span class="results-trophy">${trophy}</span>
+      <h2 class="results-title">Actividad completada</h2>
+      <p class="results-subtitle">Español A1 · Actividades Cotidianas</p>
+      <div class="score-display">
+        <span class="score-big">${score}</span>
+        <span class="score-total">&nbsp;puntos</span>
+      </div>
+      <div class="score-breakdown">
+        <div class="breakdown-item">
+          <span class="breakdown-num ok">${correctCount}</span>
+          <span class="breakdown-label">Correctas</span>
+        </div>
+        <div class="breakdown-item">
+          <span class="breakdown-num fail">${wrongCount}</span>
+          <span class="breakdown-label">Incorrectas</span>
+        </div>
+        <div class="breakdown-item">
+          <span class="breakdown-num" style="color:var(--gold-light)">${pct}%</span>
+          <span class="breakdown-label">Precisión</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <p class="results-msg">${msg}</p>
+      <div class="results-actions">
+        <button class="btn-restart" onclick="startQuiz()">🔄 Reintentar</button>
+        <a class="btn-moodle" href="javascript:history.back()">🏛️ Volver al Aula Virtual</a>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════
+showSplash();
+</script>
+</body>
+</html>
