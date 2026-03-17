@@ -1,13 +1,11 @@
 /* ============================================================
    INSTITUTO INNOVA — CSS para App Móvil Moodle
-   v2 — Selectores directos, sin depender de [style*="..."]
-   ============================================================
-   Cómo usar:
-   1. Reemplaza el archivo innova-mobile.css en GitHub
-   2. Netlify lo despliega automáticamente
-   3. En la app: Ajustes → Sincronización → Refrescar sitio
-   ============================================================ */
+   ============================================================*/
 
+/* PRUEBA DIAGNÓSTICA — borra esto después */
+body {
+  border-top: 5px solid red !important;
+}
 
 /* ── 1. RESET NUCLEAR ──────────────────────────────────────── */
 
