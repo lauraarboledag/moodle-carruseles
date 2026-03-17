@@ -145,23 +145,39 @@ div[style*="grid-template-columns:1fr 1fr 1fr"] {
 }
 
 
-/* ── 9. TAG DEL BANNER (el que se cortaba) ─────────────────── */
-/* display: inline-flex sin wrap causaba el corte              */
+/* ── 9. TAG DEL BANNER ─────────────────────────────────────── */
 
 div[style*="display: inline-flex"],
 span[style*="display: inline-flex"] {
   display: flex !important;
   flex-wrap: wrap !important;
   white-space: normal !important;
+  word-break: normal !important;
   max-width: 100% !important;
+  width: auto !important;
+  overflow: visible !important;
 }
 
-/* Badges pequeños que no deben partirse */
+/* El texto dentro del tag puede partir en 2 líneas */
+div[style*="display: inline-flex"] span,
+div[style*="display: inline-flex"] div,
+span[style*="display: inline-flex"] span {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
+}
+
+/* Badges pequeños tipo "Nivel A1", "Irregular" — estos SÍ
+   se mantienen en una línea porque son textos cortos */
 span[style*="border-radius: 10px"],
 span[style*="border-radius: 12px"],
 span[style*="border-radius: 20px"],
-div[style*="border-radius: 20px"][style*="letter-spacing"] {
+div[style*="border-radius: 20px"][style*="letter-spacing"],
+div[style*="border-radius: 12px"][style*="font-size: 0.75em"] {
   white-space: nowrap !important;
+  flex-shrink: 0 !important;
 }
 
 
