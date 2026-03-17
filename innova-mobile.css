@@ -355,36 +355,26 @@ td, th {
   text-align: center !important;
 }
 
-/* ── 15. TARJETAS DE VOCABULARIO — SCROLL HORIZONTAL ── */
-/* Fix para los bloques de vocabulario con flex-wrap
-   y min-width: 150px que se parten letra por letra   */
+/* ── VOCABULARIO CLAVE — SCROLL HORIZONTAL ── */
+/* Selector basado en border #ddd4c0 que es único
+   de estas tarjetas de vocabulario             */
 
-/* El contenedor flex que envuelve las tarjetas:
-   no wrap + scroll horizontal */
-[style*="display: flex"][style*="flex-wrap: wrap"][style*="gap: 10px"] {
+[style*="border: 1px solid #ddd4c0"][style*="min-width: 150px"] {
+  min-width: 130px !important;
+  max-width: 150px !important;
+  flex: 0 0 140px !important;
+  flex-shrink: 0 !important;
+}
+
+[style*="padding: 20px 24px"] > [style*="display: flex"][style*="flex-wrap: wrap"][style*="gap: 10px"] {
   flex-wrap: nowrap !important;
   overflow-x: auto !important;
   -webkit-overflow-scrolling: touch !important;
   padding-bottom: 8px !important;
-  gap: 8px !important;
 }
 
-/* Cada tarjeta de vocabulario: ancho fijo y no se encoge */
-[style*="min-width: 150px"] {
-  min-width: 140px !important;
-  max-width: 140px !important;
+[style*="min-width: 220px"] {
+  min-width: 200px !important;
+  flex: 0 0 220px !important;
   flex-shrink: 0 !important;
-  word-break: normal !important;
-  overflow-wrap: break-word !important;
-  white-space: normal !important;
 }
-
-/* Los textos dentro de cada tarjeta sí pueden partir
-   en varias líneas (solo las palabras, no las letras) */
-[style*="min-width: 150px"] p {
-  white-space: normal !important;
-  word-break: normal !important;
-  overflow-wrap: break-word !important;
-}
-
-/* ── FIN ────────────────────────────────────────────────────── */
