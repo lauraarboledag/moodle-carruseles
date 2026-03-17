@@ -333,6 +333,17 @@
 </a>
         </div>
     </div>
+    <script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+    </script>
+  </div>
 
   <!-- NAVEGACIÓN -->
   <div class="nav">
@@ -342,17 +353,9 @@
   </div>
   <p class="contador" id="contador">Tarjeta 1 de 7</p>
 </div>
-    </div>
+    
 
 <script>
-   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
-
-  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
-  if (esMóvil) {
-    btn.href = appUrl;
-  }
   var TOTAL = 7;
   var current = 1;
   var colores = ['','#E74C3C','#52B788','#8888ff','#bb88ff','#5dade2','#ff88d8','#F1C40F'];
