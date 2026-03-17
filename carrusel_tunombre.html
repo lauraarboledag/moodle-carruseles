@@ -333,16 +333,6 @@
 </a>
         </div>
     </div>
-    <script>
-  const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
-
-  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
-  if (esMóvil) {
-    btn.href = appUrl;
-  }
-    </script>
   </div>
 
   <!-- NAVEGACIÓN -->
@@ -394,6 +384,15 @@
   // Soporte táctil para flechas
   document.getElementById('btnPrev').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(-1); });
   document.getElementById('btnNext').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(1); });
+
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
 
   mostrar(1);
 </script>
