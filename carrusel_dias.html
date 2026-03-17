@@ -773,9 +773,22 @@
       </div>
 
       <div style="text-align:center;margin-top:12px;">
-        <a href="#" onclick="alert('Redirigiendo al aula virtual...')" style="display:inline-block;background:linear-gradient(135deg,#818CF8,#6366F1);color:white;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 22px rgba(99,102,241,0.5);">
-          🏫 Regresar al Aula Virtual
-        </a>
+       <a id="btn-volver"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=172&forceview=1"
+   style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+  🏫 Regresar al Aula Virtual
+</a>
+
+<script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=172&forceview=1';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com/mod/page/view.php?id=172&forceview=1';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+</script>
         <p style="color:rgba(255,255,255,0.38);font-size:0.78em;margin:12px 0 0;">Unidad 3 · Temática 2 · Bloque 1 completado</p>
       </div>
     </div>
