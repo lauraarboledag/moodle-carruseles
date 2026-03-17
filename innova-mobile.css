@@ -1,14 +1,6 @@
 /* ============================================================
    INSTITUTO INNOVA — CSS para App Móvil Moodle
    ============================================================
-   Cómo usar:
-   1. Sube este archivo a Netlify (o cualquier URL pública)
-   2. Ve a: Administración del sitio → App móvil → Apariencia móvil
-   3. Pega la URL del archivo en el campo "mobilecssurl"
-   4. Guarda y purga el caché del sitio
-   5. En la app: Ajustes → Sincronización → Refrescar sitio
-   ============================================================ */
-
 
 /* ── 1. RESET BASE ─────────────────────────────────────────── */
 /* Corrige el texto cortado en absolutamente todo el contenido */
@@ -198,15 +190,16 @@ details [style*="padding: 20px"] {
 }
 
 
-/* ── 9. CHIPS Y BADGES (no se parten) ─────────────────────── */
-/* Elementos cortos tipo "Nivel A1", "Irregular", etc.        */
-
+/* ── 9. CHIPS Y BADGES ── */
 [style*="border-radius: 20px"],
 [style*="border-radius: 50px"],
 [style*="border-radius: 12px"][style*="font-size: 0.75em"],
 [style*="border-radius: 10px"][style*="font-size: 0.75em"] {
-  white-space: nowrap !important;
-  flex-shrink: 0 !important;
+  white-space: normal !important;  /* ← cambia nowrap por normal */
+  flex-shrink: 1 !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 
@@ -360,6 +353,38 @@ td, th {
   padding: 14px 24px !important;
   white-space: normal !important;
   text-align: center !important;
+}
+
+/* ── 15. TARJETAS DE VOCABULARIO — SCROLL HORIZONTAL ── */
+/* Fix para los bloques de vocabulario con flex-wrap
+   y min-width: 150px que se parten letra por letra   */
+
+/* El contenedor flex que envuelve las tarjetas:
+   no wrap + scroll horizontal */
+[style*="display: flex"][style*="flex-wrap: wrap"][style*="gap: 10px"] {
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding-bottom: 8px !important;
+  gap: 8px !important;
+}
+
+/* Cada tarjeta de vocabulario: ancho fijo y no se encoge */
+[style*="min-width: 150px"] {
+  min-width: 140px !important;
+  max-width: 140px !important;
+  flex-shrink: 0 !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* Los textos dentro de cada tarjeta sí pueden partir
+   en varias líneas (solo las palabras, no las letras) */
+[style*="min-width: 150px"] p {
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
 }
 
 /* ── FIN ────────────────────────────────────────────────────── */
