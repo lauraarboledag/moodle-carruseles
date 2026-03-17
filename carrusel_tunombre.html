@@ -342,7 +342,7 @@
     <button class="nav-btn" id="btnNext" onclick="cambiar(1)">→</button>
   </div>
   <p class="contador" id="contador">Tarjeta 1 de 7</p>
-
+</div>
     
 <script>
   var TOTAL = 7;
@@ -384,9 +384,9 @@
   document.getElementById('btnPrev').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(-1); });
   document.getElementById('btnNext').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(1); });
 
-  const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
+  var btn = document.getElementById('btn-volver');
+  var cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
+  var appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
