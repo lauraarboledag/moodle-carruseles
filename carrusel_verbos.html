@@ -464,14 +464,22 @@
       </div>
 <!-- CTA -->
         <div style="text-align: center;">
-          <p
-            style="color: #888; font-size: 0.88em; font-style: italic; margin: 0 0 14px;">
-            Haz clic en <strong
-              style="color: #1a2e4a;">Regresar</strong> para volver al aula virtual</p>
-         <a style="display: inline-block; background: linear-gradient(135deg, #c9a84c, #e8c96a); color: #1a2e4a; padding: 12px 36px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 0.97em; letter-spacing: 0.5px; box-shadow: 0 3px 10px rgba(201,168,76,0.3);"
-   href="moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=80&forceview=1">
-   Regresar →
+         <a id="btn-volver"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=80"
+   style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+  🏫 Regresar al Aula Virtual
 </a>
+
+<script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=80';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=80';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+</script>
         </div>
     </div>
   </div>
