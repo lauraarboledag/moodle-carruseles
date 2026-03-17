@@ -1,531 +1,433 @@
-<div style="max-width: 700px; margin: 0 auto;"><!-- TÍTULO -->
-  <div style="text-align: center; margin-bottom: 30px;">
-    <div
-      style="display: inline-block; background: linear-gradient(135deg,#C0392B,#E74C3C); padding: 8px 24px; border-radius: 30px; margin-bottom: 12px;">
-      <span
-        style="color: white; font-size: 0.85em; font-weight: bold; letter-spacing: 3px;">BLOQUE
-        2 · DESPEDIDAS</span></div>
-    <h2
-      style="font-family: 'Playfair Display',serif; font-size: 2.2em; color: #1a1a2e; margin: 0 0 6px 0;">
-      ¡Aprender a despedirte! 👋</h2>
-    <p style="color: #888; font-size: 0.9em; margin: 0;">Haz clic en → ← o los
-      puntos para navegar</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== NAVEGACIÓN CSS PURA — 7 tarjetas ===== */
+  #card1,#card2,#card3,#card4,#card5,#card6,#card7 { display:none; }
+
+  #s1:checked ~ #card1 { display:block; }
+  #s2:checked ~ #card2 { display:block; }
+  #s3:checked ~ #card3 { display:block; }
+  #s4:checked ~ #card4 { display:block; }
+  #s5:checked ~ #card5 { display:block; }
+  #s6:checked ~ #card6 { display:block; }
+  #s7:checked ~ #card7 { display:block; }
+
+  /* Dots activos */
+  #s1:checked ~ .nav-dots label[for="s1"] { background:#E74C3C; transform:scale(1.4); box-shadow:0 0 0 3px rgba(231,76,60,0.25); }
+  #s2:checked ~ .nav-dots label[for="s2"] { background:#52B788; transform:scale(1.4); box-shadow:0 0 0 3px rgba(82,183,136,0.25); }
+  #s3:checked ~ .nav-dots label[for="s3"] { background:#8888FF; transform:scale(1.4); box-shadow:0 0 0 3px rgba(136,136,255,0.25); }
+  #s4:checked ~ .nav-dots label[for="s4"] { background:#BB88FF; transform:scale(1.4); box-shadow:0 0 0 3px rgba(187,136,255,0.25); }
+  #s5:checked ~ .nav-dots label[for="s5"] { background:#5DADE2; transform:scale(1.4); box-shadow:0 0 0 3px rgba(93,173,226,0.25); }
+  #s6:checked ~ .nav-dots label[for="s6"] { background:#FF88D8; transform:scale(1.4); box-shadow:0 0 0 3px rgba(255,136,216,0.25); }
+  #s7:checked ~ .nav-dots label[for="s7"] { background:#F1C40F; transform:scale(1.4); box-shadow:0 0 0 3px rgba(241,196,15,0.25); }
+
+  .btn-nav { display:none; }
+
+  #s1:checked ~ .nav-arrows .arr-1,
+  #s2:checked ~ .nav-arrows .arr-2,
+  #s3:checked ~ .nav-arrows .arr-3,
+  #s4:checked ~ .nav-arrows .arr-4,
+  #s5:checked ~ .nav-arrows .arr-5,
+  #s6:checked ~ .nav-arrows .arr-6,
+  #s7:checked ~ .nav-arrows .arr-7 { display:flex; }
+
+  /* Helpers compartidos */
+  .zi { position:relative; z-index:1; }
+  .deco-tr { position:absolute; top:-45px; right:-45px; width:210px; height:210px; border-radius:50%; }
+  .deco-bl { position:absolute; bottom:-65px; left:-35px; width:230px; height:230px; border-radius:50%; }
+  .tex-diag { position:absolute; inset:0; border-radius:22px;
+    background-image:repeating-linear-gradient(-55deg, rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px, transparent 1px, transparent 18px);
+  }
+  .card-wrap { border-radius:22px; padding:40px; position:relative; overflow:hidden; min-height:385px; }
+  .eyebrow { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin:0 0 8px; }
+  .card-title { font-family:'Fraunces',serif; color:white; font-size:1.95em; margin:0 0 18px; line-height:1.15; }
+  .def-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.13); border-radius:13px; padding:16px 18px; margin-bottom:14px; }
+  .def-text { color:white; line-height:1.75; margin:0; font-size:0.96em; }
+  .stripe { border-left:4px solid; border-radius:0 12px 12px 0; padding:12px 16px; margin-bottom:9px; display:flex; align-items:center; gap:12px; }
+  .sec-lbl { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:0 0 10px; }
+  .badge { display:inline-flex; align-items:center; border-radius:20px; padding:5px 14px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2px; }
+  .pill { padding:6px 14px; border-radius:20px; font-size:0.88em; font-weight:600; display:inline-block; }
+  .nav-btn { background:white; border:2px solid #E2E8F0; border-radius:12px; padding:10px 26px; cursor:pointer; font-weight:700; color:#1E1B4B; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.93em; }
+</style>
+</head>
+<body style="margin:0; padding:20px;
+  background:#0F0E17;
+  background-image: radial-gradient(circle at 20% 30%, rgba(231,76,60,0.07) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(136,136,255,0.07) 0%, transparent 50%);
+  font-family:'Plus Jakarta Sans',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- ENCABEZADO -->
+  <div style="text-align:center; margin-bottom:32px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#C0392B,#E74C3C); padding:8px 26px; border-radius:30px; margin-bottom:14px; box-shadow:0 4px 18px rgba(231,76,60,0.35);">
+      <span style="color:white; font-size:0.81em; font-weight:700; letter-spacing:3px; font-family:'Plus Jakarta Sans',sans-serif;">BLOQUE 2 · DESPEDIDAS</span>
+    </div>
+    <h2 style="font-family:'Fraunces',serif; font-size:2.3em; color:white; margin:0 0 6px; line-height:1.1;">¡Aprender a despedirte! 👋</h2>
+    <p style="color:#7C7AA8; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
   </div>
-  <!-- RADIO BUTTONS OCULTOS --> <input id="s1" style="display: none;"
-    checked="checked" name="slide" type="radio"> <input id="s2"
-    style="display: none;" name="slide" type="radio"> <input id="s3"
-    style="display: none;" name="slide" type="radio"> <input id="s4"
-    style="display: none;" name="slide" type="radio"> <input id="s5"
-    style="display: none;" name="slide" type="radio"> <input id="s6"
-    style="display: none;" name="slide" type="radio"> <input id="s7"
-    style="display: none;" name="slide" type="radio">
-  <!-- ==================== TARJETA 1 ==================== -->
-  <div id="card1"
-    style="border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#1a1a2e,#16213e); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(231,76,60,0.15); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(241,196,15,0.06); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(231,76,60,0.3); color: #e74c3c; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">01
-        / 07</span> <span style="font-size: 2em;">💬</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #e74c3c; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Introducción</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 18px 0;">
-        ¿Cómo usamos las despedidas?</h3>
-      <div
-        style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; margin-bottom: 16px;">
-        <p style="color: white; line-height: 1.7; margin: 0; font-size: 1em;">
-          Las despedidas las usamos para <strong style="color: #f1c40f;">cerrar
-            una conversación</strong> de forma educada.</p>
-        <p
-          style="color: rgba(255,255,255,0.7); margin: 12px 0 0 0; font-size: 0.95em; font-style: italic;">
-          En el español, despedirse bien es tan importante como saludar bien.
-        </p>
+
+  <!-- RADIOS -->
+  <input type="radio" name="slide" id="s1" style="display:none;" checked>
+  <input type="radio" name="slide" id="s2" style="display:none;">
+  <input type="radio" name="slide" id="s3" style="display:none;">
+  <input type="radio" name="slide" id="s4" style="display:none;">
+  <input type="radio" name="slide" id="s5" style="display:none;">
+  <input type="radio" name="slide" id="s6" style="display:none;">
+  <input type="radio" name="slide" id="s7" style="display:none;">
+
+  <!-- ===== TARJETA 1: Introducción ===== -->
+  <div id="card1" class="card-wrap" style="background:linear-gradient(145deg,#1a1a2e,#16213e); box-shadow:0 8px 40px rgba(231,76,60,0.25);">
+    <div class="deco-tr" style="background:rgba(231,76,60,0.15);"></div>
+    <div class="deco-bl" style="background:rgba(241,196,15,0.06);"></div>
+    <div class="tex-diag"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(231,76,60,0.3);color:#E74C3C;">01 / 07 &nbsp;·&nbsp; 💬 INTRODUCCIÓN</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#E74C3C;">Introducción</p>
+      <h3 class="card-title">¿Cómo usamos las despedidas?</h3>
+      <div class="def-box">
+        <p class="def-text">Las despedidas las usamos para <strong style="color:#F1C40F;">cerrar una conversación</strong> de forma educada.</p>
+        <p style="color:rgba(255,255,255,0.65);margin:12px 0 0;font-size:0.93em;font-style:italic;">En el español, despedirse bien es tan importante como saludar bien.</p>
       </div>
-      <p
-        style="color: #f1c40f; font-weight: bold; font-size: 0.82em; letter-spacing: 2px; text-transform: uppercase; margin: 0 0 10px 0;">
-        ¿Cuándo nos despedimos?</p>
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-        <div
-          style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px;">
-          <span style="font-size: 1.1em;">🎒</span>
-          <p style="color: white; margin: 0; font-size: 0.93em;">Finalizamos una
-            <strong>clase</strong></p>
+
+      <p class="sec-lbl" style="color:#F1C40F;">¿Cuándo nos despedimos?</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.05);border-radius:10px;padding:11px 14px;">
+          <span style="font-size:1.2em;">🎒</span>
+          <p style="color:white;margin:0;font-size:0.92em;">Finalizamos una <strong>clase</strong></p>
         </div>
-        <div
-          style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px;">
-          <span style="font-size: 1.1em;">🚪</span>
-          <p style="color: white; margin: 0; font-size: 0.93em;">Salimos de una
-            <strong>reunión de trabajo</strong></p>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.05);border-radius:10px;padding:11px 14px;">
+          <span style="font-size:1.2em;">🚪</span>
+          <p style="color:white;margin:0;font-size:0.92em;">Salimos de una <strong>reunión de trabajo</strong></p>
         </div>
-        <div
-          style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px;">
-          <span style="font-size: 1.1em;">📱</span>
-          <p style="color: white; margin: 0; font-size: 0.93em;">Finalizamos una
-            <strong>llamada o videollamada</strong></p>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.05);border-radius:10px;padding:11px 14px;">
+          <span style="font-size:1.2em;">📱</span>
+          <p style="color:white;margin:0;font-size:0.92em;">Finalizamos una <strong>llamada o videollamada</strong></p>
         </div>
-        <div
-          style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px 14px;">
-          <span style="font-size: 1.1em;">🏛️</span>
-          <p style="color: white; margin: 0; font-size: 0.93em;">Nos vamos de un
-            <strong>lugar</strong></p>
+        <div style="display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.05);border-radius:10px;padding:11px 14px;">
+          <span style="font-size:1.2em;">🏛️</span>
+          <p style="color:white;margin:0;font-size:0.92em;">Nos vamos de un <strong>lugar</strong></p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ==================== TARJETA 2 ==================== -->
-  <div id="card2"
-    style="display: none; border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#1B4332,#2D6A4F); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(82,183,136,0.15); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(255,255,255,0.04); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(82,183,136,0.3); color: #52b788; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">02
-        / 07</span> <span style="font-size: 2em;">🔀</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #52b788; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Consideración</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 18px 0;">
-        Es importante saber:</h3>
-      <div
-        style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 18px; margin-bottom: 16px;">
-        <p style="color: white; line-height: 1.7; margin: 0; font-size: 1em;">
-          Las despedidas a veces indican si volveremos a ver a esa persona o si
-          habrá una futura reunión.</p>
+
+  <!-- ===== TARJETA 2: Consideración ===== -->
+  <div id="card2" class="card-wrap" style="background:linear-gradient(145deg,#1B4332,#2D6A4F); box-shadow:0 8px 40px rgba(82,183,136,0.25);">
+    <div class="deco-tr" style="background:rgba(82,183,136,0.15);"></div>
+    <div class="deco-bl" style="background:rgba(255,255,255,0.04);"></div>
+    <div class="tex-diag"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(82,183,136,0.3);color:#52B788;">02 / 07 &nbsp;·&nbsp; 🔀 CONSIDERACIÓN</span>
+      <span style="font-size:1.9em;">🔀</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#52B788;">Consideración</p>
+      <h3 class="card-title">Es importante saber:</h3>
+      <div class="def-box">
+        <p class="def-text">Las despedidas a veces indican si volveremos a ver a esa persona o si habrá una futura reunión.</p>
       </div>
-      <div
-        style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;">
-        <div
-          style="display: flex; align-items: center; gap: 12px; background: rgba(82,183,136,0.15); border-left: 3px solid #52B788; border-radius: 0 10px 10px 0; padding: 12px 16px;">
-          <span style="font-size: 1.2em;">🤝</span>
-          <p style="color: white; margin: 0; font-size: 0.95em;"><strong>Hasta
-              luego:</strong> Probablemente veremos a esa persona de nuevo</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="stripe" style="border-left-color:#52B788;background:rgba(82,183,136,0.14);">
+          <span style="font-size:1.3em;flex-shrink:0;">🤝</span>
+          <p style="color:white;margin:0;font-size:0.93em;"><strong style="color:#52B788;">Hasta luego:</strong> Probablemente veremos a esa persona de nuevo</p>
         </div>
-        <div
-          style="display: flex; align-items: center; gap: 12px; background: rgba(82,183,136,0.15); border-left: 3px solid #52B788; border-radius: 0 10px 10px 0; padding: 12px 16px;">
-          <span style="font-size: 1.2em;">👋</span>
-          <p style="color: white; margin: 0; font-size: 0.95em;">
-            <strong>Adiós:</strong> Puede que no veamos a esa persona por un
-            tiempo</p>
+        <div class="stripe" style="border-left-color:#52B788;background:rgba(82,183,136,0.14);">
+          <span style="font-size:1.3em;flex-shrink:0;">👋</span>
+          <p style="color:white;margin:0;font-size:0.93em;"><strong style="color:#52B788;">Adiós:</strong> Puede que no veamos a esa persona por un tiempo</p>
         </div>
-        <div
-          style="display: flex; align-items: center; gap: 12px; background: rgba(82,183,136,0.15); border-left: 3px solid #52B788; border-radius: 0 10px 10px 0; padding: 12px 16px;">
-          <span style="font-size: 1.2em;">📅</span>
-          <p style="color: white; margin: 0; font-size: 0.95em;"><strong>Hasta
-              mañana/pronto:</strong> Indica cuándo la volveremos a ver</p>
+        <div class="stripe" style="border-left-color:#52B788;background:rgba(82,183,136,0.14);">
+          <span style="font-size:1.3em;flex-shrink:0;">📅</span>
+          <p style="color:white;margin:0;font-size:0.93em;"><strong style="color:#52B788;">Hasta mañana/pronto:</strong> Indica cuándo la volveremos a ver</p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ==================== TARJETA 3 ==================== -->
-  <div id="card3"
-    style="display: none; border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#1a1a6e,#2d2d8e); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(100,100,255,0.15); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(241,196,15,0.06); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(100,100,255,0.3); color: #8888ff; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">03
-        / 07</span> <span style="font-size: 2em;">😎</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #8888ff; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Despedidas informales</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 16px 0;">
-        Palabras y características</h3>
-      <div
-        style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
-        <p
-          style="color: #f1c40f; font-size: 0.78em; font-weight: bold; margin: 0 0 10px 0; letter-spacing: 1px;">
-          PALABRAS INFORMALES</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;"><span
-            style="background: rgba(100,100,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Chao</span>
-          <span
-            style="background: rgba(100,100,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Nos
-            vemos</span> <span
-            style="background: rgba(100,100,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Hasta
-            luego</span> <span
-            style="background: rgba(100,100,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Cuídate</span>
-          <span
-            style="background: rgba(100,100,255,0.3); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Hasta
-            pronto</span></div>
+
+  <!-- ===== TARJETA 3: Despedidas informales ===== -->
+  <div id="card3" class="card-wrap" style="background:linear-gradient(145deg,#1a1a6e,#2d2d8e); box-shadow:0 8px 40px rgba(136,136,255,0.28);">
+    <div class="deco-tr" style="background:rgba(100,100,255,0.15);"></div>
+    <div class="deco-bl" style="background:rgba(241,196,15,0.06);"></div>
+    <div class="tex-diag"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(136,136,255,0.28);color:#8888FF;">03 / 07 &nbsp;·&nbsp; 😎 INFORMALES</span>
+      <span style="font-size:1.9em;">😎</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#8888FF;">Despedidas informales</p>
+      <h3 class="card-title">Palabras y características</h3>
+
+      <div class="def-box" style="margin-bottom:14px;">
+        <p class="sec-lbl" style="color:#F1C40F;margin-bottom:10px;">PALABRAS INFORMALES</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="pill" style="background:rgba(136,136,255,0.28);color:white;">Chao</span>
+          <span class="pill" style="background:rgba(136,136,255,0.28);color:white;">Nos vemos</span>
+          <span class="pill" style="background:rgba(136,136,255,0.28);color:white;">Hasta luego</span>
+          <span class="pill" style="background:rgba(136,136,255,0.28);color:white;">Cuídate</span>
+          <span class="pill" style="background:rgba(136,136,255,0.28);color:white;">Hasta pronto</span>
+        </div>
       </div>
-      <p
-        style="color: #f1c40f; font-size: 0.78em; font-weight: bold; margin: 0 0 8px 0; letter-spacing: 1px;">
-        CARACTERÍSTICAS</p>
-      <div style="display: flex; flex-direction: column; gap: 7px;">
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #8888ff;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Tono
-            <strong>relajado</strong> y cercano</p>
+
+      <p class="sec-lbl" style="color:#F1C40F;">CARACTERÍSTICAS</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(136,136,255,0.1);border-radius:9px;padding:10px 13px;">
+          <span style="color:#8888FF;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Tono <strong>relajado</strong> y cercano</p>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #8888ff;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Se emplea el
-            <strong>"Tú"</strong></p>
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(136,136,255,0.1);border-radius:9px;padding:10px 13px;">
+          <span style="color:#8888FF;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Se emplea el <strong>"Tú"</strong></p>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #8888ff;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Lenguaje
-            <strong>espontáneo</strong></p>
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(136,136,255,0.1);border-radius:9px;padding:10px 13px;">
+          <span style="color:#8888FF;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Lenguaje <strong>espontáneo</strong></p>
         </div>
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #8888ff;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Gestos: abrazos,
-            choque de manos 👋</p>
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(136,136,255,0.1);border-radius:9px;padding:10px 13px;">
+          <span style="color:#8888FF;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Gestos: abrazos, choque de manos 👋</p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ==================== TARJETA 4 ==================== -->
-  <div id="card4"
-    style="display: none; border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#2a1a6e,#3d2d8e); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(150,100,255,0.15); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(241,196,15,0.06); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(150,100,255,0.3); color: #bb88ff; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">04
-        / 07</span> <span style="font-size: 2em;">💭</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #bb88ff; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Dato curioso</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 16px 0;">
-        Hasta la vista, baby</h3>
-      <div
-        style="background: rgba(150,100,255,0.12); border: 1px solid rgba(150,100,255,0.3); border-radius: 10px; padding: 18px; display: flex; gap: 10px; align-items: flex-start;">
-        <span style="font-size: 1.3em;">💡</span>
+
+  <!-- ===== TARJETA 4: Dato curioso ===== -->
+  <div id="card4" class="card-wrap" style="background:linear-gradient(145deg,#2a1a6e,#3d2d8e); box-shadow:0 8px 40px rgba(187,136,255,0.28);">
+    <div class="deco-tr" style="background:rgba(150,100,255,0.15);"></div>
+    <div class="deco-bl" style="background:rgba(241,196,15,0.06);"></div>
+    <div class="tex-diag"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(187,136,255,0.28);color:#BB88FF;">04 / 07 &nbsp;·&nbsp; 💭 DATO CURIOSO</span>
+      <span style="font-size:1.9em;">💭</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#BB88FF;">Dato curioso</p>
+      <h3 class="card-title">Hasta la vista, baby</h3>
+
+      <div style="background:rgba(150,100,255,0.12);border:1px solid rgba(150,100,255,0.3);border-radius:13px;padding:20px;display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;">
+        <span style="font-size:1.5em;flex-shrink:0;">💡</span>
         <div>
-          <p
-            style="color: rgba(255,255,255,0.9); margin: 0 0 10px 0; font-size: 0.95em; line-height: 1.6;">
-            Esta frase se hizo muy famosa por la película <strong
-              style="color: #bb88ff;">Terminator</strong>, pero en realidad no
-            es muy común en el español cotidiano.</p>
-          <p
-            style="color: rgba(255,255,255,0.7); margin: 0; font-size: 0.88em; line-height: 1.5; font-style: italic;">
-            Es más una expresión divertida que usamos cuando queremos sonar
-            dramáticos o hacer un chiste.</p>
+          <p style="color:rgba(255,255,255,0.9);margin:0 0 12px;font-size:0.96em;line-height:1.65;">Esta frase se hizo muy famosa por la película <strong style="color:#BB88FF;">Terminator</strong>, pero en realidad no es muy común en el español cotidiano.</p>
+          <p style="color:rgba(255,255,255,0.65);margin:0;font-size:0.88em;line-height:1.55;font-style:italic;">Es más una expresión divertida que usamos cuando queremos sonar dramáticos o hacer un chiste.</p>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,0.06);border-radius:12px;padding:16px;">
+        <p class="sec-lbl" style="color:#BB88FF;">🎬 ¿SABÍAS QUE...?</p>
+        <p style="color:white;margin:0;font-size:0.92em;line-height:1.65;">La frase original en español sería <strong style="color:#F1C40F;">"Hasta la vista"</strong>, que literalmente significa "until we see each other again" — una despedida que implica un reencuentro futuro.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 5: Despedidas formales ===== -->
+  <div id="card5" class="card-wrap" style="background:linear-gradient(145deg,#1B3A6B,#1a5276); box-shadow:0 8px 40px rgba(52,152,219,0.28);">
+    <div class="deco-tr" style="background:rgba(52,152,219,0.15);"></div>
+    <div class="deco-bl" style="background:rgba(255,255,255,0.04);"></div>
+    <div class="tex-diag"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(93,173,226,0.28);color:#5DADE2;">05 / 07 &nbsp;·&nbsp; 👔 FORMALES</span>
+      <span style="font-size:1.9em;">👔</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#5DADE2;">Despedidas formales</p>
+      <h3 class="card-title">Palabras y características</h3>
+
+      <div class="def-box" style="margin-bottom:14px;">
+        <p class="sec-lbl" style="color:#F1C40F;margin-bottom:10px;">PALABRAS FORMALES</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+          <span class="pill" style="background:rgba(52,152,219,0.25);color:white;">Hasta luego</span>
+          <span class="pill" style="background:rgba(52,152,219,0.25);color:white;">Que tenga buen día</span>
+          <span class="pill" style="background:rgba(52,152,219,0.25);color:white;">Fue un placer</span>
+          <span class="pill" style="background:rgba(52,152,219,0.25);color:white;">Muchas gracias</span>
+        </div>
+      </div>
+
+      <p class="sec-lbl" style="color:#F1C40F;">CARACTERÍSTICAS</p>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(52,152,219,0.12);border-radius:9px;padding:10px 13px;">
+          <span style="color:#5DADE2;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Tono más <strong>respetuoso</strong></p>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(52,152,219,0.12);border-radius:9px;padding:10px 13px;">
+          <span style="color:#5DADE2;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Se emplea el <strong>"Usted"</strong></p>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(52,152,219,0.12);border-radius:9px;padding:10px 13px;">
+          <span style="color:#5DADE2;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Pronunciación más <strong>clara y pausada</strong></p>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;background:rgba(52,152,219,0.12);border-radius:9px;padding:10px 13px;">
+          <span style="color:#5DADE2;font-size:1.1em;">✓</span>
+          <p style="color:white;margin:0;font-size:0.91em;">Mantener <strong>distancia física</strong> apropiada</p>
         </div>
       </div>
     </div>
   </div>
-  <!-- ==================== TARJETA 5 ==================== -->
-  <div id="card5"
-    style="display: none; border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#1B3A6B,#1a5276); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(52,152,219,0.15); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(255,255,255,0.04); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(52,152,219,0.3); color: #5dade2; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">05
-        / 07</span> <span style="font-size: 2em;">👔</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #5dade2; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Despedidas formales</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 16px 0;">
-        Palabras y características</h3>
-      <div
-        style="background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 16px; margin-bottom: 14px;">
-        <p
-          style="color: #f1c40f; font-size: 0.78em; font-weight: bold; margin: 0 0 10px 0; letter-spacing: 1px;">
-          PALABRAS FORMALES</p>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px;"><span
-            style="background: rgba(52,152,219,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Hasta
-            luego</span> <span
-            style="background: rgba(52,152,219,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Que
-            tenga buen día</span> <span
-            style="background: rgba(52,152,219,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Fue
-            un placer</span> <span
-            style="background: rgba(52,152,219,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.9em; font-weight: 600;">Muchas
-            gracias</span></div>
-      </div>
-      <p
-        style="color: #f1c40f; font-size: 0.78em; font-weight: bold; margin: 0 0 8px 0; letter-spacing: 1px;">
-        CARACTERÍSTICAS</p>
-      <div style="display: flex; flex-direction: column; gap: 7px;">
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #5dade2;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Tono más
-            <strong>respetuoso</strong></p>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #5dade2;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Se emplea el
-            <strong>"Usted"</strong></p>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #5dade2;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Pronunciación
-            más <strong>clara y pausada</strong></p>
-        </div>
-        <div style="display: flex; gap: 8px; align-items: center;"><span
-            style="color: #5dade2;">✓</span>
-          <p style="color: white; margin: 0; font-size: 0.9em;">Mantener
-            <strong>distancia física</strong> apropiada</p>
-        </div>
-      </div>
+
+  <!-- ===== TARJETA 6: Ejemplos en contexto ===== -->
+  <div id="card6" class="card-wrap" style="background:linear-gradient(145deg,#4A1942,#6D2B5E); box-shadow:0 8px 40px rgba(255,136,216,0.25);">
+    <div class="deco-tr" style="background:rgba(255,100,200,0.12);"></div>
+    <div class="deco-bl" style="background:rgba(255,255,255,0.04);"></div>
+    <div class="tex-diag"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(255,136,216,0.28);color:#FF88D8;">06 / 07 &nbsp;·&nbsp; ✨ EJEMPLOS</span>
+      <span style="font-size:1.9em;">✨</span>
     </div>
-  </div>
-  <!-- ==================== TARJETA 6 ==================== -->
-  <div id="card6"
-    style="display: none; border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#4A1942,#6D2B5E); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(255,100,200,0.12); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(255,255,255,0.04); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(255,100,200,0.3); color: #ff88d8; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">06
-        / 07</span> <span style="font-size: 2em;">✨</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #ff88d8; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Ejemplos</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 16px 0;">
-        Despedidas en contexto</h3>
-      <div style="display: flex; flex-direction: column; gap: 12px;">
-        <div
-          style="background: rgba(100,255,150,0.1); border: 1px solid rgba(100,255,150,0.25); border-radius: 12px; padding: 14px 16px;">
-          <p
-            style="color: #52b788; font-size: 0.78em; font-weight: bold; margin: 0 0 8px 0; letter-spacing: 1px;">
-            INFORMAL</p>
-          <div style="display: flex; align-items: flex-start; gap: 8px;"><span
-              style="font-size: 1.1em;">😊</span>
-            <p style="color: white; margin: 0; font-size: 0.95em;">"¡Chao! Nos
-              vemos mañana en clase."</p>
-          </div>
-        </div>
-        <div
-          style="background: rgba(93,173,226,0.1); border: 1px solid rgba(93,173,226,0.25); border-radius: 12px; padding: 14px 16px;">
-          <p
-            style="color: #7fb3d3; font-size: 0.78em; font-weight: bold; margin: 0 0 8px 0; letter-spacing: 1px;">
-            FORMAL</p>
-          <div style="display: flex; align-items: flex-start; gap: 8px;"><span
-              style="font-size: 1.1em;">🤝</span>
-            <p style="color: white; margin: 0; font-size: 0.95em;">"Muchas
-              gracias por su tiempo. Que tenga buen día."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ==================== TARJETA 7 ==================== -->
-  <div id="card7"
-    style="display: none; border-radius: 20px; padding: 40px; background: linear-gradient(145deg,#2C3E50,#3D5166); position: relative; overflow: hidden; min-height: 380px;">
-    <div
-      style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(241,196,15,0.1); border-radius: 50%;">
-       </div>
-    <div
-      style="position: absolute; bottom: -60px; left: -30px; width: 220px; height: 220px; background: rgba(231,76,60,0.07); border-radius: 50%;">
-       </div>
-    <div
-      style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; position: relative; z-index: 1;">
-      <span
-        style="background: rgba(241,196,15,0.3); color: #f1c40f; padding: 5px 14px; border-radius: 20px; font-size: 0.8em; font-weight: bold; letter-spacing: 2px;">07
-        / 07</span> <span style="font-size: 2em;">🌟</span></div>
-    <div style="position: relative; z-index: 1;">
-      <p
-        style="color: #f1c40f; font-weight: bold; font-size: 0.8em; letter-spacing: 3px; text-transform: uppercase; margin: 0 0 8px 0;">
-        Resumen</p>
-      <h3
-        style="font-family: 'Playfair Display',serif; color: white; font-size: 1.9em; margin: 0 0 16px 0;">
-        Formal vs. Informal</h3>
-      <div
-        style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;">
+    <div class="zi">
+      <p class="eyebrow" style="color:#FF88D8;">Ejemplos</p>
+      <h3 class="card-title">Despedidas en contexto</h3>
+
+      <div style="display:flex;flex-direction:column;gap:14px;">
         <!-- Informal -->
-        <div
-          style="background: rgba(150,100,255,0.15); border: 1px solid rgba(150,100,255,0.3); border-radius: 12px; padding: 16px;">
-          <p
-            style="color: #bb88ff; font-size: 0.78em; font-weight: bold; margin: 0 0 10px 0; letter-spacing: 1px; text-align: center;">
-            😎 INFORMAL</p>
-          <div style="display: flex; flex-direction: column; gap: 6px;"><span
-              style="background: rgba(150,100,255,0.2); color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.85em; text-align: center;">Chao</span>
-            <span
-              style="background: rgba(150,100,255,0.2); color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.85em; text-align: center;">Nos
-              vemos</span> <span
-              style="background: rgba(150,100,255,0.2); color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.85em; text-align: center;">Cuídate</span>
-            <span
-              style="color: rgba(255,255,255,0.5); font-size: 0.78em; text-align: center; margin-top: 4px;">Usa
-              "Tú"</span></div>
+        <div style="background:rgba(82,183,136,0.1);border:1px solid rgba(82,183,136,0.28);border-radius:13px;padding:16px 18px;">
+          <p class="sec-lbl" style="color:#52B788;margin-bottom:10px;">😊 INFORMAL</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="font-size:1.2em;flex-shrink:0;">👋</span>
+            <div>
+              <p style="color:white;margin:0 0 6px;font-size:0.95em;font-style:italic;">"¡Chao! Nos vemos mañana en clase."</p>
+              <p style="color:rgba(255,255,255,0.5);margin:0;font-size:0.8em;">Contexto: entre amigos o compañeros de clase</p>
+            </div>
+          </div>
         </div>
         <!-- Formal -->
-        <div
-          style="background: rgba(52,152,219,0.15); border: 1px solid rgba(52,152,219,0.3); border-radius: 12px; padding: 16px;">
-          <p
-            style="color: #7fb3d3; font-size: 0.78em; font-weight: bold; margin: 0 0 10px 0; letter-spacing: 1px; text-align: center;">
-            👔 FORMAL</p>
-          <div style="display: flex; flex-direction: column; gap: 6px;"><span
-              style="background: rgba(52,152,219,0.2); color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.85em; text-align: center;">Hasta
-              luego</span> <span
-              style="background: rgba(52,152,219,0.2); color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.85em; text-align: center;">Buen
-              día</span> <span
-              style="background: rgba(52,152,219,0.2); color: white; padding: 5px 10px; border-radius: 8px; font-size: 0.85em; text-align: center;">Fue
-              un placer</span> <span
-              style="color: rgba(255,255,255,0.5); font-size: 0.78em; text-align: center; margin-top: 4px;">Usa
-              "Usted"</span></div>
+        <div style="background:rgba(93,173,226,0.1);border:1px solid rgba(93,173,226,0.28);border-radius:13px;padding:16px 18px;">
+          <p class="sec-lbl" style="color:#7FB3D3;margin-bottom:10px;">👔 FORMAL</p>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <span style="font-size:1.2em;flex-shrink:0;">🤝</span>
+            <div>
+              <p style="color:white;margin:0 0 6px;font-size:0.95em;font-style:italic;">"Muchas gracias por su tiempo. Que tenga buen día."</p>
+              <p style="color:rgba(255,255,255,0.5);margin:0;font-size:0.8em;">Contexto: reunión de trabajo, atención al cliente</p>
+            </div>
+          </div>
+        </div>
+        <!-- Tip extra -->
+        <div style="background:rgba(241,196,15,0.1);border:1px solid rgba(241,196,15,0.25);border-radius:13px;padding:14px 18px;">
+          <p class="sec-lbl" style="color:#F1C40F;margin-bottom:8px;">💡 CONSEJO</p>
+          <p style="color:white;margin:0;font-size:0.9em;line-height:1.6;">Siempre puedes combinar expresiones: <strong style="color:#FF88D8;">"Hasta luego, que le vaya bien"</strong> suena muy natural y amable en cualquier contexto.</p>
         </div>
       </div>
-      <div
-        style="background: rgba(231,76,60,0.15); border-radius: 10px; padding: 12px 16px; display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 1.2em;">🎯</span>
-        <p
-          style="color: rgba(255,255,255,0.85); margin: 0; font-size: 0.88em; font-weight: 600;">
-          ¡Practica eligiendo la despedida correcta en cada situación!</p>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 7: Resumen Final ===== -->
+  <div id="card7" class="card-wrap" style="background:linear-gradient(145deg,#2C3E50,#3D5166); box-shadow:0 8px 40px rgba(241,196,15,0.2);">
+    <div class="deco-tr" style="background:rgba(241,196,15,0.1);"></div>
+    <div class="deco-bl" style="background:rgba(231,76,60,0.07);"></div>
+    <div class="tex-diag"></div>
+    <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:1.1em;opacity:0.1;letter-spacing:8px;white-space:nowrap;">⭐⭐⭐⭐⭐</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="background:rgba(241,196,15,0.28);color:#F1C40F;">07 / 07 &nbsp;·&nbsp; 🌟 RESUMEN</span>
+      <span style="font-size:1.9em;">🌟</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#F1C40F;">Resumen</p>
+      <h3 class="card-title">Formal vs. Informal</h3>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+        <!-- Informal -->
+        <div style="background:rgba(150,100,255,0.14);border:1px solid rgba(150,100,255,0.3);border-radius:13px;padding:16px;">
+          <p style="color:#BB88FF;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78em;font-weight:700;margin:0 0 11px;letter-spacing:1px;text-align:center;">😎 INFORMAL</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="background:rgba(150,100,255,0.2);color:white;padding:5px 10px;border-radius:8px;font-size:0.84em;text-align:center;">Chao</span>
+            <span style="background:rgba(150,100,255,0.2);color:white;padding:5px 10px;border-radius:8px;font-size:0.84em;text-align:center;">Nos vemos</span>
+            <span style="background:rgba(150,100,255,0.2);color:white;padding:5px 10px;border-radius:8px;font-size:0.84em;text-align:center;">Cuídate</span>
+            <p style="color:rgba(255,255,255,0.45);font-size:0.77em;text-align:center;margin:4px 0 0;">Usa "Tú"</p>
+          </div>
+        </div>
+        <!-- Formal -->
+        <div style="background:rgba(52,152,219,0.14);border:1px solid rgba(52,152,219,0.3);border-radius:13px;padding:16px;">
+          <p style="color:#7FB3D3;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78em;font-weight:700;margin:0 0 11px;letter-spacing:1px;text-align:center;">👔 FORMAL</p>
+          <div style="display:flex;flex-direction:column;gap:6px;">
+            <span style="background:rgba(52,152,219,0.2);color:white;padding:5px 10px;border-radius:8px;font-size:0.84em;text-align:center;">Hasta luego</span>
+            <span style="background:rgba(52,152,219,0.2);color:white;padding:5px 10px;border-radius:8px;font-size:0.84em;text-align:center;">Buen día</span>
+            <span style="background:rgba(52,152,219,0.2);color:white;padding:5px 10px;border-radius:8px;font-size:0.84em;text-align:center;">Fue un placer</span>
+            <p style="color:rgba(255,255,255,0.45);font-size:0.77em;text-align:center;margin:4px 0 0;">Usa "Usted"</p>
+          </div>
+        </div>
       </div>
- <!-- CTA -->
-  <div style="text-align: center;">
-   <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=42"
+
+      <div style="background:rgba(231,76,60,0.14);border-radius:11px;padding:12px 16px;display:flex;align-items:center;gap:10px;margin-bottom:18px;">
+        <span style="font-size:1.3em;flex-shrink:0;">🎯</span>
+        <p style="color:rgba(255,255,255,0.88);margin:0;font-size:0.88em;font-weight:600;">¡Practica eligiendo la despedida correcta en cada situación!</p>
+      </div>
+
+      <!-- BOTÓN AULA VIRTUAL — enlace real con detección móvil -->
+      <div style="text-align:center;">
+        <a id="btn-volver"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=67"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
   🏫 Regresar al Aula Virtual
 </a>
 
 <script>
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=42';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com/mod/page/view.php?id=42';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=67';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com/mod/page/view.php?id=67';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
     btn.href = appUrl;
   }
 </script>
-  </div>
     </div>
   </div>
-  <!-- NAVEGACIÓN -->
-  <div
-    style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; flex-wrap: wrap;">
-    <!-- FLECHAS IZQUIERDA --> <label id="prev1"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s7">←</label> <label id="prev2"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s1">←</label> <label id="prev3"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s2">←</label> <label id="prev4"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s3">←</label> <label id="prev5"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s4">←</label> <label id="prev6"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s5">←</label> <label id="prev7"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s6">←</label> <!-- PUNTOS -->
-    <div style="display: flex; gap: 7px; align-items: center;"><label id="dot1"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #E74C3C; cursor: pointer; display: inline-block; transition: all 0.2s;"
-        for="s1"></label> <label id="dot2"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #ddd; cursor: pointer; display: inline-block;"
-        for="s2"></label> <label id="dot3"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #ddd; cursor: pointer; display: inline-block;"
-        for="s3"></label> <label id="dot4"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #ddd; cursor: pointer; display: inline-block;"
-        for="s4"></label> <label id="dot5"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #ddd; cursor: pointer; display: inline-block;"
-        for="s5"></label> <label id="dot6"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #ddd; cursor: pointer; display: inline-block;"
-        for="s6"></label> <label id="dot7"
-        style="width: 11px; height: 11px; border-radius: 50%; background: #ddd; cursor: pointer; display: inline-block;"
-        for="s7"></label></div>
-    <!-- FLECHAS DERECHA --> <label id="next1"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: inline-block;"
-      for="s2">→</label> <label id="next2"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s3">→</label> <label id="next3"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s4">→</label> <label id="next4"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s5">→</label> <label id="next5"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s6">→</label> <label id="next6"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s7">→</label> <label id="next7"
-      style="width: 44px; height: 44px; line-height: 44px; text-align: center; border-radius: 50%; background: white; cursor: pointer; font-size: 1.2em; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;"
-      for="s1">→</label>
+
+  <!-- ===== DOTS ===== -->
+  <div class="nav-dots" style="display:flex;justify-content:center;gap:9px;margin-top:26px;flex-wrap:wrap;">
+    <label for="s1" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
+    <label for="s2" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
+    <label for="s3" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
+    <label for="s4" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
+    <label for="s5" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
+    <label for="s6" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
+    <label for="s7" style="width:11px;height:11px;border-radius:50%;background:#555;cursor:pointer;transition:all 0.25s;display:block;"></label>
   </div>
-  <!-- CONTADOR -->
-  <p id="contador"
-    style="text-align: center; color: #999; font-size: 0.85em; margin-top: 10px;">
-    Tarjeta 1 de 7</p>
+
+  <!-- ===== FLECHAS ===== -->
+  <div class="nav-arrows" style="display:flex;justify-content:center;gap:14px;margin-top:18px;">
+    <div class="btn-nav arr-1" style="gap:14px;">
+      <label class="nav-btn" for="s2">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-2" style="gap:14px;">
+      <label class="nav-btn" for="s1">← Anterior</label>
+      <label class="nav-btn" for="s3">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-3" style="gap:14px;">
+      <label class="nav-btn" for="s2">← Anterior</label>
+      <label class="nav-btn" for="s4">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-4" style="gap:14px;">
+      <label class="nav-btn" for="s3">← Anterior</label>
+      <label class="nav-btn" for="s5">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-5" style="gap:14px;">
+      <label class="nav-btn" for="s4">← Anterior</label>
+      <label class="nav-btn" for="s6">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-6" style="gap:14px;">
+      <label class="nav-btn" for="s5">← Anterior</label>
+      <label class="nav-btn" for="s7">Siguiente →</label>
+    </div>
+    <div class="btn-nav arr-7" style="gap:14px;">
+      <label class="nav-btn" for="s6">← Anterior</label>
+      <label class="nav-btn" style="background:linear-gradient(135deg,#F1C40F,#E67E22);border-color:#F1C40F;color:#1a1a2e;" for="s1">🔁 Reiniciar</label>
+    </div>
+  </div>
+
 </div>
-<p>
-  <script>
-    const TOTAL = 7;
-    const colores = ['', '#E74C3C', '#52B788', '#8888ff', '#bb88ff', '#5dade2',
-      '#ff88d8', '#F1C40F'
-    ];
-
-    function mostrar(n) {
-      for (let i = 1; i <= TOTAL; i++) {
-        document.getElementById('card' + i).style.display = 'none';
-        document.getElementById('dot' + i).style.background = '#ddd';
-        document.getElementById('dot' + i).style.transform = 'scale(1)';
-        document.getElementById('dot' + i).style.width = '11px';
-        document.getElementById('dot' + i).style.height = '11px';
-        document.getElementById('prev' + i).style.display = 'none';
-        document.getElementById('next' + i).style.display = 'none';
-      }
-      document.getElementById('card' + n).style.display = 'block';
-      document.getElementById('dot' + n).style.background = colores[n];
-      document.getElementById('dot' + n).style.transform = 'scale(1.35)';
-      document.getElementById('dot' + n).style.width = '13px';
-      document.getElementById('dot' + n).style.height = '13px';
-      document.getElementById('contador').textContent = 'Tarjeta ' + n +
-        ' de ' + TOTAL;
-
-      const prev = n === 1 ? TOTAL : n - 1;
-      const next = n === TOTAL ? 1 : n + 1;
-
-      const prevEl = document.getElementById('prev' + n);
-      prevEl.style.display = 'inline-block';
-      prevEl.setAttribute('for', 's' + prev);
-      prevEl.onclick = function() {
-        mostrar(prev);
-      };
-
-      const nextEl = document.getElementById('next' + n);
-      nextEl.style.display = 'inline-block';
-      nextEl.setAttribute('for', 's' + next);
-      nextEl.onclick = function() {
-        mostrar(next);
-      };
-    }
-
-    mostrar(1);
-  </script>
-</p>
+</body>
+</html>
