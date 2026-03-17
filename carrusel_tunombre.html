@@ -331,8 +331,8 @@
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
   🏫 Regresar al Aula Virtual
 </a>
-
-<script>
+        </div>
+    </div>`;
   const btn = document.getElementById('btn-volver');
   const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
   const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
@@ -341,10 +341,7 @@
   if (esMóvil) {
     btn.href = appUrl;
   }
-</script>
-        </div>
-    
-    </div>
+}
   </div>
 
   <!-- NAVEGACIÓN -->
@@ -354,7 +351,6 @@
     <button class="nav-btn" id="btnNext" onclick="cambiar(1)">→</button>
   </div>
   <p class="contador" id="contador">Tarjeta 1 de 7</p>
-
 </div>
 
 <script>
