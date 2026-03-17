@@ -1,9 +1,15 @@
 /* ============================================================
    INSTITUTO INNOVA — CSS para App Móvil Moodle
+   v2 — Selectores directos, sin depender de [style*="..."]
    ============================================================
+   Cómo usar:
+   1. Reemplaza el archivo innova-mobile.css en GitHub
+   2. Netlify lo despliega automáticamente
+   3. En la app: Ajustes → Sincronización → Refrescar sitio
+   ============================================================ */
 
-/* ── 1. RESET BASE ─────────────────────────────────────────── */
-/* Corrige el texto cortado en absolutamente todo el contenido */
+
+/* ── 1. RESET NUCLEAR ──────────────────────────────────────── */
 
 * {
   box-sizing: border-box !important;
@@ -12,21 +18,51 @@
   word-wrap: break-word !important;
   hyphens: none !important;
   -webkit-hyphens: none !important;
+  max-width: 100% !important;
 }
 
-body {
+html, body {
   overflow-x: hidden !important;
+  max-width: 100% !important;
 }
+
+
+/* ── 2. TIPOGRAFÍA ─────────────────────────────────────────── */
+
+h1 {
+  font-size: 1.6em !important;
+  line-height: 1.2 !important;
+  white-space: normal !important;
+}
+
+h2 {
+  font-size: 1.2em !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+}
+
+h3 {
+  font-size: 1.05em !important;
+  line-height: 1.3 !important;
+  white-space: normal !important;
+}
+
+p, li, span, td, th, a, strong, em, label {
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+
+/* ── 3. IMÁGENES ───────────────────────────────────────────── */
 
 img, video, iframe {
   max-width: 100% !important;
   height: auto !important;
-  display: block !important;
 }
 
 
-/* ── 2. CONTENIDO NATIVO DE MOODLE ────────────────────────── */
-/* Clases que Moodle usa en páginas, secciones y actividades  */
+/* ── 4. CONTENIDO NATIVO MOODLE ────────────────────────────── */
 
 #page,
 #page-content,
@@ -35,132 +71,150 @@ img, video, iframe {
 .course-content,
 .activity-description,
 .section-summary,
-.summary,
 .mod_label,
 .activityname,
 .instancename,
-.activity-name,
-.description,
-.box.generalbox,
-.contentwithoutpages,
-.core-course-module-description {
-  overflow-wrap: break-word !important;
-  word-break: normal !important;
-  min-width: 0 !important;
-  max-width: 100% !important;
+.box.generalbox {
   overflow-x: hidden !important;
-}
-
-
-/* ── 3. TIPOGRAFÍA Y TAMAÑOS ───────────────────────────────── */
-/* Ajusta fuentes para que sean legibles en pantallas pequeñas */
-
-p, li, span, td, th, label, div {
-  font-size: clamp(0.82em, 3.5vw, 1em) !important;
-  line-height: 1.65 !important;
-  word-break: normal !important;
-  overflow-wrap: break-word !important;
-}
-
-h1 {
-  font-size: clamp(1.4em, 6vw, 2.4em) !important;
-  line-height: 1.2 !important;
-  word-break: normal !important;
-  white-space: normal !important;
-}
-
-h2 {
-  font-size: clamp(1.1em, 4.5vw, 1.5em) !important;
-  line-height: 1.3 !important;
-  word-break: normal !important;
-  white-space: normal !important;
-}
-
-h3 {
-  font-size: clamp(1em, 4vw, 1.25em) !important;
-  line-height: 1.3 !important;
-  word-break: normal !important;
-  white-space: normal !important;
-}
-
-strong {
-  word-break: normal !important;
-  white-space: normal !important;
-}
-
-
-/* ── 4. CONTENEDORES FLEX ─────────────────────────────────── */
-/* min-width: 0 es la clave para que los hijos flex          */
-/* puedan encogerse y no rompan el layout                    */
-
-[style*="display: flex"],
-[style*="display:flex"] {
-  flex-wrap: wrap !important;
-  min-width: 0 !important;
-}
-
-[style*="display: flex"] > *,
-[style*="display:flex"] > * {
+  max-width: 100% !important;
   min-width: 0 !important;
 }
 
 
-/* ── 5. GRILLAS DE 2 COLUMNAS → 1 COLUMNA ─────────────────── */
-/* Las tarjetas tipo "¿Por qué es importante?" en móvil       */
-/* necesitan ocupar el ancho completo para no cortar texto    */
+/* ── 5. TODOS LOS DIV ──────────────────────────────────────── */
+/* min-width: 0 es crítico para que los hijos flex
+   puedan encogerse correctamente                  */
 
-[style*="grid-template-columns: 1fr 1fr"],
-[style*="grid-template-columns:1fr 1fr"] {
+div {
+  min-width: 0 !important;
+}
+
+
+/* ── 6. TARJETAS DE VOCABULARIO — SCROLL HORIZONTAL ────────── */
+/* Apuntamos por border-top de colores que es único
+   de estas tarjetas de vocabulario / análisis     */
+
+div[style*="border-top: 3px solid #1a2e4a"],
+div[style*="border-top: 3px solid #c9a84c"],
+div[style*="border-top: 3px solid #2c4a72"] {
+  min-width: 130px !important;
+  max-width: 155px !important;
+  flex: 0 0 145px !important;
+  flex-shrink: 0 !important;
+  white-space: normal !important;
+  word-break: normal !important;
+}
+
+/* Tarjetas de análisis más anchas (SER / LLAMARSE) */
+div[style*="border-top: 3px solid #c9a84c"][style*="min-width: 220px"],
+div[style*="border-top: 3px solid #2c4a72"][style*="min-width: 220px"] {
+  min-width: 200px !important;
+  max-width: 240px !important;
+  flex: 0 0 220px !important;
+}
+
+/* El contenedor flex de las tarjetas:
+   nowrap + scroll en lugar de wrap que las aprieta */
+div[style*="border: 1px solid #ddd4c0"][style*="border-radius: 10px"] > div > div[style*="display: flex"] {
+  flex-wrap: nowrap !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  padding-bottom: 8px !important;
+}
+
+
+/* ── 7. GRILLA 2 COLUMNAS → 1 COLUMNA ─────────────────────── */
+
+div[style*="grid-template-columns: 1fr 1fr"],
+div[style*="grid-template-columns:1fr 1fr"] {
   grid-template-columns: 1fr !important;
-  gap: 10px !important;
 }
 
-/* Las tarjetas dentro de la grilla */
-[style*="grid-template-columns: 1fr 1fr"] > *,
-[style*="grid-template-columns:1fr 1fr"] > * {
+div[style*="grid-template-columns: 1fr 1fr"] > div,
+div[style*="grid-template-columns:1fr 1fr"] > div {
   min-width: 0 !important;
   width: 100% !important;
 }
 
 
-/* ── 6. TABLAS DE CONJUGACIÓN 3 COLUMNAS → 2 COLUMNAS ──────── */
-/* Pasan de 3 a 2 columnas en móvil para que cada celda      */
-/* tenga espacio suficiente y no se corte "Nosotros"         */
+/* ── 8. TABLA CONJUGACIÓN 3 COLUMNAS → 2 COLUMNAS ─────────── */
 
-[style*="grid-template-columns: 1fr 1fr 1fr"],
-[style*="grid-template-columns:1fr 1fr 1fr"] {
+div[style*="grid-template-columns: 1fr 1fr 1fr"],
+div[style*="grid-template-columns:1fr 1fr 1fr"] {
   grid-template-columns: 1fr 1fr !important;
 }
 
 
-/* ── 7. TARJETAS DE CONTENIDO (ícono + texto) ──────────────── */
-/* Los divs con borde y flex que contienen ícono + título     */
+/* ── 9. TAG DEL BANNER (el que se cortaba) ─────────────────── */
+/* display: inline-flex sin wrap causaba el corte              */
 
-[style*="border-radius: 12px"][style*="display: flex"],
-[style*="border-radius: 14px"],
-[style*="border-radius: 16px"] {
+div[style*="display: inline-flex"],
+span[style*="display: inline-flex"] {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+  max-width: 100% !important;
+}
+
+/* Badges pequeños que no deben partirse */
+span[style*="border-radius: 10px"],
+span[style*="border-radius: 12px"],
+span[style*="border-radius: 20px"],
+div[style*="border-radius: 20px"][style*="letter-spacing"] {
+  white-space: nowrap !important;
+}
+
+
+/* ── 10. BANNER ────────────────────────────────────────────── */
+
+div[style*="padding: 36px 40px"],
+div[style*="padding: 28px 30px"] {
+  padding: 20px 14px !important;
+}
+
+div[style*="max-height: 380px"] {
+  max-height: 200px !important;
+}
+
+
+/* ── 11. CONTENEDOR CENTRAL ────────────────────────────────── */
+
+div[style*="max-width: 780px"],
+div[style*="max-width: 800px"] {
+  max-width: 100% !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+div[style*="padding: 36px 24px 48px"] {
+  padding: 14px 10px !important;
+}
+
+div[style*="margin: 30px auto"] {
+  margin: 10px auto !important;
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+}
+
+
+/* ── 12. LAYOUT DOS COLUMNAS (página principal) ────────────── */
+
+div[style*="width: 260px"],
+div[style*="min-width: 260px"] {
+  width: 100% !important;
   min-width: 0 !important;
-  overflow: hidden !important;
+  position: static !important;
 }
 
-/* El bloque de texto dentro de la tarjeta */
-[style*="border-radius: 12px"][style*="display: flex"] > div:last-child,
-[style*="border-radius: 16px"] > div:last-child {
+div[style*="min-width: 300px"] {
   min-width: 0 !important;
-  flex: 1 !important;
-  overflow-wrap: break-word !important;
-}
-
-/* Ícono cuadrado — no se encoge */
-[style*="width: 40px"][style*="height: 40px"],
-[style*="width: 40px"][style*="border-radius: 10px"] {
-  flex-shrink: 0 !important;
-  width: 36px !important;
-  height: 36px !important;
+  width: 100% !important;
 }
 
 
-/* ── 8. ACORDEONES (details / summary) ────────────────────── */
+/* ── 13. ACORDEONES ────────────────────────────────────────── */
 
 details {
   width: 100% !important;
@@ -171,155 +225,39 @@ details {
 details summary {
   white-space: normal !important;
   word-break: normal !important;
-  overflow-wrap: break-word !important;
   line-height: 1.5 !important;
-  padding-right: 10px !important;
-}
-
-details summary * {
-  white-space: normal !important;
-  word-break: normal !important;
-}
-
-details > div,
-details > .innova-card,
-details [style*="padding: 20px"] {
-  overflow-wrap: break-word !important;
-  word-break: normal !important;
-  padding: 16px !important;
 }
 
 
-/* ── 9. CHIPS Y BADGES ── */
-[style*="border-radius: 20px"],
-[style*="border-radius: 50px"],
-[style*="border-radius: 12px"][style*="font-size: 0.75em"],
-[style*="border-radius: 10px"][style*="font-size: 0.75em"] {
-  white-space: normal !important;  /* ← cambia nowrap por normal */
-  flex-shrink: 1 !important;
-  max-width: 100% !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
+/* ── 14. BOTONES CTA ───────────────────────────────────────── */
 
-
-/* ── 10. BOTONES Y CTA ─────────────────────────────────────── */
-/* "Continuar →", "Comenzar Bloque 1", etc.                   */
-
-a[style*="border-radius: 50px"],
-a[style*="border-radius: 6px"][style*="padding"],
-a[style*="padding: 16px"],
-a[style*="padding: 14px"],
-.btn,
+a[style*="border-radius"],
 button {
   white-space: normal !important;
   word-break: keep-all !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  max-width: 100% !important;
   text-align: center !important;
-  max-width: 100% !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-}
-
-/* El ícono circular dentro del botón no se encoge */
-a[style*="border-radius: 50px"] span[style*="border-radius: 50%"],
-a[style*="border-radius: 50px"] span[style*="width: 28px"] {
-  flex-shrink: 0 !important;
 }
 
 
-/* ── 11. BANNER ────────────────────────────────────────────── */
-
-[style*="padding: 36px 40px 44px"] {
-  padding: 20px 16px 24px !important;
-}
-
-[style*="max-height: 380px"] {
-  max-height: 200px !important;
-  object-position: center top !important;
-}
-
-
-/* ── 12. CUERPO Y CONTENEDOR CENTRAL ──────────────────────── */
-
-[style*="padding: 36px 24px 48px"] {
-  padding: 16px 12px 32px !important;
-}
-
-[style*="max-width: 780px"] {
-  max-width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-
-/* ── 13. STRIP DE TEMÁTICA ─────────────────────────────────── */
-
-[style*="padding: 16px 24px"][style*="border-radius: 12px"] {
-  padding: 12px 14px !important;
-  gap: 10px !important;
-}
-
-
-/* ── 14. INTRO CARD ────────────────────────────────────────── */
-
-[style*="padding: 32px"][style*="border-radius: 16px"] {
-  padding: 18px 16px !important;
-}
-
-
-/* ── 15. LAYOUT DE DOS COLUMNAS (página principal) ─────────── */
-/* Columna derecha "Caja de herramientas" colapsa abajo       */
-
-[style*="width: 260px"],
-[style*="min-width: 260px"] {
-  width: 100% !important;
-  min-width: 0 !important;
-  flex: 1 1 100% !important;
-  position: static !important;
-}
-
-/* Columna izquierda ocupa todo el ancho */
-[style*="flex: 1"][style*="min-width: 300px"] {
-  min-width: 0 !important;
-  width: 100% !important;
-  flex: 1 1 100% !important;
-}
-
-/* Contenedor principal de 2 columnas */
-[style*="gap: 30px"][style*="padding: 40px 30px"] {
-  padding: 16px 12px !important;
-  gap: 16px !important;
-}
-
-
-/* ── 16. TABLAS HTML NATIVAS ───────────────────────────────── */
+/* ── 15. TABLAS HTML NATIVAS ───────────────────────────────── */
 
 table {
-  width: 100% !important;
-  table-layout: fixed !important;
-  overflow-x: auto !important;
   display: block !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  max-width: 100% !important;
 }
 
 td, th {
-  overflow-wrap: break-word !important;
   word-break: normal !important;
-  min-width: 0 !important;
+  overflow-wrap: break-word !important;
+  min-width: 60px !important;
   padding: 8px !important;
-  font-size: 0.85em !important;
 }
 
 
-/* ── 17. CLASES INNOVA (páginas migradas a clases) ─────────── */
-/* Para las páginas que ya usan el sistema de clases innova-  */
-
-.innova-page * {
-  word-break: normal !important;
-  overflow-wrap: break-word !important;
-}
+/* ── 16. CLASES INNOVA ─────────────────────────────────────── */
 
 .innova-grid {
   grid-template-columns: 1fr !important;
@@ -330,19 +268,19 @@ td, th {
 }
 
 .innova-banner {
-  padding: 20px 16px 24px !important;
+  padding: 20px 14px !important;
 }
 
 .innova-banner h1 {
-  font-size: clamp(1.4em, 6vw, 2.4em) !important;
+  font-size: 1.6em !important;
 }
 
 .innova-body {
-  padding: 16px 12px 32px !important;
+  padding: 14px 10px 28px !important;
 }
 
 .innova-intro-card {
-  padding: 18px 16px !important;
+  padding: 16px 14px !important;
 }
 
 .innova-strip {
@@ -350,31 +288,9 @@ td, th {
 }
 
 .innova-cta-btn {
-  padding: 14px 24px !important;
+  padding: 14px 20px !important;
   white-space: normal !important;
-  text-align: center !important;
+  justify-content: center !important;
 }
 
-/* ── VOCABULARIO CLAVE — SCROLL HORIZONTAL ── */
-/* Selector basado en border #ddd4c0 que es único
-   de estas tarjetas de vocabulario             */
-
-[style*="border: 1px solid #ddd4c0"][style*="min-width: 150px"] {
-  min-width: 130px !important;
-  max-width: 150px !important;
-  flex: 0 0 140px !important;
-  flex-shrink: 0 !important;
-}
-
-[style*="padding: 20px 24px"] > [style*="display: flex"][style*="flex-wrap: wrap"][style*="gap: 10px"] {
-  flex-wrap: nowrap !important;
-  overflow-x: auto !important;
-  -webkit-overflow-scrolling: touch !important;
-  padding-bottom: 8px !important;
-}
-
-[style*="min-width: 220px"] {
-  min-width: 200px !important;
-  flex: 0 0 220px !important;
-  flex-shrink: 0 !important;
-}
+/* ── FIN ────────────────────────────────────────────────────── */
