@@ -1095,7 +1095,6 @@ function showResults(){
 </a>
     </div>
   </div>`;
-}
 const btn = document.getElementById('btn-volver');
 const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=173';
 const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=173';
@@ -1103,6 +1102,7 @@ const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
     btn.href = appUrl;
   }
+}
 
 
 // ── INIT ──
