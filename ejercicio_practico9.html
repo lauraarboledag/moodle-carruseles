@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expresiones de frecuencia – Español A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #071525;
+  --navy-2:     #0d2040;
+  --navy-3:     #153060;
+  --navy-4:     #1e4080;
+  --gold:       #c8922a;
+  --gold-2:     #e0a83a;
+  --gold-3:     #f5c84a;
+  --gold-pale:  #fde9a8;
+  --cream:      #fdf8ee;
+  --white:      #ffffff;
+  --ok:         #1a8a50;
+  --ok-bg:      rgba(26,138,80,0.15);
+  --ok-border:  #2ecc71;
+  --err:        #a01a1a;
+  --err-bg:     rgba(160,26,26,0.15);
+  --err-border: #e74c3c;
+  --radius:     18px;
+  --shadow:     0 12px 48px rgba(7,21,37,0.55);
+  --shadow-s:   0 4px 18px rgba(7,21,37,0.35);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  min-height: 100vh;
+  color: var(--white);
+  overflow-x: hidden;
+}
+
+/* ░░ Background art ░░ */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 100% 50% at 0% 0%,   rgba(200,146,42,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 70%  80% at 100% 100%, rgba(21,48,96,0.8)    0%, transparent 60%),
+    radial-gradient(ellipse 50%  40% at 50%  50%,  rgba(13,32,64,0.5)    0%, transparent 70%);
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(200,146,42,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,146,42,0.04) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+}
+
+/* ░░ Header ░░ */
+.hdr {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 36px;
+  background: rgba(7,21,37,0.9);
+  border-bottom: 1px solid rgba(200,146,42,0.25);
+  backdrop-filter: blur(14px);
+}
+.hdr-left { display: flex; align-items: center; gap: 14px; }
+.hdr-gem {
+  width: 44px; height: 44px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-3));
+  border-radius: 12px;
+  display: grid; place-items: center;
+  font-size: 22px;
+  box-shadow: 0 2px 16px rgba(200,146,42,0.4);
+  flex-shrink: 0;
+}
+.hdr-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--cream);
+  line-height: 1.2;
+}
+.hdr-unit {
+  font-size: 0.68rem;
+  color: var(--gold-2);
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  font-weight: 600;
+}
+.hdr-score {
+  display: flex; flex-direction: column; align-items: flex-end;
+}
+.hdr-score-lbl {
+  font-size: 0.65rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--gold);
+}
+.hdr-score-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; color: var(--gold-2);
+  line-height: 1;
+}
+
+/* ░░ Progress bar ░░ */
+.prog {
+  position: relative; z-index: 10;
+  padding: 10px 36px 0;
+  background: rgba(7,21,37,0.75);
+}
+.prog-row {
+  display: flex; justify-content: space-between;
+  font-size: 0.66rem; text-transform: uppercase;
+  letter-spacing: 0.08em; color: rgba(255,255,255,0.35);
+  margin-bottom: 5px;
+}
+.prog-track {
+  height: 4px; background: rgba(255,255,255,0.08);
+  border-radius: 4px; overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-3));
+  border-radius: 4px;
+  transition: width 0.6s cubic-bezier(0.22,1,0.36,1);
+  box-shadow: 0 0 10px rgba(200,146,42,0.5);
+}
+
+/* ░░ Stage ░░ */
+.stage {
+  position: relative; z-index: 5;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: calc(100vh - 108px);
+  padding: 28px 16px 44px;
+}
+
+/* ░░ Base card ░░ */
+.card {
+  width: 100%; max-width: 780px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(200,146,42,0.18);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+  animation: slideUp 0.5s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes slideUp {
+  from { opacity:0; transform:translateY(30px) scale(0.97); }
+  to   { opacity:1; transform:translateY(0)   scale(1); }
+}
+
+/* ░░ Card inner ░░ */
+.card-inner { padding: 38px 44px 32px; }
+@media(max-width:560px){ .card-inner{ padding:26px 20px 22px; } }
+
+/* ░░ Q-meta ░░ */
+.q-meta {
+  display:flex; align-items:center; gap:10px; margin-bottom:20px;
+  flex-wrap: wrap;
+}
+.q-badge {
+  padding: 4px 13px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.q-badge-num  { background:linear-gradient(135deg,var(--gold),var(--gold-3)); color:var(--navy); }
+.q-badge-type { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.5); border:1px solid rgba(255,255,255,0.1); }
+
+/* ░░ Timer ░░ */
+.timer-row {
+  display:flex; align-items:center; gap:8px; margin-top:22px;
+}
+.timer-track { flex:1; height:3px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.timer-fill  {
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--gold-3));
+  border-radius:3px;
+  transition:width 1s linear, background 0.4s;
+}
+.timer-fill.hot { background:linear-gradient(90deg,#e74c3c,#ff6b6b); }
+.timer-num { font-family:'Cormorant Garamond',serif; font-size:1rem; color:var(--gold-2); min-width:26px; text-align:right; }
+
+/* ══════════════════════════════════
+   TYPE A — Multiple choice
+══════════════════════════════════ */
+.q-text {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,3.5vw,1.65rem);
+  line-height:1.5; color:var(--cream);
+  margin-bottom:28px;
+}
+.opts-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+@media(max-width:500px){ .opts-grid{ grid-template-columns:1fr; } }
+
+.opt {
+  position:relative;
+  background:rgba(255,255,255,0.05);
+  border:2px solid rgba(255,255,255,0.1);
+  border-radius:14px;
+  padding:15px 18px;
+  color:var(--white); font-family:'DM Sans',sans-serif;
+  font-size:0.97rem; text-align:left; cursor:pointer;
+  transition:all 0.2s ease;
+  display:flex; align-items:center; gap:12px;
+  line-height:1.35;
+}
+.opt:hover:not(:disabled) {
+  border-color:rgba(200,146,42,0.55);
+  background:rgba(200,146,42,0.1);
+  transform:translateY(-2px);
+  box-shadow:0 5px 20px rgba(200,146,42,0.18);
+}
+.opt-ltr {
+  min-width:30px; height:30px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.12);
+  display:grid; place-items:center;
+  font-weight:700; font-size:0.78rem;
+  flex-shrink:0; transition:all 0.2s;
+}
+.opt.correct { background:var(--ok-bg); border-color:var(--ok-border); color:#a8f0c6; }
+.opt.correct .opt-ltr { background:var(--ok-border); color:var(--navy); border-color:var(--ok-border); }
+.opt.wrong   { background:var(--err-bg); border-color:var(--err-border); color:#f0a8a8; }
+.opt.wrong .opt-ltr { background:var(--err-border); color:var(--white); border-color:var(--err-border); }
+.opt.show-correct { border-color:rgba(46,204,113,0.45); background:rgba(26,138,80,0.1); color:rgba(168,240,198,0.65); }
+.opt:disabled { cursor:not-allowed; }
+
+/* ══════════════════════════════════
+   TYPE B — Fill in the blank
+══════════════════════════════════ */
+.fill-sentence {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,3vw,1.5rem);
+  color:var(--cream);
+  line-height:2;
+  margin-bottom:24px;
+  text-align:center;
+}
+.blank-wrap { display:inline-block; position:relative; }
+.blank-input {
+  background:transparent;
+  border:none;
+  border-bottom:2px solid var(--gold-2);
+  color:var(--gold-3);
+  font-family:'Cormorant Garamond',serif;
+  font-size:inherit;
+  width:130px;
+  text-align:center;
+  outline:none;
+  padding:0 4px 2px;
+  transition:border-color 0.2s;
+  caret-color: var(--gold-3);
+}
+.blank-input:focus { border-color:var(--gold-3); }
+.blank-input.ok  { border-color:var(--ok-border); color:#a8f0c6; }
+.blank-input.err { border-color:var(--err-border); color:#f0a8a8; }
+
+.fill-hint {
+  font-size:0.8rem;
+  color:rgba(255,255,255,0.35);
+  text-align:center;
+  margin-bottom:20px;
+}
+.word-bank {
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
+  margin-bottom:26px;
+}
+.bank-word {
+  padding:8px 18px;
+  background:rgba(200,146,42,0.1);
+  border:1px solid rgba(200,146,42,0.3);
+  border-radius:20px;
+  font-size:0.92rem;
+  color:var(--gold-pale);
+  cursor:pointer;
+  transition:all 0.18s;
+  user-select:none;
+}
+.bank-word:hover { background:rgba(200,146,42,0.2); border-color:var(--gold-2); transform:translateY(-1px); }
+.bank-word.used { opacity:0.28; cursor:default; pointer-events:none; }
+
+.btn-check {
+  display:block; margin:4px auto 0;
+  background:linear-gradient(135deg,var(--gold),var(--gold-3));
+  color:var(--navy); border:none; border-radius:12px;
+  padding:12px 36px;
+  font-family:'DM Sans',sans-serif; font-size:0.95rem; font-weight:700;
+  cursor:pointer; letter-spacing:0.06em; text-transform:uppercase;
+  transition:all 0.2s;
+  box-shadow:0 4px 18px rgba(200,146,42,0.3);
+}
+.btn-check:hover { transform:translateY(-2px); box-shadow:0 8px 26px rgba(200,146,42,0.45); }
+.btn-check:disabled { opacity:0.4; cursor:not-allowed; transform:none; }
+
+/* ══════════════════════════════════
+   TYPE C — Ordering (sort)
+══════════════════════════════════ */
+.order-instruction {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,3vw,1.4rem);
+  color:var(--cream); text-align:center;
+  margin-bottom:26px; line-height:1.55;
+}
+.sort-container {
+  display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:center; margin-bottom:24px;
+}
+.sort-item {
+  padding:10px 20px;
+  background:rgba(255,255,255,0.06);
+  border:2px solid rgba(200,146,42,0.25);
+  border-radius:12px;
+  font-size:0.97rem; color:var(--cream);
+  cursor:grab; transition:all 0.18s;
+  user-select:none; position:relative;
+}
+.sort-item:active { cursor:grabbing; }
+.sort-item:hover  { border-color:rgba(200,146,42,0.6); background:rgba(200,146,42,0.12); transform:translateY(-2px); }
+.sort-item.dragging { opacity:0.4; }
+.sort-item.over { border-color:var(--gold-3); background:rgba(200,146,42,0.2); }
+.sort-item.correct-pos { border-color:var(--ok-border); background:var(--ok-bg); color:#a8f0c6; }
+.sort-item.wrong-pos   { border-color:var(--err-border); background:var(--err-bg); color:#f0a8a8; }
+
+.sort-slots {
+  display:flex; flex-wrap:wrap; gap:10px;
+  justify-content:center; margin-bottom:24px;
+  min-height:52px; align-items:center;
+}
+.slot {
+  min-width:100px; height:44px;
+  border:2px dashed rgba(200,146,42,0.3);
+  border-radius:12px;
+  display:grid; place-items:center;
+  font-size:0.82rem; color:rgba(255,255,255,0.25);
+  transition:all 0.18s;
+}
+.slot.filled { border-style:solid; border-color:rgba(200,146,42,0.45); background:rgba(200,146,42,0.08); }
+.slot.drag-over { border-color:var(--gold-3); background:rgba(200,146,42,0.18); }
+
+/* ══════════════════════════════════
+   TYPE D — Match pairs
+══════════════════════════════════ */
+.match-instruction {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.1rem,3vw,1.4rem);
+  color:var(--cream); text-align:center;
+  margin-bottom:26px; line-height:1.55;
+}
+.match-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:18px;
+  margin-bottom:22px;
+}
+.match-col { display:flex; flex-direction:column; gap:10px; }
+.match-col-title {
+  font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em;
+  color:var(--gold); text-align:center; margin-bottom:2px;
+}
+.match-item {
+  padding:12px 16px;
+  background:rgba(255,255,255,0.05);
+  border:2px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  font-size:0.95rem; text-align:center;
+  cursor:pointer; transition:all 0.18s;
+  position:relative;
+}
+.match-item:hover { border-color:rgba(200,146,42,0.5); background:rgba(200,146,42,0.1); }
+.match-item.selected { border-color:var(--gold-2); background:rgba(200,146,42,0.18); color:var(--gold-3); }
+.match-item.matched-ok { border-color:var(--ok-border); background:var(--ok-bg); color:#a8f0c6; cursor:default; }
+.match-item.matched-err{ border-color:var(--err-border); background:var(--err-bg); color:#f0a8a8; }
+.match-item:disabled, .match-item.matched-ok { pointer-events:none; }
+
+/* ══════════════════════════════════
+   TYPE E — True/False
+══════════════════════════════════ */
+.tf-statement {
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.2rem,3vw,1.55rem);
+  color:var(--cream); text-align:center;
+  line-height:1.55; margin-bottom:32px;
+}
+.tf-buttons {
+  display:flex; gap:16px; justify-content:center;
+}
+.tf-btn {
+  flex:1; max-width:220px;
+  padding:20px 24px;
+  border:2px solid rgba(255,255,255,0.12);
+  border-radius:16px;
+  background:rgba(255,255,255,0.05);
+  color:var(--white); font-family:'DM Sans',sans-serif;
+  font-size:1.05rem; font-weight:600;
+  cursor:pointer; transition:all 0.2s;
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+}
+.tf-btn .tf-icon { font-size:1.8rem; }
+.tf-btn:hover:not(:disabled) { transform:translateY(-3px); box-shadow:0 8px 24px rgba(200,146,42,0.2); }
+.tf-btn.v:hover:not(:disabled) { border-color:#2ecc71; background:rgba(26,138,80,0.1); }
+.tf-btn.f:hover:not(:disabled) { border-color:#e74c3c; background:rgba(160,26,26,0.1); }
+.tf-btn.correct { border-color:var(--ok-border); background:var(--ok-bg); }
+.tf-btn.wrong   { border-color:var(--err-border); background:var(--err-bg); }
+.tf-btn:disabled { cursor:not-allowed; }
+
+/* ░░ Feedback overlay ░░ */
+.fb-overlay {
+  position:fixed; inset:0; z-index:200;
+  display:flex; align-items:center; justify-content:center;
+  background:rgba(7,21,37,0.88);
+  backdrop-filter:blur(12px);
+  padding:20px;
+  animation:fadeIn 0.28s ease;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+.fb-card {
+  background:linear-gradient(155deg, var(--navy-2), var(--navy-3));
+  border:1px solid rgba(200,146,42,0.3);
+  border-radius:24px;
+  box-shadow:var(--shadow), 0 0 70px rgba(200,146,42,0.08);
+  padding:44px 48px;
+  max-width:500px; width:100%;
+  text-align:center;
+  animation:popUp 0.42s cubic-bezier(0.22,1,0.36,1) both;
+}
+@keyframes popUp {
+  from{ opacity:0; transform:scale(0.86) translateY(22px); }
+  to  { opacity:1; transform:scale(1)    translateY(0); }
+}
+
+.fb-icon { font-size:3.4rem; display:block; margin-bottom:14px;
+  animation:iconPop 0.45s 0.1s cubic-bezier(0.22,1,0.36,1) both; }
+@keyframes iconPop { from{transform:scale(0.4);opacity:0} to{transform:scale(1);opacity:1} }
+
+.fb-title { font-family:'Cormorant Garamond',serif; font-size:1.9rem; margin-bottom:10px; }
+.fb-title.ok   { color:#2ecc71; }
+.fb-title.fail { color:#e74c3c; }
+
+.fb-answer { font-size:0.82rem; color:rgba(255,255,255,0.42); margin-bottom:14px; }
+.fb-answer span { color:var(--gold-2); font-weight:600; }
+
+.fb-msg { font-size:1rem; color:rgba(255,255,255,0.7); line-height:1.7; margin-bottom:22px; font-style:italic; }
+
+.fb-pts {
+  display:inline-block; padding:5px 18px;
+  border-radius:20px;
+  background:rgba(200,146,42,0.12);
+  border:1px solid rgba(200,146,42,0.3);
+  font-size:0.82rem; color:var(--gold-2); font-weight:600;
+  letter-spacing:0.06em; margin-bottom:26px;
+}
+
+.btn-next {
+  background:linear-gradient(135deg,var(--gold),var(--gold-3));
+  color:var(--navy); border:none; border-radius:14px;
+  padding:13px 40px;
+  font-family:'DM Sans',sans-serif; font-size:0.97rem; font-weight:700;
+  cursor:pointer; letter-spacing:0.07em; text-transform:uppercase;
+  transition:all 0.2s; box-shadow:0 4px 20px rgba(200,146,42,0.35);
+}
+.btn-next:hover { transform:translateY(-2px); box-shadow:0 8px 30px rgba(200,146,42,0.5); }
+
+/* ░░ Results ░░ */
+.res-card { padding:48px 44px 44px; text-align:center; max-width:680px; margin:0 auto; }
+.res-trophy { font-size:4rem; display:block; margin-bottom:8px;
+  animation:trophyIn 0.75s cubic-bezier(0.22,1,0.36,1) both; }
+@keyframes trophyIn { from{transform:rotate(-18deg) scale(0.4);opacity:0} to{transform:rotate(0) scale(1);opacity:1} }
+.res-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.7rem,5vw,2.4rem); color:var(--gold-2); margin-bottom:4px; }
+.res-sub { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.13em; color:rgba(255,255,255,0.35); margin-bottom:28px; }
+.res-pts-wrap { display:flex; align-items:baseline; justify-content:center; gap:4px; margin-bottom:10px; }
+.res-pts-big  { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,9vw,5.5rem); color:var(--gold-2); line-height:1; }
+.res-pts-lbl  { font-size:1.2rem; color:rgba(255,255,255,0.3); }
+.res-stats { display:flex; justify-content:center; gap:28px; margin-bottom:24px; flex-wrap:wrap; }
+.rs { display:flex; flex-direction:column; align-items:center; gap:3px; }
+.rs-n { font-family:'Cormorant Garamond',serif; font-size:2rem; }
+.rs-n.ok   { color:#2ecc71; }
+.rs-n.fail { color:#e74c3c; }
+.rs-n.gold { color:var(--gold-2); }
+.rs-lbl { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.35); }
+.res-divider { height:1px; background:rgba(200,146,42,0.18); margin:22px 0; }
+.res-msg { font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(255,255,255,0.65); line-height:1.75; margin-bottom:32px; font-style:italic; }
+.res-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.btn-restart {
+  background:linear-gradient(135deg,var(--gold),var(--gold-3));
+  color:var(--navy); border:none; border-radius:14px;
+  padding:13px 32px; font-family:'DM Sans',sans-serif;
+  font-size:0.93rem; font-weight:700; cursor:pointer;
+  letter-spacing:0.07em; text-transform:uppercase;
+  transition:all 0.2s; box-shadow:0 4px 18px rgba(200,146,42,0.35);
+}
+.btn-restart:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(200,146,42,0.5); }
+.btn-aula {
+  background:transparent; color:var(--gold);
+  border:2px solid rgba(200,146,42,0.4);
+  border-radius:14px; padding:13px 32px;
+  font-family:'DM Sans',sans-serif; font-size:0.93rem; font-weight:600;
+  cursor:pointer; letter-spacing:0.07em; text-transform:uppercase;
+  transition:all 0.2s; text-decoration:none;
+  display:inline-flex; align-items:center; gap:7px;
+}
+.btn-aula:hover { background:rgba(200,146,42,0.1); border-color:var(--gold); transform:translateY(-2px); }
+
+/* ░░ Splash ░░ */
+.splash-card { padding:52px 44px 44px; text-align:center; max-width:680px; margin:0 auto; }
+.splash-emblem { font-size:3.2rem; display:block; margin-bottom:16px; }
+.splash-pre { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.15em; color:var(--gold); font-weight:600; margin-bottom:10px; }
+.splash-h { font-family:'Cormorant Garamond',serif; font-size:clamp(1.9rem,5vw,2.8rem); color:var(--cream); line-height:1.25; margin-bottom:14px; }
+.splash-h em { color:var(--gold-2); font-style:italic; }
+.splash-p { font-size:0.97rem; color:rgba(255,255,255,0.55); line-height:1.75; margin-bottom:28px; max-width:440px; margin-left:auto; margin-right:auto; }
+.splash-pills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:34px; }
+.pill { padding:5px 15px; border-radius:20px; border:1px solid rgba(200,146,42,0.28); font-size:0.72rem; color:rgba(255,255,255,0.45); letter-spacing:0.07em; text-transform:uppercase; }
+.btn-start {
+  background:linear-gradient(135deg,var(--gold),var(--gold-3));
+  color:var(--navy); border:none; border-radius:16px;
+  padding:15px 52px; font-family:'DM Sans',sans-serif;
+  font-size:1.02rem; font-weight:700; cursor:pointer;
+  letter-spacing:0.08em; text-transform:uppercase;
+  transition:all 0.25s; box-shadow:0 6px 28px rgba(200,146,42,0.38);
+}
+.btn-start:hover { transform:translateY(-3px); box-shadow:0 12px 38px rgba(200,146,42,0.55); }
+
+/* ░░ Type labels ░░ */
+.type-chip {
+  display:inline-flex; align-items:center; gap:6px;
+  padding:4px 12px; border-radius:20px;
+  font-size:0.68rem; font-weight:600;
+  text-transform:uppercase; letter-spacing:0.09em;
+}
+.chip-mc   { background:rgba(91,130,200,0.18); color:#91b0f5; border:1px solid rgba(91,130,200,0.3); }
+.chip-fill { background:rgba(200,160,42,0.18); color:#f5d070; border:1px solid rgba(200,160,42,0.3); }
+.chip-sort { background:rgba(42,180,150,0.18); color:#70f0d0; border:1px solid rgba(42,180,150,0.3); }
+.chip-match{ background:rgba(180,80,200,0.18); color:#e0a0f5; border:1px solid rgba(180,80,200,0.3); }
+.chip-tf   { background:rgba(200,80,80,0.18);  color:#f5a0a0; border:1px solid rgba(200,80,80,0.3); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-gem">🗓️</div>
+    <div>
+      <div class="hdr-name">Español A1 · Unidad 3</div>
+      <div class="hdr-unit">Expresiones de frecuencia</div>
+    </div>
+  </div>
+  <div class="hdr-score">
+    <span class="hdr-score-lbl">Puntos</span>
+    <span class="hdr-score-val" id="scoreDisp">0</span>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="prog" id="progBar" style="display:none">
+  <div class="prog-row">
+    <span id="progLbl">Actividad 1 de 10</span>
+    <span id="progPct">0 %</span>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+</div>
+
+<!-- MAIN STAGE -->
+<main class="stage" id="stage"></main>
+
+<!-- FEEDBACK OVERLAY -->
+<div class="fb-overlay" id="fbOverlay" style="display:none">
+  <div class="fb-card">
+    <span class="fb-icon"  id="fbIcon"></span>
+    <div  class="fb-title" id="fbTitle"></div>
+    <div  class="fb-answer" id="fbAnswer"></div>
+    <p    class="fb-msg"   id="fbMsg"></p>
+    <div  class="fb-pts"   id="fbPts"></div>
+    <button class="btn-next" id="btnNext">Continuar →</button>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════
+   QUESTIONS DATA (Expresiones de frecuencia)
+═══════════════════════════════════════ */
+const Q = [
+
+  // 1 — Multiple choice (vocabulario)
+  {
+    type:'mc', category:'Vocabulario',
+    text:'¿Cuál es el nivel de frecuencia más alto?"?',
+    options:['Nunca','Siempre','A veces','A menudo'],
+    correct:1
+  },
+
+  // 2 — Fill in the blank (contexto diario)
+  {
+    type:'fill', category:'Completar',
+    sentence:'Yo ___ como carne porque soy vegetariano.',
+    answer:'nunca',
+    bank:['siempre','nunca','a veces','casi siempre'],
+    inputLabel:'Elige la palabra correcta'
+  },
+
+  // 3 — True / False (significado)
+  {
+    type:'tf', category:'Significados',
+    statement:'"A menudo" significa "sometimes".',
+    correct:false
+  },
+
+  // 4 — Multiple choice (frecuencia más alta)
+  {
+    type:'mc', category:'Frecuencia',
+    text:'¿Cuál de estas expresiones indica la frecuencia más baja?',
+    options:['Siempre','A veces','Nunca','Casi nunca'],
+    correct:2
+  },
+
+  // 5 — Match pairs (español ↔ inglés)
+  {
+    type:'match', category:'Emparejar',
+    instruction:'Relaciona cada expresión con su traducción al inglés.',
+    left: ['Siempre','Nunca','A veces','Casi siempre'],
+    right:['Never','Always','Sometimes','Almost always'],
+    pairs:[1,0,2,3]   // left[0]→right[1], left[1]→right[0], left[2]→right[2], left[3]→right[3]
+  },
+
+  // 6 — Fill in the blank (contexto)
+  {
+    type:'fill', category:'Completar',
+    sentence:'Casi ___ (never) voy al gimnasio.',
+    answer:'nunca',
+    bank:['siempre','nunca','a menudo','a veces'],
+    inputLabel:'Escribe la palabra correcta'
+  },
+
+  // 7 — True / False (sinónimos)
+  {
+    type:'tf', category:'Sinónimos',
+    statement:'"Nunca" y "jamás" son sinónimos.',
+    correct:true
+  },
+
+  // 8 — Multiple choice (posición correcta del adverbio)
+  {
+    type:'mc', category:'Gramática',
+    text:'Selecciona la oración correcta:',
+    options:['Yo nunca como desayuno.','Yo como nunca desayuno.','Yo como desayuno nunca.','Nunca yo como desayuno.'],
+    correct:0
+  },
+
+  // 9 — Sort (ordenar de mayor a menor frecuencia)
+  {
+    type:'sort', category:'Ordenar',
+    instruction:'Ordena las expresiones de frecuencia de mayor a menor frecuencia.',
+    items:['Nunca','A veces','Siempre','Casi siempre','A menudo'],
+    correctOrder:[2,3,4,1,0]  // Siempre, Casi siempre, A menudo, A veces, Nunca
+  },
+
+  // 10 — Multiple choice (every day)
+  {
+    type:'mc', category:'Vocabulario',
+    text:'¿Cómo se dice "every day" en español?',
+    options:['Siempre','Todos los días','A menudo','Nunca'],
+    correct:1
+  }
+];
+
+/* ═══════════════════════════════════════
+   FEEDBACK MESSAGES
+═══════════════════════════════════════ */
+const FB = {
+  ok:[
+    ['¡Excelente! 🌟','Cada respuesta correcta es un nuevo ladrillo en tu conocimiento del español. ¡Sigue con esa energía y nada te detendrá!'],
+    ['¡Perfecto! ✨','Demuestras que estás prestando atención a los detalles. ¡El español y tú llevan muy buen ritmo — sigue acumulando puntos!'],
+    ['¡Muy bien! 🏆','Vas construyendo un vocabulario sólido. ¡Este es el camino hacia la fluidez — no pares ahora!'],
+    ['¡Correcto! 🎯','Cada pregunta bien respondida te acerca más a dominar los horarios y los días. ¡Eres imparable!'],
+    ['¡Genial! 🌟','¡La práctica constante está dando sus frutos! Tu manejo del tiempo en español mejora con cada actividad.']
+  ],
+  fail:[
+    ['¡Casi! 💪','Los errores son los mejores maestros. Ahora ya conoces la respuesta correcta — úsala en tu próximo intento para subir tu puntuación.'],
+    ['¡No te rindas! 🚀','Aprender un idioma tiene sus retos, pero cada error que ves hoy es un acierto mañana. ¡La próxima pregunta es tu oportunidad de recuperar puntos!'],
+    ['¡Sigue intentando! 🌱','Revisa bien la respuesta correcta. El repaso es la clave del aprendizaje — ¡vuelve a intentarlo y verás cómo mejoras!'],
+    ['¡Buen intento! 🔄','¡Lo importante es no rendirse! Observa la respuesta correcta, recuérdala y conquista las siguientes preguntas.'],
+    ['¡Tú puedes! 💡','Incluso los mejores hablantes se equivocaron al principio. ¡Anota la respuesta correcta y sigue adelante con más fuerza!']
+  ]
+};
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let qIdx=0, score=0, correct=0, wrong=0, answered=false;
+let timerInt=null, tLeft=25;
+// Match state
+let mSel={left:null,right:null}, mDone=[];
+// Sort state
+let sortOrder=[], dragSrc=null;
+
+/* ═══════════════════════════════════════
+   UTILS
+═══════════════════════════════════════ */
+const $=id=>document.getElementById(id);
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+function setScore(v){ score=Math.max(0,v); $('scoreDisp').textContent=score; }
+function stopTimer(){ clearInterval(timerInt); timerInt=null; }
+
+function startTimer(sec,onEnd){
+  tLeft=sec;
+  $('timerFill').style.width='100%';
+  $('timerNum').textContent=sec;
+  timerInt=setInterval(()=>{
+    tLeft--;
+    const p=(tLeft/sec)*100;
+    const f=$('timerFill'), n=$('timerNum');
+    if(f) f.style.width=p+'%';
+    if(n) n.textContent=tLeft;
+    if(f && tLeft<=8) f.classList.add('hot');
+    if(tLeft<=0){ stopTimer(); if(!answered) onEnd(); }
+  },1000);
+}
+
+function updateProg(i){
+  const p=Math.round((i/Q.length)*100);
+  $('progFill').style.width=p+'%';
+  $('progLbl').textContent=`Actividad ${i} de ${Q.length}`;
+  $('progPct').textContent=p+' %';
+}
+
+/* ═══════════════════════════════════════
+   FEEDBACK
+═══════════════════════════════════════ */
+function showFB(isOk, answerHtml, timedOut, pts){
+  const pool=FB[isOk?'ok':'fail'];
+  const pick=rand(pool);
+  $('fbIcon').textContent = timedOut?'⏰': isOk?'🎉':'😅';
+  $('fbTitle').textContent= timedOut?'¡Tiempo agotado!':pick[0];
+  $('fbTitle').className  = 'fb-title '+(isOk?'ok':'fail');
+  $('fbAnswer').innerHTML = answerHtml ? `Respuesta correcta: <span>${answerHtml}</span>` : '';
+  $('fbMsg').textContent  = timedOut
+    ? '¡El tiempo se acabó! Revisa la respuesta correcta y en la próxima actividad podrás recuperar los puntos. ¡Confía en ti!'
+    : pick[1];
+  $('fbPts').textContent  = isOk ? `+${pts} puntos ✨` : 'Sin puntos esta vez — ¡a la siguiente!';
+  $('fbOverlay').style.display='flex';
+  $('btnNext').onclick=nextQ;
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+function nextQ(){
+  $('fbOverlay').style.display='none';
+  qIdx++;
+  if(qIdx<Q.length) renderQ();
+  else showResults();
+}
+
+/* ═══════════════════════════════════════
+   SPLASH
+═══════════════════════════════════════ */
+function showSplash(){
+  $('progBar').style.display='none';
+  $('scoreDisp').textContent='0';
+  $('stage').innerHTML=`
+  <div class="card splash-card">
+    <span class="splash-emblem">🗓️</span>
+    <div class="splash-pre">Español A1 · Unidad 3 · Expresiones de frecuencia</div>
+    <h1 class="splash-h">Expresiones de<br><em>frecuencia</em></h1>
+    <p class="splash-p">Pon a prueba tu conocimiento de las expresiones de frecuencia (siempre, a veces, nunca...) en español. ¡Actividades variadas te esperan!</p>
+    <div class="splash-pills">
+      <span class="pill">10 actividades</span>
+      <span class="pill">5 tipos diferentes</span>
+      <span class="pill">25 seg. por pregunta</span>
+      <span class="pill">Nivel A1</span>
+    </div>
+    <button class="btn-start" onclick="startQuiz()">Comenzar actividad →</button>
+  </div>`;
+}
+
+function startQuiz(){
+  qIdx=0; score=0; correct=0; wrong=0;
+  setScore(0);
+  $('progBar').style.display='block';
+  renderQ();
+}
+
+/* ═══════════════════════════════════════
+   RENDER DISPATCHER
+═══════════════════════════════════════ */
+function renderQ(){
+  answered=false; stopTimer();
+  mSel={left:null,right:null}; mDone=[];
+  sortOrder=[]; dragSrc=null;
+  updateProg(qIdx+1);
+  const q=Q[qIdx];
+  const stage=$('stage');
+  const typeChips={mc:'chip-mc',fill:'chip-fill',sort:'chip-sort',match:'chip-match',tf:'chip-tf'};
+  const typeLabels={mc:'Opción múltiple',fill:'Completar',sort:'Ordenar',match:'Emparejar',tf:'Verdadero / Falso'};
+
+  const timerHTML=`<div class="timer-row">
+    <div class="timer-track"><div class="timer-fill" id="timerFill" style="width:100%"></div></div>
+    <span class="timer-num" id="timerNum">25</span>
+  </div>`;
+
+  let inner='';
+  if(q.type==='mc')    inner=buildMC(q,typeChips,typeLabels,timerHTML);
+  if(q.type==='fill')  inner=buildFill(q,typeChips,typeLabels,timerHTML);
+  if(q.type==='tf')    inner=buildTF(q,typeChips,typeLabels,timerHTML);
+  if(q.type==='match') inner=buildMatch(q,typeChips,typeLabels,timerHTML);
+  if(q.type==='sort')  inner=buildSort(q,typeChips,typeLabels,timerHTML);
+
+  stage.innerHTML=`<div class="card"><div class="card-inner">${inner}</div></div>`;
+  attachHandlers(q);
+  startTimer(25,()=>timeOut(q));
+}
+
+/* ══════════════
+   BUILDERS
+══════════════ */
+function metaHTML(i,q,typeChips,typeLabels){
+  return `<div class="q-meta">
+    <span class="q-badge q-badge-num">Actividad ${i+1} / ${Q.length}</span>
+    <span class="type-chip ${typeChips[q.type]}">${typeLabels[q.type]}</span>
+    <span class="q-badge q-badge-type">${q.category}</span>
+  </div>`;
+}
+
+function buildMC(q,tc,tl,timer){
+  const ltrs=['A','B','C','D'];
+  const opts=q.options.map((o,i)=>`
+    <button class="opt" id="opt${i}" onclick="selectMC(${i})">
+      <span class="opt-ltr">${ltrs[i]}</span><span>${o}</span>
+    </button>`).join('');
+  return metaHTML(qIdx,q,tc,tl)+
+    `<p class="q-text">${q.text}</p>
+     <div class="opts-grid">${opts}</div>${timer}`;
+}
+
+function buildFill(q,tc,tl,timer){
+  const words=q.bank.map((w,i)=>`<span class="bank-word" id="bw${i}" onclick="clickWord('${w}',${i})">${w}</span>`).join('');
+  return metaHTML(qIdx,q,tc,tl)+
+    `<p class="fill-sentence">${q.sentence.replace('___','<span class="blank-wrap"><input class="blank-input" id="blankInput" type="text" autocomplete="off" placeholder="___" maxlength="20"/></span>')}</p>
+     <p class="fill-hint">${q.inputLabel}</p>
+     <div class="word-bank">${words}</div>
+     <button class="btn-check" id="btnCheck" onclick="checkFill()">Comprobar</button>${timer}`;
+}
+
+function buildTF(q,tc,tl,timer){
+  return metaHTML(qIdx,q,tc,tl)+
+    `<p class="tf-statement">${q.statement}</p>
+     <div class="tf-buttons">
+       <button class="tf-btn v" id="tfV" onclick="selectTF(true)"><span class="tf-icon">✅</span>Verdadero</button>
+       <button class="tf-btn f" id="tfF" onclick="selectTF(false)"><span class="tf-icon">❌</span>Falso</button>
+     </div>${timer}`;
+}
+
+function buildMatch(q,tc,tl,timer){
+  const left=q.left.map((l,i)=>`<div class="match-item" id="ml${i}" onclick="clickMatch('left',${i})">${l}</div>`).join('');
+  const right=q.right.map((r,i)=>`<div class="match-item" id="mr${i}" onclick="clickMatch('right',${i})">${r}</div>`).join('');
+  return metaHTML(qIdx,q,tc,tl)+
+    `<p class="match-instruction">${q.instruction}</p>
+     <div class="match-grid">
+       <div class="match-col"><div class="match-col-title">Expresión</div>${left}</div>
+       <div class="match-col"><div class="match-col-title">Traducción</div>${right}</div>
+     </div>
+     <button class="btn-check" id="btnCheck" disabled onclick="checkMatch()" style="display:none">Comprobar</button>${timer}`;
+}
+
+function buildSort(q,tc,tl,timer){
+  // shuffle for display
+  const idxs=[...Array(q.items.length).keys()];
+  const shuffled=idxs.slice().sort(()=>Math.random()-0.5);
+  const items=shuffled.map((si,pos)=>`
+    <div class="sort-item" id="si${pos}" data-si="${si}" draggable="true">${q.items[si]}</div>
+  `).join('');
+  return metaHTML(qIdx,q,tc,tl)+
+    `<p class="order-instruction">${q.instruction}</p>
+     <div class="sort-container" id="sortContainer">${items}</div>
+     <button class="btn-check" id="btnCheck" onclick="checkSort()">Comprobar orden</button>${timer}`;
+}
+
+/* ══════════════
+   HANDLERS
+══════════════ */
+function attachHandlers(q){
+  if(q.type==='sort') setupDragSort();
+}
+
+// MC
+function selectMC(idx){
+  if(answered) return;
+  answered=true; stopTimer();
+  const q=Q[qIdx]; const isOk=idx===q.correct;
+  const pts=isOk?100+tLeft*4:0;
+  // reveal
+  for(let i=0;i<q.options.length;i++){
+    const b=$('opt'+i); b.disabled=true;
+    if(i===q.correct) b.classList.add('correct');
+    else if(i===idx) b.classList.add('wrong');
+  }
+  if(isOk){ correct++; setScore(score+pts); }
+  else wrong++;
+  setTimeout(()=>showFB(isOk,q.options[q.correct],false,pts),420);
+}
+
+// Fill
+function clickWord(word,idx){
+  if(answered) return;
+  const inp=$('blankInput'); if(!inp) return;
+  inp.value=word;
+  document.querySelectorAll('.bank-word').forEach(el=>el.classList.remove('used'));
+  document.getElementById('bw'+idx).classList.add('used');
+}
+
+function checkFill(){
+  if(answered) return;
+  const inp=$('blankInput'); if(!inp) return;
+  const val=inp.value.trim().toLowerCase();
+  const q=Q[qIdx];
+  const isOk=val===q.answer.toLowerCase();
+  answered=true; stopTimer();
+  inp.disabled=true;
+  inp.classList.add(isOk?'ok':'err');
+  $('btnCheck').disabled=true;
+  const pts=isOk?100+tLeft*4:0;
+  if(isOk){ correct++; setScore(score+pts); }
+  else { wrong++; inp.value=q.answer; }
+  setTimeout(()=>showFB(isOk,q.answer,false,pts),420);
+}
+
+// TF
+function selectTF(val){
+  if(answered) return;
+  answered=true; stopTimer();
+  const q=Q[qIdx]; const isOk=val===q.correct;
+  const pts=isOk?100+tLeft*4:0;
+  $('tfV').disabled=true; $('tfF').disabled=true;
+  if(val===true)  $('tfV').classList.add(isOk?'correct':'wrong');
+  if(val===false) $('tfF').classList.add(isOk?'correct':'wrong');
+  // show correct
+  if(!isOk){ const cor=q.correct?$('tfV'):$('tfF'); if(cor) cor.classList.add('correct'); }
+  if(isOk){ correct++; setScore(score+pts); }
+  else wrong++;
+  const ans=q.correct?'Verdadero ✅':'Falso ❌';
+  setTimeout(()=>showFB(isOk,ans,false,pts),420);
+}
+
+// Match
+function clickMatch(side,idx){
+  if(answered) return;
+  const q=Q[qIdx];
+  if(side==='left'){
+    if(mDone.includes('L'+idx)) return;
+    document.querySelectorAll('[id^=ml]').forEach(e=>e.classList.remove('selected'));
+    mSel.left=idx; $('ml'+idx).classList.add('selected');
+  } else {
+    if(mDone.includes('R'+idx)) return;
+    document.querySelectorAll('[id^=mr]').forEach(e=>e.classList.remove('selected'));
+    mSel.right=idx; $('mr'+idx).classList.add('selected');
+  }
+  if(mSel.left!==null && mSel.right!==null){
+    const l=mSel.left, r=mSel.right;
+    const isOk=q.pairs[l]===r;
+    $('ml'+l).classList.remove('selected');
+    $('mr'+r).classList.remove('selected');
+    $('ml'+l).classList.add(isOk?'matched-ok':'matched-err');
+    $('mr'+r).classList.add(isOk?'matched-ok':'matched-err');
+    if(!isOk){
+      setTimeout(()=>{
+        $('ml'+l).classList.remove('matched-err');
+        $('mr'+r).classList.remove('matched-err');
+      },700);
+    } else {
+      mDone.push('L'+l,'R'+r);
+    }
+    mSel={left:null,right:null};
+    // check all done
+    if(mDone.length===q.left.length*2){
+      answered=true; stopTimer();
+      const pts=100+tLeft*4; correct++; setScore(score+pts);
+      setTimeout(()=>showFB(true,null,false,pts),400);
+    }
+  }
+}
+
+// Sort drag & drop + click-to-order
+let clickSortOrder=[];
+function setupDragSort(){
+  clickSortOrder=[];
+  const container=$('sortContainer');
+  if(!container) return;
+  container.querySelectorAll('.sort-item').forEach(item=>{
+    item.addEventListener('dragstart',e=>{
+      dragSrc=item;
+      setTimeout(()=>item.classList.add('dragging'),0);
+    });
+    item.addEventListener('dragend',()=>{
+      item.classList.remove('dragging');
+      dragSrc=null;
+    });
+    item.addEventListener('dragover',e=>{
+      e.preventDefault();
+      if(dragSrc&&dragSrc!==item){
+        const allItems=[...container.querySelectorAll('.sort-item')];
+        const srcIdx=allItems.indexOf(dragSrc);
+        const tgtIdx=allItems.indexOf(item);
+        if(srcIdx<tgtIdx) container.insertBefore(dragSrc,item.nextSibling);
+        else container.insertBefore(dragSrc,item);
+      }
+    });
+    // click ordering as fallback
+    item.addEventListener('click',()=>{
+      if(answered) return;
+      if(item.style.opacity==='0.4') return;
+    });
+  });
+}
+
+function checkSort(){
+  if(answered) return;
+  answered=true; stopTimer();
+  const q=Q[qIdx];
+  const container=$('sortContainer');
+  const current=[...container.querySelectorAll('.sort-item')].map(el=>parseInt(el.dataset.si));
+  // correct order is q.correctOrder — array of original indices in correct sequence
+  let allOk=true;
+  current.forEach((si,pos)=>{
+    const isOk=q.correctOrder[pos]===si;
+    if(!isOk) allOk=false;
+  });
+  // Mark visually
+  [...container.querySelectorAll('.sort-item')].forEach((el,pos)=>{
+    el.classList.add(q.correctOrder[pos]===parseInt(el.dataset.si)?'correct-pos':'wrong-pos');
+  });
+  $('btnCheck').disabled=true;
+  const pts=allOk?100+tLeft*4:0;
+  if(allOk){ correct++; setScore(score+pts); }
+  else wrong++;
+  const correctDays=q.correctOrder.map(i=>q.items[i]).join(' → ');
+  setTimeout(()=>showFB(allOk,correctDays,false,pts),520);
+}
+
+function timeOut(q){
+  if(answered) return;
+  answered=true;
+  // Disable everything
+  document.querySelectorAll('.opt,.tf-btn,.match-item,.sort-item,.bank-word,.btn-check,.blank-input')
+    .forEach(el=>{ el.disabled=true; el.style.pointerEvents='none'; });
+  let ansStr='';
+  if(q.type==='mc') ansStr=q.options[q.correct];
+  if(q.type==='fill'){ ansStr=q.answer; const inp=$('blankInput'); if(inp){ inp.value=q.answer; inp.classList.add('ok'); } }
+  if(q.type==='tf') ansStr=q.correct?'Verdadero ✅':'Falso ❌';
+  if(q.type==='sort') ansStr=q.correctOrder.map(i=>q.items[i]).join(' → ');
+  wrong++;
+  showFB(false,ansStr,true,0);
+}
+
+/* ═══════════════════════════════════════
+   RESULTS
+═══════════════════════════════════════ */
+function showResults(){
+  stopTimer();
+  $('progBar').style.display='none';
+  $('fbOverlay').style.display='none';
+  const pct=Math.round((correct/Q.length)*100);
+  let trophy,msg;
+  if(pct===100){ trophy='🏆'; msg='"¡Perfección absoluta! Tu dominio de las expresiones de frecuencia en español es extraordinario. Eres un modelo de dedicación. ¡El nivel A2 te espera con los brazos abiertos!"'; }
+  else if(pct>=80){ trophy='🌟'; msg='"¡Resultado excelente! Manejas las expresiones de frecuencia con gran soltura. Un poco más de práctica y llegarás a la perfección. ¡Sigue así — el español ya es parte de tu día a día!"'; }
+  else if(pct>=60){ trophy='📚'; msg='"¡Buen trabajo! Reconoces bien los conceptos fundamentales. Te invitamos a repasar los puntos que fallaste y a volver a intentarlo. ¡Cada repetición consolida tu aprendizaje!"'; }
+  else if(pct>=40){ trophy='💪'; msg='"¡Vas por el buen camino! El aprendizaje necesita tiempo y constancia. Revisa el vocabulario de esta unidad y regresa con más confianza. ¡Tú tienes todo para lograrlo!"'; }
+  else { trophy='🌱'; msg='"¡No te desanimes! Todos comenzamos desde cero y tú ya estás aquí practicando, que es lo más importante. Repasa las expresiones de frecuencia y vuelve a intentarlo. ¡El progreso llega con la práctica!"'; }
+
+  $('stage').innerHTML=`
+  <div class="card res-card">
+    <span class="res-trophy">${trophy}</span>
+    <h2 class="res-title">Actividad completada</h2>
+    <p class="res-sub">Español A1 · Expresiones de frecuencia</p>
+    <div class="res-pts-wrap">
+      <span class="res-pts-big">${score}</span>
+      <span class="res-pts-lbl">&nbsp;puntos</span>
+    </div>
+    <div class="res-stats">
+      <div class="rs"><span class="rs-n ok">${correct}</span><span class="rs-lbl">Correctas</span></div>
+      <div class="rs"><span class="rs-n fail">${wrong}</span><span class="rs-lbl">Incorrectas</span></div>
+      <div class="rs"><span class="rs-n gold">${pct}%</span><span class="rs-lbl">Precisión</span></div>
+    </div>
+    <div class="res-divider"></div>
+    <p class="res-msg">${msg}</p>
+    <div class="res-actions">
+      <button class="btn-restart" onclick="startQuiz()">🔄 Reintentar</button>
+      <a id="btn-volver"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=173"
+   style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+  🏫 Regresar al Aula Virtual
+</a>
+    </div>
+  </div>`;
+const btn = document.getElementById('btn-volver');
+const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=173';
+const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=173';
+const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+}
+
+
+// ── INIT ──
+showSplash();
+</script>
+</body>
+</html>
