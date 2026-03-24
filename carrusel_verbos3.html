@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  #card1,#card2,#card3,#card4,#card5,#card6,
+  #card7,#card8,#card9,#card10,#card11,#card12 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+  #s12:checked ~ #card12 { display:block; }
+
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"],
+  #s12:checked ~ .nav-dots label[for="s12"] {
+    background: #E11D48;
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px rgba(225,29,72,0.28);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11,
+  #s12:checked ~ .nav-arrows .arr-12 { display:flex; }
+
+  /* Shared helpers */
+  .zi { position:relative; z-index:1; }
+  .deco-blob-tr { position:absolute; top:-55px; right:-55px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.055); }
+  .deco-blob-bl { position:absolute; bottom:-75px; left:-45px; width:250px; height:250px; border-radius:50%; background:rgba(0,0,0,0.07); }
+  /* Diagonal stripe texture */
+  .tex { position:absolute; inset:0; border-radius:22px;
+    background-image: repeating-linear-gradient(
+      -55deg,
+      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+      transparent 1px, transparent 18px
+    );
+  }
+  .card-wrap { border-radius:22px; padding:40px; position:relative; overflow:hidden; min-height:390px; }
+  .eyebrow { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin:0 0 8px; }
+  .card-title { font-family:'Fraunces',serif; color:white; font-size:1.95em; margin:0 0 18px; line-height:1.15; }
+  .def-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); border-radius:13px; padding:16px 18px; margin-bottom:14px; }
+  .def-text { color:white; line-height:1.75; margin:0; font-size:0.96em; }
+  .stripe { border-left:4px solid; border-radius:0 12px 12px 0; padding:14px 16px; margin-bottom:13px; }
+  .sec-lbl { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:0 0 11px; }
+  .ex-box { background:rgba(255,220,80,0.13); border:2px solid rgba(255,220,80,0.35); border-radius:12px; padding:12px 16px; }
+  .ex-lbl { color:#FFE066; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; text-align:center; margin:0 0 6px; letter-spacing:1px; }
+  .ex-txt { color:white; font-size:0.9em; margin:0; text-align:center; font-style:italic; line-height:1.65; }
+  .vg { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .vi { background:rgba(255,255,255,0.11); border-radius:9px; padding:9px 11px; }
+  .ves { color:#FFE066; font-size:0.9em; font-weight:700; margin:0; }
+  .ven { color:rgba(255,255,255,0.56); font-size:0.74em; margin:2px 0 0; }
+  .nav-btn { background:white; border:2px solid #DDD6FE; border-radius:12px; padding:10px 26px; cursor:pointer; font-weight:700; color:#312E81; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.93em; }
+  .badge { display:inline-flex; align-items:center; background:rgba(255,255,255,0.11); border-radius:20px; padding:5px 14px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2px; }
+</style>
+</head>
+<body style="margin:0; padding:20px;
+  background:#FEF2F2;
+  background-image: repeating-linear-gradient(0deg, rgba(225,29,72,0.06) 0px, rgba(225,29,72,0.06) 1px, transparent 1px, transparent 32px),
+                    repeating-linear-gradient(90deg, rgba(225,29,72,0.06) 0px, rgba(225,29,72,0.06) 1px, transparent 1px, transparent 32px);
+  font-family:'Plus Jakarta Sans',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- HEADER -->
+  <div style="text-align:center; margin-bottom:32px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#BE123C,#E11D48); padding:8px 26px; border-radius:30px; margin-bottom:14px; box-shadow:0 4px 18px rgba(225,29,72,0.35);">
+      <span style="color:white; font-size:0.81em; font-weight:700; letter-spacing:3px;">UNIDAD 3 · TEMÁTICA 5 · BLOQUE 1</span>
+    </div>
+    <h2 style="font-family:'Fraunces',serif; font-size:2.3em; color:#831843; margin:0 0 6px; line-height:1.1;">Presente de indicativo 🎭</h2>
+    <p style="color:#9F7A8F; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIOS (no modificar) -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+  <input type="radio" name="slide" id="s12" style="display:none;">
+
+  <!-- ===== TARJETA 1: Introducción al presente ===== -->
+  <div id="card1" class="card-wrap" style="background:linear-gradient(145deg,#831843,#E11D48); box-shadow:0 8px 40px rgba(225,29,72,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;bottom:24px;right:28px;font-size:6em;opacity:0.08;line-height:1;">🎭</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FECACA;">01 / 12 &nbsp;·&nbsp; 🎭 PRESENTE</span>
+      <span style="font-size:1.9em;">🎭</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FECACA;">Bienvenida al bloque</p>
+      <h3 class="card-title" style="font-size:2em;">El presente de indicativo</h3>
+      <div class="def-box">
+        <p class="def-text">El presente se usa para <strong style="color:#FFE066;">hablar de acciones habituales, hechos verdaderos y lo que está pasando ahora</strong>. Es el primer tiempo verbal que aprendemos para comunicarnos en español.</p>
+      </div>
+
+      <!-- Verbos visual -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:16px;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 4px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.2em;">-ar</p>
+          <p style="color:rgba(255,255,255,0.5);margin:2px 0 0;font-size:0.65em;">hablar</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 4px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.2em;">-er</p>
+          <p style="color:rgba(255,255,255,0.5);margin:2px 0 0;font-size:0.65em;">comer</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:8px;padding:8px 4px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.2em;">-ir</p>
+          <p style="color:rgba(255,255,255,0.5);margin:2px 0 0;font-size:0.65em;">vivir</p>
+        </div>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FECACA;background:rgba(131,24,67,0.3);">
+        <p class="sec-lbl" style="color:#FECACA;">📚 EN ESTE BLOQUE</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Verbos regulares -ar, -er, -ir</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Verbos irregulares comunes (ser, estar, tener, ir)</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Verbos reflexivos y rutina diaria</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Cambios vocálicos (e->ie, o->ue)</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Usos del presente: hábitos, hechos, ahora</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 2: Verbos -AR regulares ===== -->
+  <div id="card2" class="card-wrap" style="background:linear-gradient(145deg,#9D174D,#F43F5E); box-shadow:0 8px 40px rgba(244,63,94,0.5);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FFE4E6;">02 / 12 &nbsp;·&nbsp; 🔤 VERBOS -AR</span>
+      <span style="font-size:1.9em;">🔤</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FFE4E6;">Primera conjugación</p>
+      <h3 class="card-title">Verbos terminados en -AR</h3>
+      <div class="def-box">
+        <p class="def-text">Los verbos como <strong style="color:#FFE066;">hablar, estudiar, trabajar</strong> siguen este patrón: elimina -AR y añade: <strong>o, as, a, amos, áis, an</strong>.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FFE4E6;background:rgba(157,23,77,0.5);">
+        <p class="sec-lbl" style="color:#FFE4E6;">📖 CONJUGACIÓN DE "HABLAR"</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;align-items:center;">
+            <p style="color:#FFE066;margin:0;font-weight:700;">yo</p><p style="color:white;">hablo</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;align-items:center;">
+            <p style="color:#FFE066;margin:0;font-weight:700;">tú</p><p style="color:white;">hablas</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;align-items:center;">
+            <p style="color:#FFE066;margin:0;font-weight:700;">él/ella/usted</p><p style="color:white;">habla</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;align-items:center;">
+            <p style="color:#FFE066;margin:0;font-weight:700;">nosotros</p><p style="color:white;">hablamos</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;align-items:center;">
+            <p style="color:#FFE066;margin:0;font-weight:700;">vosotros</p><p style="color:white;">habláis</p>
+          </div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;align-items:center;">
+            <p style="color:#FFE066;margin:0;font-weight:700;">ellos/ellas/ustedes</p><p style="color:white;">hablan</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="ex-box">
+        <p class="ex-lbl">💬 EJEMPLOS</p>
+        <p class="ex-txt">"<strong>Yo estudio</strong> español todos los días."<br>"<strong>Ellos trabajan</strong> en una oficina."</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 3: Verbos -ER regulares ===== -->
+  <div id="card3" class="card-wrap" style="background:linear-gradient(145deg,#B91C1C,#EF4444); box-shadow:0 8px 40px rgba(239,68,68,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEE2E2;">03 / 12 &nbsp;·&nbsp; 🔤 VERBOS -ER</span>
+      <span style="font-size:1.9em;">🔤</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEE2E2;">Segunda conjugación</p>
+      <h3 class="card-title">Verbos terminados en -ER</h3>
+      <div class="def-box">
+        <p class="def-text">Verbos como <strong style="color:#FFE066;">comer, beber, aprender</strong>. Raíz + <strong>o, es, e, emos, éis, en</strong>.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEE2E2;background:rgba(185,28,28,0.3);">
+        <p class="sec-lbl" style="color:#FEE2E2;">📖 CONJUGACIÓN DE "COMER"</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">yo</p><p style="color:white;">como</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">tú</p><p style="color:white;">comes</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">él/ella/usted</p><p style="color:white;">come</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">nosotros</p><p style="color:white;">comemos</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">vosotros</p><p style="color:white;">coméis</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">ellos/ellas/ustedes</p><p style="color:white;">comen</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"<strong>¿Bebes</strong> café por la mañana?"<br>"<strong>Aprendemos</strong> español en clase."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 4: Verbos -IR regulares ===== -->
+  <div id="card4" class="card-wrap" style="background:linear-gradient(145deg,#9F1239,#F43F5E); box-shadow:0 8px 40px rgba(244,63,94,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FFE4E6;">04 / 12 &nbsp;·&nbsp; 🔤 VERBOS -IR</span>
+      <span style="font-size:1.9em;">🔤</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FFE4E6;">Tercera conjugación</p>
+      <h3 class="card-title">Verbos terminados en -IR</h3>
+      <div class="def-box"><p class="def-text">Verbos como <strong style="color:#FFE066;">vivir, escribir, abrir</strong>. Raíz + <strong>o, es, e, imos, ís, en</strong>.</p></div>
+      <div class="stripe" style="border-left-color:#FFE4E6;background:rgba(159,18,57,0.28);">
+        <p class="sec-lbl" style="color:#FFE4E6;">📖 CONJUGACIÓN DE "VIVIR"</p>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">yo</p><p style="color:white;">vivo</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">tú</p><p style="color:white;">vives</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">él/ella/usted</p><p style="color:white;">vive</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">nosotros</p><p style="color:white;">vivimos</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">vosotros</p><p style="color:white;">vivís</p></div>
+          <div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:10px 14px;display:grid;grid-template-columns:1fr 2fr;"><p style="color:#FFE066;">ellos/ellas/ustedes</p><p style="color:white;">viven</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"<strong>Escribo</strong> un correo electrónico."<br>"<strong>Ellos viven</strong> en Madrid."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 5: Verbos irregulares SER y ESTAR ===== -->
+  <div id="card5" class="card-wrap" style="background:linear-gradient(145deg,#86198F,#C026D3); box-shadow:0 8px 40px rgba(192,38,211,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#F5D0FE;">05 / 12 &nbsp;·&nbsp; ⚡ IRREGULARES</span>
+      <span style="font-size:1.9em;">⚡</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#F5D0FE;">Ser / Estar</p>
+      <h3 class="card-title">Ser y estar: diferencia esencial</h3>
+      <div class="def-box"><p class="def-text"><strong style="color:#FFE066;">Ser</strong> → identidad, origen, profesión. <strong style="color:#FFE066;">Estar</strong> → ubicación, estado temporal.</p></div>
+      <div class="stripe" style="border-left-color:#F5D0FE;background:rgba(134,25,143,0.3);">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><p class="sec-lbl" style="color:#F5D0FE;">SER</p><div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:8px;"><p style="color:#FFE066;">yo soy</p><p style="color:white;">tú eres</p><p style="color:white;">él/ella es</p><p style="color:white;">nosotros somos</p><p style="color:white;">vosotros sois</p><p style="color:white;">ellos son</p></div></div>
+          <div><p class="sec-lbl" style="color:#F5D0FE;">ESTAR</p><div style="background:rgba(255,255,255,0.09);border-radius:9px;padding:8px;"><p style="color:#FFE066;">yo estoy</p><p style="color:white;">tú estás</p><p style="color:white;">él/ella está</p><p style="color:white;">nosotros estamos</p><p style="color:white;">vosotros estáis</p><p style="color:white;">ellos están</p></div></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"<strong>Soy</strong> profesor. <strong>Estoy</strong> en la escuela."<br>"<strong>Eres</strong> inteligente. <strong>Estás</strong> cansado."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 6: IR, TENER, HACER ===== -->
+  <div id="card6" class="card-wrap" style="background:linear-gradient(145deg,#A21CAF,#E879F9); box-shadow:0 8px 40px rgba(232,121,249,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#F3E8FF;">06 / 12 &nbsp;·&nbsp; 🚀 OTROS IRREGULARES</span>
+      <span style="font-size:1.9em;">🚀</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#F3E8FF;">Ir, tener, hacer</p>
+      <h3 class="card-title">Verbos de uso frecuente</h3>
+      <div class="def-box"><p class="def-text">Estos verbos tienen conjugaciones especiales. Memorízalas.</p></div>
+      <div class="stripe" style="border-left-color:#F3E8FF;background:rgba(162,28,175,0.28);">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+          <div><p class="sec-lbl" style="color:#F3E8FF;">IR</p><div><p style="color:#FFE066;">voy</p><p>vas</p><p>va</p><p>vamos</p><p>vais</p><p>van</p></div></div>
+          <div><p class="sec-lbl" style="color:#F3E8FF;">TENER</p><div><p style="color:#FFE066;">tengo</p><p>tienes</p><p>tiene</p><p>tenemos</p><p>tenéis</p><p>tienen</p></div></div>
+          <div><p class="sec-lbl" style="color:#F3E8FF;">HACER</p><div><p style="color:#FFE066;">hago</p><p>haces</p><p>hace</p><p>hacemos</p><p>hacéis</p><p>hacen</p></div></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"<strong>Voy</strong> al gimnasio." "<strong>Tengo</strong> dos hermanos." "<strong>Hago</strong> ejercicio cada día."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 7: Verbos reflexivos y rutina ===== -->
+  <div id="card7" class="card-wrap" style="background:linear-gradient(145deg,#0F172A,#334155); box-shadow:0 8px 40px rgba(51,65,85,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#CBD5E1;">07 / 12 &nbsp;·&nbsp; 🔄 REFLEXIVOS</span>
+      <span style="font-size:1.9em;">🔄</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#CBD5E1;">Acciones cotidianas</p>
+      <h3 class="card-title">Rutina diaria y verbos reflexivos</h3>
+      <div class="def-box"><p class="def-text">Verbos reflexivos como <strong style="color:#FFE066;">levantarse, vestirse, acostarse</strong> se conjugan con un pronombre (me, te, se, nos, os, se).</p></div>
+      <div class="stripe" style="border-left-color:#CBD5E1;background:rgba(15,23,42,0.28);">
+        <div class="vg"><div class="vi"><p class="ves">yo me levanto</p><p class="ven">I get up</p></div><div class="vi"><p class="ves">tú te levantas</p><p class="ven">you get up</p></div><div class="vi"><p class="ves">él/ella se levanta</p><p class="ven">he/she gets up</p></div><div class="vi"><p class="ves">nosotros nos levantamos</p><p class="ven">we get up</p></div></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLO</p><p class="ex-txt">"<strong>Me levanto</strong> a las siete. <strong>Me visto</strong> y <strong>me voy</strong> al trabajo."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 8: Stem-changing verbs (e->ie, o->ue) ===== -->
+  <div id="card8" class="card-wrap" style="background:linear-gradient(145deg,#4A044E,#A21CAF); box-shadow:0 8px 40px rgba(162,28,175,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#F3E8FF;">08 / 12 &nbsp;·&nbsp; 🔄 DIPTONGACIÓN</span>
+      <span style="font-size:1.9em;">🔄</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#F3E8FF;">Cambio vocálico</p>
+      <h3 class="card-title">Verbos con cambio de raíz</h3>
+      <div class="def-box"><p class="def-text">Algunos verbos cambian la vocal en todas las formas excepto nosotros/vosotros: <strong style="color:#FFE066;">pensar (e→ie), dormir (o→ue)</strong>.</p></div>
+      <div class="stripe" style="border-left-color:#F3E8FF;background:rgba(74,4,78,0.28);">
+        <div class="vg"><div class="vi"><p class="ves">pensar (e→ie)</p><p class="ven">pienso, piensas, piensa, pensamos, pensáis, piensan</p></div><div class="vi"><p class="ves">dormir (o→ue)</p><p class="ven">duermo, duermes, duerme, dormimos, dormís, duermen</p></div></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"<strong>Pienso</strong> que es difícil." "<strong>Duermo</strong> ocho horas."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 9: Usos del presente ===== -->
+  <div id="card9" class="card-wrap" style="background:linear-gradient(145deg,#064E3B,#10B981); box-shadow:0 8px 40px rgba(16,185,129,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#A7F3D0;">09 / 12 &nbsp;·&nbsp; 📌 USOS</span>
+      <span style="font-size:1.9em;">📌</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#A7F3D0;">Cuándo usar el presente</p>
+      <h3 class="card-title">Hábitos, hechos y ahora</h3>
+      <div class="def-box"><p class="def-text">El presente expresa acciones habituales (<em>siempre estudio</em>), verdades universales (<em>el agua hierve a 100°</em>) y acciones actuales (<em>ahora leo</em>).</p></div>
+      <div class="stripe" style="border-left-color:#A7F3D0;background:rgba(6,78,59,0.28);">
+        <div class="vi"><p class="ves">Hábitos</p><p class="ven">"<strong>Corro</strong> todos los días."</p></div>
+        <div class="vi"><p class="ves">Hechos</p><p class="ven">"<strong>La Tierra gira</strong> alrededor del Sol."</p></div>
+        <div class="vi"><p class="ves">Ahora</p><p class="ven">"<strong>Estudio</strong> en este momento."</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 10: Diálogo en presente ===== -->
+  <div id="card10" class="card-wrap" style="background:linear-gradient(145deg,#1E3A8A,#3B82F6); box-shadow:0 8px 40px rgba(59,130,246,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#BFDBFE;">10 / 12 &nbsp;·&nbsp; 💬 DIÁLOGO</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#BFDBFE;">Conversación cotidiana</p>
+      <h3 class="card-title">¿Qué haces?</h3>
+      <div class="stripe" style="border-left-color:#BFDBFE;background:rgba(30,58,138,0.25);">
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;">A</span><p style="color:#FDE68A;">ANA</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"¿Qué <strong>haces</strong> los fines de semana?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#BFDBFE;">LUIS</p><span style="background:#BFDBFE;border-radius:50%;width:24px;height:24px;">B</span></div><div style="background:rgba(191,219,254,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"<strong>Voy</strong> al cine o <strong>salgo</strong> con amigos. ¿Y tú?"</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">A</span><p style="color:#FDE68A;">ANA</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"<strong>Me gusta</strong> leer y <strong>cocino</strong> los domingos."</p></div></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">📝 EXPRESIÓN</p><p class="ex-txt"><strong>"¿Qué haces?"</strong> = What do you do? / What are you doing?</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 11: Errores frecuentes ===== -->
+  <div id="card11" class="card-wrap" style="background:linear-gradient(145deg,#7F1A1A,#DC2626); box-shadow:0 8px 40px rgba(220,38,38,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FECACA;">11 / 12 &nbsp;·&nbsp; 🚨 ERRORES</span>
+      <span style="font-size:1.9em;">🚨</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FECACA;">Atención</p>
+      <h3 class="card-title">Errores comunes con el presente</h3>
+      <div class="stripe" style="border-left-color:#FECACA;background:rgba(127,26,26,0.22);">
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Yo soy estudiando."</p><p style="color:#86EFAC;">✅ "<strong>Yo estudio</strong>."</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Ellos hablan español?" (sin signos)</p><p style="color:#86EFAC;">✅ "<strong>¿Ellos hablan español?</strong>"</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Yo tener un perro."</p><p style="color:#86EFAC;">✅ "<strong>Yo tengo</strong> un perro."</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Nosotros va al cine."</p><p style="color:#86EFAC;">✅ "<strong>Nosotros vamos</strong> al cine."</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 12: Resumen final ===== -->
+  <div id="card12" class="card-wrap" style="background:linear-gradient(145deg,#831843,#E11D48); box-shadow:0 8px 40px rgba(225,29,72,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FECACA;">12 / 12 &nbsp;·&nbsp; 🏆 COMPLETADO</span>
+      <span style="font-size:1.9em;">🎉</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FECACA;">¡Bloque completado!</p>
+      <h3 class="card-title">Repaso final 🏆</h3>
+      <div style="background:rgba(255,255,255,0.07);border-radius:14px;padding:16px;margin-bottom:14px;">
+        <p style="color:white;">¡Felicidades! Ahora conjugas verbos regulares, irregulares, reflexivos y usas el presente como un nativo.</p>
+        <div style="margin-top:12px;">
+          <div style="background:rgba(225,29,72,0.3);border-left:3px solid #FECACA;padding:9px;"><p style="color:#FECACA;">🔤 -AR: hablo, hablas, habla...</p></div>
+          <div style="background:rgba(59,130,246,0.3);border-left:3px solid #3B82F6;padding:9px;"><p style="color:#BFDBFE;">🔤 -ER: como, comes, come...</p></div>
+          <div style="background:rgba(16,185,129,0.3);border-left:3px solid #10B981;padding:9px;"><p style="color:#A7F3D0;">🔤 -IR: vivo, vives, vive...</p></div>
+          <div style="background:rgba(245,158,11,0.3);border-left:3px solid #F59E0B;padding:9px;"><p style="color:#FDE68A;">⚡ Irregulares: ser, estar, tener, ir, hacer</p></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:12px;">
+        <a id="btn-volver" href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=196" style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-weight:700;padding:14px 36px;border-radius:50px;text-decoration:none;">🏫 Volver al menú principal</a>
+        <script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=196';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=1966';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+</script>
+        <p style="color:rgba(255,255,255,0.38);font-size:0.78em;margin:12px 0 0;">Unidad 5 · Temática 5 · Bloque 1 completado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOTS (no modificar) -->
+  <div class="nav-dots" style="display:flex;justify-content:center;gap:9px;margin-top:26px;flex-wrap:wrap;">
+    <label for="s1" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s2" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s3" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s4" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s5" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s6" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s7" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s8" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s9" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s10" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s11" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+    <label for="s12" style="width:11px;height:11px;border-radius:50%;background:#FECACA;cursor:pointer;"></label>
+  </div>
+
+  <!-- FLECHAS -->
+  <div class="nav-arrows" style="display:flex;justify-content:center;gap:14px;margin-top:18px;">
+    <div class="btn-nav arr-1"><label class="nav-btn" for="s2">Siguiente →</label></div>
+    <div class="btn-nav arr-2"><label class="nav-btn" for="s1">← Anterior</label><label class="nav-btn" for="s3">Siguiente →</label></div>
+    <div class="btn-nav arr-3"><label class="nav-btn" for="s2">← Anterior</label><label class="nav-btn" for="s4">Siguiente →</label></div>
+    <div class="btn-nav arr-4"><label class="nav-btn" for="s3">← Anterior</label><label class="nav-btn" for="s5">Siguiente →</label></div>
+    <div class="btn-nav arr-5"><label class="nav-btn" for="s4">← Anterior</label><label class="nav-btn" for="s6">Siguiente →</label></div>
+    <div class="btn-nav arr-6"><label class="nav-btn" for="s5">← Anterior</label><label class="nav-btn" for="s7">Siguiente →</label></div>
+    <div class="btn-nav arr-7"><label class="nav-btn" for="s6">← Anterior</label><label class="nav-btn" for="s8">Siguiente →</label></div>
+    <div class="btn-nav arr-8"><label class="nav-btn" for="s7">← Anterior</label><label class="nav-btn" for="s9">Siguiente →</label></div>
+    <div class="btn-nav arr-9"><label class="nav-btn" for="s8">← Anterior</label><label class="nav-btn" for="s10">Siguiente →</label></div>
+    <div class="btn-nav arr-10"><label class="nav-btn" for="s9">← Anterior</label><label class="nav-btn" for="s11">Siguiente →</label></div>
+    <div class="btn-nav arr-11"><label class="nav-btn" for="s10">← Anterior</label><label class="nav-btn" for="s12">Siguiente →</label></div>
+    <div class="btn-nav arr-12"><label class="nav-btn" for="s11">← Anterior</label><label class="nav-btn" style="background:linear-gradient(135deg,#E11D48,#831843);border-color:#E11D48;color:white;" for="s1">🔁 Reiniciar</label></div>
+  </div>
+
+</div>
+</body>
+</html>
