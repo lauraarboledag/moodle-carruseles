@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verbos gustar y encantar · Español A1</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1a2e4a; --navy-mid: #2c4a72; --navy-light: #3d6494;
+      --gold: #c9a84c; --gold-light: #e8c96a;
+      --success: #52b788; --error: #e05c5c;
+      --bg: #f0f4f8; --white: #ffffff;
+      --muted: #718096; --border: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); min-height: 100vh; padding-bottom: 60px; }
+
+    /* HEADER */
+    .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); padding: 28px 24px 36px; position: relative; overflow: hidden; }
+    .header::before { content:''; position:absolute; top:-50px; right:-50px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.04); }
+    .header::after  { content:''; position:absolute; bottom:-60px; left:20%; width:260px; height:260px; border-radius:50%; background:rgba(201,168,76,0.07); }
+    .header-inner { max-width:860px; margin:0 auto; position:relative; z-index:1; }
+    .header-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(201,168,76,0.18); border:1px solid rgba(201,168,76,0.35); color:var(--gold-light); padding:4px 12px; border-radius:20px; font-size:0.72em; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:12px; }
+    .header h1 { font-family:'Playfair Display',serif; color:white; font-size:1.9em; margin-bottom:6px; line-height:1.2; }
+    .header h1 span { color:var(--gold-light); }
+    .header p { color:rgba(255,255,255,0.6); font-size:0.9em; font-weight:300; }
+
+    /* SCORE */
+    .score-strip { max-width:860px; margin:16px auto 0; padding:0 24px; display:flex; gap:12px; flex-wrap:wrap; position:relative; z-index:5; background:var(--bg); }
+    .score-chip { display:flex; align-items:center; gap:6px; background:white; border:1px solid var(--border); border-radius:20px; padding:6px 14px; font-size:0.8em; color:var(--muted); font-weight:500; }
+
+    /* MAIN */
+    .main { max-width:860px; margin:24px auto 0; padding:0 24px; }
+
+    /* INSTRUCCIÓN */
+    .instruction-card { background:white; border-radius:14px; padding:18px 22px; border:1px solid var(--border); border-left:4px solid var(--gold); box-shadow:0 2px 10px rgba(26,46,74,0.06); margin-bottom:24px; display:flex; align-items:center; gap:14px; }
+    .instruction-icon { width:42px; height:42px; border-radius:10px; flex-shrink:0; background:linear-gradient(135deg,var(--gold),var(--gold-light)); display:flex; align-items:center; justify-content:center; font-size:1.3em; }
+    .instruction-text p:first-child { font-size:0.72em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--navy-mid); margin-bottom:4px; }
+    .instruction-text p:last-child { font-size:0.9em; color:var(--muted); line-height:1.6; }
+
+    /* BANCO DE PALABRAS - STICKY */
+    .bank-card { 
+      background:white; 
+      border-radius:16px; 
+      border:1px solid var(--border); 
+      box-shadow:0 4px 20px rgba(26,46,74,0.08); 
+      overflow:hidden; 
+      margin-bottom:24px;
+      position: sticky;
+      top: 70px;
+      z-index: 100;
+      transition: box-shadow 0.2s;
+    }
+    .bank-header { background:linear-gradient(135deg,var(--navy),var(--navy-mid)); padding:14px 22px; display:flex; align-items:center; gap:10px; }
+    .bank-header span:first-child { color:var(--gold-light); }
+    .bank-header span:last-child  { color:white; font-size:0.9em; font-weight:600; }
+    .bank-body { padding:18px 20px; display:flex; flex-wrap:wrap; gap:10px; }
+
+    .word-chip { background:white; border:2px solid var(--navy-mid); color:var(--navy); padding:9px 18px; border-radius:30px; font-size:0.92em; font-weight:600; cursor:grab; transition:all 0.15s; user-select:none; display:flex; align-items:center; gap:7px; }
+    .word-chip:hover { background:var(--navy); color:white; transform:translateY(-2px); box-shadow:0 4px 14px rgba(26,46,74,0.22); }
+    .word-chip:active { cursor:grabbing; }
+    .word-chip.dragging { opacity:0.35; transform:scale(0.95); }
+    .word-chip.used { opacity:0.22; pointer-events:none; border-style:dashed; }
+    .word-chip.selected { background:var(--navy); color:white; box-shadow:0 4px 14px rgba(26,46,74,0.22); }
+
+    /* NOTA GRAMATICAL */
+    .grammar-note { background:linear-gradient(135deg,var(--navy),var(--navy-mid)); border-radius:12px; padding:18px 22px; display:flex; gap:14px; align-items:flex-start; margin-bottom:24px; }
+    .gn-icon { font-size:1.4em; flex-shrink:0; }
+    .gn-label { color:var(--gold-light); font-weight:700; font-size:0.78em; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:5px; font-family:sans-serif; }
+    .gn-text  { color:rgba(255,255,255,0.85); font-size:0.88em; line-height:1.7; margin:0; font-family:sans-serif; }
+
+    /* GRID */
+    .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:24px; }
+    @media(max-width:680px){ .cards-grid{ grid-template-columns:1fr 1fr; } }
+    @media(max-width:440px){ .cards-grid{ grid-template-columns:1fr; } }
+
+    /* TARJETA */
+    .verb-card { background:white; border-radius:16px; border:1px solid var(--border); box-shadow:0 2px 12px rgba(26,46,74,0.07); overflow:hidden; transition:box-shadow 0.2s; display:flex; flex-direction:column; }
+    .verb-card:hover { box-shadow:0 6px 20px rgba(26,46,74,0.12); }
+    .card-top { padding:20px 18px 14px; display:flex; flex-direction:column; align-items:center; gap:10px; flex:1; }
+    .card-emoji-wrap { width:64px; height:64px; border-radius:16px; background:linear-gradient(135deg,#f0f4f8,#e2e8f0); border:2px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:2em; box-shadow:0 2px 8px rgba(26,46,74,0.08); }
+    .card-description { font-size:0.86em; color:#4a5568; line-height:1.7; text-align:center; flex:1; font-family:sans-serif; margin-bottom: 8px; }
+    .card-hint { font-size:0.72em; color:var(--gold); background:rgba(201,168,76,0.1); padding:4px 8px; border-radius:20px; display:inline-block; margin-top:6px; font-weight:500; }
+    .card-slot-wrap { padding:0 16px 16px; }
+
+    /* SLOT */
+    .slot { min-height:42px; border:2px dashed #b0c4d8; border-radius:30px; display:flex; align-items:center; justify-content:center; padding:6px 14px; font-size:0.85em; font-weight:600; color:var(--muted); background:#f7f9fc; transition:all 0.2s; cursor:pointer; text-align:center; gap:6px; }
+    .slot.drag-over { border-color:var(--gold); background:rgba(201,168,76,0.1); transform:scale(1.03); }
+    .slot.filled    { border:2px solid var(--navy-mid); background:rgba(44,74,114,0.07); color:var(--navy); }
+    .slot.correct   { border-color:var(--success); background:rgba(82,183,136,0.12); color:#2d6a4f; }
+    .slot.incorrect { border-color:var(--error); background:rgba(224,92,92,0.1); color:#9b2226; animation:shake 0.35s ease; }
+    @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+    .slot-remove { font-size:0.72em; cursor:pointer; opacity:0.55; background:rgba(0,0,0,0.1); border-radius:50%; width:16px; height:16px; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; }
+    .slot-remove:hover { opacity:1; }
+
+    /* FEEDBACK */
+    .feedback-bar { background:white; border-radius:14px; border:1px solid var(--border); box-shadow:0 2px 10px rgba(26,46,74,0.06); padding:16px 20px; margin-bottom:20px; display:flex; align-items:center; gap:12px; min-height:58px; }
+    .feedback-icon { font-size:1.3em; flex-shrink:0; }
+    .feedback-text { font-size:0.9em; color:var(--muted); line-height:1.6; }
+    .feedback-text.success { color:#2d6a4f; font-weight:500; }
+    .feedback-text.error   { color:#9b2226; font-weight:500; }
+
+    /* BOTONES */
+    .btn-row { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    .btn { padding:12px 26px; border-radius:30px; font-family:'DM Sans',sans-serif; font-size:0.9em; font-weight:600; cursor:pointer; border:none; transition:all 0.15s; }
+    .btn-primary { background:linear-gradient(135deg,var(--navy),var(--navy-mid)); color:white; box-shadow:0 4px 14px rgba(26,46,74,0.25); }
+    .btn-primary:hover { transform:translateY(-1px); box-shadow:0 6px 18px rgba(26,46,74,0.3); }
+    .btn-secondary { background:white; color:var(--navy); border:2px solid var(--border); }
+    .btn-secondary:hover { border-color:var(--navy-mid); }
+
+    /* RESULTADOS */
+    .results-screen { display:none; background:white; border-radius:18px; border:1px solid var(--border); box-shadow:0 4px 24px rgba(26,46,74,0.08); padding:40px 32px; text-align:center; animation:fadeIn 0.5s ease; }
+    .results-screen.show { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+    .results-emoji { font-size:3.5em; margin-bottom:16px; }
+    .results-title { font-family:'Playfair Display',serif; font-size:1.7em; color:var(--navy); margin-bottom:8px; }
+    .results-sub { color:var(--muted); font-size:0.95em; margin-bottom:28px; }
+    .results-score { display:inline-flex; align-items:center; justify-content:center; width:100px; height:100px; border-radius:50%; background:linear-gradient(135deg,var(--navy),var(--navy-mid)); color:white; font-size:2em; font-weight:700; margin-bottom:28px; box-shadow:0 8px 24px rgba(26,46,74,0.25); font-family:'Playfair Display',serif; }
+    .results-breakdown { display:flex; justify-content:center; gap:32px; margin-bottom:32px; flex-wrap:wrap; }
+    .breakdown-item { text-align:center; }
+    .breakdown-num { font-size:1.6em; font-weight:700; font-family:'Playfair Display',serif; }
+    .breakdown-label { font-size:0.78em; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+    .color-success { color:var(--success); } .color-error { color:var(--error); } .color-navy { color:var(--navy); }
+    .back-btn { display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--gold),var(--gold-light)); color:var(--navy); text-decoration:none; padding:13px 28px; border-radius:30px; font-family:'DM Sans',sans-serif; font-size:0.95em; font-weight:700; box-shadow:0 4px 14px rgba(201,168,76,0.35); transition:all 0.15s; border:none; cursor:pointer; margin-top:8px; }
+    .back-btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(201,168,76,0.45); }
+
+    @media (max-width: 768px) {
+      .bank-card {
+        top: 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">⭐ Unidad 3 · Rutinas diarias y tiempo libre</div>
+    <h1>Verbos <span>gustar y encantar</span></h1>
+    <p>Arrastra la forma verbal correcta para completar cada oración</p>
+  </div>
+</div>
+
+<!-- SCORE -->
+<div class="score-strip">
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctas</div>
+  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">10</span> pendientes</div>
+  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrectas</div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <div class="instruction-card">
+    <div class="instruction-icon">📌</div>
+    <div class="instruction-text">
+      <p>Instrucciones</p>
+      <p>Arrastra o toca la forma verbal correcta (<strong>gusta, gustan, encanta, encantan</strong>) desde el banco de palabras y colócala en el espacio en blanco. Cada oración tiene su propia palabra en el banco.</p>
+    </div>
+  </div>
+
+  <!-- BANCO DE PALABRAS - STICKY -->
+  <div class="bank-card">
+    <div class="bank-header">
+      <span>🏷️</span>
+      <span>Banco de palabras — diez palabras (una por oración)</span>
+    </div>
+    <div class="bank-body" id="wordBank"></div>
+  </div>
+
+  <div class="grammar-note">
+    <span class="gn-icon">📘</span>
+    <div>
+      <p class="gn-label">Nota gramatical</p>
+      <p class="gn-text">Los verbos <strong>gustar</strong> y <strong>encantar</strong> se conjugan según lo que gusta (sujeto). Usamos <strong>gusta / encanta</strong> con un sustantivo singular o infinitivo, y <strong>gustan / encantan</strong> con un sustantivo plural. Siempre van acompañados de un pronombre de objeto indirecto (me, te, le, nos, os, les).</p>
+    </div>
+  </div>
+
+  <div class="cards-grid" id="cardsGrid"></div>
+
+  <div class="feedback-bar">
+    <span class="feedback-icon" id="feedbackIcon">💬</span>
+    <span class="feedback-text" id="feedbackText">Arrastra un verbo para comenzar...</span>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-primary"   onclick="checkAll()">✅ Comprobar todo</button>
+    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reiniciar</button>
+  </div>
+
+  <div class="results-screen" id="resultsScreen">
+    <div class="results-emoji" id="resultsEmoji">🎉</div>
+    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
+    <div class="results-sub"   id="resultsSub">Completaste la actividad</div>
+    <div class="results-score" id="resultsScore">10/10</div>
+    <div class="results-breakdown">
+      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correctas</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrectas</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Puntuación</div></div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Intentar de nuevo</button>
+      <a id="btn-volver"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=205"
+   style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+  🏫 Regresar al Aula Virtual
+</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const oraciones = [
+  {
+    id: 'gusta1',
+    label: 'gusta',
+    emoji: '☕',
+    description: 'A mí me ___ el café por las mañanas.',
+    hint: '🔍 Pista: el sujeto "el café" es singular → se usa "gusta"',
+    feedback: '☕ <strong>¡Correcto!</strong> "A mí me gusta el café" → "gusta" porque el sujeto (el café) es singular.'
+  },
+  {
+    id: 'gustan1',
+    label: 'gustan',
+    emoji: '🐱',
+    description: 'A ella le ___ los gatos y los perros.',
+    hint: '🔍 Pista: el sujeto "los gatos y los perros" es plural → se usa "gustan"',
+    feedback: '🐱 <strong>¡Correcto!</strong> "A ella le gustan los gatos" → "gustan" porque el sujeto (los gatos y los perros) es plural.'
+  },
+  {
+    id: 'encanta1',
+    label: 'encanta',
+    emoji: '✈️',
+    description: 'A nosotros nos ___ viajar a países nuevos.',
+    hint: '🔍 Pista: el sujeto es el verbo en infinitivo "viajar" → se usa "encanta"',
+    feedback: '✈️ <strong>¡Correcto!</strong> "Nos encanta viajar" → "encanta" porque el sujeto es un verbo en infinitivo (viajar).'
+  },
+  {
+    id: 'encantan1',
+    label: 'encantan',
+    emoji: '🎬',
+    description: 'A ellos les ___ las películas de terror.',
+    hint: '🔍 Pista: el sujeto "las películas" es plural → se usa "encantan"',
+    feedback: '🎬 <strong>¡Correcto!</strong> "Les encantan las películas" → "encantan" porque el sujeto (las películas) es plural.'
+  },
+  {
+    id: 'gusta2',
+    label: 'gusta',
+    emoji: '🏀',
+    description: 'A ti te ___ el deporte, ¿verdad?',
+    hint: '🔍 Pista: el sujeto "el deporte" es singular → se usa "gusta"',
+    feedback: '🏀 <strong>¡Correcto!</strong> "Te gusta el deporte" → "gusta" porque el deporte es singular.'
+  },
+  {
+    id: 'gustan2',
+    label: 'gustan',
+    emoji: '🌸',
+    description: 'A mí me ___ las flores de colores.',
+    hint: '🔍 Pista: el sujeto "las flores" es plural → se usa "gustan"',
+    feedback: '🌸 <strong>¡Correcto!</strong> "Me gustan las flores" → "gustan" porque el sujeto es plural.'
+  },
+  {
+    id: 'encanta2',
+    label: 'encanta',
+    emoji: '💃',
+    description: 'A María le ___ bailar salsa los fines de semana.',
+    hint: '🔍 Pista: el sujeto es el infinitivo "bailar" → se usa "encanta"',
+    feedback: '💃 <strong>¡Correcto!</strong> "Le encanta bailar" → "encanta" porque el sujeto es un infinitivo (bailar).'
+  },
+  {
+    id: 'encantan2',
+    label: 'encantan',
+    emoji: '🐶',
+    description: 'A mis padres les ___ los animales pequeños.',
+    hint: '🔍 Pista: el sujeto "los animales" es plural → se usa "encantan"',
+    feedback: '🐶 <strong>¡Correcto!</strong> "Les encantan los animales" → "encantan" porque el sujeto (animales) es plural.'
+  },
+  {
+    id: 'gusta3',
+    label: 'gusta',
+    emoji: '🎶',
+    description: 'A vosotros os ___ la música clásica.',
+    hint: '🔍 Pista: el sujeto "la música" es singular → se usa "gusta"',
+    feedback: '🎶 <strong>¡Correcto!</strong> "Os gusta la música" → "gusta" porque la música es singular.'
+  },
+  {
+    id: 'gustan3',
+    label: 'gustan',
+    emoji: '🍕',
+    description: 'A Pedro y a mí nos ___ las pizzas con queso.',
+    hint: '🔍 Pista: el sujeto "las pizzas" es plural → se usa "gustan"',
+    feedback: '🍕 <strong>¡Correcto!</strong> "Nos gustan las pizzas" → "gustan" porque el sujeto (las pizzas) es plural.'
+  }
+];
+
+let selected = null;
+
+function build() {
+  // Crear diez palabras en el banco, una por cada oración, usando su id único y su label.
+  const bank = document.getElementById('wordBank');
+  bank.innerHTML = '';
+  // Mezclamos el array de oraciones para que las palabras aparezcan en orden aleatorio
+  const shuffledSentences = shuffle([...oraciones]);
+  shuffledSentences.forEach(item => {
+    const chip = document.createElement('div');
+    chip.className = 'word-chip';
+    chip.id = 'chip-' + item.id;        // id único basado en la oración
+    chip.dataset.value = item.label;    // el valor es la forma verbal (gusta, gustan, encanta, encantan)
+    chip.draggable = true;
+    // Elegir un emoji según la forma verbal para dar variedad visual
+    let formEmoji = '❤️';
+    if (item.label === 'gusta') formEmoji = '❤️';
+    else if (item.label === 'gustan') formEmoji = '❤️';
+    else if (item.label === 'encanta') formEmoji = '⭐';
+    else if (item.label === 'encantan') formEmoji = '⭐';
+    chip.innerHTML = `<span>${formEmoji}</span>${item.label}`;
+    chip.addEventListener('dragstart', () => { selected = chip; chip.classList.add('dragging'); });
+    chip.addEventListener('dragend',   () => chip.classList.remove('dragging'));
+    chip.addEventListener('click',     () => handleChipClick(chip));
+    bank.appendChild(chip);
+  });
+
+  // Tarjetas con las 10 oraciones (no se mezclan para mantener el orden visual)
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = '';
+  oraciones.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'verb-card';
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-emoji-wrap">${item.emoji}</div>
+        <p class="card-description">${item.description}</p>
+        <div class="card-hint">${item.hint}</div>
+      </div>
+      <div class="card-slot-wrap">
+        <div class="slot" id="slot-${item.id}" data-answer="${item.label}">Arrastra la forma correcta</div>
+      </div>`;
+    grid.appendChild(card);
+  });
+
+  document.querySelectorAll('.slot').forEach(slot => {
+    slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('drag-over'); });
+    slot.addEventListener('dragleave', () => slot.classList.remove('drag-over'));
+    slot.addEventListener('drop', e => { e.preventDefault(); slot.classList.remove('drag-over'); placeWord(slot, selected); });
+    slot.addEventListener('click', () => handleSlotClick(slot));
+  });
+
+  updateCounts();
+  setFeedback('💬', 'Arrastra una forma verbal para comenzar...', '');
+}
+
+function handleChipClick(chip) {
+  if (chip.classList.contains('used')) return;
+  if (selected === chip) { chip.classList.remove('selected'); selected = null; return; }
+  document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('selected'));
+  selected = chip;
+  chip.classList.add('selected');
+}
+
+function handleSlotClick(slot) {
+  if (slot.dataset.locked) return;
+  if (selected) placeWord(slot, selected);
+  else if (slot.dataset.placed) returnWord(slot);
+}
+
+function placeWord(slot, chip) {
+  if (!chip || slot.dataset.locked) return;
+  if (slot.dataset.placed) returnWord(slot);
+
+  const value    = chip.dataset.value;      // la forma verbal (ej: "gusta")
+  const expected = slot.dataset.answer;     // la forma correcta esperada
+  const isOk     = value === expected;
+  const item     = oraciones.find(x => x.id === slot.id.replace('slot-', ''));
+
+  slot.dataset.placed = value;
+  // Mostrar la palabra con un emoji representativo
+  let formEmoji = value === 'gusta' || value === 'gustan' ? '❤️' : '⭐';
+  slot.innerHTML = `${formEmoji} ${value} <span class="slot-remove" onclick="returnWord(document.getElementById('slot-${slot.id.replace('slot-', '')}'))">✕</span>`;
+
+  // Marcar el chip específico como usado y quitar selección
+  chip.classList.add('used');
+  chip.classList.remove('selected');
+  selected = null;
+
+  if (isOk) {
+    slot.className = 'slot correct';
+    slot.dataset.locked = 'true';
+    const rem = slot.querySelector('.slot-remove'); if (rem) rem.remove();
+    setFeedback('✅', item.feedback, 'success');
+  } else {
+    slot.className = 'slot incorrect filled';
+    setFeedback('❌', `<strong>${value}</strong> no es la forma correcta para esta oración. ${item.hint}`, 'error');
+    setTimeout(() => { if (!slot.dataset.locked) returnWord(slot); }, 950);
+  }
+  updateCounts();
+}
+
+function returnWord(slot) {
+  if (slot.dataset.locked) return;
+  const value = slot.dataset.placed;
+  if (!value) return;
+
+window.placeWord = function(slot, chip) {
+  if (!chip || slot.dataset.locked) return;
+  if (slot.dataset.placed) returnWord(slot);
+
+  const value    = chip.dataset.value;
+  const expected = slot.dataset.answer;
+  const isOk     = value === expected;
+  const item     = oraciones.find(x => x.id === slot.id.replace('slot-', ''));
+
+  slot.dataset.placed = value;
+  slot.dataset.chipId = chip.id;   // guardamos el id del chip para poder devolverlo después
+
+  let formEmoji = value === 'gusta' || value === 'gustan' ? '❤️' : '⭐';
+  slot.innerHTML = `${formEmoji} ${value} <span class="slot-remove" onclick="returnWord(document.getElementById('slot-${slot.id.replace('slot-', '')}'))">✕</span>`;
+
+  chip.classList.add('used');
+  chip.classList.remove('selected');
+  selected = null;
+
+  if (isOk) {
+    slot.className = 'slot correct';
+    slot.dataset.locked = 'true';
+    const rem = slot.querySelector('.slot-remove'); if (rem) rem.remove();
+    setFeedback('✅', item.feedback, 'success');
+  } else {
+    slot.className = 'slot incorrect filled';
+    setFeedback('❌', `<strong>${value}</strong> no es la forma correcta para esta oración. ${item.hint}`, 'error');
+    setTimeout(() => { if (!slot.dataset.locked) returnWord(slot); }, 950);
+  }
+  updateCounts();
+};
+
+window.returnWord = function(slot) {
+  if (slot.dataset.locked) return;
+  const value = slot.dataset.placed;
+  const chipId = slot.dataset.chipId;
+  if (!value || !chipId) return;
+  slot.innerHTML = 'Arrastra la forma correcta';
+  slot.className = 'slot';
+  delete slot.dataset.placed;
+  delete slot.dataset.chipId;
+  const chip = document.getElementById(chipId);
+  if (chip) {
+    chip.classList.remove('used');
+    chip.classList.remove('selected');
+  }
+  updateCounts();
+};
+
+// Sobrescribir las funciones originales
+window.placeWord = placeWord;
+window.returnWord = returnWord;
+
+build();
+
+function updateCounts() {
+  const slots = document.querySelectorAll('.slot');
+  let c = 0, p = 0, w = 0;
+  slots.forEach(s => {
+    if (s.dataset.locked)       c++;
+    else if (!s.dataset.placed) p++;
+    else                        w++;
+  });
+  document.getElementById('correctCount').textContent = c;
+  document.getElementById('pendingCount').textContent = p;
+  document.getElementById('wrongCount').textContent   = w;
+}
+
+function setFeedback(icon, msg, type) {
+  document.getElementById('feedbackIcon').textContent = icon;
+  const el = document.getElementById('feedbackText');
+  el.innerHTML = msg;
+  el.className = 'feedback-text' + (type ? ' ' + type : '');
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function checkAll() {
+  let correct = 0, wrong = 0;
+  document.querySelectorAll('.slot').forEach(slot => {
+    if (slot.dataset.locked) { correct++; return; }
+    const placed = slot.dataset.placed, expected = slot.dataset.answer;
+    if (!placed) { slot.classList.add('incorrect'); wrong++; return; }
+    if (placed === expected) {
+      slot.className = 'slot correct'; slot.dataset.locked = 'true';
+      const rem = slot.querySelector('.slot-remove'); if (rem) rem.remove();
+      correct++;
+    } else { slot.className = 'slot incorrect filled'; wrong++; }
+  });
+  updateCounts();
+  if (correct === oraciones.length) { setTimeout(() => showResults(correct, wrong), 600); }
+  else setFeedback('📊', `Tienes <strong>${correct} de ${oraciones.length}</strong> correctas. Revisa las marcadas en rojo.`, correct >= wrong ? 'success' : 'error');
+}
+
+function showResults(correct, wrong) {
+  document.getElementById('cardsGrid').style.display = 'none';
+  document.getElementById('resultsScreen').classList.add('show');
+  const pct = Math.round((correct / oraciones.length) * 100);
+  document.getElementById('resultsScore').textContent = `${correct}/${oraciones.length}`;
+  document.getElementById('finalCorrect').textContent = correct;
+  document.getElementById('finalWrong').textContent   = wrong;
+  document.getElementById('finalPct').textContent     = `${pct}%`;
+  const [emoji, title, sub] = pct === 100
+    ? ['🏆', '¡Perfecto! ¡Excelente!',  '¡Dominas el uso de gustar y encantar como un experto!']
+    : pct >= 66
+    ? ['🎉', '¡Muy bien!',              'Casi perfecto. Repasa las formas que fallaste.']
+    : ['💪', '¡Buen intento!',          'Sigue practicando con los verbos gustar y encantar.'];
+  document.getElementById('resultsEmoji').textContent = emoji;
+  document.getElementById('resultsTitle').textContent = title;
+  document.getElementById('resultsSub').textContent   = sub;
+}
+
+function resetAll() {
+  document.getElementById('resultsScreen').classList.remove('show');
+  document.getElementById('cardsGrid').style.display = '';
+  selected = null;
+  build();
+}
+
+// Script para el botón de regreso al aula virtual (compatible con móvil)
+const btn = document.getElementById('btn-volver');
+const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=205';
+const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=205';
+const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+if (esMóvil) {
+  btn.href = appUrl;
+}
+</script>
+</body>
+</html>
