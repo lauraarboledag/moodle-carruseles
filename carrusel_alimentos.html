@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  #card1,#card2,#card3,#card4,#card5,#card6,
+  #card7,#card8,#card9,#card10,#card11,#card12 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+  #s12:checked ~ #card12 { display:block; }
+
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"],
+  #s12:checked ~ .nav-dots label[for="s12"] {
+    background: #EA580C;
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px rgba(234,88,12,0.28);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11,
+  #s12:checked ~ .nav-arrows .arr-12 { display:flex; }
+
+  /* Shared helpers */
+  .zi { position:relative; z-index:1; }
+  .deco-blob-tr { position:absolute; top:-55px; right:-55px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.055); }
+  .deco-blob-bl { position:absolute; bottom:-75px; left:-45px; width:250px; height:250px; border-radius:50%; background:rgba(0,0,0,0.07); }
+  /* Diagonal stripe texture */
+  .tex { position:absolute; inset:0; border-radius:22px;
+    background-image: repeating-linear-gradient(
+      -55deg,
+      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+      transparent 1px, transparent 18px
+    );
+  }
+  .card-wrap { border-radius:22px; padding:40px; position:relative; overflow:hidden; min-height:390px; }
+  .eyebrow { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin:0 0 8px; }
+  .card-title { font-family:'Fraunces',serif; color:white; font-size:1.95em; margin:0 0 18px; line-height:1.15; }
+  .def-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); border-radius:13px; padding:16px 18px; margin-bottom:14px; }
+  .def-text { color:white; line-height:1.75; margin:0; font-size:0.96em; }
+  .stripe { border-left:4px solid; border-radius:0 12px 12px 0; padding:14px 16px; margin-bottom:13px; }
+  .sec-lbl { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:0 0 11px; }
+  .ex-box { background:rgba(255,220,80,0.13); border:2px solid rgba(255,220,80,0.35); border-radius:12px; padding:12px 16px; }
+  .ex-lbl { color:#FFE066; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; text-align:center; margin:0 0 6px; letter-spacing:1px; }
+  .ex-txt { color:white; font-size:0.9em; margin:0; text-align:center; font-style:italic; line-height:1.65; }
+  .vg { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .vi { background:rgba(255,255,255,0.11); border-radius:9px; padding:9px 11px; }
+  .ves { color:#FFE066; font-size:0.9em; font-weight:700; margin:0; }
+  .ven { color:rgba(255,255,255,0.56); font-size:0.74em; margin:2px 0 0; }
+  .nav-btn { background:white; border:2px solid #DDD6FE; border-radius:12px; padding:10px 26px; cursor:pointer; font-weight:700; color:#312E81; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.93em; }
+  .badge { display:inline-flex; align-items:center; background:rgba(255,255,255,0.11); border-radius:20px; padding:5px 14px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2px; }
+</style>
+</head>
+<body style="margin:0; padding:20px;
+  background:#FFF7ED;
+  background-image: repeating-linear-gradient(0deg, rgba(234,88,12,0.06) 0px, rgba(234,88,12,0.06) 1px, transparent 1px, transparent 32px),
+                    repeating-linear-gradient(90deg, rgba(234,88,12,0.06) 0px, rgba(234,88,12,0.06) 1px, transparent 1px, transparent 32px);
+  font-family:'Plus Jakarta Sans',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- HEADER -->
+  <div style="text-align:center; margin-bottom:32px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#EA580C,#F97316); padding:8px 26px; border-radius:30px; margin-bottom:14px; box-shadow:0 4px 18px rgba(249,115,22,0.35);">
+      <span style="color:white; font-size:0.81em; font-weight:700; letter-spacing:3px;">UNIDAD 1 · TEMÁTICA 1 · BLOQUE 1</span>
+    </div>
+    <h2 style="font-family:'Fraunces',serif; font-size:2.3em; color:#7C2D12; margin:0 0 6px; line-height:1.1;">Alimentos y bebidas básicas 🍎🥤</h2>
+    <p style="color:#9C6B3E; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIOS (no modificar) -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+  <input type="radio" name="slide" id="s12" style="display:none;">
+
+  <!-- ===== TARJETA 1: Introducción ===== -->
+  <div id="card1" class="card-wrap" style="background:linear-gradient(145deg,#7C2D12,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;bottom:24px;right:28px;font-size:6em;opacity:0.08;line-height:1;">🍽️</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">01 / 12 &nbsp;·&nbsp; 🍎 INTRO</span>
+      <span style="font-size:1.9em;">🍽️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Bienvenida al bloque</p>
+      <h3 class="card-title" style="font-size:2em;">Comida y bebida en español</h3>
+      <div class="def-box">
+        <p class="def-text">Conocer el vocabulario de <strong style="color:#FFE066;">alimentos y bebidas</strong> es fundamental para desenvolverse en restaurantes, mercados y conversaciones cotidianas. ¡Aprende a pedir, comprar y hablar de lo que te gusta comer!</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">🍎</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">frutas</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">🥩</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">carnes</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">🥤</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">bebidas</p>
+        </div>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(124,45,18,0.3);">
+        <p class="sec-lbl" style="color:#FED7AA;">📚 EN ESTE BLOQUE</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Vocabulario de alimentos y bebidas</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Verbos para comer y beber (comer, beber, tomar)</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Expresiones: tener hambre / sed</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Cómo pedir en un restaurante o café</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Cultura gastronómica hispana</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 2: Alimentos básicos ===== -->
+  <div id="card2" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.5);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">02 / 12 &nbsp;·&nbsp; 🍎 ALIMENTOS</span>
+      <span style="font-size:1.9em;">🍎</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Vocabulario esencial</p>
+      <h3 class="card-title">Frutas, verduras, carnes y más</h3>
+      <div class="def-box">
+        <p class="def-text">Aprende los nombres de los alimentos más comunes. Recuerda que en español los sustantivos tienen <strong style="color:#FFE066;">género</strong> (masculino/femenino).</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(180,83,9,0.5);">
+        <div class="vg">
+          <div class="vi"><p class="ves">la manzana 🍎</p><p class="ven">apple</p></div>
+          <div class="vi"><p class="ves">la pera 🍐</p><p class="ven">pear</p></div>
+          <div class="vi"><p class="ves">el plátano 🍌</p><p class="ven">banana</p></div>
+          <div class="vi"><p class="ves">la naranja 🍊</p><p class="ven">orange</p></div>
+          <div class="vi"><p class="ves">la lechuga 🥬</p><p class="ven">lettuce</p></div>
+          <div class="vi"><p class="ves">el tomate 🍅</p><p class="ven">tomato</p></div>
+          <div class="vi"><p class="ves">la carne 🥩</p><p class="ven">meat</p></div>
+          <div class="vi"><p class="ves">el pollo 🍗</p><p class="ven">chicken</p></div>
+          <div class="vi"><p class="ves">el pescado 🐟</p><p class="ven">fish</p></div>
+          <div class="vi"><p class="ves">el pan 🥖</p><p class="ven">bread</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💡 NOTA</p><p class="ex-txt">Los artículos son importantes: <strong>el</strong> para masculino, <strong>la</strong> para femenino.</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 3: Bebidas básicas ===== -->
+  <div id="card3" class="card-wrap" style="background:linear-gradient(145deg,#9A3412,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">03 / 12 &nbsp;·&nbsp; 🥤 BEBIDAS</span>
+      <span style="font-size:1.9em;">🥤</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Bebidas comunes</p>
+      <h3 class="card-title">Agua, café, refrescos…</h3>
+      <div class="def-box">
+        <p class="def-text">Las bebidas también tienen género y son parte esencial de la mesa hispana.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(154,52,18,0.3);">
+        <div class="vg">
+          <div class="vi"><p class="ves">el agua 💧</p><p class="ven">water</p></div>
+          <div class="vi"><p class="ves">el café ☕</p><p class="ven">coffee</p></div>
+          <div class="vi"><p class="ves">el té 🍵</p><p class="ven">tea</p></div>
+          <div class="vi"><p class="ves">el jugo / zumo 🧃</p><p class="ven">juice</p></div>
+          <div class="vi"><p class="ves">la leche 🥛</p><p class="ven">milk</p></div>
+          <div class="vi"><p class="ves">el vino 🍷</p><p class="ven">wine</p></div>
+          <div class="vi"><p class="ves">la cerveza 🍺</p><p class="ven">beer</p></div>
+          <div class="vi"><p class="ves">el refresco 🥤</p><p class="ven">soda</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">🌎 VARIANTES</p><p class="ex-txt">En algunos países "jugo" (América) y "zumo" (España).</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 4: Las comidas del día ===== -->
+  <div id="card4" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">04 / 12 &nbsp;·&nbsp; 🕗 COMIDAS</span>
+      <span style="font-size:1.9em;">🕗</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Rutina alimenticia</p>
+      <h3 class="card-title">Desayuno, almuerzo, cena</h3>
+      <div class="def-box">
+        <p class="def-text">En español, las comidas principales tienen nombres específicos y horarios que varían según el país.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(180,83,9,0.28);">
+        <div class="vi"><p class="ves">el desayuno 🥐</p><p class="ven">breakfast (7:00-9:00)</p></div>
+        <div class="vi"><p class="ves">el almuerzo / la comida 🍲</p><p class="ven">lunch (12:00-15:00)</p></div>
+        <div class="vi"><p class="ves">la merienda 🍪</p><p class="ven">afternoon snack (17:00-18:00)</p></div>
+        <div class="vi"><p class="ves">la cena 🍽️</p><p class="ven">dinner (20:00-22:00)</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">📌 DATO</p><p class="ex-txt">En España, el almuerzo suele ser a las 14:00-15:00, y la cena después de las 21:00.</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 5: Verbos para comer y beber ===== -->
+  <div id="card5" class="card-wrap" style="background:linear-gradient(145deg,#9A3412,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">05 / 12 &nbsp;·&nbsp; 🍽️ VERBOS</span>
+      <span style="font-size:1.9em;">🍽️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Acciones cotidianas</p>
+      <h3 class="card-title">Comer, beber, tomar…</h3>
+      <div class="def-box">
+        <p class="def-text">Estos verbos regulares en presente son imprescindibles para hablar de tus hábitos alimenticios.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(154,52,18,0.3);">
+        <div class="vg">
+          <div class="vi"><p class="ves">yo como</p><p class="ven">I eat</p></div>
+          <div class="vi"><p class="ves">tú comes</p><p class="ven">you eat</p></div>
+          <div class="vi"><p class="ves">él/ella come</p><p class="ven">he/she eats</p></div>
+          <div class="vi"><p class="ves">nosotros comemos</p><p class="ven">we eat</p></div>
+          <div class="vi"><p class="ves">vosotros coméis</p><p class="ven">you (pl.) eat</p></div>
+          <div class="vi"><p class="ves">ellos comen</p><p class="ven">they eat</p></div>
+        </div>
+        <div class="vi" style="margin-top:8px;"><p class="ves">beber (to drink) → yo bebo, tú bebes...</p></div>
+        <div class="vi"><p class="ves">tomar (to take / drink) → yo tomo, tú tomas...</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"Yo <strong>como</strong> una manzana."<br>"¿Tú <strong>bebes</strong> café?"</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 6: Expresiones de hambre y sed ===== -->
+  <div id="card6" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">06 / 12 &nbsp;·&nbsp; 🍕 HAMBRE / SED</span>
+      <span style="font-size:1.9em;">🍕</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">¿Qué te apetece?</p>
+      <h3 class="card-title">Tener hambre, tener sed</h3>
+      <div class="def-box">
+        <p class="def-text">Para expresar que quieres comer o beber, usamos el verbo <strong style="color:#FFE066;">tener</strong> + sustantivo.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(180,83,9,0.28);">
+        <div class="vi"><p class="ves">tener hambre</p><p class="ven">to be hungry</p></div>
+        <div class="vi"><p class="ves">tener sed</p><p class="ven">to be thirsty</p></div>
+        <div class="vi"><p class="ves">tener ganas de + infinitivo</p><p class="ven">to feel like (doing something)</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"<strong>Tengo hambre</strong>, voy a comer."<br>"¿<strong>Tienes sed</strong>? Toma agua."<br>"<strong>Tenemos ganas de</strong> tomar un café."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 7: En el restaurante / café ===== -->
+  <div id="card7" class="card-wrap" style="background:linear-gradient(145deg,#9A3412,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">07 / 12 &nbsp;·&nbsp; 🍽️ RESTAURANTE</span>
+      <span style="font-size:1.9em;">🍽️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Frases útiles</p>
+      <h3 class="card-title">Cómo pedir comida y bebida</h3>
+      <div class="def-box">
+        <p class="def-text">Aprende a pedir de forma educada usando el verbo <strong style="color:#FFE066;">querer</strong> (quiero) o la forma <strong style="color:#FFE066;">me gustaría</strong> (más formal).</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(154,52,18,0.28);">
+        <div class="vi"><p class="ves">Quiero una ensalada</p><p class="ven">I want a salad</p></div>
+        <div class="vi"><p class="ves">Me gustaría un café con leche</p><p class="ven">I would like a coffee with milk</p></div>
+        <div class="vi"><p class="ves">¿Me puede traer la cuenta?</p><p class="ven">Can you bring me the bill?</p></div>
+        <div class="vi"><p class="ves">Para mí, el pollo asado</p><p class="ven">For me, the roast chicken</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 8: Diálogo en un café ===== -->
+  <div id="card8" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">08 / 12 &nbsp;·&nbsp; 💬 DIÁLOGO</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Conversación real</p>
+      <h3 class="card-title">En una cafetería</h3>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(180,83,9,0.25);">
+        <p class="sec-lbl" style="color:#FED7AA;">🎭 CLIENTE Y CAMARERO</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;height:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Buenos días, ¿me puede dar un café con leche y una tostada?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FED7AA;">CAMARERO</p><span style="background:#FED7AA;border-radius:50%;width:24px;">M</span></div><div style="background:rgba(254,215,170,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Claro, ¿con azúcar?"</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"No, sin azúcar, por favor. ¿Y cuánto es?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FED7AA;">CAMARERO</p><span style="background:#FED7AA;border-radius:50%;width:24px;">M</span></div><div style="background:rgba(254,215,170,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Son 3,50 euros. ¡Que aproveche!"</p></div></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">📝 EXPRESIÓN</p><p class="ex-txt"><strong>"Que aproveche"</strong> = ¡Buen provecho! Se dice antes de comer.</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 9: Cultura gastronómica hispana ===== -->
+  <div id="card9" class="card-wrap" style="background:linear-gradient(145deg,#9A3412,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">09 / 12 &nbsp;·&nbsp; 🌎 CULTURA</span>
+      <span style="font-size:1.9em;">🌎</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Platos típicos</p>
+      <h3 class="card-title">Sabores de España y América Latina</h3>
+      <div class="def-box">
+        <p class="def-text">Cada país tiene sus especialidades. Conoce algunas de las más famosas.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(154,52,18,0.28);">
+        <div class="vg">
+          <div class="vi"><p class="ves">🇪🇸 Paella</p><p class="ven">arroz con mariscos</p></div>
+          <div class="vi"><p class="ves">🇲🇽 Tacos</p><p class="ven">tortilla de maíz con carne</p></div>
+          <div class="vi"><p class="ves">🇦🇷 Asado</p><p class="ven">carne a la parrilla</p></div>
+          <div class="vi"><p class="ves">🇨🇴 Arepa</p><p class="ven">masa de maíz rellena</p></div>
+          <div class="vi"><p class="ves">🇵🇪 Ceviche</p><p class="ven">pescado marinado en limón</p></div>
+          <div class="vi"><p class="ves">🇪🇸 Gazpacho</p><p class="ven">sopa fría de tomate</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 10: Gustar con alimentos ===== -->
+  <div id="card10" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">10 / 12 &nbsp;·&nbsp; ❤️ GUSTAR</span>
+      <span style="font-size:1.9em;">❤️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">Expresar preferencias</p>
+      <h3 class="card-title">Me gusta / Me encanta</h3>
+      <div class="def-box">
+        <p class="def-text">Para hablar de tus comidas favoritas, usa el verbo <strong style="color:#FFE066;">gustar</strong>. Recuerda la concordancia: singular/plural.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FED7AA;background:rgba(180,83,9,0.28);">
+        <div class="vi"><p class="ves">Me gusta el chocolate</p><p class="ven">I like chocolate</p></div>
+        <div class="vi"><p class="ves">Me gustan las fresas</p><p class="ven">I like strawberries</p></div>
+        <div class="vi"><p class="ves">Me encanta la pizza</p><p class="ven">I love pizza</p></div>
+        <div class="vi"><p class="ves">No me gusta el pescado</p><p class="ven">I don't like fish</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 PREGUNTA</p><p class="ex-txt">"¿Qué te gusta comer?"<br>"Me gusta la pasta y las verduras."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 11: Errores frecuentes ===== -->
+  <div id="card11" class="card-wrap" style="background:linear-gradient(145deg,#7F1D1D,#DC2626); box-shadow:0 8px 40px rgba(220,38,38,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FECACA;">11 / 12 &nbsp;·&nbsp; 🚨 ERRORES</span>
+      <span style="font-size:1.9em;">🚨</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FECACA;">Atención</p>
+      <h3 class="card-title">Errores comunes con la comida</h3>
+
+      <div class="stripe" style="border-left-color:#FECACA;background:rgba(127,29,29,0.22);">
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "El agua está frío."</p><p style="color:#86EFAC;">✅ "El agua está <strong>fría</strong>." (agua es femenino pero usa "el")</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Me gusta los tacos."</p><p style="color:#86EFAC;">✅ "<strong>Me gustan</strong> los tacos."</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Tengo hambre y sed."</p><p style="color:#86EFAC;">✅ Correcto, pero recuerda: "tengo hambre" y "tengo sed".</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Yo quiero una cerveza." (suena brusco)</p><p style="color:#86EFAC;">✅ "<strong>Quisiera</strong> / <strong>Me gustaría</strong> una cerveza." (más educado)</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 12: Resumen final ===== -->
+  <div id="card12" class="card-wrap" style="background:linear-gradient(145deg,#7C2D12,#F97316); box-shadow:0 8px 40px rgba(249,115,22,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:1.1em;opacity:0.1;letter-spacing:8px;white-space:nowrap;">🍎🥑🍕🥘</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FED7AA;">12 / 12 &nbsp;·&nbsp; 🏆 COMPLETADO</span>
+      <span style="font-size:1.9em;">🎉</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FED7AA;">¡Bloque completado!</p>
+      <h3 class="card-title">Repaso final 🏆</h3>
+
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:16px;margin-bottom:14px;">
+        <p style="color:white;margin:0 0 12px;font-size:0.95em;line-height:1.65;">¡Excelente! 🌟 Ahora puedes nombrar alimentos y bebidas, pedir en un restaurante, expresar hambre/sed y hablar de tus gustos culinarios.</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:rgba(249,115,22,0.3);border-left:3px solid #F97316;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#FED7AA;margin:0 0 2px;font-size:0.85em;font-weight:700;">🍎 VOCABULARIO</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">frutas · verduras · carnes · pescados · bebidas</p>
+          </div>
+          <div style="background:rgba(255,193,7,0.3);border-left:3px solid #FFC107;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#FFE066;margin:0 0 2px;font-size:0.85em;font-weight:700;">🍽️ VERBOS</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">comer · beber · tomar · desayunar · almorzar · cenar</p>
+          </div>
+          <div style="background:rgba(59,130,246,0.3);border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#BFDBFE;margin:0 0 2px;font-size:0.85em;font-weight:700;">❤️ GUSTAR</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">me gusta · me gustan · me encanta · ¿qué te gusta comer?</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:12px;">
+        <a id="btn-volver" href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=217" style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-weight:700;padding:14px 36px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Volver al menú principal
+        </a>
+        <script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=217';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=217';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+</script>
+        <p style="color:rgba(255,255,255,0.38);font-size:0.78em;margin:12px 0 0;">Unidad 1 · Temática 1 · Bloque 1 completado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOTS (no modificar) -->
+  <div class="nav-dots" style="display:flex;justify-content:center;gap:9px;margin-top:26px;flex-wrap:wrap;">
+    <label for="s1" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s2" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s3" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s4" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s5" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s6" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s7" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s8" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s9" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s10" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s11" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+    <label for="s12" style="width:11px;height:11px;border-radius:50%;background:#FED7AA;cursor:pointer;"></label>
+  </div>
+
+  <!-- FLECHAS (no modificar) -->
+  <div class="nav-arrows" style="display:flex;justify-content:center;gap:14px;margin-top:18px;">
+    <div class="btn-nav arr-1"><label class="nav-btn" for="s2">Siguiente →</label></div>
+    <div class="btn-nav arr-2"><label class="nav-btn" for="s1">← Anterior</label><label class="nav-btn" for="s3">Siguiente →</label></div>
+    <div class="btn-nav arr-3"><label class="nav-btn" for="s2">← Anterior</label><label class="nav-btn" for="s4">Siguiente →</label></div>
+    <div class="btn-nav arr-4"><label class="nav-btn" for="s3">← Anterior</label><label class="nav-btn" for="s5">Siguiente →</label></div>
+    <div class="btn-nav arr-5"><label class="nav-btn" for="s4">← Anterior</label><label class="nav-btn" for="s6">Siguiente →</label></div>
+    <div class="btn-nav arr-6"><label class="nav-btn" for="s5">← Anterior</label><label class="nav-btn" for="s7">Siguiente →</label></div>
+    <div class="btn-nav arr-7"><label class="nav-btn" for="s6">← Anterior</label><label class="nav-btn" for="s8">Siguiente →</label></div>
+    <div class="btn-nav arr-8"><label class="nav-btn" for="s7">← Anterior</label><label class="nav-btn" for="s9">Siguiente →</label></div>
+    <div class="btn-nav arr-9"><label class="nav-btn" for="s8">← Anterior</label><label class="nav-btn" for="s10">Siguiente →</label></div>
+    <div class="btn-nav arr-10"><label class="nav-btn" for="s9">← Anterior</label><label class="nav-btn" for="s11">Siguiente →</label></div>
+    <div class="btn-nav arr-11"><label class="nav-btn" for="s10">← Anterior</label><label class="nav-btn" for="s12">Siguiente →</label></div>
+    <div class="btn-nav arr-12"><label class="nav-btn" for="s11">← Anterior</label><label class="nav-btn" style="background:linear-gradient(135deg,#F97316,#7C2D12);border-color:#F97316;color:white;" for="s1">🔁 Reiniciar</label></div>
+  </div>
+
+</div>
+</body>
+</html>
