@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  #card1,#card2,#card3,#card4,#card5,#card6,
+  #card7,#card8,#card9,#card10,#card11,#card12 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+  #s12:checked ~ #card12 { display:block; }
+
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"],
+  #s12:checked ~ .nav-dots label[for="s12"] {
+    background: #F59E0B;
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px rgba(245,158,11,0.28);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11,
+  #s12:checked ~ .nav-arrows .arr-12 { display:flex; }
+
+  /* Shared helpers */
+  .zi { position:relative; z-index:1; }
+  .deco-blob-tr { position:absolute; top:-55px; right:-55px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.055); }
+  .deco-blob-bl { position:absolute; bottom:-75px; left:-45px; width:250px; height:250px; border-radius:50%; background:rgba(0,0,0,0.07); }
+  /* Diagonal stripe texture */
+  .tex { position:absolute; inset:0; border-radius:22px;
+    background-image: repeating-linear-gradient(
+      -55deg,
+      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+      transparent 1px, transparent 18px
+    );
+  }
+  .card-wrap { border-radius:22px; padding:40px; position:relative; overflow:hidden; min-height:390px; }
+  .eyebrow { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin:0 0 8px; }
+  .card-title { font-family:'Fraunces',serif; color:white; font-size:1.95em; margin:0 0 18px; line-height:1.15; }
+  .def-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); border-radius:13px; padding:16px 18px; margin-bottom:14px; }
+  .def-text { color:white; line-height:1.75; margin:0; font-size:0.96em; }
+  .stripe { border-left:4px solid; border-radius:0 12px 12px 0; padding:14px 16px; margin-bottom:13px; }
+  .sec-lbl { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:0 0 11px; }
+  .ex-box { background:rgba(255,220,80,0.13); border:2px solid rgba(255,220,80,0.35); border-radius:12px; padding:12px 16px; }
+  .ex-lbl { color:#FFE066; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; text-align:center; margin:0 0 6px; letter-spacing:1px; }
+  .ex-txt { color:white; font-size:0.9em; margin:0; text-align:center; font-style:italic; line-height:1.65; }
+  .vg { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .vi { background:rgba(255,255,255,0.11); border-radius:9px; padding:9px 11px; }
+  .ves { color:#FFE066; font-size:0.9em; font-weight:700; margin:0; }
+  .ven { color:rgba(255,255,255,0.56); font-size:0.74em; margin:2px 0 0; }
+  .nav-btn { background:white; border:2px solid #DDD6FE; border-radius:12px; padding:10px 26px; cursor:pointer; font-weight:700; color:#312E81; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.93em; }
+  .badge { display:inline-flex; align-items:center; background:rgba(255,255,255,0.11); border-radius:20px; padding:5px 14px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2px; }
+</style>
+</head>
+<body style="margin:0; padding:20px;
+  background:#FEF9E6;
+  background-image: repeating-linear-gradient(0deg, rgba(245,158,11,0.08) 0px, rgba(245,158,11,0.08) 1px, transparent 1px, transparent 32px),
+                    repeating-linear-gradient(90deg, rgba(245,158,11,0.08) 0px, rgba(245,158,11,0.08) 1px, transparent 1px, transparent 32px);
+  font-family:'Plus Jakarta Sans',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- HEADER -->
+  <div style="text-align:center; margin-bottom:32px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#D97706,#F59E0B); padding:8px 26px; border-radius:30px; margin-bottom:14px; box-shadow:0 4px 18px rgba(245,158,11,0.35);">
+      <span style="color:white; font-size:0.81em; font-weight:700; letter-spacing:3px;">UNIDAD 3 · TEMÁTICA 3 · BLOQUE 1</span>
+    </div>
+    <h2 style="font-family:'Fraunces',serif; font-size:2.3em; color:#92400E; margin:0 0 6px; line-height:1.1;">Precios y cantidades 💰⚖️</h2>
+    <p style="color:#B45309; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIOS (no modificar) -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+  <input type="radio" name="slide" id="s12" style="display:none;">
+
+  <!-- ===== TARJETA 1: Introducción ===== -->
+  <div id="card1" class="card-wrap" style="background:linear-gradient(145deg,#92400E,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;bottom:24px;right:28px;font-size:6em;opacity:0.08;line-height:1;">💰</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">01 / 12 &nbsp;·&nbsp; 💰 INTRO</span>
+      <span style="font-size:1.9em;">🏷️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Bienvenida al bloque</p>
+      <h3 class="card-title" style="font-size:2em;">Hablar de precios y cantidades</h3>
+      <div class="def-box">
+        <p class="def-text">Saber preguntar el precio, entender las cantidades y manejar el dinero es esencial para comprar, regatear y desenvolverse en mercados, tiendas y restaurantes. ¡Aprende a hacerlo como un nativo!</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">💰</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">precios</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">⚖️</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">cantidades</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">💳</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">pagos</p>
+        </div>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(146,64,14,0.3);">
+        <p class="sec-lbl" style="color:#FEF3C7;">📚 EN ESTE BLOQUE</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Números y monedas (euros, dólares, pesos)</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Preguntar el precio: ¿cuánto cuesta?, ¿cuánto vale?</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Cantidades: unidades, kilos, litros, docenas</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Verbos: costar, valer, pagar, gastar</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Diálogos en tiendas, mercados y supermercados</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 2: Números y precios básicos ===== -->
+  <div id="card2" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.5);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">02 / 12 &nbsp;·&nbsp; 🔢 NÚMEROS</span>
+      <span style="font-size:1.9em;">🔢</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Los números del 1 al 100</p>
+      <h3 class="card-title">¿Cuánto cuesta? Números y monedas</h3>
+      <div class="def-box">
+        <p class="def-text">Para hablar de precios necesitas conocer los números. Aquí tienes algunos básicos y cómo se usan con monedas.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(180,83,9,0.5);">
+        <div class="vg">
+          <div class="vi"><p class="ves">1-10: uno, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez</p></div>
+          <div class="vi"><p class="ves">11-20: once, doce, trece, catorce, quince, dieciséis...</p></div>
+          <div class="vi"><p class="ves">20-100: veinte, treinta, cuarenta, cincuenta, sesenta, setenta, ochenta, noventa, cien</p></div>
+        </div>
+        <div class="vi" style="margin-top:8px;"><p class="ves">Monedas comunes: euro (€), dólar ($), peso mexicano (MX$), peso colombiano (COL$)</p><p class="ven">Ejemplos: 5 euros, 10 dólares, 20 pesos</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"El café cuesta <strong>dos euros</strong>."<br>"Son <strong>treinta y cinco pesos</strong>."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 3: Preguntar el precio ===== -->
+  <div id="card3" class="card-wrap" style="background:linear-gradient(145deg,#D97706,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">03 / 12 &nbsp;·&nbsp; ❓ PREGUNTAS</span>
+      <span style="font-size:1.9em;">❓</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Frases para preguntar</p>
+      <h3 class="card-title">¿Cuánto cuesta? / ¿Cuánto vale?</h3>
+      <div class="def-box">
+        <p class="def-text">Aprende las formas más comunes de preguntar el precio en español.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(217,119,6,0.3);">
+        <div class="vi"><p class="ves">¿Cuánto cuesta? (singular)</p><p class="ven">How much does it cost?</p></div>
+        <div class="vi"><p class="ves">¿Cuánto cuestan? (plural)</p><p class="ven">How much do they cost?</p></div>
+        <div class="vi"><p class="ves">¿Cuánto vale? (singular)</p><p class="ven">How much is it worth?</p></div>
+        <div class="vi"><p class="ves">¿Cuánto valen? (plural)</p><p class="ven">How much are they?</p></div>
+        <div class="vi"><p class="ves">¿Cuánto es? / ¿Cuánto es en total?</p><p class="ven">How much is it? / How much is the total?</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"¿<strong>Cuánto cuesta</strong> este vestido?"<br>"¿<strong>Cuánto valen</strong> estos zapatos?"</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 4: Cantidades y medidas ===== -->
+  <div id="card4" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">04 / 12 &nbsp;·&nbsp; ⚖️ CANTIDADES</span>
+      <span style="font-size:1.9em;">⚖️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Unidades, kilos, litros…</p>
+      <h3 class="card-title">Medidas y cantidades</h3>
+      <div class="def-box">
+        <p class="def-text">En mercados y supermercados se usan medidas específicas. Aprende a pedir la cantidad exacta.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(180,83,9,0.28);">
+        <div class="vg">
+          <div class="vi"><p class="ves">un kilo / medio kilo</p><p class="ven">1 kg / half kg</p></div>
+          <div class="vi"><p class="ves">un litro / medio litro</p><p class="ven">1 L / half L</p></div>
+          <div class="vi"><p class="ves">una docena / media docena</p><p class="ven">a dozen / half dozen</p></div>
+          <div class="vi"><p class="ves">un paquete</p><p class="ven">a pack</p></div>
+          <div class="vi"><p class="ves">una unidad / dos unidades</p><p class="ven">one unit / two units</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"Quiero <strong>medio kilo</strong> de manzanas."<br>"Dame <strong>una docena</strong> de huevos."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 5: Monedas y billetes ===== -->
+  <div id="card5" class="card-wrap" style="background:linear-gradient(145deg,#D97706,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">05 / 12 &nbsp;·&nbsp; 💵 MONEDAS</span>
+      <span style="font-size:1.9em;">💵</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Efectivo y cambio</p>
+      <h3 class="card-title">Monedas, billetes y cambio</h3>
+      <div class="def-box">
+        <p class="def-text">Vocabulario para pagar en efectivo y pedir cambio.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(217,119,6,0.3);">
+        <div class="vi"><p class="ves">la moneda</p><p class="ven">coin</p></div>
+        <div class="vi"><p class="ves">el billete</p><p class="ven">bill / banknote</p></div>
+        <div class="vi"><p class="ves">el cambio / la vuelta</p><p class="ven">change (money returned)</p></div>
+        <div class="vi"><p class="ves">¿Tiene cambio de 50?</p><p class="ven">Do you have change for 50?</p></div>
+        <div class="vi"><p class="ves">¿Me puede dar la vuelta?</p><p class="ven">Can you give me the change?</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLO</p><p class="ex-txt">"Pago con un billete de 20 euros. ¿Me da <strong>la vuelta</strong>?"</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 6: Verbos relacionados ===== -->
+  <div id="card6" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">06 / 12 &nbsp;·&nbsp; 📖 VERBOS</span>
+      <span style="font-size:1.9em;">📖</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Verbos para comprar</p>
+      <h3 class="card-title">Costar, pagar, valer, gastar</h3>
+      <div class="def-box">
+        <p class="def-text">Estos verbos son esenciales para hablar de transacciones. Aquí sus conjugaciones en presente.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(180,83,9,0.28);">
+        <div class="vg">
+          <div class="vi"><p class="ves">costar (o→ue)</p><p class="ven">cuesta / cuestan</p></div>
+          <div class="vi"><p class="ves">valer (valgo, vale...)</p><p class="ven">vale / valen</p></div>
+          <div class="vi"><p class="ves">pagar (pago, pagas...)</p><p class="ven">to pay</p></div>
+          <div class="vi"><p class="ves">gastar (gasto, gastas...)</p><p class="ven">to spend</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"El libro <strong>cuesta</strong> 15 euros."<br>"¿Cuánto <strong>pagaste</strong> por la chaqueta?"<br>"<strong>Gasto</strong> mucho en comida."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 7: Diálogo en tienda de ropa ===== -->
+  <div id="card7" class="card-wrap" style="background:linear-gradient(145deg,#D97706,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">07 / 12 &nbsp;·&nbsp; 💬 DIÁLOGO</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Comprando ropa</p>
+      <h3 class="card-title">En una tienda de moda</h3>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(217,119,6,0.25);">
+        <p class="sec-lbl" style="color:#FEF3C7;">🎭 CLIENTE Y DEPENDIENTA</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;height:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Buenas tardes, ¿cuánto cuesta esta camisa?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FEF3C7;">VENDEDORA</p><span style="background:#FEF3C7;border-radius:50%;width:24px;">V</span></div><div style="background:rgba(254,243,199,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Está en oferta, cuesta 25 euros."</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"¿Y los pantalones de algodón?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FEF3C7;">VENDEDORA</p><span style="background:#FEF3C7;border-radius:50%;width:24px;">V</span></div><div style="background:rgba(254,243,199,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Cuestan 40 euros. Si lleva las dos, le hago un 10% de descuento."</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Perfecto, me llevo ambas. ¿Cuánto es en total?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FEF3C7;">VENDEDORA</p><span style="background:#FEF3C7;border-radius:50%;width:24px;">V</span></div><div style="background:rgba(254,243,199,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Son 58,50 euros con el descuento."</p></div></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">📝 EXPRESIÓN</p><p class="ex-txt"><strong>"Me llevo ambas"</strong> = I'll take both.</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 8: Diálogo en el mercado ===== -->
+  <div id="card8" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">08 / 12 &nbsp;·&nbsp; 💬 DIÁLOGO</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Comprando frutas y verduras</p>
+      <h3 class="card-title">En el mercado</h3>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(180,83,9,0.25);">
+        <p class="sec-lbl" style="color:#FEF3C7;">🎭 CLIENTE Y FRUTERO</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Buenos días, ¿a cómo está el kilo de naranjas?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FEF3C7;">FRUTERO</p><span style="background:#FEF3C7;border-radius:50%;width:24px;">F</span></div><div style="background:rgba(254,243,199,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"A 2 euros el kilo. ¿Cuánto quiere?"</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Póngame dos kilos, por favor. También necesito medio kilo de fresas."</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FEF3C7;">FRUTERO</p><span style="background:#FEF3C7;border-radius:50%;width:24px;">F</span></div><div style="background:rgba(254,243,199,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Las fresas están a 3,50 el kilo. Medio kilo son 1,75. En total: 4 euros de naranjas más 1,75 = 5,75 euros."</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Aquí tiene 10 euros."</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FEF3C7;">FRUTERO</p><span style="background:#FEF3C7;border-radius:50%;width:24px;">F</span></div><div style="background:rgba(254,243,199,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Su cambio: 4,25 euros. ¡Gracias!"</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 9: Cultura: precios y regateo ===== -->
+  <div id="card9" class="card-wrap" style="background:linear-gradient(145deg,#D97706,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">09 / 12 &nbsp;·&nbsp; 🌎 CULTURA</span>
+      <span style="font-size:1.9em;">🌎</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Regateo y propina</p>
+      <h3 class="card-title">Costumbres al comprar</h3>
+      <div class="def-box">
+        <p class="def-text">En muchos países hispanos, regatear es común en mercados y tiendas informales. La propina también varía según el país.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(217,119,6,0.28);">
+        <div class="vi"><p class="ves">Regatear</p><p class="ven">to haggle (common in Mexico, Colombia, etc.)</p></div>
+        <div class="vi"><p class="ves">¿Me hace un descuento?</p><p class="ven">Can you give me a discount?</p></div>
+        <div class="vi"><p class="ves">¿Es lo último?</p><p class="ven">Is that your best price?</p></div>
+        <div class="vi"><p class="ves">Propina (10% en restaurantes, opcional)</p><p class="ven">tip (10% in restaurants, optional)</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💡 DATO</p><p class="ex-txt">En España la propina no es obligatoria, suele ser unas monedas. En México y otros países de América, a veces se incluye en la cuenta.</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 10: Formas de pago ===== -->
+  <div id="card10" class="card-wrap" style="background:linear-gradient(145deg,#B45309,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">10 / 12 &nbsp;·&nbsp; 💳 PAGO</span>
+      <span style="font-size:1.9em;">💳</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">Pagar con tarjeta, efectivo, etc.</p>
+      <h3 class="card-title">Formas de pago</h3>
+      <div class="def-box">
+        <p class="def-text">Frases útiles para pagar de diferentes formas.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FEF3C7;background:rgba(180,83,9,0.28);">
+        <div class="vi"><p class="ves">¿Aceptan tarjeta?</p><p class="ven">Do you accept card?</p></div>
+        <div class="vi"><p class="ves">Pago con efectivo</p><p class="ven">I pay with cash</p></div>
+        <div class="vi"><p class="ves">¿Puedo pagar con PayPal / Bizum?</p><p class="ven">Can I pay with PayPal / Bizum?</p></div>
+        <div class="vi"><p class="ves">¿Me da factura?</p><p class="ven">Can I have a receipt/invoice?</p></div>
+        <div class="vi"><p class="ves">¿Hay recargo por tarjeta?</p><p class="ven">Is there a surcharge for card?</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 11: Errores frecuentes ===== -->
+  <div id="card11" class="card-wrap" style="background:linear-gradient(145deg,#7F1D1D,#DC2626); box-shadow:0 8px 40px rgba(220,38,38,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FECACA;">11 / 12 &nbsp;·&nbsp; 🚨 ERRORES</span>
+      <span style="font-size:1.9em;">🚨</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FECACA;">Atención</p>
+      <h3 class="card-title">Errores comunes con precios y cantidades</h3>
+
+      <div class="stripe" style="border-left-color:#FECACA;background:rgba(127,29,29,0.22);">
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "¿Cuánto cuestan este libro?"</p><p style="color:#86EFAC;">✅ "¿Cuánto <strong>cuesta</strong> este libro?" (singular)</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Son dos euros y medio."</p><p style="color:#86EFAC;">✅ "Son <strong>dos con cincuenta</strong>" o "dos euros con cincuenta céntimos".</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Quiero un kilo manzanas."</p><p style="color:#86EFAC;">✅ "Quiero <strong>un kilo de manzanas</strong>." (preposición "de")</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "El cambio es 5 dólar."</p><p style="color:#86EFAC;">✅ "El cambio es <strong>5 dólares</strong>." (plural)</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 12: Resumen final ===== -->
+  <div id="card12" class="card-wrap" style="background:linear-gradient(145deg,#92400E,#F59E0B); box-shadow:0 8px 40px rgba(245,158,11,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:1.1em;opacity:0.1;letter-spacing:8px;white-space:nowrap;">💰💶💵💷</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FEF3C7;">12 / 12 &nbsp;·&nbsp; 🏆 COMPLETADO</span>
+      <span style="font-size:1.9em;">🎉</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FEF3C7;">¡Bloque completado!</p>
+      <h3 class="card-title">Repaso final 🏆</h3>
+
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:16px;margin-bottom:14px;">
+        <p style="color:white;margin:0 0 12px;font-size:0.95em;line-height:1.65;">¡Excelente! 🌟 Ya sabes preguntar precios, usar cantidades, pagar y desenvolverte en tiendas, mercados y restaurantes. ¡A comprar con confianza!</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:rgba(245,158,11,0.3);border-left:3px solid #F59E0B;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#FEF3C7;margin:0 0 2px;font-size:0.85em;font-weight:700;">❓ PREGUNTAR</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">¿Cuánto cuesta? · ¿Cuánto vale? · ¿Cuánto es en total?</p>
+          </div>
+          <div style="background:rgba(255,193,7,0.3);border-left:3px solid #FFC107;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#FFE066;margin:0 0 2px;font-size:0.85em;font-weight:700;">⚖️ CANTIDADES</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">un kilo · medio litro · una docena · un paquete</p>
+          </div>
+          <div style="background:rgba(59,130,246,0.3);border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#BFDBFE;margin:0 0 2px;font-size:0.85em;font-weight:700;">💳 PAGO</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">efectivo · tarjeta · cambio · ¿aceptan tarjeta?</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:12px;">
+        <a id="btn-volver" href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=233" style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-weight:700;padding:14px 36px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Volver al menú principal
+        </a>
+        <script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=233';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=233';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+</script>
+        <p style="color:rgba(255,255,255,0.38);font-size:0.78em;margin:12px 0 0;">Unidad 3 · Temática 3 · Bloque 1 completado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOTS (no modificar) -->
+  <div class="nav-dots" style="display:flex;justify-content:center;gap:9px;margin-top:26px;flex-wrap:wrap;">
+    <label for="s1" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s2" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s3" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s4" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s5" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s6" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s7" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s8" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s9" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s10" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s11" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+    <label for="s12" style="width:11px;height:11px;border-radius:50%;background:#FEF3C7;cursor:pointer;"></label>
+  </div>
+
+  <!-- FLECHAS (no modificar) -->
+  <div class="nav-arrows" style="display:flex;justify-content:center;gap:14px;margin-top:18px;">
+    <div class="btn-nav arr-1"><label class="nav-btn" for="s2">Siguiente →</label></div>
+    <div class="btn-nav arr-2"><label class="nav-btn" for="s1">← Anterior</label><label class="nav-btn" for="s3">Siguiente →</label></div>
+    <div class="btn-nav arr-3"><label class="nav-btn" for="s2">← Anterior</label><label class="nav-btn" for="s4">Siguiente →</label></div>
+    <div class="btn-nav arr-4"><label class="nav-btn" for="s3">← Anterior</label><label class="nav-btn" for="s5">Siguiente →</label></div>
+    <div class="btn-nav arr-5"><label class="nav-btn" for="s4">← Anterior</label><label class="nav-btn" for="s6">Siguiente →</label></div>
+    <div class="btn-nav arr-6"><label class="nav-btn" for="s5">← Anterior</label><label class="nav-btn" for="s7">Siguiente →</label></div>
+    <div class="btn-nav arr-7"><label class="nav-btn" for="s6">← Anterior</label><label class="nav-btn" for="s8">Siguiente →</label></div>
+    <div class="btn-nav arr-8"><label class="nav-btn" for="s7">← Anterior</label><label class="nav-btn" for="s9">Siguiente →</label></div>
+    <div class="btn-nav arr-9"><label class="nav-btn" for="s8">← Anterior</label><label class="nav-btn" for="s10">Siguiente →</label></div>
+    <div class="btn-nav arr-10"><label class="nav-btn" for="s9">← Anterior</label><label class="nav-btn" for="s11">Siguiente →</label></div>
+    <div class="btn-nav arr-11"><label class="nav-btn" for="s10">← Anterior</label><label class="nav-btn" for="s12">Siguiente →</label></div>
+    <div class="btn-nav arr-12"><label class="nav-btn" for="s11">← Anterior</label><label class="nav-btn" style="background:linear-gradient(135deg,#F59E0B,#92400E);border-color:#F59E0B;color:white;" for="s1">🔁 Reiniciar</label></div>
+  </div>
+
+</div>
+</body>
+</html>
