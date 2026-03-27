@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>¡El Gran Cajero! – Español A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   ROOT
+══════════════════════════════════════ */
+:root{
+  --bg:     #0d1f12;
+  --bg2:    #122a18;
+  --bg3:    #1a3a22;
+  --green:  #16a34a;
+  --green2: #22c55e;
+  --green3: #86efac;
+  --lime:   #a3e635;
+  --yellow: #fbbf24;
+  --yellow2:#fde68a;
+  --red:    #dc2626;
+  --red2:   #fca5a5;
+  --sand:   #fefce8;
+  --sand2:  #fef9c3;
+  --dark:   #0a1a0f;
+  --white:  #ffffff;
+  --ok-bg:  rgba(22,163,74,.18);
+  --ok-b:   #22c55e;
+  --err-bg: rgba(220,38,38,.18);
+  --err-b:  #dc2626;
+  --shadow: 0 8px 36px rgba(0,0,0,.55);
+  --sha-s:  0 3px 14px rgba(0,0,0,.35);
+  --r:      14px;
+  --r2:     22px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+  user-select:none;
+  -webkit-user-select:none;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 110% 55% at 0% 0%,   rgba(22,163,74,.13) 0%,transparent 55%),
+    radial-gradient(ellipse 80%  70% at 100% 100%,rgba(163,230,53,.07) 0%,transparent 55%),
+    repeating-linear-gradient(90deg,transparent 0,transparent 38px,rgba(255,255,255,.012) 38px,rgba(255,255,255,.012) 39px),
+    repeating-linear-gradient(0deg,transparent 0,transparent 38px,rgba(255,255,255,.012) 38px,rgba(255,255,255,.012) 39px);
+  pointer-events:none;
+}
+
+/* ══════════════════════════════════════
+   SCREEN SYSTEM
+══════════════════════════════════════ */
+.screen{
+  position:relative;z-index:5;
+  display:none;flex-direction:column;
+  align-items:center;justify-content:center;
+  min-height:100vh;padding:18px 14px 36px;
+}
+.screen.active{display:flex;}
+#screen-game{padding:0;justify-content:flex-start;align-items:stretch;}
+
+/* ══════════════════════════════════════
+   CARD
+══════════════════════════════════════ */
+.card{
+  background:var(--sand);border-radius:var(--r2);
+  box-shadow:var(--shadow);width:100%;max-width:520px;overflow:hidden;
+}
+.card-head{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  padding:28px 26px 20px;text-align:center;
+  border-bottom:3px solid var(--green2);
+}
+.card-body{padding:26px;}
+
+/* ══════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════ */
+.righteous{font-family:'Righteous',cursive;}
+h1.big{
+  font-family:'Righteous',cursive;
+  font-size:clamp(2rem,8vw,2.9rem);
+  color:var(--sand);line-height:1.15;
+}
+h1.big span{color:var(--lime);}
+.sub{font-size:.76rem;text-transform:uppercase;letter-spacing:.13em;color:rgba(134,239,172,.6);font-weight:600;margin-top:5px;}
+p.desc{font-size:.93rem;color:#4a5a3a;line-height:1.65;margin-bottom:18px;}
+h2.section{font-family:'Righteous',cursive;font-size:1.3rem;color:var(--bg2);margin-bottom:12px;letter-spacing:.03em;}
+
+/* ══════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:none;border-radius:50px;
+  font-family:'DM Sans',sans-serif;font-weight:700;
+  cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap;
+}
+.btn-green{
+  background:linear-gradient(135deg,var(--green),var(--green2));
+  color:var(--white);font-size:1rem;padding:13px 34px;
+  box-shadow:0 4px 20px rgba(22,163,74,.45);letter-spacing:.04em;
+}
+.btn-green:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(22,163,74,.55);}
+.btn-full{width:100%;margin-bottom:10px;}
+
+/* Level cards */
+.level-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:20px;}
+.lvl-card{
+  background:var(--sand2);border:2px solid rgba(22,163,74,.2);
+  border-radius:var(--r);padding:14px 8px;text-align:center;
+  cursor:pointer;transition:all .2s;
+}
+.lvl-card:hover,.lvl-card.chosen{
+  border-color:var(--green2);
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  transform:translateY(-3px);box-shadow:var(--sha-s);
+}
+.lvl-icon{font-size:1.7rem;margin-bottom:5px;}
+.lvl-name{font-family:'Righteous',cursive;font-size:.8rem;color:var(--bg2);letter-spacing:.04em;}
+.lvl-desc{font-size:.69rem;color:#6a7a5a;margin-top:3px;line-height:1.3;}
+
+/* ══════════════════════════════════════
+   HUD
+══════════════════════════════════════ */
+.hud{
+  position:sticky;top:0;z-index:50;
+  background:rgba(10,26,15,.97);backdrop-filter:blur(12px);
+  border-bottom:2px solid var(--green);
+  padding:9px 13px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:7px;flex-wrap:wrap;
+}
+.hud-brand{
+  font-family:'Righteous',cursive;font-size:1rem;
+  color:var(--lime);letter-spacing:.05em;white-space:nowrap;
+}
+.hud-pills{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.hpill{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.13);
+  border-radius:20px;padding:4px 10px;
+  font-size:.74rem;color:var(--green3);font-weight:600;
+  display:flex;align-items:center;gap:4px;white-space:nowrap;
+}
+#timer-val{font-family:'Righteous',cursive;font-size:.92rem;transition:color .3s;}
+#timer-val.urgent{color:var(--red2);}
+.hud-lvl{font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.28);align-self:center;}
+
+/* ══════════════════════════════════════
+   ARENA
+══════════════════════════════════════ */
+.arena{
+  flex:1;padding:11px 11px 22px;
+  display:flex;flex-direction:column;gap:11px;
+  max-width:720px;width:100%;margin:0 auto;
+}
+
+.round-banner{
+  background:rgba(22,163,74,.14);border:1px solid rgba(134,239,172,.25);
+  border-radius:10px;padding:8px 14px;text-align:center;
+  font-family:'Righteous',cursive;font-size:.82rem;
+  color:var(--green3);letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ── CONVEYOR — product chips ── */
+.conveyor-label{
+  font-size:.67rem;text-transform:uppercase;letter-spacing:.1em;
+  color:rgba(255,255,255,.38);margin-bottom:6px;font-weight:600;
+}
+.conveyor{
+  display:flex;flex-wrap:wrap;gap:7px;
+  min-height:52px;
+  background:rgba(0,0,0,.28);
+  border:2px dashed rgba(134,239,172,.2);
+  border-radius:var(--r);padding:9px;align-content:flex-start;
+}
+
+/* Product chip */
+.prod-chip{
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  border:2px solid rgba(22,163,74,.28);border-radius:11px;
+  padding:7px 12px;font-size:.82rem;font-weight:600;color:var(--bg2);
+  cursor:grab;display:inline-flex;align-items:center;gap:6px;
+  box-shadow:var(--sha-s);transition:transform .18s,box-shadow .18s,opacity .18s;
+  touch-action:none;-webkit-touch-callout:none;flex-direction:column;
+  min-width:80px;text-align:center;
+}
+.prod-chip .p-price{
+  font-size:.72rem;color:var(--green);font-weight:700;
+  background:rgba(22,163,74,.12);border-radius:6px;
+  padding:1px 7px;margin-top:1px;
+}
+.prod-chip:active,.prod-chip.dragging{
+  cursor:grabbing;transform:scale(1.09) rotate(2deg);
+  box-shadow:0 12px 32px rgba(0,0,0,.45);z-index:999;opacity:.82;
+}
+.prod-chip.placed{opacity:.25;pointer-events:none;}
+
+/* ── CHECKOUT SECTION ── */
+.checkout-row{display:grid;gap:10px;}
+.checkout-row.two{grid-template-columns:1fr 1fr;}
+.checkout-row.one{grid-template-columns:1fr;}
+
+/* Bolsa */
+.bag-zone{
+  background:rgba(255,255,255,.05);border:2px dashed rgba(134,239,172,.25);
+  border-radius:var(--r);padding:11px;
+  min-height:110px;display:flex;flex-direction:column;
+  transition:border-color .2s,background .2s;
+}
+.bag-zone.drag-over{border-color:var(--green2);background:rgba(22,163,74,.14);}
+.bag-zone.completed{border-color:var(--ok-b);background:var(--ok-bg);}
+.bag-zone.wrong-drop{border-color:var(--red);background:var(--err-bg);animation:shake .35s ease;}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}
+}
+
+.bag-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.bag-icon{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--green),var(--bg3));
+  display:grid;place-items:center;font-size:1.1rem;flex-shrink:0;
+}
+.bag-info{flex:1;}
+.bag-client{font-family:'Righteous',cursive;font-size:.82rem;color:rgba(255,255,255,.85);letter-spacing:.05em;text-transform:uppercase;}
+.bag-paid{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:1px;}
+
+.bag-drop{flex:1;display:flex;flex-wrap:wrap;gap:5px;align-content:flex-start;min-height:34px;}
+
+.in-bag{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  border-radius:7px;padding:3px 8px;font-size:.73rem;
+  color:rgba(255,255,255,.8);display:flex;align-items:center;gap:4px;
+}
+.in-bag.ok-item{background:var(--ok-bg);border-color:var(--ok-b);color:#bbf7d0;}
+.in-bag.err-item{background:var(--err-bg);border-color:var(--err-b);color:#fca5a5;}
+
+/* ── TOTAL PANEL ── */
+.total-panel{
+  background:rgba(0,0,0,.3);border:1px solid rgba(134,239,172,.18);
+  border-radius:var(--r);padding:13px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.total-row{display:flex;justify-content:space-between;align-items:center;}
+.total-label{font-size:.73rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.06em;}
+.total-val{font-family:'Righteous',cursive;font-size:1.15rem;color:var(--lime);}
+.total-val.big{font-size:1.5rem;color:var(--yellow);}
+
+/* ── CHANGE PANEL (nivel 3) ── */
+.change-panel{
+  background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);
+  border-radius:var(--r);padding:13px;
+}
+.change-question{
+  font-size:.82rem;color:var(--yellow2);font-weight:600;margin-bottom:10px;line-height:1.5;
+}
+.change-options{display:flex;flex-wrap:wrap;gap:8px;}
+.change-opt{
+  background:rgba(255,255,255,.07);border:2px solid rgba(251,191,36,.3);
+  border-radius:10px;padding:8px 16px;
+  font-family:'Righteous',cursive;font-size:.9rem;color:var(--yellow2);
+  cursor:pointer;transition:all .18s;
+}
+.change-opt:hover{border-color:var(--yellow);background:rgba(251,191,36,.15);transform:translateY(-1px);}
+.change-opt.chosen-ok{border-color:var(--ok-b);background:var(--ok-bg);color:#bbf7d0;}
+.change-opt.chosen-err{border-color:var(--err-b);background:var(--err-bg);color:#fca5a5;}
+.change-opt:disabled{cursor:not-allowed;opacity:.5;}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  z-index:200;background:var(--bg2);color:var(--green3);
+  padding:10px 22px;border-radius:50px;
+  font-weight:700;font-size:.85rem;
+  border:2px solid var(--green);box-shadow:var(--shadow);
+  pointer-events:none;opacity:0;
+  transition:opacity .25s,transform .25s;
+  white-space:nowrap;max-width:92vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
+.toast.ok{border-color:var(--ok-b);color:#bbf7d0;}
+.toast.fail{border-color:var(--red2);color:#fca5a5;}
+
+/* Score pop */
+.score-pop{
+  position:fixed;z-index:300;
+  font-family:'Righteous',cursive;font-size:1.45rem;
+  pointer-events:none;animation:scoreFloat 1.1s ease forwards;
+}
+@keyframes scoreFloat{
+  0%{opacity:1;transform:translateY(0) scale(1);}
+  60%{opacity:1;transform:translateY(-52px) scale(1.15);}
+  100%{opacity:0;transform:translateY(-90px) scale(.9);}
+}
+
+/* Ghost */
+#drag-ghost{
+  position:fixed;z-index:9999;pointer-events:none;display:none;
+  transform:translate(-50%,-50%) rotate(2deg) scale(1.09);
+}
+
+/* ══════════════════════════════════════
+   RESULTS
+══════════════════════════════════════ */
+.res-icon{font-size:4rem;display:block;margin-bottom:8px;
+  animation:iconIn .7s cubic-bezier(.22,1,.36,1) both;}
+@keyframes iconIn{from{transform:scale(.3) rotate(-18deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+.res-title{font-family:'Righteous',cursive;font-size:clamp(1.6rem,6vw,2.2rem);color:var(--bg2);letter-spacing:.04em;}
+.res-sub{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(15,25,10,.35);margin-bottom:16px;}
+.stats-row{display:flex;justify-content:center;gap:16px;margin:14px 0 16px;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.stat-n{font-family:'Righteous',cursive;font-size:2.1rem;line-height:1;}
+.stat-n.pts{color:var(--green);}
+.stat-n.ok{color:#15803d;}
+.stat-n.bad{color:var(--red);}
+.stat-n.pct{color:var(--bg3);}
+.stat-l{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(10,20,10,.4);}
+.res-divider{height:1px;background:rgba(10,20,10,.1);margin:14px 0;}
+.res-msg{font-style:italic;font-size:.93rem;color:#3a4a2a;line-height:1.7;margin-bottom:22px;text-align:center;}
+.res-actions{display:flex;flex-direction:column;gap:10px;align-items:center;}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:390px){
+  .level-grid{grid-template-columns:1fr;}
+  .checkout-row.two{grid-template-columns:1fr;}
+  .hpill{padding:3px 8px;font-size:.68rem;}
+  .prod-chip{min-width:70px;font-size:.77rem;}
+}
+@media(min-width:580px){
+  .arena{padding:14px 14px 26px;}
+  .prod-chip{font-size:.86rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="drag-ghost"></div>
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════════════════════
+     SPLASH
+════════════════════════════════════ -->
+<div class="screen active" id="screen-splash">
+  <div class="card" style="max-width:500px;">
+    <div class="card-head">
+      <div style="font-size:3.2rem;margin-bottom:8px;">🏪</div>
+      <h1 class="big">¡El Gran<br><span>Cajero!</span></h1>
+      <div class="sub">Español A1 · Unidad 4 · Precios y Cantidades</div>
+    </div>
+    <div class="card-body">
+      <p class="desc">
+        ¡Bienvenido al supermercado! Eres el cajero y debes pasar los productos
+        por la caja, arrastrarlos a la bolsa del cliente y cobrar el precio correcto.
+        En el nivel avanzado, ¡también debes calcular el cambio! 🧾
+      </p>
+      <h2 class="section">Elige tu nivel</h2>
+      <div class="level-grid">
+        <div class="lvl-card" onclick="chooseLevel(1)" id="lvl1">
+          <div class="lvl-icon">🧺</div>
+          <div class="lvl-name">Fácil</div>
+          <div class="lvl-desc">Arrastra 2 productos · confirma el total · 70 s</div>
+        </div>
+        <div class="lvl-card" onclick="chooseLevel(2)" id="lvl2">
+          <div class="lvl-icon">🛒</div>
+          <div class="lvl-name">Medio</div>
+          <div class="lvl-desc">3–4 productos · verifica el precio · 55 s</div>
+        </div>
+        <div class="lvl-card" onclick="chooseLevel(3)" id="lvl3">
+          <div class="lvl-icon">💰</div>
+          <div class="lvl-name">Difícil</div>
+          <div class="lvl-desc">4–5 productos · calcula el cambio · 45 s</div>
+        </div>
+      </div>
+      <button class="btn btn-green btn-full" id="btn-start" onclick="startGame()" disabled>
+        🚀 ¡Empezar!
+      </button>
+      <div style="text-align:center;margin-top:6px;">
+        <span style="font-size:.74rem;color:rgba(10,26,15,.4);">Arrastre y toque táctil · responsive</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     JUEGO
+════════════════════════════════════ -->
+<div class="screen" id="screen-game">
+  <div class="hud">
+    <div class="hud-brand">🏪 El Gran Cajero</div>
+    <div class="hud-pills">
+      <div class="hpill">⏱ <span id="timer-val">70</span>s</div>
+      <div class="hpill">⭐ <span id="score-val">0</span></div>
+      <div class="hpill">✅<span id="ok-val">0</span> ❌<span id="bad-val">0</span></div>
+    </div>
+    <div class="hud-lvl" id="hud-lvl-lbl">Nivel 1</div>
+  </div>
+  <div class="arena" id="arena"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     RESULTADOS
+════════════════════════════════════ -->
+<div class="screen" id="screen-results">
+  <div class="card" style="max-width:480px;">
+    <div class="card-head">
+      <span class="res-icon" id="res-icon">🏆</span>
+      <div class="res-title righteous" id="res-title">¡Turno completado!</div>
+      <div class="res-sub">Español A1 · El Gran Cajero · Precios y Cantidades</div>
+    </div>
+    <div class="card-body">
+      <div class="stats-row">
+        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Puntos</span></div>
+        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Aciertos</span></div>
+        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errores</span></div>
+        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Precisión</span></div>
+      </div>
+      <div class="res-divider"></div>
+      <p class="res-msg" id="res-msg"></p>
+      <div class="res-actions">
+        <button class="btn btn-green btn-full" onclick="restart()">🔄 Jugar de nuevo</button>
+        <a id="btn-volver"
+           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=234"
+           style="display:inline-flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Regresar al Aula Virtual
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     JS
+════════════════════════════════════ -->
+<script>
+/* ── Moodle deep-link ── */
+(function(){
+  const btn=document.getElementById('btn-volver');
+  const appUrl='moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=234';
+  if(/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href=appUrl;
+})();
+
+/* ════════════════════════════════════
+   CATÁLOGO
+════════════════════════════════════ */
+const PRODUCTS=[
+  {id:'leche',    emoji:'🥛', name:'leche',           price:1.20},
+  {id:'pan',      emoji:'🍞', name:'pan',              price:0.90},
+  {id:'huevos',   emoji:'🥚', name:'huevos',          price:2.50},
+  {id:'arroz',    emoji:'🍚', name:'arroz',           price:1.80},
+  {id:'pasta',    emoji:'🍝', name:'pasta',           price:1.50},
+  {id:'tomate',   emoji:'🍅', name:'tomates',         price:1.10},
+  {id:'manzana',  emoji:'🍎', name:'manzanas',        price:1.30},
+  {id:'platano',  emoji:'🍌', name:'plátanos',        price:0.80},
+  {id:'pollo',    emoji:'🍗', name:'pollo',           price:4.50},
+  {id:'jamon',    emoji:'🥩', name:'jamón',           price:3.20},
+  {id:'queso',    emoji:'🧀', name:'queso',           price:2.80},
+  {id:'yogur',    emoji:'🫙', name:'yogur',           price:1.60},
+  {id:'mantequilla',emoji:'🧈',name:'mantequilla',    price:2.10},
+  {id:'aceite',   emoji:'🫒', name:'aceite',          price:3.90},
+  {id:'agua',     emoji:'💧', name:'agua',            price:0.60},
+  {id:'jugo',     emoji:'🧃', name:'jugo',            price:1.40},
+  {id:'cafe',     emoji:'☕', name:'café',            price:2.20},
+  {id:'galletas', emoji:'🍪', name:'galletas',        price:1.70},
+  {id:'chocolate',emoji:'🍫', name:'chocolate',       price:2.40},
+  {id:'jabon',    emoji:'🧼', name:'jabón',           price:1.00},
+  {id:'shampoo',  emoji:'🧴', name:'champú',          price:2.60},
+  {id:'papel',    emoji:'🧻', name:'papel higiénico', price:1.90},
+];
+
+const CUSTOMERS=[
+  {emoji:'👩', name:'Señora Ana',   pays:[5,10]},
+  {emoji:'👨', name:'Señor Luis',   pays:[2,5,10]},
+  {emoji:'👧', name:'Sofía',        pays:[5,10,20]},
+  {emoji:'👴', name:'Don Carlos',   pays:[1,2,5]},
+  {emoji:'👩‍💼',name:'Andrea',        pays:[10,20]},
+  {emoji:'👦', name:'Miguel',       pays:[2,5]},
+  {emoji:'👩‍🦳',name:'Doña Rosa',    pays:[5,10,20]},
+  {emoji:'🧑', name:'Alex',         pays:[1,2,5,10]},
+];
+
+/* ════════════════════════════════════
+   NIVELES
+════════════════════════════════════ */
+const LEVELS={
+  1:{ time:70, rounds:4, pts_drag:15, pts_total:20, pts_change:0,
+      minProds:2, maxProds:3, needChange:false,
+      pool:['leche','pan','huevos','arroz','tomate','manzana','platano','agua','jugo','galletas'] },
+  2:{ time:55, rounds:4, pts_drag:15, pts_total:25, pts_change:0,
+      minProds:3, maxProds:4, needChange:false,
+      pool:['leche','pan','huevos','arroz','pasta','tomate','manzana','platano','pollo','queso','yogur','mantequilla','agua','jugo','cafe','galletas','jabon'] },
+  3:{ time:45, rounds:5, pts_drag:10, pts_total:15, pts_change:30,
+      minProds:4, maxProds:5, needChange:true,
+      pool:PRODUCTS.map(p=>p.id) },
+};
+
+/* ════════════════════════════════════
+   ESTADO
+════════════════════════════════════ */
+let level=1, round=0, totalRounds=4;
+let score=0, okCount=0, badCount=0;
+let timerSec=70, timerInt=null;
+let chosenLevel=0;
+let roundState=null;
+// roundState: { products, customer, total, paid, change, bagged:[], dragOk, totalConfirmed, changeAnswered }
+let dragItemId=null, dragOriginEl=null;
+
+/* ════════════════════════════════════
+   UTILS
+════════════════════════════════════ */
+const $=id=>document.getElementById(id);
+const shuffle=a=>a.slice().sort(()=>Math.random()-.5);
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const fmt=n=>'€'+n.toFixed(2);
+const getP=id=>PRODUCTS.find(p=>p.id===id);
+const roundN=n=>Math.round(n*100)/100;
+
+/* ════════════════════════════════════
+   LEVEL SELECT
+════════════════════════════════════ */
+function chooseLevel(l){
+  chosenLevel=l;
+  document.querySelectorAll('.lvl-card').forEach(c=>c.classList.remove('chosen'));
+  $('lvl'+l).classList.add('chosen');
+  $('btn-start').disabled=false;
+}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ════════════════════════════════════
+   START / RESTART
+════════════════════════════════════ */
+function startGame(){
+  if(!chosenLevel) return;
+  level=chosenLevel;
+  const cfg=LEVELS[level];
+  totalRounds=cfg.rounds;
+  round=0;score=0;okCount=0;badCount=0;
+  updateHUD();
+  $('hud-lvl-lbl').textContent='Nivel '+level;
+  showScreen('screen-game');
+  nextRound();
+}
+function restart(){ clearInterval(timerInt); showScreen('screen-splash'); }
+
+/* ════════════════════════════════════
+   ROUND GENERATION
+════════════════════════════════════ */
+function nextRound(){
+  if(round>=totalRounds){ endGame(); return; }
+  round++;
+  const cfg=LEVELS[level];
+  const pool=cfg.pool.map(id=>getP(id)).filter(Boolean);
+  const n=cfg.minProds+Math.floor(Math.random()*(cfg.maxProds-cfg.minProds+1));
+  const products=pick(pool,n);
+  const total=roundN(products.reduce((s,p)=>s+p.price,0));
+  const customer=shuffle(CUSTOMERS)[0];
+
+  // choose what the customer pays: smallest bill/coin >= total
+  const bills=[0.50,1,2,5,10,20,50];
+  let paid=bills.find(b=>b>=total) || 20;
+  // sometimes pay with a round number for variety
+  if(Math.random()>.5){
+    const roundBills=bills.filter(b=>b>total);
+    if(roundBills.length) paid=roundBills[Math.floor(Math.random()*Math.min(2,roundBills.length))];
+  }
+  paid=roundN(paid);
+  const change=roundN(paid-total);
+
+  roundState={
+    products, customer, total, paid, change,
+    bagged:[],
+    dragOk:false,
+    totalConfirmed:false,
+    changeAnswered:false,
+    allBagged:false,
+  };
+
+  renderRound();
+  startTimer();
+}
+
+/* ════════════════════════════════════
+   RENDER
+════════════════════════════════════ */
+function renderRound(){
+  const cfg=LEVELS[level];
+  const rs=roundState;
+  const arena=$('arena');
+  arena.innerHTML='';
+
+  /* Banner */
+  const banner=document.createElement('div');
+  banner.className='round-banner';
+  banner.textContent=`Turno ${round} de ${totalRounds} — ¡Pasa los productos y cobra!`;
+  arena.appendChild(banner);
+
+  /* Conveyor */
+  const convWrap=document.createElement('div');
+  convWrap.innerHTML=`<div class="conveyor-label">🛒 Cinta transportadora — arrastra cada producto a la bolsa</div>
+    <div class="conveyor" id="conveyor"></div>`;
+  arena.appendChild(convWrap);
+
+  const conv=convWrap.querySelector('#conveyor');
+  const shelfItems=shuffle(rs.products);
+  shelfItems.forEach(prod=>conv.appendChild(createChip(prod)));
+
+  /* Checkout row */
+  const chkRow=document.createElement('div');
+  chkRow.className=`checkout-row ${cfg.needChange?'two':'two'}`;
+
+  /* Bag */
+  const bagZone=document.createElement('div');
+  bagZone.className='bag-zone';
+  bagZone.id='bag-zone';
+  bagZone.dataset.expects=rs.products.map(p=>p.id).join(',');
+  bagZone.innerHTML=`
+    <div class="bag-head">
+      <div class="bag-icon">${rs.customer.emoji}</div>
+      <div class="bag-info">
+        <div class="bag-client">${rs.customer.name}</div>
+        <div class="bag-paid">Paga con: <strong style="color:var(--yellow2)">${fmt(rs.paid)}</strong></div>
+      </div>
+    </div>
+    <div class="bag-drop" id="bag-drop"></div>`;
+
+  bagZone.addEventListener('dragover',e=>{e.preventDefault();bagZone.classList.add('drag-over');});
+  bagZone.addEventListener('dragleave',()=>bagZone.classList.remove('drag-over'));
+  bagZone.addEventListener('drop',e=>{e.preventDefault();bagZone.classList.remove('drag-over');handleDrop(dragItemId);});
+  chkRow.appendChild(bagZone);
+
+  /* Total panel */
+  const totPanel=document.createElement('div');
+  totPanel.className='total-panel';
+  totPanel.id='total-panel';
+  totPanel.innerHTML=buildTotalPanel();
+  chkRow.appendChild(totPanel);
+
+  arena.appendChild(chkRow);
+
+  /* Change panel (level 3) */
+  if(cfg.needChange){
+    const chgPanel=document.createElement('div');
+    chgPanel.className='change-panel';
+    chgPanel.id='change-panel';
+    chgPanel.style.display='none';
+    chgPanel.innerHTML=buildChangePanel();
+    arena.appendChild(chgPanel);
+  }
+}
+
+function buildTotalPanel(){
+  const rs=roundState;
+  const bagged=rs.bagged.length;
+  const total=rs.total;
+  const progress=rs.products.length>0?Math.round(bagged/rs.products.length*100):0;
+
+  let rows=`
+    <div class="total-row">
+      <span class="total-label">📦 Productos (${bagged}/${rs.products.length})</span>
+      <span class="total-val" style="font-size:.9rem;color:var(--green3)">${progress}%</span>
+    </div>`;
+
+  // Show running subtotal of bagged items
+  const baggedTotal=roundN(rs.bagged.reduce((s,id)=>{const p=getP(id);return s+(p?p.price:0);},0));
+  rows+=`
+    <div class="total-row">
+      <span class="total-label">💰 Subtotal</span>
+      <span class="total-val">${fmt(baggedTotal)}</span>
+    </div>`;
+
+  if(rs.allBagged){
+    rows+=`
+      <div class="total-row" style="border-top:1px solid rgba(134,239,172,.2);padding-top:8px;margin-top:4px;">
+        <span class="total-label">🧾 TOTAL</span>
+        <span class="total-val big">${fmt(total)}</span>
+      </div>`;
+
+    if(!rs.totalConfirmed){
+      // Total confirmation options
+      const wrong1=roundN(total+0.30+Math.random().toFixed(1)*1);
+      const wrong2=roundN(total-0.20-Math.random().toFixed(1)*0.8);
+      const opts=shuffle([total,Math.max(0.10,wrong1),Math.max(0.10,wrong2)]);
+      rows+=`<div style="margin-top:8px;">
+        <div class="total-label" style="margin-bottom:6px;">¿Cuánto cobra? Elige el total correcto:</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;">
+          ${opts.map(o=>`<button class="change-opt" onclick="confirmTotal(${o})">${fmt(o)}</button>`).join('')}
+        </div>
+      </div>`;
+    } else {
+      rows+=`<div style="margin-top:8px;padding:7px 10px;background:var(--ok-bg);border-radius:8px;
+        font-size:.78rem;color:#bbf7d0;font-weight:600;">✅ Total confirmado: ${fmt(total)}</div>`;
+    }
+  } else {
+    rows+=`<div style="font-size:.74rem;color:rgba(255,255,255,.3);margin-top:6px;font-style:italic;">
+      Arrastra todos los productos a la bolsa para ver el total.</div>`;
+  }
+  return rows;
+}
+
+function buildChangePanel(){
+  const rs=roundState;
+  const correctChange=rs.change;
+
+  // Generate 3 options
+  const w1=roundN(correctChange+0.50);
+  const w2=roundN(Math.max(0,correctChange-0.30));
+  const opts=shuffle([correctChange,w1,w2]);
+
+  return `<div class="change-question">
+    💬 ${rs.customer.name} paga <strong style="color:var(--yellow)">${fmt(rs.paid)}</strong>.
+    El total es <strong style="color:var(--lime)">${fmt(rs.total)}</strong>.
+    ¿Cuánto cambio le debes dar?
+  </div>
+  <div class="change-options" id="change-opts">
+    ${opts.map(o=>`<button class="change-opt" onclick="answerChange(${o},this)">${fmt(o)}</button>`).join('')}
+  </div>`;
+}
+
+/* ════════════════════════════════════
+   CHIP
+════════════════════════════════════ */
+function createChip(prod){
+  const el=document.createElement('div');
+  el.className='prod-chip';
+  el.dataset.id=prod.id;
+  el.draggable=true;
+  el.innerHTML=`<span>${prod.emoji} ${prod.name}</span><span class="p-price">${fmt(prod.price)}</span>`;
+
+  el.addEventListener('dragstart',e=>{
+    dragItemId=prod.id;dragOriginEl=el;
+    setTimeout(()=>el.classList.add('dragging'),0);
+    e.dataTransfer.effectAllowed='move';
+  });
+  el.addEventListener('dragend',()=>{el.classList.remove('dragging');dragItemId=null;dragOriginEl=null;});
+  el.addEventListener('touchstart',touchStart,{passive:false});
+  el.addEventListener('touchmove', touchMove, {passive:false});
+  el.addEventListener('touchend',  touchEnd,  {passive:false});
+  return el;
+}
+
+/* ════════════════════════════════════
+   DROP — bag
+════════════════════════════════════ */
+function handleDrop(itemId){
+  if(!itemId) return;
+  const rs=roundState;
+  if(rs.allBagged) return; // bag closed
+
+  const prod=getP(itemId);
+  if(!prod) return;
+  const isExpected=rs.products.map(p=>p.id).includes(itemId);
+  const alreadyBagged=rs.bagged.includes(itemId);
+
+  const bagDrop=$('bag-drop');
+  const chip=document.createElement('div');
+  chip.className='in-bag';
+
+  if(!isExpected || alreadyBagged){
+    // wrong
+    chip.classList.add('err-item');
+    chip.innerHTML=`${prod.emoji} ${prod.name} – ${fmt(prod.price)}`;
+    bagDrop.appendChild(chip);
+    badCount++;
+    score=Math.max(0,score-8);
+    showToast(`❌ Producto incorrecto`,'fail');
+    const bagZone=$('bag-zone');
+    bagZone.classList.add('wrong-drop');
+    setTimeout(()=>{bagZone.classList.remove('wrong-drop');chip.remove();},900);
+    const origEl=document.querySelector(`.prod-chip[data-id="${itemId}"]`);
+    if(origEl) origEl.classList.remove('placed');
+  } else {
+    // correct
+    chip.classList.add('ok-item');
+    chip.innerHTML=`${prod.emoji} ${prod.name} – ${fmt(prod.price)}`;
+    bagDrop.appendChild(chip);
+    rs.bagged.push(itemId);
+    okCount++;
+    score+=LEVELS[level].pts_drag;
+    showToast(`✅ +${LEVELS[level].pts_drag} puntos`,'ok');
+    showPop('+'+LEVELS[level].pts_drag,'#86efac');
+
+    const origEl=document.querySelector(`.prod-chip[data-id="${itemId}"]`);
+    if(origEl) origEl.classList.add('placed');
+
+    if(rs.bagged.length===rs.products.length){
+      rs.allBagged=true;
+      $('bag-zone').classList.add('completed');
+      refreshTotalPanel();
+    } else {
+      refreshTotalPanel();
+    }
+  }
+  updateHUD();
+}
+
+function refreshTotalPanel(){
+  const tp=$('total-panel');
+  if(tp) tp.innerHTML=buildTotalPanel();
+}
+
+/* ════════════════════════════════════
+   CONFIRM TOTAL (levels 1 & 2)
+════════════════════════════════════ */
+function confirmTotal(chosen){
+  const rs=roundState;
+  const isOk=Math.abs(chosen-rs.total)<0.01;
+  const pts=LEVELS[level].pts_total;
+  if(isOk){
+    score+=pts;okCount++;
+    showToast(`✅ ¡Total correcto! +${pts} puntos`,'ok');
+    showPop('+'+pts,'#86efac');
+    rs.totalConfirmed=true;
+    refreshTotalPanel();
+    updateHUD();
+    // level 3: show change panel; else next round
+    if(LEVELS[level].needChange){
+      const cp=$('change-panel');
+      if(cp){ cp.style.display='block'; cp.innerHTML=buildChangePanel(); }
+    } else {
+      stopTimer();
+      setTimeout(()=>nextRound(),900);
+    }
+  } else {
+    badCount++;score=Math.max(0,score-8);
+    showToast('❌ Total incorrecto, intenta de nuevo','fail');
+    updateHUD();
+  }
+}
+
+/* ════════════════════════════════════
+   ANSWER CHANGE (level 3)
+════════════════════════════════════ */
+function answerChange(chosen, btn){
+  const rs=roundState;
+  if(rs.changeAnswered) return;
+  const isOk=Math.abs(chosen-rs.change)<0.01;
+  const pts=LEVELS[level].pts_change;
+
+  document.querySelectorAll('#change-opts .change-opt').forEach(b=>b.disabled=true);
+  btn.classList.add(isOk?'chosen-ok':'chosen-err');
+
+  if(isOk){
+    score+=pts;okCount++;rs.changeAnswered=true;
+    showToast(`✅ ¡Cambio correcto! +${pts} puntos`,'ok');
+    showPop('+'+pts,'#fbbf24');
+    updateHUD();
+    stopTimer();
+    setTimeout(()=>nextRound(),1000);
+  } else {
+    badCount++;score=Math.max(0,score-10);
+    // show correct
+    document.querySelectorAll('#change-opts .change-opt').forEach(b=>{
+      if(Math.abs(parseFloat(b.textContent.replace('€',''))-rs.change)<0.01)
+        b.classList.add('chosen-ok');
+    });
+    showToast(`❌ El cambio correcto era ${fmt(rs.change)}`,'fail');
+    rs.changeAnswered=true;
+    updateHUD();
+    stopTimer();
+    setTimeout(()=>nextRound(),1600);
+  }
+}
+
+/* ════════════════════════════════════
+   TOUCH DRAG
+════════════════════════════════════ */
+function touchStart(e){
+  const el=e.currentTarget;
+  dragItemId=el.dataset.id;dragOriginEl=el;
+  const t=e.touches[0];
+  const g=$('drag-ghost');
+  g.innerHTML=el.innerHTML;
+  g.style.cssText=`
+    display:inline-flex;flex-direction:column;align-items:center;gap:4px;
+    background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+    border:2px solid rgba(22,163,74,.3);border-radius:11px;
+    padding:7px 12px;font-family:'DM Sans',sans-serif;
+    font-size:.82rem;font-weight:600;color:#122a18;
+    box-shadow:0 12px 32px rgba(0,0,0,.45);
+    position:fixed;z-index:9999;pointer-events:none;
+    transform:translate(-50%,-50%) rotate(2deg) scale(1.09);
+    left:${t.clientX}px;top:${t.clientY}px;`;
+  el.classList.add('dragging');
+  e.preventDefault();
+}
+function touchMove(e){
+  const t=e.touches[0];
+  const g=$('drag-ghost');
+  g.style.left=t.clientX+'px';g.style.top=t.clientY+'px';
+  document.querySelectorAll('.bag-zone').forEach(z=>z.classList.remove('drag-over'));
+  const under=document.elementFromPoint(t.clientX,t.clientY);
+  const zone=under?.closest('.bag-zone');
+  if(zone) zone.classList.add('drag-over');
+  e.preventDefault();
+}
+function touchEnd(e){
+  const t=e.changedTouches[0];
+  $('drag-ghost').style.display='none';
+  const under=document.elementFromPoint(t.clientX,t.clientY);
+  const zone=under?.closest('.bag-zone');
+  document.querySelectorAll('.bag-zone').forEach(z=>z.classList.remove('drag-over'));
+  dragOriginEl?.classList.remove('dragging');
+  if(zone && dragItemId) handleDrop(dragItemId);
+  dragItemId=null;dragOriginEl=null;
+  e.preventDefault();
+}
+
+/* ════════════════════════════════════
+   TIMER
+════════════════════════════════════ */
+function startTimer(){
+  timerSec=LEVELS[level].time;
+  $('timer-val').textContent=timerSec;
+  $('timer-val').classList.remove('urgent');
+  clearInterval(timerInt);
+  timerInt=setInterval(()=>{
+    timerSec--;
+    $('timer-val').textContent=timerSec;
+    if(timerSec<=10) $('timer-val').classList.add('urgent');
+    if(timerSec<=0){ stopTimer(); timeOut(); }
+  },1000);
+}
+function stopTimer(){ clearInterval(timerInt); timerInt=null; }
+function timeOut(){
+  const rs=roundState;
+  const missing=rs.products.length-rs.bagged.length;
+  badCount+=missing+(rs.allBagged&&!rs.totalConfirmed?1:0)+(LEVELS[level].needChange&&rs.totalConfirmed&&!rs.changeAnswered?1:0);
+  showToast('⏰ ¡Tiempo! Siguiente turno…','fail');
+  updateHUD();
+  setTimeout(()=>nextRound(),1200);
+}
+
+/* ════════════════════════════════════
+   HUD
+════════════════════════════════════ */
+function updateHUD(){
+  $('score-val').textContent=score;
+  $('ok-val').textContent=okCount;
+  $('bad-val').textContent=badCount;
+}
+
+/* ════════════════════════════════════
+   TOAST / POP
+════════════════════════════════════ */
+let toastTO=null;
+function showToast(msg,type){
+  const t=$('toast');t.textContent=msg;
+  t.className='toast '+type+' show';
+  clearTimeout(toastTO);
+  toastTO=setTimeout(()=>t.classList.remove('show'),1700);
+}
+function showPop(text,color){
+  const p=document.createElement('div');
+  p.className='score-pop';p.textContent=text;p.style.color=color;
+  p.style.left=(15+Math.random()*60)+'%';
+  p.style.top=(15+Math.random()*45)+'vh';
+  document.body.appendChild(p);
+  p.addEventListener('animationend',()=>p.remove());
+}
+
+/* ════════════════════════════════════
+   END GAME
+════════════════════════════════════ */
+function endGame(){
+  stopTimer();
+  const total=okCount+badCount;
+  const pct=total>0?Math.round(okCount/total*100):0;
+  let icon,title,msg;
+  if(pct===100){
+    icon='🏆';title='¡Cajero Perfecto!';
+    msg='"¡Impresionante! Pasaste todos los productos, cobraste el precio correcto y calculaste el cambio sin un solo error. Tu dominio de los precios y cantidades en español es sobresaliente. ¡Los clientes hacen fila para tu caja!"';
+  } else if(pct>=80){
+    icon='🌟';title='¡Excelente Turno!';
+    msg='"¡Fantástico trabajo! Dominaste la mayoría de los precios y cantidades. Con un poco más de práctica en el cálculo del cambio y los totales, serás el mejor cajero del supermercado. ¡Sigue así!"';
+  } else if(pct>=60){
+    icon='🛒';title='¡Buen Turno!';
+    msg='"¡Muy bien! Más de la mitad de las operaciones fueron correctas. Sigue practicando los números, los precios y las expresiones de cantidad en español — ¡tu progreso es notable!"';
+  } else if(pct>=35){
+    icon='💪';title='¡Sigue Practicando!';
+    msg='"¡Buen esfuerzo! La caja registradora exige precisión, y el español también. Repasa los números y los precios de esta unidad y vuelve a intentarlo. ¡Cada turno te hace más rápido y preciso!"';
+  } else {
+    icon='🌱';title='¡Primer día en la caja!';
+    msg='"¡No te desanimes! Trabajar con precios y cantidades en otro idioma es todo un reto. Repasa los números, los precios y las expresiones de la Unidad 4, practica en voz alta y regresa. ¡El supermercado te necesita!"';
+  }
+  $('res-icon').textContent=icon;
+  $('res-title').textContent=title;
+  $('res-pts').textContent=score;
+  $('res-ok').textContent=okCount;
+  $('res-bad').textContent=badCount;
+  $('res-pct').textContent=pct+'%';
+  $('res-msg').textContent=msg;
+  showScreen('screen-results');
+}
+</script>
+</body>
+</html>
