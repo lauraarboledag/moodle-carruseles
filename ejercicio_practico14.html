@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>¡La Gran Tienda! – Español A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   ROOT & RESET
+══════════════════════════════════════ */
+:root{
+  --bg:       #0f1923;
+  --bg2:      #162030;
+  --bg3:      #1e2d40;
+  --teal:     #0d9488;
+  --teal2:    #14b8a6;
+  --teal3:    #5eead4;
+  --rose:     #e11d48;
+  --rose2:    #fb7185;
+  --sand:     #f5f0e8;
+  --sand2:    #ede8df;
+  --brown:    #44311e;
+  --white:    #ffffff;
+  --ok:       #059669;
+  --ok2:      #34d399;
+  --ok-bg:    rgba(5,150,105,.15);
+  --err:      #e11d48;
+  --err2:     #fb7185;
+  --err-bg:   rgba(225,29,72,.15);
+  --shadow:   0 8px 32px rgba(0,0,0,.45);
+  --shadow-s: 0 3px 14px rgba(0,0,0,.3);
+  --r:        14px;
+  --r2:       22px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  min-height:100vh;
+  overflow-x:hidden;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+/* ── Background texture ── */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 100% 55% at 5%   0%,   rgba(13,148,136,.13) 0%,transparent 55%),
+    radial-gradient(ellipse 70%  70% at 95% 100%,  rgba(225,29,72,.09)  0%,transparent 55%),
+    repeating-linear-gradient(
+      135deg,
+      transparent 0,transparent 28px,
+      rgba(255,255,255,.013) 28px,rgba(255,255,255,.013) 29px
+    );
+  pointer-events:none;
+}
+
+/* ══════════════════════════════════════
+   SCREEN SYSTEM
+══════════════════════════════════════ */
+.screen{
+  position:relative;z-index:5;
+  display:none;flex-direction:column;
+  align-items:center;justify-content:center;
+  min-height:100vh;padding:20px 14px 36px;
+}
+.screen.active{display:flex;}
+
+/* ══════════════════════════════════════
+   CARD
+══════════════════════════════════════ */
+.card{
+  background:var(--sand);
+  border-radius:var(--r2);
+  box-shadow:var(--shadow);
+  width:100%;max-width:500px;
+  overflow:hidden;
+}
+.card-head{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  padding:30px 28px 22px;
+  text-align:center;
+  border-bottom:3px solid var(--teal2);
+}
+.card-body{padding:28px;}
+
+/* ══════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════ */
+.josefin{font-family:'Josefin Sans',sans-serif;}
+h1.big{
+  font-family:'Josefin Sans',sans-serif;
+  font-size:clamp(2rem,8vw,2.8rem);
+  color:var(--sand);
+  letter-spacing:.04em;
+  line-height:1.15;
+  text-transform:uppercase;
+}
+h1.big span{color:var(--teal3);}
+.sub{
+  font-size:.78rem;text-transform:uppercase;
+  letter-spacing:.13em;color:rgba(94,234,212,.65);
+  font-weight:600;margin-top:5px;
+}
+h2.section{
+  font-family:'Josefin Sans',sans-serif;
+  font-size:1.35rem;color:var(--bg2);
+  letter-spacing:.04em;margin-bottom:12px;
+  text-transform:uppercase;
+}
+p.desc{font-size:.95rem;color:#5a4a3a;line-height:1.65;margin-bottom:20px;}
+
+/* ══════════════════════════════════════
+   BUTTONS
+══════════════════════════════════════ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:none;border-radius:50px;
+  font-family:'DM Sans',sans-serif;font-weight:700;
+  cursor:pointer;transition:all .2s ease;
+  text-decoration:none;white-space:nowrap;
+}
+.btn-teal{
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);
+  font-size:1rem;padding:14px 36px;
+  box-shadow:0 4px 20px rgba(13,148,136,.45);
+  letter-spacing:.04em;
+}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(13,148,136,.55);}
+.btn-outline{
+  background:transparent;
+  border:2px solid rgba(15,25,35,.2);
+  color:var(--bg2);font-size:.9rem;padding:11px 28px;
+}
+.btn-outline:hover{background:rgba(15,25,35,.06);}
+.btn-full{width:100%;margin-bottom:10px;}
+
+/* Level cards */
+.level-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:22px;}
+.lvl-card{
+  background:var(--sand2);
+  border:2px solid rgba(13,148,136,.18);
+  border-radius:var(--r);
+  padding:15px 8px;text-align:center;
+  cursor:pointer;transition:all .2s;
+}
+.lvl-card:hover,.lvl-card.chosen{
+  border-color:var(--teal2);
+  background:linear-gradient(135deg,#e0faf8,#ccfbf1);
+  transform:translateY(-3px);box-shadow:var(--shadow-s);
+}
+.lvl-icon{font-size:1.7rem;margin-bottom:5px;}
+.lvl-name{font-family:'Josefin Sans',sans-serif;font-weight:700;font-size:.82rem;color:var(--bg2);letter-spacing:.05em;text-transform:uppercase;}
+.lvl-desc{font-size:.7rem;color:#7a6a5a;margin-top:3px;line-height:1.3;}
+
+/* ══════════════════════════════════════
+   GAME HUD
+══════════════════════════════════════ */
+#screen-game{padding:0;justify-content:flex-start;align-items:stretch;}
+
+.hud{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,25,35,.97);
+  backdrop-filter:blur(12px);
+  border-bottom:2px solid var(--teal);
+  padding:10px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:8px;flex-wrap:wrap;
+}
+.hud-brand{
+  font-family:'Josefin Sans',sans-serif;
+  font-size:1.05rem;color:var(--teal3);
+  letter-spacing:.06em;text-transform:uppercase;
+  white-space:nowrap;
+}
+.hud-pills{display:flex;gap:7px;align-items:center;flex-wrap:wrap;}
+.hpill{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:20px;
+  padding:5px 11px;
+  font-size:.76rem;color:var(--teal3);
+  font-weight:600;
+  display:flex;align-items:center;gap:4px;
+  white-space:nowrap;
+}
+#timer-val{font-family:'Josefin Sans',sans-serif;font-size:.95rem;transition:color .3s;}
+#timer-val.urgent{color:var(--rose2);}
+.hud-lvl{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);align-self:center;}
+
+/* ══════════════════════════════════════
+   ARENA
+══════════════════════════════════════ */
+.arena{
+  flex:1;padding:12px 11px 24px;
+  display:flex;flex-direction:column;gap:12px;
+  max-width:700px;width:100%;margin:0 auto;
+}
+
+.round-banner{
+  background:rgba(13,148,136,.14);
+  border:1px solid rgba(94,234,212,.25);
+  border-radius:10px;
+  padding:9px 14px;text-align:center;
+  font-size:.82rem;color:var(--teal3);
+  font-family:'Josefin Sans',sans-serif;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ── Shelf (draggable items) ── */
+.shelf-label{
+  font-size:.68rem;text-transform:uppercase;
+  letter-spacing:.1em;color:rgba(255,255,255,.4);
+  margin-bottom:7px;font-weight:600;
+}
+.shelf{
+  display:flex;flex-wrap:wrap;gap:7px;
+  min-height:50px;
+  background:rgba(0,0,0,.22);
+  border:2px dashed rgba(94,234,212,.2);
+  border-radius:var(--r);
+  padding:9px;align-content:flex-start;
+}
+
+/* ── Draggable chip ── */
+.shelf-chip{
+  background:linear-gradient(135deg,#e8f5f4,#ccfbf1);
+  border:2px solid rgba(13,148,136,.25);
+  border-radius:10px;
+  padding:7px 13px;
+  font-size:.84rem;font-weight:600;color:var(--bg2);
+  cursor:grab;
+  display:inline-flex;align-items:center;gap:6px;
+  box-shadow:var(--shadow-s);
+  transition:transform .18s,box-shadow .18s,opacity .18s;
+  touch-action:none;-webkit-touch-callout:none;
+}
+.shelf-chip:active,.shelf-chip.dragging{
+  cursor:grabbing;
+  transform:scale(1.08) rotate(-2deg);
+  box-shadow:0 12px 32px rgba(0,0,0,.4);
+  z-index:999;opacity:.82;
+}
+.shelf-chip.placed{opacity:.28;pointer-events:none;}
+
+/* ── Customer drop zones ── */
+.customers-grid{display:grid;gap:9px;}
+.customers-grid.cols-2{grid-template-columns:1fr 1fr;}
+.customers-grid.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.customers-grid.cols-4{grid-template-columns:1fr 1fr;}
+
+.customer-zone{
+  background:rgba(255,255,255,.05);
+  border:2px dashed rgba(94,234,212,.22);
+  border-radius:var(--r);
+  padding:11px;
+  transition:border-color .2s,background .2s;
+  min-height:108px;
+  display:flex;flex-direction:column;
+}
+.customer-zone.drag-over{
+  border-color:var(--teal2);
+  background:rgba(13,148,136,.14);
+}
+.customer-zone.completed{
+  border-color:var(--ok2);
+  background:rgba(5,150,105,.1);
+}
+.customer-zone.wrong-drop{
+  border-color:var(--rose);
+  background:var(--err-bg);
+  animation:shake .35s ease;
+}
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-6px);}
+  75%{transform:translateX(6px);}
+}
+
+.cust-header{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.cust-avatar{
+  width:34px;height:34px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),var(--bg3));
+  display:grid;place-items:center;
+  font-size:1rem;flex-shrink:0;
+}
+.cust-info{flex:1;}
+.cust-name{
+  font-family:'Josefin Sans',sans-serif;
+  font-size:.8rem;color:rgba(255,255,255,.85);
+  letter-spacing:.05em;text-transform:uppercase;
+}
+.cust-order{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:1px;line-height:1.35;}
+.order-tag{display:block;}
+
+.drop-zone{
+  flex:1;display:flex;flex-wrap:wrap;gap:5px;
+  align-content:flex-start;min-height:34px;
+}
+.dropped-chip{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:7px;
+  padding:3px 9px;font-size:.74rem;
+  color:rgba(255,255,255,.8);
+  display:flex;align-items:center;gap:4px;
+}
+.dropped-chip.ok-chip{
+  background:var(--ok-bg);border-color:var(--ok2);color:#a7f3d0;
+}
+.dropped-chip.err-chip{
+  background:var(--err-bg);border-color:var(--rose2);color:#fda4af;
+}
+
+/* ══════════════════════════════════════
+   TOAST
+══════════════════════════════════════ */
+.toast{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  z-index:200;background:var(--bg2);color:var(--teal3);
+  padding:11px 24px;border-radius:50px;
+  font-weight:700;font-size:.87rem;
+  border:2px solid var(--teal);box-shadow:var(--shadow);
+  pointer-events:none;opacity:0;
+  transition:opacity .25s,transform .25s;
+  white-space:nowrap;max-width:90vw;text-align:center;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
+.toast.ok{border-color:var(--ok2);color:#a7f3d0;}
+.toast.fail{border-color:var(--rose2);color:#fda4af;}
+
+/* ══════════════════════════════════════
+   SCORE POP
+══════════════════════════════════════ */
+.score-pop{
+  position:fixed;z-index:300;
+  font-family:'Josefin Sans',sans-serif;font-size:1.5rem;font-weight:700;
+  pointer-events:none;
+  animation:scoreFloat 1.1s ease forwards;
+}
+@keyframes scoreFloat{
+  0%  {opacity:1;transform:translateY(0) scale(1);}
+  60% {opacity:1;transform:translateY(-52px) scale(1.15);}
+  100%{opacity:0;transform:translateY(-92px) scale(.9);}
+}
+
+/* ══════════════════════════════════════
+   DRAG GHOST
+══════════════════════════════════════ */
+#drag-ghost{
+  position:fixed;z-index:9999;
+  pointer-events:none;
+  display:none;
+  transform:translate(-50%,-50%) rotate(-2deg) scale(1.08);
+}
+
+/* ══════════════════════════════════════
+   RESULTS
+══════════════════════════════════════ */
+.res-icon{font-size:4.2rem;display:block;margin-bottom:8px;
+  animation:iconIn .7s cubic-bezier(.22,1,.36,1) both;}
+@keyframes iconIn{from{transform:scale(.3) rotate(-18deg);opacity:0;}to{transform:scale(1) rotate(0);opacity:1;}}
+.res-title{
+  font-family:'Josefin Sans',sans-serif;
+  font-size:clamp(1.6rem,6vw,2.2rem);
+  color:var(--bg2);letter-spacing:.05em;text-transform:uppercase;
+}
+.res-sub{font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:rgba(15,25,35,.38);margin-bottom:18px;}
+.stats-row{display:flex;justify-content:center;gap:18px;margin:14px 0 18px;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;align-items:center;gap:3px;}
+.stat-n{font-family:'Josefin Sans',sans-serif;font-size:2.2rem;line-height:1;}
+.stat-n.pts{color:var(--teal);}
+.stat-n.ok {color:var(--ok);}
+.stat-n.bad{color:var(--rose);}
+.stat-n.pct{color:var(--bg3);}
+.stat-l{font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:rgba(15,25,35,.4);}
+.res-divider{height:1px;background:rgba(15,25,35,.1);margin:14px 0;}
+.res-msg{
+  font-style:italic;font-size:.95rem;color:#5a4a3a;
+  line-height:1.7;margin-bottom:22px;text-align:center;
+}
+.res-actions{display:flex;flex-direction:column;gap:10px;align-items:center;}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media(max-width:380px){
+  .level-grid{grid-template-columns:1fr;}
+  .customers-grid.cols-3{grid-template-columns:1fr 1fr;}
+  .hpill{padding:4px 8px;font-size:.7rem;}
+}
+@media(min-width:580px){
+  .arena{padding:16px 14px 28px;}
+  .shelf-chip{font-size:.88rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- DRAG GHOST -->
+<div id="drag-ghost"></div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════════════════════════
+     PANTALLA 1 — SPLASH
+════════════════════════════════════ -->
+<div class="screen active" id="screen-splash">
+  <div class="card" style="max-width:490px;">
+    <div class="card-head">
+      <div style="font-size:3.2rem;margin-bottom:8px;">🛍️</div>
+      <h1 class="big">¡La Gran<br><span>Tienda!</span></h1>
+      <div class="sub">Español A1 · Unidad 4 · Ropa y Productos Básicos</div>
+    </div>
+    <div class="card-body">
+      <p class="desc">
+        ¡Bienvenido a la tienda! Eres el dependiente y debes entregar los productos correctos a cada cliente.<br>
+        <strong>Arrastra</strong> cada prenda o producto al cliente que lo pidió antes de que se acabe el tiempo. 🕐
+      </p>
+      <h2 class="section">Elige tu nivel</h2>
+      <div class="level-grid">
+        <div class="lvl-card" onclick="chooseLevel(1)" id="lvl1">
+          <div class="lvl-icon">🧦</div>
+          <div class="lvl-name">Fácil</div>
+          <div class="lvl-desc">2 clientes · 60 s · ropa básica</div>
+        </div>
+        <div class="lvl-card" onclick="chooseLevel(2)" id="lvl2">
+          <div class="lvl-icon">👔</div>
+          <div class="lvl-name">Medio</div>
+          <div class="lvl-desc">3 clientes · 50 s · más productos</div>
+        </div>
+        <div class="lvl-card" onclick="chooseLevel(3)" id="lvl3">
+          <div class="lvl-icon">🔥</div>
+          <div class="lvl-name">Difícil</div>
+          <div class="lvl-desc">4 clientes · 40 s · tienda completa</div>
+        </div>
+      </div>
+      <button class="btn btn-teal btn-full" id="btn-start" onclick="startGame()" disabled>
+        🚀 ¡Empezar!
+      </button>
+      <div style="text-align:center;margin-top:6px;">
+        <span style="font-size:.76rem;color:rgba(15,25,35,.4);">Funciona con arrastre y toque táctil</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     PANTALLA 2 — JUEGO
+════════════════════════════════════ -->
+<div class="screen" id="screen-game">
+  <div class="hud">
+    <div class="hud-brand">🛍️ La Gran Tienda</div>
+    <div class="hud-pills">
+      <div class="hpill">⏱ <span id="timer-val">60</span>s</div>
+      <div class="hpill">⭐ <span id="score-val">0</span></div>
+      <div class="hpill">✅ <span id="ok-val">0</span> &nbsp;❌ <span id="bad-val">0</span></div>
+    </div>
+    <div class="hud-lvl" id="hud-lvl-lbl">Nivel 1</div>
+  </div>
+  <div class="arena" id="arena"></div>
+</div>
+
+<!-- ════════════════════════════════════
+     PANTALLA 3 — RESULTADOS
+════════════════════════════════════ -->
+<div class="screen" id="screen-results">
+  <div class="card" style="max-width:480px;">
+    <div class="card-head">
+      <span class="res-icon" id="res-icon">🏆</span>
+      <div class="res-title josefin" id="res-title">¡Turno completado!</div>
+      <div class="res-sub">Español A1 · La Gran Tienda</div>
+    </div>
+    <div class="card-body">
+      <div class="stats-row">
+        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Puntos</span></div>
+        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Aciertos</span></div>
+        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errores</span></div>
+        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Precisión</span></div>
+      </div>
+      <div class="res-divider"></div>
+      <p class="res-msg" id="res-msg"></p>
+      <div class="res-actions">
+        <button class="btn btn-teal btn-full" onclick="restart()">🔄 Jugar de nuevo</button>
+        <a id="btn-volver"
+           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=226"
+           style="display:inline-flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Regresar al Aula Virtual
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════ -->
+<script>
+/* ── Moodle deep-link ── */
+(function(){
+  const btn = document.getElementById('btn-volver');
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=226';
+  if(/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href = appUrl;
+})();
+
+/* ════════════════════════════════════
+   CATÁLOGO DE PRODUCTOS
+════════════════════════════════════ */
+const CATALOG = [
+  /* Ropa */
+  {id:'camiseta',   emoji:'👕', name:'camiseta'},
+  {id:'pantalon',   emoji:'👖', name:'pantalón'},
+  {id:'vestido',    emoji:'👗', name:'vestido'},
+  {id:'falda',      emoji:'🩱', name:'falda'},
+  {id:'chaqueta',   emoji:'🧥', name:'chaqueta'},
+  {id:'sueter',     emoji:'🧶', name:'suéter'},
+  {id:'abrigo',     emoji:'🧣', name:'abrigo'},
+  {id:'pijama',     emoji:'🩲', name:'pijama'},
+  {id:'calcetines', emoji:'🧦', name:'calcetines'},
+  {id:'gorra',      emoji:'🧢', name:'gorra'},
+  {id:'sombrero',   emoji:'👒', name:'sombrero'},
+  {id:'guantes',    emoji:'🧤', name:'guantes'},
+  /* Calzado */
+  {id:'zapatos',    emoji:'👞', name:'zapatos'},
+  {id:'botas',      emoji:'👢', name:'botas'},
+  {id:'sandalias',  emoji:'👡', name:'sandalias'},
+  {id:'tenis',      emoji:'👟', name:'tenis'},
+  {id:'zapatillas', emoji:'🥿', name:'zapatillas'},
+  /* Aseo personal */
+  {id:'jabon',      emoji:'🧼', name:'jabón'},
+  {id:'shampoo',    emoji:'🧴', name:'champú'},
+  {id:'cepillo',    emoji:'🪥', name:'cepillo de dientes'},
+  {id:'pasta',      emoji:'🦷', name:'pasta dental'},
+  {id:'desodorante',emoji:'🧴', name:'desodorante'},
+  {id:'perfume',    emoji:'🫧', name:'perfume'},
+  {id:'peine',      emoji:'💈', name:'peine'},
+  /* Accesorios */
+  {id:'bolso',      emoji:'👜', name:'bolso'},
+  {id:'mochila',    emoji:'🎒', name:'mochila'},
+  {id:'cinturon',   emoji:'🪢', name:'cinturón'},
+  {id:'gafas',      emoji:'👓', name:'gafas'},
+  {id:'reloj',      emoji:'⌚', name:'reloj'},
+  {id:'paraguas',   emoji:'☂️', name:'paraguas'},
+];
+
+/* Avatares y nombres de clientes */
+const CUSTOMERS = [
+  {emoji:'👩',name:'Laura'},
+  {emoji:'👨',name:'Carlos'},
+  {emoji:'👧',name:'Sofía'},
+  {emoji:'👴',name:'Don Luis'},
+  {emoji:'👩‍💼',name:'Andrea'},
+  {emoji:'👦',name:'Miguel'},
+];
+
+/* ════════════════════════════════════
+   NIVELES
+════════════════════════════════════ */
+const LEVELS = {
+  1:{ clients:2, time:60, rounds:3, pts_ok:20, pts_fail:5,
+      pool:['camiseta','pantalon','vestido','zapatos','botas','jabon','shampoo','bolso','calcetines','gorra'],
+      itemsPerClient:1 },
+  2:{ clients:3, time:50, rounds:3, pts_ok:25, pts_fail:7,
+      pool:['camiseta','pantalon','vestido','falda','chaqueta','tenis','sandalias','zapatillas','jabon','shampoo','cepillo','pasta','bolso','mochila','gafas','peine'],
+      itemsPerClient:2 },
+  3:{ clients:4, time:40, rounds:4, pts_ok:30, pts_fail:10,
+      pool:CATALOG.map(c=>c.id),
+      itemsPerClient:2 },
+};
+
+/* ════════════════════════════════════
+   ESTADO
+════════════════════════════════════ */
+let level=1, round=0, totalRounds=3;
+let score=0, okCount=0, badCount=0;
+let timerSec=60, timerInt=null;
+let roundData=null, pendingItems=0;
+let chosenLevel=0;
+
+/* drag state */
+let dragItemId=null, dragOriginEl=null;
+
+/* ════════════════════════════════════
+   UTILS
+════════════════════════════════════ */
+const $=id=>document.getElementById(id);
+const shuffle=a=>a.slice().sort(()=>Math.random()-.5);
+const pick=(a,n)=>shuffle(a).slice(0,n);
+const getItem=id=>CATALOG.find(c=>c.id===id);
+
+/* ════════════════════════════════════
+   NIVEL / SPLASH
+════════════════════════════════════ */
+function chooseLevel(l){
+  chosenLevel=l;
+  document.querySelectorAll('.lvl-card').forEach(c=>c.classList.remove('chosen'));
+  $('lvl'+l).classList.add('chosen');
+  $('btn-start').disabled=false;
+}
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+/* ════════════════════════════════════
+   INICIAR / REINICIAR
+════════════════════════════════════ */
+function startGame(){
+  if(!chosenLevel) return;
+  level=chosenLevel;
+  totalRounds=LEVELS[level].rounds;
+  round=0;score=0;okCount=0;badCount=0;
+  updateHUD();
+  $('hud-lvl-lbl').textContent='Nivel '+level;
+  showScreen('screen-game');
+  nextRound();
+}
+function restart(){ clearInterval(timerInt); showScreen('screen-splash'); }
+
+/* ════════════════════════════════════
+   RONDA
+════════════════════════════════════ */
+function nextRound(){
+  if(round>=totalRounds){ endGame(); return; }
+  round++;
+
+  const cfg=LEVELS[level];
+  const pool=cfg.pool.map(id=>getItem(id)).filter(Boolean);
+  const custPool=shuffle(CUSTOMERS).slice(0,cfg.clients);
+
+  let usedIds=[];
+  const clients=custPool.map((c,i)=>{
+    const available=pool.filter(p=>!usedIds.includes(p.id));
+    const items=pick(available,cfg.itemsPerClient);
+    items.forEach(it=>usedIds.push(it.id));
+    return {avatar:c.emoji, name:c.name, items};
+  });
+
+  const shelfItems=shuffle(clients.flatMap(c=>c.items));
+  roundData={clients, shelf:shelfItems};
+  pendingItems=shelfItems.length;
+
+  renderRound();
+  startTimer();
+}
+
+/* ════════════════════════════════════
+   RENDER RONDA
+════════════════════════════════════ */
+function renderRound(){
+  const cfg=LEVELS[level];
+  const arena=$('arena');
+  arena.innerHTML='';
+
+  /* Banner */
+  const banner=document.createElement('div');
+  banner.className='round-banner';
+  banner.textContent=`Turno ${round} de ${totalRounds} — ¡Entrega los productos correctos a cada cliente!`;
+  arena.appendChild(banner);
+
+  /* Estante */
+  const shelfSection=document.createElement('div');
+  shelfSection.innerHTML=`<div class="shelf-label">🗂️ Estante — arrastra cada producto al cliente correcto</div>
+    <div class="shelf" id="shelf"></div>`;
+  arena.appendChild(shelfSection);
+
+  const shelf=shelfSection.querySelector('#shelf');
+  roundData.shelf.forEach(item=>shelf.appendChild(createChip(item)));
+
+  /* Clientes */
+  const grid=document.createElement('div');
+  const cols=cfg.clients<=2?'cols-2':cfg.clients===3?'cols-3':'cols-4';
+  grid.className=`customers-grid ${cols}`;
+
+  roundData.clients.forEach(client=>{
+    const zone=document.createElement('div');
+    zone.className='customer-zone';
+    zone.dataset.client=client.name;
+    zone.dataset.expects=client.items.map(i=>i.id).join(',');
+
+    const orderLines=client.items.map(i=>`<span class="order-tag">${i.emoji} ${i.name}</span>`).join('');
+    zone.innerHTML=`
+      <div class="cust-header">
+        <div class="cust-avatar">${client.avatar}</div>
+        <div class="cust-info">
+          <div class="cust-name">${client.name}</div>
+          <div class="cust-order">${orderLines}</div>
+        </div>
+      </div>
+      <div class="drop-zone" id="dz-${client.name.replace(/\s/g,'-')}"></div>`;
+
+    /* Desktop drop */
+    zone.addEventListener('dragover',e=>{e.preventDefault();zone.classList.add('drag-over');});
+    zone.addEventListener('dragleave',()=>zone.classList.remove('drag-over'));
+    zone.addEventListener('drop',e=>{e.preventDefault();zone.classList.remove('drag-over');handleDrop(zone,dragItemId);});
+
+    grid.appendChild(zone);
+  });
+  arena.appendChild(grid);
+}
+
+/* ════════════════════════════════════
+   CHIP
+════════════════════════════════════ */
+function createChip(item){
+  const el=document.createElement('div');
+  el.className='shelf-chip';
+  el.dataset.id=item.id;
+  el.draggable=true;
+  el.innerHTML=`${item.emoji} ${item.name}`;
+
+  /* Desktop */
+  el.addEventListener('dragstart',e=>{
+    dragItemId=item.id; dragOriginEl=el;
+    setTimeout(()=>el.classList.add('dragging'),0);
+    e.dataTransfer.effectAllowed='move';
+  });
+  el.addEventListener('dragend',()=>{el.classList.remove('dragging');dragItemId=null;dragOriginEl=null;});
+
+  /* Touch */
+  el.addEventListener('touchstart',touchStart,{passive:false});
+  el.addEventListener('touchmove', touchMove, {passive:false});
+  el.addEventListener('touchend',  touchEnd,  {passive:false});
+
+  return el;
+}
+
+/* ════════════════════════════════════
+   DROP
+════════════════════════════════════ */
+function handleDrop(zone, itemId){
+  if(!itemId) return;
+  const expects=zone.dataset.expects.split(',');
+  const isOk=expects.includes(itemId);
+  const item=getItem(itemId);
+  const dzId='dz-'+zone.dataset.client.replace(/\s/g,'-');
+  const dz=$(dzId);
+
+  const chip=document.createElement('div');
+  chip.className='dropped-chip '+(isOk?'ok-chip':'err-chip');
+  chip.innerHTML=`${item.emoji} ${item.name}`;
+  dz.appendChild(chip);
+
+  const origEl=document.querySelector(`.shelf-chip[data-id="${itemId}"]`);
+  if(origEl) origEl.classList.add('placed');
+
+  if(isOk){
+    okCount++;
+    const pts=LEVELS[level].pts_ok;
+    score+=pts;
+    showToast(`✅ +${pts} puntos`,'ok');
+    showPop('+'+pts,'#34d399');
+    pendingItems--;
+    const okCount2=dz.querySelectorAll('.ok-chip').length;
+    if(okCount2===expects.length) zone.classList.add('completed');
+    if(pendingItems<=0){ stopTimer(); setTimeout(()=>nextRound(),900); }
+  } else {
+    badCount++;
+    score=Math.max(0,score-LEVELS[level].pts_fail);
+    showToast(`❌ −${LEVELS[level].pts_fail} puntos`,'fail');
+    zone.classList.add('wrong-drop');
+    setTimeout(()=>zone.classList.remove('wrong-drop'),500);
+    if(origEl) origEl.classList.remove('placed');
+    setTimeout(()=>chip.remove(),800);
+  }
+  updateHUD();
+}
+
+/* ════════════════════════════════════
+   TOUCH DRAG
+════════════════════════════════════ */
+function touchStart(e){
+  const el=e.currentTarget;
+  dragItemId=el.dataset.id; dragOriginEl=el;
+  const t=e.touches[0];
+  const ghost=$('drag-ghost');
+  ghost.innerHTML=el.innerHTML;
+  ghost.style.cssText=`
+    display:inline-flex;align-items:center;gap:6px;
+    background:linear-gradient(135deg,#e8f5f4,#ccfbf1);
+    border:2px solid rgba(13,148,136,.3);border-radius:10px;
+    padding:7px 13px;font-family:'DM Sans',sans-serif;
+    font-size:.84rem;font-weight:600;color:#162030;
+    box-shadow:0 12px 32px rgba(0,0,0,.4);
+    position:fixed;z-index:9999;pointer-events:none;
+    transform:translate(-50%,-50%) rotate(-2deg) scale(1.08);
+    left:${t.clientX}px;top:${t.clientY}px;`;
+  el.classList.add('dragging');
+  e.preventDefault();
+}
+function touchMove(e){
+  const t=e.touches[0];
+  const g=$('drag-ghost');
+  g.style.left=t.clientX+'px';g.style.top=t.clientY+'px';
+  document.querySelectorAll('.customer-zone').forEach(z=>z.classList.remove('drag-over'));
+  const under=document.elementFromPoint(t.clientX,t.clientY);
+  const zone=under?.closest('.customer-zone');
+  if(zone) zone.classList.add('drag-over');
+  e.preventDefault();
+}
+function touchEnd(e){
+  const t=e.changedTouches[0];
+  $('drag-ghost').style.display='none';
+  const under=document.elementFromPoint(t.clientX,t.clientY);
+  const zone=under?.closest('.customer-zone');
+  document.querySelectorAll('.customer-zone').forEach(z=>z.classList.remove('drag-over'));
+  dragOriginEl?.classList.remove('dragging');
+  if(zone && dragItemId) handleDrop(zone,dragItemId);
+  dragItemId=null;dragOriginEl=null;
+  e.preventDefault();
+}
+
+/* ════════════════════════════════════
+   TIMER
+════════════════════════════════════ */
+function startTimer(){
+  timerSec=LEVELS[level].time;
+  $('timer-val').textContent=timerSec;
+  $('timer-val').classList.remove('urgent');
+  clearInterval(timerInt);
+  timerInt=setInterval(()=>{
+    timerSec--;
+    $('timer-val').textContent=timerSec;
+    if(timerSec<=10) $('timer-val').classList.add('urgent');
+    if(timerSec<=0){ stopTimer(); timeOut(); }
+  },1000);
+}
+function stopTimer(){ clearInterval(timerInt); timerInt=null; }
+function timeOut(){
+  showToast('⏰ ¡Tiempo! Siguiente turno…','fail');
+  badCount+=pendingItems;
+  updateHUD();
+  setTimeout(()=>nextRound(),1200);
+}
+
+/* ════════════════════════════════════
+   HUD
+════════════════════════════════════ */
+function updateHUD(){
+  $('score-val').textContent=score;
+  $('ok-val').textContent=okCount;
+  $('bad-val').textContent=badCount;
+}
+
+/* ════════════════════════════════════
+   TOAST & POP
+════════════════════════════════════ */
+let toastTO=null;
+function showToast(msg,type){
+  const t=$('toast');
+  t.textContent=msg;t.className='toast '+type+' show';
+  clearTimeout(toastTO);
+  toastTO=setTimeout(()=>t.classList.remove('show'),1600);
+}
+function showPop(text,color){
+  const p=document.createElement('div');
+  p.className='score-pop';p.textContent=text;p.style.color=color;
+  p.style.left=(15+Math.random()*60)+'%';
+  p.style.top =(20+Math.random()*40)+'vh';
+  document.body.appendChild(p);
+  p.addEventListener('animationend',()=>p.remove());
+}
+
+/* ════════════════════════════════════
+   RESULTADOS
+════════════════════════════════════ */
+function endGame(){
+  stopTimer();
+  const total=okCount+badCount;
+  const pct=total>0?Math.round(okCount/total*100):0;
+
+  let icon,title,msg;
+  if(pct===100){
+    icon='🏆';title='¡Dependiente Perfecto!';
+    msg='"¡Impresionante! Entregaste todos los productos correctamente y sin un solo error. Tu conocimiento del vocabulario de ropa, calzado y productos de aseo en español es sobresaliente. ¡Los clientes volverán a pedir por ti!"';
+  } else if(pct>=80){
+    icon='🌟';title='¡Excelente Atención!';
+    msg='"¡Fantástico trabajo! Casi todos los productos llegaron al cliente correcto. Tienes un muy buen dominio del vocabulario de ropa y productos básicos. Sigue practicando y alcanzarás la perfección."';
+  } else if(pct>=60){
+    icon='👔';title='¡Buen Turno!';
+    msg='"¡Muy bien! Acertaste más de la mitad de los pedidos. Continúa repasando los nombres de las prendas y los productos de aseo personal — ¡con un poco más de práctica lo tendrás dominado!"';
+  } else if(pct>=35){
+    icon='💪';title='¡Sigue Intentando!';
+    msg='"¡Buen esfuerzo! La tienda es exigente, pero el aprendizaje también lo es. Revisa el vocabulario de ropa y productos básicos de esta unidad y vuelve a jugar — ¡cada intento te hace más fuerte!"';
+  } else {
+    icon='🌱';title='¡Primer día en la tienda!';
+    msg='"¡No te desanimes! Aprender un idioma nuevo toma tiempo y práctica. Repasa la lista de ropa, calzado y productos de aseo personal de la Unidad 4, practica sus nombres en voz alta y regresa a la tienda. ¡El equipo te espera!"';
+  }
+
+  $('res-icon').textContent=icon;
+  $('res-title').textContent=title;
+  $('res-pts').textContent=score;
+  $('res-ok').textContent=okCount;
+  $('res-bad').textContent=badCount;
+  $('res-pct').textContent=pct+'%';
+  $('res-msg').textContent=msg;
+  showScreen('screen-results');
+}
+</script>
+</body>
+</html>
