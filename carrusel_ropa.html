@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,400&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  #card1,#card2,#card3,#card4,#card5,#card6,
+  #card7,#card8,#card9,#card10,#card11,#card12 { display:none; }
+
+  #s1:checked  ~ #card1  { display:block; }
+  #s2:checked  ~ #card2  { display:block; }
+  #s3:checked  ~ #card3  { display:block; }
+  #s4:checked  ~ #card4  { display:block; }
+  #s5:checked  ~ #card5  { display:block; }
+  #s6:checked  ~ #card6  { display:block; }
+  #s7:checked  ~ #card7  { display:block; }
+  #s8:checked  ~ #card8  { display:block; }
+  #s9:checked  ~ #card9  { display:block; }
+  #s10:checked ~ #card10 { display:block; }
+  #s11:checked ~ #card11 { display:block; }
+  #s12:checked ~ #card12 { display:block; }
+
+  #s1:checked  ~ .nav-dots label[for="s1"],
+  #s2:checked  ~ .nav-dots label[for="s2"],
+  #s3:checked  ~ .nav-dots label[for="s3"],
+  #s4:checked  ~ .nav-dots label[for="s4"],
+  #s5:checked  ~ .nav-dots label[for="s5"],
+  #s6:checked  ~ .nav-dots label[for="s6"],
+  #s7:checked  ~ .nav-dots label[for="s7"],
+  #s8:checked  ~ .nav-dots label[for="s8"],
+  #s9:checked  ~ .nav-dots label[for="s9"],
+  #s10:checked ~ .nav-dots label[for="s10"],
+  #s11:checked ~ .nav-dots label[for="s11"],
+  #s12:checked ~ .nav-dots label[for="s12"] {
+    background: #EC489A;
+    transform: scale(1.4);
+    box-shadow: 0 0 0 3px rgba(236,72,154,0.28);
+  }
+
+  .btn-nav { display:none; }
+
+  #s1:checked  ~ .nav-arrows .arr-1,
+  #s2:checked  ~ .nav-arrows .arr-2,
+  #s3:checked  ~ .nav-arrows .arr-3,
+  #s4:checked  ~ .nav-arrows .arr-4,
+  #s5:checked  ~ .nav-arrows .arr-5,
+  #s6:checked  ~ .nav-arrows .arr-6,
+  #s7:checked  ~ .nav-arrows .arr-7,
+  #s8:checked  ~ .nav-arrows .arr-8,
+  #s9:checked  ~ .nav-arrows .arr-9,
+  #s10:checked ~ .nav-arrows .arr-10,
+  #s11:checked ~ .nav-arrows .arr-11,
+  #s12:checked ~ .nav-arrows .arr-12 { display:flex; }
+
+  /* Shared helpers */
+  .zi { position:relative; z-index:1; }
+  .deco-blob-tr { position:absolute; top:-55px; right:-55px; width:220px; height:220px; border-radius:50%; background:rgba(255,255,255,0.055); }
+  .deco-blob-bl { position:absolute; bottom:-75px; left:-45px; width:250px; height:250px; border-radius:50%; background:rgba(0,0,0,0.07); }
+  /* Diagonal stripe texture */
+  .tex { position:absolute; inset:0; border-radius:22px;
+    background-image: repeating-linear-gradient(
+      -55deg,
+      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+      transparent 1px, transparent 18px
+    );
+  }
+  .card-wrap { border-radius:22px; padding:40px; position:relative; overflow:hidden; min-height:390px; }
+  .eyebrow { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; margin:0 0 8px; }
+  .card-title { font-family:'Fraunces',serif; color:white; font-size:1.95em; margin:0 0 18px; line-height:1.15; }
+  .def-box { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.16); border-radius:13px; padding:16px 18px; margin-bottom:14px; }
+  .def-text { color:white; line-height:1.75; margin:0; font-size:0.96em; }
+  .stripe { border-left:4px solid; border-radius:0 12px 12px 0; padding:14px 16px; margin-bottom:13px; }
+  .sec-lbl { font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:0 0 11px; }
+  .ex-box { background:rgba(255,220,80,0.13); border:2px solid rgba(255,220,80,0.35); border-radius:12px; padding:12px 16px; }
+  .ex-lbl { color:#FFE066; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.8em; font-weight:700; text-align:center; margin:0 0 6px; letter-spacing:1px; }
+  .ex-txt { color:white; font-size:0.9em; margin:0; text-align:center; font-style:italic; line-height:1.65; }
+  .vg { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .vi { background:rgba(255,255,255,0.11); border-radius:9px; padding:9px 11px; }
+  .ves { color:#FFE066; font-size:0.9em; font-weight:700; margin:0; }
+  .ven { color:rgba(255,255,255,0.56); font-size:0.74em; margin:2px 0 0; }
+  .nav-btn { background:white; border:2px solid #DDD6FE; border-radius:12px; padding:10px 26px; cursor:pointer; font-weight:700; color:#312E81; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.93em; }
+  .badge { display:inline-flex; align-items:center; background:rgba(255,255,255,0.11); border-radius:20px; padding:5px 14px; font-family:'Plus Jakarta Sans',sans-serif; font-size:0.77em; font-weight:700; letter-spacing:2px; }
+</style>
+</head>
+<body style="margin:0; padding:20px;
+  background:#FDF4FF;
+  background-image: repeating-linear-gradient(0deg, rgba(236,72,154,0.08) 0px, rgba(236,72,154,0.08) 1px, transparent 1px, transparent 32px),
+                    repeating-linear-gradient(90deg, rgba(236,72,154,0.08) 0px, rgba(236,72,154,0.08) 1px, transparent 1px, transparent 32px);
+  font-family:'Plus Jakarta Sans',sans-serif;">
+
+<div style="max-width:700px; margin:0 auto;">
+
+  <!-- HEADER -->
+  <div style="text-align:center; margin-bottom:32px;">
+    <div style="display:inline-block; background:linear-gradient(135deg,#DB2777,#F472B6); padding:8px 26px; border-radius:30px; margin-bottom:14px; box-shadow:0 4px 18px rgba(244,114,182,0.35);">
+      <span style="color:white; font-size:0.81em; font-weight:700; letter-spacing:3px;">UNIDAD 2 · TEMÁTICA 2 · BLOQUE 1</span>
+    </div>
+    <h2 style="font-family:'Fraunces',serif; font-size:2.3em; color:#831843; margin:0 0 6px; line-height:1.1;">Ropa y productos básicos 👗🧴</h2>
+    <p style="color:#B4537A; font-size:0.9em; margin:0;">Haz clic en → ← o los puntos para navegar</p>
+  </div>
+
+  <!-- RADIOS (no modificar) -->
+  <input type="radio" name="slide" id="s1"  style="display:none;" checked>
+  <input type="radio" name="slide" id="s2"  style="display:none;">
+  <input type="radio" name="slide" id="s3"  style="display:none;">
+  <input type="radio" name="slide" id="s4"  style="display:none;">
+  <input type="radio" name="slide" id="s5"  style="display:none;">
+  <input type="radio" name="slide" id="s6"  style="display:none;">
+  <input type="radio" name="slide" id="s7"  style="display:none;">
+  <input type="radio" name="slide" id="s8"  style="display:none;">
+  <input type="radio" name="slide" id="s9"  style="display:none;">
+  <input type="radio" name="slide" id="s10" style="display:none;">
+  <input type="radio" name="slide" id="s11" style="display:none;">
+  <input type="radio" name="slide" id="s12" style="display:none;">
+
+  <!-- ===== TARJETA 1: Introducción ===== -->
+  <div id="card1" class="card-wrap" style="background:linear-gradient(145deg,#831843,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;bottom:24px;right:28px;font-size:6em;opacity:0.08;line-height:1;">👗</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">01 / 12 &nbsp;·&nbsp; 👕 INTRO</span>
+      <span style="font-size:1.9em;">🧥</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Bienvenida al bloque</p>
+      <h3 class="card-title" style="font-size:2em;">Vestirse y comprar en español</h3>
+      <div class="def-box">
+        <p class="def-text">Aprender el vocabulario de <strong style="color:#FFE066;">ropa y productos básicos</strong> te ayudará a desenvolverte en tiendas, describir lo que llevas puesto y comprar artículos de cuidado personal. ¡Esencial para la vida diaria!</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;">
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">👖</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">ropa</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">🧴</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">productos</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:12px;padding:8px;text-align:center;">
+          <p style="color:#FFE066;margin:0;font-size:1.8em;">🛍️</p>
+          <p style="color:white;margin:4px 0 0;font-size:0.8em;">compras</p>
+        </div>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(131,24,67,0.3);">
+        <p class="sec-lbl" style="color:#FCE7F3;">📚 EN ESTE BLOQUE</p>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Ropa básica: prendas, calzado, complementos</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Productos de higiene y cuidado personal</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Verbos: llevar, vestirse, probarse, comprar</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Colores, tallas y cómo pedir en una tienda</p>
+          <p style="color:white;margin:0;font-size:0.88em;">✦ Diálogos en tiendas y farmacias</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 2: Ropa básica ===== -->
+  <div id="card2" class="card-wrap" style="background:linear-gradient(145deg,#9D174D,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.5);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">02 / 12 &nbsp;·&nbsp; 👚 PRENDAS</span>
+      <span style="font-size:1.9em;">👗</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Vocabulario esencial</p>
+      <h3 class="card-title">Prendas de vestir</h3>
+      <div class="def-box">
+        <p class="def-text">Aprende los nombres de las prendas más comunes. Recuerda el <strong style="color:#FFE066;">género</strong> (masculino/femenino) para usar los artículos correctamente.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(157,23,77,0.5);">
+        <div class="vg">
+          <div class="vi"><p class="ves">la camiseta 👕</p><p class="ven">t-shirt</p></div>
+          <div class="vi"><p class="ves">la camisa 👔</p><p class="ven">shirt</p></div>
+          <div class="vi"><p class="ves">el pantalón 👖</p><p class="ven">trousers/pants</p></div>
+          <div class="vi"><p class="ves">el vestido 👗</p><p class="ven">dress</p></div>
+          <div class="vi"><p class="ves">la falda</p><p class="ven">skirt</p></div>
+          <div class="vi"><p class="ves">los zapatos 👞</p><p class="ven">shoes</p></div>
+          <div class="vi"><p class="ves">el abrigo 🧥</p><p class="ven">coat</p></div>
+          <div class="vi"><p class="ves">el suéter / jersey</p><p class="ven">sweater</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💡 NOTA</p><p class="ex-txt">Muchas prendas son femeninas: la camisa, la falda. Los pantalones suelen usarse en plural: <strong>los pantalones</strong>.</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 3: Productos básicos ===== -->
+  <div id="card3" class="card-wrap" style="background:linear-gradient(145deg,#B91C1C,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">03 / 12 &nbsp;·&nbsp; 🧴 PRODUCTOS</span>
+      <span style="font-size:1.9em;">🧼</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Artículos de cuidado personal</p>
+      <h3 class="card-title">En la farmacia o supermercado</h3>
+      <div class="def-box">
+        <p class="def-text">Palabras útiles para comprar productos de higiene y limpieza.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(185,28,28,0.3);">
+        <div class="vg">
+          <div class="vi"><p class="ves">el jabón 🧼</p><p class="ven">soap</p></div>
+          <div class="vi"><p class="ves">el champú 🧴</p><p class="ven">shampoo</p></div>
+          <div class="vi"><p class="ves">la pasta de dientes</p><p class="ven">toothpaste</p></div>
+          <div class="vi"><p class="ves">el cepillo de dientes</p><p class="ven">toothbrush</p></div>
+          <div class="vi"><p class="ves">el desodorante</p><p class="ven">deodorant</p></div>
+          <div class="vi"><p class="ves">el papel higiénico 🧻</p><p class="ven">toilet paper</p></div>
+          <div class="vi"><p class="ves">la crema hidratante</p><p class="ven">moisturizer</p></div>
+          <div class="vi"><p class="ves">el perfume</p><p class="ven">perfume</p></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLO</p><p class="ex-txt">"Necesito <strong>champú</strong> y <strong>pasta de dientes</strong>."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 4: Colores y tallas ===== -->
+  <div id="card4" class="card-wrap" style="background:linear-gradient(145deg,#9D174D,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">04 / 12 &nbsp;·&nbsp; 🎨 COLORES Y TALLAS</span>
+      <span style="font-size:1.9em;">🎨</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Describir la ropa</p>
+      <h3 class="card-title">¿De qué color? ¿Qué talla?</h3>
+      <div class="def-box">
+        <p class="def-text">Los colores y las tallas son clave al comprar. Los colores pueden ser adjetivos y concuerdan en género.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(157,23,77,0.28);">
+        <div class="vg">
+          <div class="vi"><p class="ves">rojo / roja 🔴</p><p class="ven">red</p></div>
+          <div class="vi"><p class="ves">azul 🔵</p><p class="ven">blue</p></div>
+          <div class="vi"><p class="ves">verde 🟢</p><p class="ven">green</p></div>
+          <div class="vi"><p class="ves">amarillo / amarilla 🟡</p><p class="ven">yellow</p></div>
+          <div class="vi"><p class="ves">negro / negra ⚫</p><p class="ven">black</p></div>
+          <div class="vi"><p class="ves">blanco / blanca ⚪</p><p class="ven">white</p></div>
+        </div>
+        <div class="vi" style="margin-top:8px;"><p class="ves">talla S (pequeña), M (mediana), L (grande), XL (extra grande)</p><p class="ven">size S, M, L, XL</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 FRASES</p><p class="ex-txt">"Quiero una camiseta <strong>roja talla M</strong>."<br>"¿Tienen estos pantalones en <strong>azul</strong>?"</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 5: Verbos para vestirse ===== -->
+  <div id="card5" class="card-wrap" style="background:linear-gradient(145deg,#831843,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">05 / 12 &nbsp;·&nbsp; 👘 VERBOS</span>
+      <span style="font-size:1.9em;">👘</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Acciones con la ropa</p>
+      <h3 class="card-title">Llevar, ponerse, vestirse</h3>
+      <div class="def-box">
+        <p class="def-text">Verbos comunes para hablar de lo que usas o te pones.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(131,24,67,0.3);">
+        <div class="vi"><p class="ves">llevar (to wear)</p><p class="ven">"Hoy <strong>llevo</strong> una chaqueta negra."</p></div>
+        <div class="vi"><p class="ves">ponerse (to put on)</p><p class="ven">"Me <strong>pongo</strong> los zapatos."</p></div>
+        <div class="vi"><p class="ves">vestirse (to get dressed)</p><p class="ven">"Ella <strong>se viste</strong> rápido."</p></div>
+        <div class="vi"><p class="ves">probarse (to try on)</p><p class="ven">"¿Puedo <strong>probarme</strong> este vestido?"</p></div>
+        <div class="vi"><p class="ves">quedar (to fit)</p><p class="ven">"Me <strong>queda</strong> grande."</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">📌 RECUERDA</p><p class="ex-txt">"Vestirse" es reflexivo: me visto, te vistes, se viste…</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 6: Expresiones en la tienda ===== -->
+  <div id="card6" class="card-wrap" style="background:linear-gradient(145deg,#9D174D,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">06 / 12 &nbsp;·&nbsp; 🛒 COMPRAS</span>
+      <span style="font-size:1.9em;">🛒</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Frases para comprar</p>
+      <h3 class="card-title">¿Cuánto cuesta? ¿Puedo probarme?</h3>
+      <div class="def-box">
+        <p class="def-text">Expresiones útiles para interactuar con el vendedor.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(157,23,77,0.28);">
+        <div class="vi"><p class="ves">¿Cuánto cuesta? / ¿Cuánto vale?</p><p class="ven">How much is it?</p></div>
+        <div class="vi"><p class="ves">¿Tiene esto en otra talla?</p><p class="ven">Do you have this in another size?</p></div>
+        <div class="vi"><p class="ves">¿Puedo probármelo?</p><p class="ven">Can I try it on?</p></div>
+        <div class="vi"><p class="ves">¿Aceptan tarjeta?</p><p class="ven">Do you accept card?</p></div>
+        <div class="vi"><p class="ves">Está muy caro / barato.</p><p class="ven">It's very expensive/cheap.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 7: Diálogo en tienda de ropa ===== -->
+  <div id="card7" class="card-wrap" style="background:linear-gradient(145deg,#831843,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">07 / 12 &nbsp;·&nbsp; 💬 DIÁLOGO</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Conversación real</p>
+      <h3 class="card-title">Comprando una camiseta</h3>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(131,24,67,0.25);">
+        <p class="sec-lbl" style="color:#FCE7F3;">🎭 CLIENTE Y DEPENDIENTA</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;height:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Hola, busco una camiseta de algodón."</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FCE7F3;">VENDEDORA</p><span style="background:#FCE7F3;border-radius:50%;width:24px;">V</span></div><div style="background:rgba(252,231,243,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Tenemos estos colores: blanco, negro y azul. ¿Qué talla usa?"</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Talla M, por favor. ¿Puedo probármela?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FCE7F3;">VENDEDORA</p><span style="background:#FCE7F3;border-radius:50%;width:24px;">V</span></div><div style="background:rgba(252,231,243,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Claro, el probador está al fondo. ¿La quiere en azul?"</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Sí, me la llevo. ¿Cuánto es?"</p></div></div>
+        </div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">📝 EXPRESIÓN</p><p class="ex-txt"><strong>"Me la llevo"</strong> = I'll take it (con el artículo femenino porque camiseta es femenina).</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 8: Diálogo en farmacia / supermercado ===== -->
+  <div id="card8" class="card-wrap" style="background:linear-gradient(145deg,#9D174D,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">08 / 12 &nbsp;·&nbsp; 💬 DIÁLOGO</span>
+      <span style="font-size:1.9em;">💬</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">En la farmacia</p>
+      <h3 class="card-title">Comprar productos básicos</h3>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(157,23,77,0.25);">
+        <p class="sec-lbl" style="color:#FCE7F3;">🎭 CLIENTE Y FARMACÉUTICO</p>
+        <div style="display:flex;flex-direction:column;gap:9px;">
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Buenas tardes, ¿tienen champú para cabello seco?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FCE7F3;">FARMACÉUTICO</p><span style="background:#FCE7F3;border-radius:50%;width:24px;">F</span></div><div style="background:rgba(252,231,243,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Sí, este es muy bueno. También tenemos acondicionador."</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"Perfecto. ¿Cuánto cuesta?"</p></div></div>
+          <div><div style="display:flex;gap:7px;justify-content:flex-end;"><p style="color:#FCE7F3;">FARMACÉUTICO</p><span style="background:#FCE7F3;border-radius:50%;width:24px;">F</span></div><div style="background:rgba(252,231,243,0.11);border-radius:10px;padding:11px;"><p style="color:white;">"Son 8,50 euros. ¿Algo más?"</p></div></div>
+          <div><div style="display:flex;gap:7px;"><span style="background:#FFE066;border-radius:50%;width:24px;">C</span><p style="color:#FDE68A;">CLIENTE</p></div><div style="background:rgba(255,224,102,0.12);border-radius:10px;padding:11px;"><p style="color:white;">"No, gracias. Pago con tarjeta."</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 9: Cultura: vestimenta tradicional ===== -->
+  <div id="card9" class="card-wrap" style="background:linear-gradient(145deg,#831843,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">09 / 12 &nbsp;·&nbsp; 🌎 CULTURA</span>
+      <span style="font-size:1.9em;">🌎</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Vestimenta tradicional</p>
+      <h3 class="card-title">Ropa típica del mundo hispano</h3>
+      <div class="def-box">
+        <p class="def-text">Descubre prendas emblemáticas de diferentes países hispanohablantes.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(131,24,67,0.28);">
+        <div class="vg">
+          <div class="vi"><p class="ves">🇲🇽 Huipil</p><p class="ven">blusa tradicional maya</p></div>
+          <div class="vi"><p class="ves">🇦🇷 Poncho</p><p class="ven">prenda de lana, muy usada en los Andes</p></div>
+          <div class="vi"><p class="ves">🇨🇴 Sombrero vueltiao</p><p class="ven">artesanía indígena zenú</p></div>
+          <div class="vi"><p class="ves">🇪🇸 Traje de flamenca</p><p class="ven">vestido de volantes para ferias</p></div>
+          <div class="vi"><p class="ves">🇵🇪 Chullo</p><p class="ven">gorro de lana con orejeras</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 10: Gustar y quedar bien/mal ===== -->
+  <div id="card10" class="card-wrap" style="background:linear-gradient(145deg,#9D174D,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">10 / 12 &nbsp;·&nbsp; ❤️ OPINIONES</span>
+      <span style="font-size:1.9em;">❤️</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">Expresar opiniones</p>
+      <h3 class="card-title">Me gusta, me queda bien</h3>
+      <div class="def-box">
+        <p class="def-text">Para hablar de cómo te sientes con la ropa, usa estos verbos.</p>
+      </div>
+
+      <div class="stripe" style="border-left-color:#FCE7F3;background:rgba(157,23,77,0.28);">
+        <div class="vi"><p class="ves">Me gusta esta camisa</p><p class="ven">I like this shirt</p></div>
+        <div class="vi"><p class="ves">Me queda bien / mal</p><p class="ven">It fits me well / badly</p></div>
+        <div class="vi"><p class="ves">Me queda grande / pequeño</p><p class="ven">It's too big / small</p></div>
+        <div class="vi"><p class="ves">Te queda muy bien ese color</p><p class="ven">That color suits you well</p></div>
+      </div>
+      <div class="ex-box"><p class="ex-lbl">💬 EJEMPLOS</p><p class="ex-txt">"¿<strong>Me queda</strong> bien este pantalón?"<br>"<strong>Me gusta</strong> mucho tu chaqueta."</p></div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 11: Errores frecuentes ===== -->
+  <div id="card11" class="card-wrap" style="background:linear-gradient(145deg,#7F1D1D,#DC2626); box-shadow:0 8px 40px rgba(220,38,38,0.4);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FECACA;">11 / 12 &nbsp;·&nbsp; 🚨 ERRORES</span>
+      <span style="font-size:1.9em;">🚨</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FECACA;">Atención</p>
+      <h3 class="card-title">Errores comunes con ropa y productos</h3>
+
+      <div class="stripe" style="border-left-color:#FECACA;background:rgba(127,29,29,0.22);">
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "La pantalón es azul."</p><p style="color:#86EFAC;">✅ "<strong>El</strong> pantalón es azul." (pantalón es masculino)</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Me pongo un vestido rojo." (está bien, pero cuidado con el orden)</p><p style="color:#86EFAC;">✅ Correcto, el adjetivo va después del sustantivo.</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "¿Cuánto cuestan los zapatos?" (está bien, pero algunos confunden "cuestan" con "cuesta")</p><p style="color:#86EFAC;">✅ Plural → cuestan, singular → cuesta.</p></div>
+        <div style="background:rgba(255,255,255,0.1);border-radius:10px;padding:12px;"><p style="color:#FECACA;">❌ "Me queda muy bien la camisa." (bien)</p><p style="color:#86EFAC;">✅ Otra opción: "La camisa me queda muy bien."</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TARJETA 12: Resumen final ===== -->
+  <div id="card12" class="card-wrap" style="background:linear-gradient(145deg,#831843,#F472B6); box-shadow:0 8px 40px rgba(244,114,182,0.45);">
+    <div class="deco-blob-tr"></div><div class="deco-blob-bl"></div><div class="tex"></div>
+    <div style="position:absolute;top:16px;left:50%;transform:translateX(-50%);font-size:1.1em;opacity:0.1;letter-spacing:8px;white-space:nowrap;">👖👕🧴🛍️</div>
+
+    <div class="zi" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+      <span class="badge" style="color:#FCE7F3;">12 / 12 &nbsp;·&nbsp; 🏆 COMPLETADO</span>
+      <span style="font-size:1.9em;">🎉</span>
+    </div>
+    <div class="zi">
+      <p class="eyebrow" style="color:#FCE7F3;">¡Bloque completado!</p>
+      <h3 class="card-title">Repaso final 🏆</h3>
+
+      <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:16px;margin-bottom:14px;">
+        <p style="color:white;margin:0 0 12px;font-size:0.95em;line-height:1.65;">¡Felicidades! 🛍️ Ahora sabes nombrar prendas y productos, pedir tallas, probarte ropa y desenvolverte en tiendas y farmacias en español.</p>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="background:rgba(236,72,154,0.3);border-left:3px solid #EC489A;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#FCE7F3;margin:0 0 2px;font-size:0.85em;font-weight:700;">👗 PRENDAS</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">camiseta · pantalón · vestido · falda · zapatos · abrigo</p>
+          </div>
+          <div style="background:rgba(255,193,7,0.3);border-left:3px solid #FFC107;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#FFE066;margin:0 0 2px;font-size:0.85em;font-weight:700;">🧴 PRODUCTOS</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">jabón · champú · pasta de dientes · crema · desodorante</p>
+          </div>
+          <div style="background:rgba(59,130,246,0.3);border-left:3px solid #3B82F6;border-radius:0 8px 8px 0;padding:9px 12px;">
+            <p style="color:#BFDBFE;margin:0 0 2px;font-size:0.85em;font-weight:700;">🔁 VERBOS CLAVE</p>
+            <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.8em;">llevar · probarse · quedar bien/mal · ¿cuánto cuesta?</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:12px;">
+        <a id="btn-volver" href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=225" style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-weight:700;padding:14px 36px;border-radius:50px;text-decoration:none;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Volver al aula virtual
+        </a>
+        <script>
+  const btn = document.getElementById('btn-volver');
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=225';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=225';
+
+  const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  if (esMóvil) {
+    btn.href = appUrl;
+  }
+</script>
+        <p style="color:rgba(255,255,255,0.38);font-size:0.78em;margin:12px 0 0;">Unidad 2 · Temática 2 · Bloque 1 completado</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOTS (no modificar) -->
+  <div class="nav-dots" style="display:flex;justify-content:center;gap:9px;margin-top:26px;flex-wrap:wrap;">
+    <label for="s1" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s2" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s3" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s4" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s5" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s6" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s7" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s8" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s9" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s10" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s11" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+    <label for="s12" style="width:11px;height:11px;border-radius:50%;background:#FCE7F3;cursor:pointer;"></label>
+  </div>
+
+  <!-- FLECHAS (no modificar) -->
+  <div class="nav-arrows" style="display:flex;justify-content:center;gap:14px;margin-top:18px;">
+    <div class="btn-nav arr-1"><label class="nav-btn" for="s2">Siguiente →</label></div>
+    <div class="btn-nav arr-2"><label class="nav-btn" for="s1">← Anterior</label><label class="nav-btn" for="s3">Siguiente →</label></div>
+    <div class="btn-nav arr-3"><label class="nav-btn" for="s2">← Anterior</label><label class="nav-btn" for="s4">Siguiente →</label></div>
+    <div class="btn-nav arr-4"><label class="nav-btn" for="s3">← Anterior</label><label class="nav-btn" for="s5">Siguiente →</label></div>
+    <div class="btn-nav arr-5"><label class="nav-btn" for="s4">← Anterior</label><label class="nav-btn" for="s6">Siguiente →</label></div>
+    <div class="btn-nav arr-6"><label class="nav-btn" for="s5">← Anterior</label><label class="nav-btn" for="s7">Siguiente →</label></div>
+    <div class="btn-nav arr-7"><label class="nav-btn" for="s6">← Anterior</label><label class="nav-btn" for="s8">Siguiente →</label></div>
+    <div class="btn-nav arr-8"><label class="nav-btn" for="s7">← Anterior</label><label class="nav-btn" for="s9">Siguiente →</label></div>
+    <div class="btn-nav arr-9"><label class="nav-btn" for="s8">← Anterior</label><label class="nav-btn" for="s10">Siguiente →</label></div>
+    <div class="btn-nav arr-10"><label class="nav-btn" for="s9">← Anterior</label><label class="nav-btn" for="s11">Siguiente →</label></div>
+    <div class="btn-nav arr-11"><label class="nav-btn" for="s10">← Anterior</label><label class="nav-btn" for="s12">Siguiente →</label></div>
+    <div class="btn-nav arr-12"><label class="nav-btn" for="s11">← Anterior</label><label class="nav-btn" style="background:linear-gradient(135deg,#F472B6,#831843);border-color:#F472B6;color:white;" for="s1">🔁 Reiniciar</label></div>
+  </div>
+
+</div>
+</body>
+</html>
