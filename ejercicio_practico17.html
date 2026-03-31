@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Cafetería Innova – Español A1</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════
+   TOKENS & RESET
+══════════════════════════════════════════════ */
+:root {
+  --bg:        #f2f4f8;
+  --app-max:   480px;
+
+  /* Brand */
+  --brand:     #e8470a;
+  --brand2:    #ff6b35;
+  --brand-pale:#fff3ee;
+
+  /* Chat bubbles */
+  --bot-bg:    #ffffff;
+  --bot-txt:   #1a1a2e;
+  --user-bg:   #e8470a;
+  --user-txt:  #ffffff;
+
+  /* Options */
+  --opt-bg:    #ffffff;
+  --opt-bdr:   #e0e4ee;
+  --opt-hover: #fff3ee;
+  --opt-ok:    #d1fae5;
+  --opt-ok-b:  #059669;
+  --opt-err:   #fee2e2;
+  --opt-err-b: #dc2626;
+
+  /* Text */
+  --txt-main:  #1a1a2e;
+  --txt-muted: #6b7280;
+
+  /* Progress */
+  --prog-bg:   #e5e7eb;
+  --prog-fill: #e8470a;
+
+  /* Misc */
+  --radius:    18px;
+  --radius-sm: 10px;
+  --shadow:    0 4px 24px rgba(0,0,0,.10);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.07);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0;
+    -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════
+   APP SHELL
+══════════════════════════════════════════════ */
+.app {
+  width: 100%;
+  max-width: var(--app-max);
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  padding: 12px 16px 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: var(--shadow-sm);
+}
+.topbar-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  display: grid; place-items: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(232,71,10,.35);
+}
+.topbar-info { flex: 1; }
+.topbar-name {
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--txt-main);
+  line-height: 1.2;
+}
+.topbar-status {
+  font-size: .72rem;
+  color: #16a34a;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.status-dot {
+  width: 7px; height: 7px;
+  background: #16a34a;
+  border-radius: 50%;
+  display: inline-block;
+}
+.topbar-reset {
+  background: var(--bg);
+  border: 1.5px solid var(--opt-bdr);
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--txt-muted);
+  transition: background .18s;
+  flex-shrink: 0;
+}
+.topbar-reset:hover { background: #e5e7eb; }
+
+/* ── PROGRESS ── */
+.progress-wrap {
+  padding: 10px 16px 4px;
+  background: #ffffff;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--txt-muted);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.progress-bar {
+  height: 5px;
+  background: var(--prog-bg);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand), var(--brand2));
+  border-radius: 10px;
+  transition: width .5s cubic-bezier(.22,1,.36,1);
+}
+
+/* ── CHAT AREA ── */
+.chat-area {
+  flex: 1;
+  padding: 16px 14px 120px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+/* ── MESSAGE BUBBLES ── */
+.msg-row {
+  display: flex;
+  gap: 8px;
+  animation: msgSlide .35s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes msgSlide {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.msg-row.bot  { align-self: flex-start; align-items: flex-end; max-width: 85%; }
+.msg-row.user { align-self: flex-end;   align-items: flex-end; max-width: 85%; flex-direction: row-reverse; }
+
+.msg-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  display: grid; place-items: center;
+  font-size: .9rem;
+  flex-shrink: 0;
+}
+
+.bubble {
+  padding: 11px 15px;
+  border-radius: var(--radius);
+  font-size: .95rem;
+  line-height: 1.55;
+  font-weight: 600;
+  max-width: 100%;
+  word-break: break-word;
+}
+.bubble.bot {
+  background: var(--bot-bg);
+  color: var(--bot-txt);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+.bubble.user {
+  background: var(--user-bg);
+  color: var(--user-txt);
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 10px rgba(232,71,10,.3);
+}
+
+/* Emoji big inside bubble */
+.bubble .emoji-big { font-size: 1.3rem; display: block; margin-bottom: 4px; }
+
+/* Typing indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 16px;
+}
+.typing-dot {
+  width: 8px; height: 8px;
+  background: #c4c9d4;
+  border-radius: 50%;
+  animation: typingBounce .9s infinite ease-in-out;
+}
+.typing-dot:nth-child(2) { animation-delay: .15s; }
+.typing-dot:nth-child(3) { animation-delay: .30s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%            { transform: translateY(-6px); }
+}
+
+/* Timestamp-like label */
+.chat-timestamp {
+  align-self: center;
+  font-size: .68rem;
+  color: var(--txt-muted);
+  background: rgba(0,0,0,.05);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+/* ── OPTIONS PANEL ── */
+.options-panel {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--app-max);
+  background: #ffffff;
+  border-top: 1.5px solid rgba(0,0,0,.07);
+  padding: 12px 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 90;
+  box-shadow: 0 -4px 20px rgba(0,0,0,.09);
+  animation: panelSlide .35s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes panelSlide {
+  from { opacity: 0; transform: translateX(-50%) translateY(16px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.options-hint {
+  font-size: .72rem;
+  color: var(--txt-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  padding: 0 2px 2px;
+}
+
+.opt-btn {
+  min-height: 52px;
+  background: var(--opt-bg);
+  border: 2px solid var(--opt-bdr);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-family: 'Nunito', sans-serif;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--txt-main);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background .18s, border-color .18s, transform .12s;
+  width: 100%;
+  line-height: 1.35;
+}
+.opt-btn:active { transform: scale(.98); }
+.opt-btn:hover  { background: var(--opt-hover); border-color: var(--brand2); }
+
+.opt-btn .opt-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.opt-btn .opt-text { flex: 1; }
+
+/* Correct / wrong states */
+.opt-btn.correct {
+  background: var(--opt-ok);
+  border-color: var(--opt-ok-b);
+  color: #065f46;
+  pointer-events: none;
+}
+.opt-btn.wrong {
+  background: var(--opt-err);
+  border-color: var(--opt-err-b);
+  color: #991b1b;
+  animation: shake .35s ease;
+}
+.opt-btn.disabled-opt {
+  opacity: .4;
+  pointer-events: none;
+}
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+/* Feedback badge on button */
+.opt-badge {
+  font-size: .8rem;
+  font-weight: 800;
+  padding: 2px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+.badge-ok  { background: #059669; color: #fff; }
+.badge-err { background: #dc2626; color: #fff; }
+
+/* ── RESULT SCREEN ── */
+.result-screen {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px 36px;
+  text-align: center;
+  gap: 16px;
+  animation: msgSlide .4s ease both;
+}
+.result-screen.active { display: flex; }
+
+.result-trophy {
+  font-size: 4.5rem;
+  animation: trophyIn .7s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes trophyIn {
+  from { transform: scale(.3) rotate(-18deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0); opacity: 1; }
+}
+.result-title {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--txt-main);
+  line-height: 1.2;
+}
+.result-subtitle {
+  font-size: .9rem;
+  color: var(--txt-muted);
+  font-weight: 600;
+  line-height: 1.55;
+  max-width: 320px;
+}
+
+/* Score pills */
+.score-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.score-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: #fff;
+  border: 1.5px solid var(--opt-bdr);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.score-pill .sp-n {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+}
+.sp-n.ok  { color: #059669; }
+.sp-n.bad { color: #dc2626; }
+.sp-n.pts { color: var(--brand); }
+.score-pill .sp-l {
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--txt-muted);
+  font-weight: 700;
+}
+
+.result-divider {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--brand), var(--brand2));
+  border-radius: 10px;
+}
+
+.result-msg {
+  font-size: .93rem;
+  color: #374151;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.65;
+  max-width: 340px;
+}
+
+/* Result actions */
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 340px;
+}
+.btn-restart {
+  min-height: 52px;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: .04em;
+  transition: transform .18s, box-shadow .18s;
+  box-shadow: 0 4px 20px rgba(232,71,10,.4);
+}
+.btn-restart:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,71,10,.5); }
+
+/* ── CONFETTI PARTICLE ── */
+.confetti-particle {
+  position: fixed;
+  top: -10px;
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 500;
+  animation: confettiFall linear forwards;
+}
+@keyframes confettiFall {
+  to { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── MEDIA ── */
+@media (max-width: 380px) {
+  .bubble    { font-size: .88rem; }
+  .opt-btn   { font-size: .85rem; }
+  .topbar-name { font-size: .88rem; }
+}
+@media (min-height: 700px) {
+  .chat-area { padding-bottom: 150px; }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-avatar">☕</div>
+    <div class="topbar-info">
+      <div class="topbar-name">Cafetería Innova</div>
+      <div class="topbar-status"><span class="status-dot"></span> Carlos, tu camarero</div>
+    </div>
+    <button class="topbar-reset" onclick="resetChat()" title="Reiniciar">🔄</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-label">
+      <span id="prog-label">Paso 1 de 8</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- CHAT -->
+  <div class="chat-area" id="chat-area"></div>
+
+  <!-- OPTIONS (injected by JS) -->
+  <div class="options-panel" id="options-panel" style="display:none;"></div>
+
+  <!-- RESULT SCREEN -->
+  <div class="result-screen" id="result-screen">
+    <div class="result-trophy" id="res-trophy">🏆</div>
+    <div class="result-title"  id="res-title">¡Pedido completado!</div>
+    <div class="score-row">
+      <div class="score-pill"><span class="sp-n pts" id="res-pts">0</span><span class="sp-l">Puntos</span></div>
+      <div class="score-pill"><span class="sp-n ok"  id="res-ok">0</span><span class="sp-l">Correctas</span></div>
+      <div class="score-pill"><span class="sp-n bad" id="res-bad">0</span><span class="sp-l">Errores</span></div>
+    </div>
+    <div class="result-divider"></div>
+    <p class="result-msg" id="res-msg"></p>
+    <div class="result-actions">
+      <button class="btn-restart" onclick="resetChat()">🔄 Practicar de nuevo</button>
+      <!-- MOODLE BUTTON -->
+      <a id="btn-volver"
+         href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=250"
+         style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'Nunito',sans-serif;font-weight:800;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+        🏫 Regresar al Aula Virtual
+      </a>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- ════════════════════════════════════════════
+     JAVASCRIPT
+════════════════════════════════════════════ -->
+<script>
+/* ── Moodle deep-link ── */
+(function(){
+  const btn = document.getElementById('btn-volver');
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=250';
+  if (/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href = appUrl;
+})();
+
+/* ══════════════════════════════════════════════
+   DIALOGUE DATA
+   Each step:
+   {
+     botMsg:   string | string[]   (one or multiple bot lines)
+     emoji:    string (optional, shown above bot message)
+     options:  [ { text, icon, correct, feedback } ]
+     userMsg:  string  (shown as user bubble when correct option chosen)
+   }
+══════════════════════════════════════════════ */
+const DIALOGUE = [
+
+  /* STEP 0 — Greeting & context */
+  {
+    botMsg: ['¡Hola! Bienvenido a la Cafetería Innova. 😊', '¿Qué quieres tomar hoy?'],
+    emoji: '☕',
+    options: [
+      { text: 'Quiero un café con leche, por favor.',   icon: '☕', correct: true,
+        feedback: '¡Perfecto! Esa es la forma correcta de pedir en español.' },
+      { text: '¿Cuánto café quiero yo hoy?',            icon: '❓', correct: false,
+        feedback: '❌ Eso no tiene sentido. Usa "Quiero…" para pedir algo.' },
+      { text: 'Un café. Dame.',                         icon: '😕', correct: false,
+        feedback: '❌ Eso es poco cortés. Recuerda decir "Quiero… por favor".' },
+      { text: 'Café quiero mucho.',                     icon: '🤔', correct: false,
+        feedback: '❌ El orden es: "Quiero + lo que deseas". Inténtalo de nuevo.' },
+    ],
+    userMsg: 'Quiero un café con leche, por favor. ☕',
+  },
+
+  /* STEP 1 — Size */
+  {
+    botMsg: 'Claro, ¿lo quieres grande o pequeño?',
+    options: [
+      { text: 'Quiero uno grande, por favor.',   icon: '🥤', correct: true,
+        feedback: '¡Muy bien! Usas "Quiero" correctamente.' },
+      { text: 'Grande quiero uno.',              icon: '😕', correct: false,
+        feedback: '❌ En español el orden es: "Quiero + tamaño". Prueba de nuevo.' },
+      { text: '¿Cuánto grande es el café?',      icon: '❓', correct: false,
+        feedback: '❌ "¿Cuánto…?" se usa para preguntar precios, no tamaños.' },
+    ],
+    userMsg: 'Quiero uno grande, por favor. 🥤',
+  },
+
+  /* STEP 2 — Price question */
+  {
+    botMsg: ['Un café con leche grande… son 2,50 euros. 🧾', '¿Algo más?'],
+    options: [
+      { text: '¿Me pone un cruasán, por favor?', icon: '🥐', correct: true,
+        feedback: '¡Excelente! "¿Me pone…?" es una expresión muy usada en cafeterías.' },
+      { text: 'Quiero pone cruasán.',             icon: '😕', correct: false,
+        feedback: '❌ "¿Me pone…?" es una pregunta. No la mezcles con "Quiero".' },
+      { text: 'Dame un cruasán ahora.',           icon: '😬', correct: false,
+        feedback: '❌ Eso suena muy brusco. Usa "¿Me pone un cruasán, por favor?".' },
+    ],
+    userMsg: '¿Me pone un cruasán, por favor? 🥐',
+  },
+
+  /* STEP 3 — Price of croissant */
+  {
+    botMsg: 'El cruasán está incluido en el menú del día. ¿Quieres mantequilla o mermelada?',
+    options: [
+      { text: 'Quiero mantequilla, por favor.',  icon: '🧈', correct: true,
+        feedback: '¡Correcto! Pides con "Quiero + lo que deseas".' },
+      { text: 'Mermelada quiero, sí.',           icon: '🫙', correct: false,
+        feedback: '❌ Recuerda el orden: "Quiero + complemento". Inténtalo.' },
+      { text: '¿Cuánto cuesta la mantequilla?', icon: '💰', correct: false,
+        feedback: '❌ Ya dijeron que está incluida. Pide con "Quiero…".' },
+      { text: 'Poner mantequilla quiero.',       icon: '😕', correct: false,
+        feedback: '❌ El verbo "quiero" va primero: "Quiero + algo".' },
+    ],
+    userMsg: 'Quiero mantequilla, por favor. 🧈',
+  },
+
+  /* STEP 4 — Price question correctly used */
+  {
+    botMsg: ['Aquí tienes: un café con leche grande y un cruasán con mantequilla. 😋', '¿Algo más para ti?'],
+    options: [
+      { text: '¿Cuánto cuesta un zumo de naranja?', icon: '🍊', correct: true,
+        feedback: '¡Perfecto! "¿Cuánto cuesta…?" es la forma correcta de preguntar el precio.' },
+      { text: '¿Me pone cuánto naranja?',            icon: '❓', correct: false,
+        feedback: '❌ No mezcles "¿Me pone…?" con "¿Cuánto cuesta…?". Son estructuras distintas.' },
+      { text: 'Naranja, ¿cuánto es cuesta?',         icon: '😕', correct: false,
+        feedback: '❌ La estructura es: "¿Cuánto cuesta + el producto?".' },
+      { text: 'El precio de naranja dime.',          icon: '🤔', correct: false,
+        feedback: '❌ Usa la estructura: "¿Cuánto cuesta un zumo de naranja?".' },
+    ],
+    userMsg: '¿Cuánto cuesta un zumo de naranja? 🍊',
+  },
+
+  /* STEP 5 — Ordering juice */
+  {
+    botMsg: 'El zumo de naranja natural cuesta 2 euros. ¿Te lo pongo?',
+    options: [
+      { text: 'Sí, ¿me pone uno, por favor?',    icon: '✅', correct: true,
+        feedback: '¡Muy bien! "¿Me pone…?" funciona perfectamente para confirmar un pedido.' },
+      { text: 'Sí, zumo quiero uno poner.',       icon: '😕', correct: false,
+        feedback: '❌ Usa "¿Me pone…?" que es la expresión de cafetería correcta.' },
+      { text: 'No quiero, cuesta mucho.',         icon: '❌', correct: false,
+        feedback: '❌ ¡Ánimo! Practica pidiendo con "¿Me pone uno, por favor?".' },
+    ],
+    userMsg: 'Sí, ¿me pone uno, por favor? 🍊',
+  },
+
+  /* STEP 6 — Dessert */
+  {
+    botMsg: ['Perfecto. ¿Quieres postre? Tenemos tarta de chocolate y tarta de queso. 🍰', '¡Están muy ricas!'],
+    options: [
+      { text: 'Quiero una porción de tarta de chocolate.', icon: '🍫', correct: true,
+        feedback: '¡Excelente! Pides con "Quiero + lo que deseas" de forma perfecta.' },
+      { text: '¿Cuánto cuesta quiero tarta?',             icon: '❓', correct: false,
+        feedback: '❌ Esas son dos estructuras distintas. Para pedir: "Quiero una porción de…".' },
+      { text: 'Tarta poner me chocolate.',                icon: '😕', correct: false,
+        feedback: '❌ El orden correcto: "Quiero una porción de tarta de chocolate."' },
+    ],
+    userMsg: 'Quiero una porción de tarta de chocolate. 🍫',
+  },
+
+  /* STEP 7 — Final bill */
+  {
+    botMsg: ['¡Claro! Un momento. 😊', 'Aquí está todo: café con leche grande, cruasán con mantequilla, zumo de naranja y tarta de chocolate.', '¿Cómo vas a pagar?'],
+    options: [
+      { text: '¿Cuánto es en total, por favor?', icon: '💳', correct: true,
+        feedback: '¡Genial! También puedes decir "¿Cuánto cuesta todo?" ¡Las dos formas son correctas!' },
+      { text: 'Cuánto pagar total quiero.',       icon: '😕', correct: false,
+        feedback: '❌ Pregunta así: "¿Cuánto es en total, por favor?"' },
+      { text: 'Total decir el precio.',           icon: '🤔', correct: false,
+        feedback: '❌ Usa la estructura de pregunta: "¿Cuánto es en total?"' },
+    ],
+    userMsg: '¿Cuánto es en total, por favor? 💳',
+  },
+
+];
+
+/* ══════════════════════════════════════════════
+   STATE
+══════════════════════════════════════════════ */
+let currentStep  = 0;
+let score        = 0;
+let correctCount = 0;
+let wrongCount   = 0;
+let stepLocked   = false; // prevents double-click during transitions
+
+/* ══════════════════════════════════════════════
+   INIT
+══════════════════════════════════════════════ */
+function init() {
+  currentStep  = 0;
+  score        = 0;
+  correctCount = 0;
+  wrongCount   = 0;
+  stepLocked   = false;
+
+  // Show chat, hide result
+  document.getElementById('chat-area').innerHTML     = '';
+  document.getElementById('options-panel').style.display = 'none';
+  document.getElementById('result-screen').classList.remove('active');
+  document.getElementById('progress-wrap').style.display = 'block';
+  document.getElementById('chat-area').style.display     = 'flex';
+
+  updateProgress();
+
+  // First message after a short delay
+  setTimeout(() => {
+    addTimestamp('Hoy · Ahora');
+    showBotMessages(DIALOGUE[0], () => showOptions(DIALOGUE[0]));
+  }, 400);
+}
+
+/* ══════════════════════════════════════════════
+   PROGRESS
+══════════════════════════════════════════════ */
+function updateProgress() {
+  const total  = DIALOGUE.length;
+  const done   = currentStep;
+  const pct    = Math.round((done / total) * 100);
+  document.getElementById('prog-label').textContent  = `Paso ${done + 1} de ${total}`;
+  document.getElementById('prog-pct').textContent    = pct + '%';
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+/* ══════════════════════════════════════════════
+   ADD TIMESTAMP
+══════════════════════════════════════════════ */
+function addTimestamp(text) {
+  const el = document.createElement('div');
+  el.className = 'chat-timestamp';
+  el.textContent = text;
+  document.getElementById('chat-area').appendChild(el);
+  scrollToBottom();
+}
+
+/* ══════════════════════════════════════════════
+   BOT MESSAGES
+══════════════════════════════════════════════ */
+function showBotMessages(step, callback) {
+  const msgs = Array.isArray(step.botMsg) ? step.botMsg : [step.botMsg];
+
+  // Show typing first
+  const typingEl = addTypingIndicator();
+
+  let delay = 700;
+  msgs.forEach((msg, i) => {
+    setTimeout(() => {
+      if (i === 0) typingEl.remove();
+      addBotBubble(msg, step.emoji && i === 0 ? step.emoji : null);
+      if (i < msgs.length - 1) {
+        // Add typing between multiple bot messages
+        if (i === msgs.length - 2) {
+          // last gap — nothing extra
+        }
+      }
+      if (i === msgs.length - 1) {
+        setTimeout(callback, 300);
+      }
+    }, delay + i * 600);
+  });
+}
+
+function addTypingIndicator() {
+  const row = document.createElement('div');
+  row.className = 'msg-row bot';
+
+  const av = document.createElement('div');
+  av.className = 'msg-avatar';
+  av.textContent = '👨‍🍳';
+
+  const bub = document.createElement('div');
+  bub.className = 'bubble bot';
+
+  const ind = document.createElement('div');
+  ind.className = 'typing-indicator';
+  for (let i = 0; i < 3; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'typing-dot';
+    ind.appendChild(dot);
+  }
+  bub.appendChild(ind);
+  row.appendChild(av);
+  row.appendChild(bub);
+  document.getElementById('chat-area').appendChild(row);
+  scrollToBottom();
+  return row;
+}
+
+function addBotBubble(text, emoji) {
+  const row = document.createElement('div');
+  row.className = 'msg-row bot';
+
+  const av = document.createElement('div');
+  av.className = 'msg-avatar';
+  av.textContent = '👨‍🍳';
+
+  const bub = document.createElement('div');
+  bub.className = 'bubble bot';
+  if (emoji) {
+    const em = document.createElement('span');
+    em.className = 'emoji-big';
+    em.textContent = emoji;
+    bub.appendChild(em);
+  }
+  bub.appendChild(document.createTextNode(text));
+
+  row.appendChild(av);
+  row.appendChild(bub);
+  document.getElementById('chat-area').appendChild(row);
+  scrollToBottom();
+}
+
+/* ══════════════════════════════════════════════
+   USER BUBBLE
+══════════════════════════════════════════════ */
+function addUserBubble(text) {
+  const row = document.createElement('div');
+  row.className = 'msg-row user';
+
+  const bub = document.createElement('div');
+  bub.className = 'bubble user';
+  bub.textContent = text;
+
+  row.appendChild(bub);
+  document.getElementById('chat-area').appendChild(row);
+  scrollToBottom();
+}
+
+/* ══════════════════════════════════════════════
+   OPTIONS
+══════════════════════════════════════════════ */
+function showOptions(step) {
+  const panel = document.getElementById('options-panel');
+  panel.innerHTML = '';
+  panel.style.display = 'flex';
+
+  // Hint
+  const hint = document.createElement('div');
+  hint.className = 'options-hint';
+  hint.textContent = '✏️ Elige la respuesta correcta:';
+  panel.appendChild(hint);
+
+  step.options.forEach((opt, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt-btn';
+    btn.id = `opt-${idx}`;
+
+    const iconEl = document.createElement('span');
+    iconEl.className = 'opt-icon';
+    iconEl.textContent = opt.icon || '💬';
+
+    const textEl = document.createElement('span');
+    textEl.className = 'opt-text';
+    textEl.textContent = opt.text;
+
+    btn.appendChild(iconEl);
+    btn.appendChild(textEl);
+
+    btn.addEventListener('click', () => handleChoice(opt, idx, step));
+    panel.appendChild(btn);
+  });
+
+  scrollToBottom();
+}
+
+/* ══════════════════════════════════════════════
+   HANDLE CHOICE
+══════════════════════════════════════════════ */
+function handleChoice(opt, idx, step) {
+  if (stepLocked) return;
+
+  const btn = document.getElementById(`opt-${idx}`);
+
+  if (opt.correct) {
+    /* ── CORRECT ── */
+    stepLocked = true;
+    correctCount++;
+    score += 20;
+
+    // Style button
+    btn.classList.add('correct');
+    const badge = document.createElement('span');
+    badge.className = 'opt-badge badge-ok';
+    badge.textContent = '✓';
+    btn.appendChild(badge);
+
+    // Disable all other buttons
+    document.querySelectorAll('.opt-btn').forEach((b, i) => {
+      if (i !== idx) b.classList.add('disabled-opt');
+    });
+
+    // Show feedback bubble
+    setTimeout(() => {
+      addFeedbackBubble(opt.feedback, true);
+    }, 200);
+
+    // Show user message & advance
+    setTimeout(() => {
+      document.getElementById('options-panel').style.display = 'none';
+      addUserBubble(step.userMsg);
+    }, 700);
+
+    setTimeout(() => {
+      advanceStep();
+    }, 1400);
+
+  } else {
+    /* ── WRONG ── */
+    wrongCount++;
+    score = Math.max(0, score - 5);
+
+    btn.classList.add('wrong');
+    const badge = document.createElement('span');
+    badge.className = 'opt-badge badge-err';
+    badge.textContent = '✗';
+    btn.appendChild(badge);
+
+    // Show error feedback
+    addFeedbackBubble(opt.feedback, false);
+
+    // Re-enable after animation
+    setTimeout(() => {
+      btn.classList.remove('wrong');
+      btn.classList.add('disabled-opt'); // disable wrong option permanently
+      badge.remove();
+    }, 900);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   FEEDBACK BUBBLE (small inline tip)
+══════════════════════════════════════════════ */
+function addFeedbackBubble(text, isOk) {
+  const el = document.createElement('div');
+  el.style.cssText = `
+    align-self: center;
+    background: ${isOk ? '#d1fae5' : '#fee2e2'};
+    color: ${isOk ? '#065f46' : '#991b1b'};
+    border: 1.5px solid ${isOk ? '#059669' : '#dc2626'};
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: .8rem;
+    font-weight: 700;
+    max-width: 88%;
+    line-height: 1.45;
+    animation: msgSlide .3s ease both;
+  `;
+  el.textContent = text;
+  document.getElementById('chat-area').appendChild(el);
+  scrollToBottom();
+
+  // Auto-remove feedback after a moment
+  if (isOk) {
+    setTimeout(() => el.remove(), 2000);
+  } else {
+    setTimeout(() => el.remove(), 3000);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   ADVANCE STEP
+══════════════════════════════════════════════ */
+function advanceStep() {
+  currentStep++;
+  stepLocked = false;
+
+  if (currentStep >= DIALOGUE.length) {
+    showResult();
+    return;
+  }
+
+  updateProgress();
+  const step = DIALOGUE[currentStep];
+  showBotMessages(step, () => showOptions(step));
+}
+
+/* ══════════════════════════════════════════════
+   RESULT
+══════════════════════════════════════════════ */
+function showResult() {
+  // Hide chat UI
+  document.getElementById('options-panel').style.display = 'none';
+  document.getElementById('progress-wrap').style.display = 'none';
+  document.getElementById('chat-area').style.display     = 'none';
+
+  // Fill result
+  const pct = Math.round((correctCount / (correctCount + wrongCount)) * 100) || 0;
+
+  let trophy, title, msg;
+  if (pct === 100) {
+    trophy = '🏆'; title = '¡Pedido perfecto!';
+    msg = '"¡Increíble! Usaste "Quiero…", "¿Me pone…?" y "¿Cuánto cuesta…?" sin un solo error. ¡Eres un experto pidiendo en español!"';
+  } else if (pct >= 75) {
+    trophy = '⭐'; title = '¡Muy buen trabajo!';
+    msg = '"¡Excelente! Dominas bien las expresiones de cortesía en la cafetería. Sigue practicando y muy pronto será perfecto."';
+  } else if (pct >= 50) {
+    trophy = '☕'; title = '¡Buen intento!';
+    msg = '"Vas por buen camino. Recuerda: "Quiero…" para pedir, "¿Me pone…?" para solicitar en barra y "¿Cuánto cuesta…?" para preguntar precios."';
+  } else {
+    trophy = '📚'; title = '¡Sigue practicando!';
+    msg = '"¡No te rindas! Repasa las tres estructuras: "Quiero…", "¿Me pone…?" y "¿Cuánto cuesta…?" y vuelve a intentarlo."';
+  }
+
+  document.getElementById('res-trophy').textContent = trophy;
+  document.getElementById('res-title').textContent  = title;
+  document.getElementById('res-pts').textContent    = score;
+  document.getElementById('res-ok').textContent     = correctCount;
+  document.getElementById('res-bad').textContent    = wrongCount;
+  document.getElementById('res-msg').textContent    = msg;
+
+  document.getElementById('result-screen').classList.add('active');
+
+  if (pct >= 75) launchConfetti();
+}
+
+/* ══════════════════════════════════════════════
+   CONFETTI
+══════════════════════════════════════════════ */
+function launchConfetti() {
+  const colors = ['#e8470a','#f5a623','#22c55e','#3b82f6','#a855f7','#ec4899'];
+  for (let i = 0; i < 40; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'confetti-particle';
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.background = colors[Math.floor(Math.random() * colors.length)];
+      el.style.width  = (8 + Math.random() * 8) + 'px';
+      el.style.height = (8 + Math.random() * 8) + 'px';
+      el.style.borderRadius = Math.random() > .5 ? '50%' : '2px';
+      el.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+      document.body.appendChild(el);
+      el.addEventListener('animationend', () => el.remove());
+    }, i * 55);
+  }
+}
+
+/* ══════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════ */
+function resetChat() {
+  init();
+}
+
+/* ══════════════════════════════════════════════
+   SCROLL
+══════════════════════════════════════════════ */
+function scrollToBottom() {
+  const area = document.getElementById('chat-area');
+  setTimeout(() => area.scrollTo({ top: area.scrollHeight, behavior: 'smooth' }), 60);
+}
+
+/* ══════════════════════════════════════════════
+   START
+══════════════════════════════════════════════ */
+init();
+</script>
+</body>
+</html>
