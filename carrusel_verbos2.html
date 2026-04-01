@@ -53,6 +53,32 @@
   #s10:checked ~ .nav-arrows .arr-10,
   #s11:checked ~ .nav-arrows .arr-11,
   #s12:checked ~ .nav-arrows .arr-12 { display:flex; }
+
+  /* Ajustes responsivos globales */
+  @media (max-width: 600px) {
+    [id^="card"] {
+      padding: 24px !important;
+    }
+    [id^="card"] h3 {
+      font-size: 1.6em !important;
+    }
+    [id^="card"] .def-text,
+    [id^="card"] p {
+      font-size: 0.9em !important;
+    }
+    /* Grid de tres columnas se convierte en columna */
+    .three-col-grid {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .three-col-grid > div {
+      width: 100% !important;
+    }
+    /* Tablas y grids de dos columnas también se adaptan */
+    .two-col-grid {
+      grid-template-columns: 1fr !important;
+    }
+  }
 </style>
 </head>
 <body style="margin:0; padding:20px; background:#FFFBEB; font-family:'Nunito',sans-serif;">
@@ -83,11 +109,11 @@
   <input type="radio" name="slide" id="s12" style="display:none;">
 
   <!-- ==================== TARJETA 1: Introducción ==================== -->
-  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#78350F,#92400E); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#78350F,#92400E); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(146,64,14,0.2); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <!-- Textura de líneas tipo cuaderno -->
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.04) 31px, rgba(255,255,255,0.04) 32px); border-radius:20px;"></div>
+    <!-- Textura de líneas tipo cuaderno (corregida) -->
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.04) 31px, rgba(255,255,255,0.04) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(146,64,14,0.45); color:#FDE68A; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">01 / 12</span>
@@ -101,19 +127,19 @@
         <p style="color:white; line-height:1.7; margin:0; font-size:1em;"><strong style="color:#FCD34D;">TENER</strong>, <strong style="color:#FCD34D;">HAY</strong> y <strong style="color:#FCD34D;">ESTAR</strong> son tres de los verbos más usados en español. Aunque todos pueden traducirse con "there is/are" o "to be/have", cada uno tiene un uso muy diferente.</p>
       </div>
 
-      <!-- Los tres verbos en tarjetas visuales -->
-      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:16px;">
-        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center;">
+      <!-- Los tres verbos en tarjetas visuales (ahora con clase para responsive) -->
+      <div class="three-col-grid" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:16px;">
+        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center; flex:1; min-width:120px;">
           <p style="color:white; margin:0; font-size:2em;">🤝</p>
           <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0 4px 0; font-size:1.3em; font-weight:700;">TENER</p>
           <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.78em; line-height:1.4;">posesión y relaciones personales</p>
         </div>
-        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center;">
+        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center; flex:1; min-width:120px;">
           <p style="color:white; margin:0; font-size:2em;">✨</p>
           <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0 4px 0; font-size:1.3em; font-weight:700;">HAY</p>
           <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.78em; line-height:1.4;">existencia de algo en un lugar</p>
         </div>
-        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center;">
+        <div style="background:rgba(217,119,6,0.35); border:2px solid #FCD34D; border-radius:12px; padding:16px; text-align:center; flex:1; min-width:120px;">
           <p style="color:white; margin:0; font-size:2em;">📍</p>
           <p style="font-family:'Playfair Display',serif; color:#FCD34D; margin:8px 0 4px 0; font-size:1.3em; font-weight:700;">ESTAR</p>
           <p style="color:rgba(255,255,255,0.7); margin:0; font-size:0.78em; line-height:1.4;">ubicación y estados temporales</p>
@@ -133,10 +159,10 @@
   </div>
 
   <!-- ==================== TARJETA 2: TENER — Introducción y conjugación ==================== -->
-  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#2563EB); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#2563EB); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(37,99,235,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(37,99,235,0.4); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">02 / 12</span>
@@ -203,10 +229,10 @@
   </div>
 
   <!-- ==================== TARJETA 3: TENER — Usos principales ==================== -->
-  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A8A,#1D4ED8); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A8A,#1D4ED8); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(29,78,216,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(29,78,216,0.4); color:#BFDBFE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">03 / 12</span>
@@ -263,10 +289,10 @@
   </div>
 
   <!-- ==================== TARJETA 4: TENER — Expresiones idiomáticas ==================== -->
-  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F172A,#1E3A8A); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F172A,#1E3A8A); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(30,58,138,0.3); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(30,58,138,0.5); color:#93C5FD; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">04 / 12</span>
@@ -279,7 +305,7 @@
 
       <div style="background:rgba(30,58,138,0.3); border-left:4px solid #93C5FD; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
         <p style="color:#93C5FD; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🌡️ SENSACIONES FÍSICAS Y ESTADOS</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+        <div class="two-col-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
           <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:10px;">
             <p style="color:#FCD34D; margin:0; font-size:0.9em; font-weight:700;">tener hambre</p>
             <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be hungry</p>
@@ -334,10 +360,10 @@
   </div>
 
   <!-- ==================== TARJETA 5: HAY — Introducción y uso ==================== -->
-  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#16A34A); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#16A34A); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(22,163,74,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(22,163,74,0.4); color:#BBF7D0; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">05 / 12</span>
@@ -390,10 +416,10 @@
   </div>
 
   <!-- ==================== TARJETA 6: HAY vs ESTÁ/ESTÁN ==================== -->
-  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#064E3B,#059669); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#064E3B,#059669); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(5,150,105,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(5,150,105,0.4); color:#6EE7B7; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">06 / 12</span>
@@ -408,7 +434,7 @@
         <p style="color:white; line-height:1.7; margin:0; font-size:0.95em;">Tanto <strong style="color:#FCD34D;">HAY</strong> como <strong style="color:#FCD34D;">ESTÁ/ESTÁN</strong> indican ubicación, pero con una diferencia fundamental: la <strong style="color:#FCD34D;">información nueva vs. conocida</strong>.</p>
       </div>
 
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
+      <div class="two-col-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:14px;">
         <div style="background:rgba(22,163,74,0.2); border:2px solid #16A34A; border-radius:12px; padding:14px;">
           <p style="color:#BBF7D0; margin:0 0 8px 0; font-size:0.9em; font-weight:700; text-align:center;">✨ HAY</p>
           <p style="color:white; margin:0 0 8px 0; font-size:0.82em; line-height:1.5; text-align:center;">Introduce algo <strong style="color:#FCD34D;">nuevo o desconocido</strong> para quien escucha</p>
@@ -445,10 +471,10 @@
   </div>
 
   <!-- ==================== TARJETA 7: ESTAR — Introducción y conjugación ==================== -->
-  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(194,65,12,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(194,65,12,0.4); color:#FED7AA; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">07 / 12</span>
@@ -512,10 +538,10 @@
   </div>
 
   <!-- ==================== TARJETA 8: ESTAR — Usos principales ==================== -->
-  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#991B1B,#DC2626); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#991B1B,#DC2626); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(220,38,38,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(220,38,38,0.4); color:#FCA5A5; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">08 / 12</span>
@@ -567,10 +593,10 @@
   </div>
 
   <!-- ==================== TARJETA 9: SER vs ESTAR (estados) ==================== -->
-  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#7C3AED); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#7C3AED); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(124,58,237,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(124,58,237,0.4); color:#DDD6FE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">09 / 12</span>
@@ -587,7 +613,7 @@
 
       <div style="background:rgba(124,58,237,0.25); border-left:4px solid #DDD6FE; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
         <p style="color:#DDD6FE; margin:0 0 12px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">😊 ADJETIVOS DE ESTADO CON ESTAR</p>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+        <div class="two-col-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
           <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:9px; text-align:center;">
             <p style="color:#FCD34D; margin:0; font-size:0.88em; font-weight:700;">estar contento/a</p>
             <p style="color:rgba(255,255,255,0.6); margin:2px 0 0 0; font-size:0.75em;">to be happy</p>
@@ -630,10 +656,10 @@
   </div>
 
   <!-- ==================== TARJETA 10: Los tres verbos en comparación ==================== -->
-  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1F2937,#374151); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1F2937,#374151); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(55,65,81,0.3); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(55,65,81,0.5); color:#E5E7EB; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">10 / 12</span>
@@ -695,10 +721,10 @@
   </div>
 
   <!-- ==================== TARJETA 11: Errores frecuentes ==================== -->
-  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#BE185D,#DB2777); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#BE185D,#DB2777); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(219,39,119,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
       <span style="background:rgba(219,39,119,0.4); color:#FBB6CE; padding:5px 14px; border-radius:20px; font-size:0.8em; font-weight:700; letter-spacing:2px;">11 / 12</span>
@@ -746,10 +772,10 @@
   </div>
 
   <!-- ==================== TARJETA 12: FINAL — Resumen y botón aula ==================== -->
-  <div id="card12" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#78350F,#D97706); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card12" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#78350F,#D97706); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(217,119,6,0.2); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <div style="position:absolute; inset:0; background-repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
+    <div style="position:absolute; inset:0; background-image:repeating-linear-gradient(transparent, transparent 31px, rgba(255,255,255,0.03) 31px, rgba(255,255,255,0.03) 32px); border-radius:20px;"></div>
     <div style="position:absolute; top:16px; left:50%; transform:translateX(-50%); font-size:1.1em; opacity:0.13; letter-spacing:8px; white-space:nowrap;">⭐⭐⭐⭐⭐</div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
