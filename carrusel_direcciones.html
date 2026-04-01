@@ -50,6 +50,28 @@
   #s9:checked  ~ .nav-arrows .arr-9,
   #s10:checked ~ .nav-arrows .arr-10,
   #s11:checked ~ .nav-arrows .arr-11 { display:flex; }
+
+  /* Ajustes responsivos globales */
+  @media (max-width: 600px) {
+    [id^="card"] {
+      padding: 24px !important;
+    }
+    [id^="card"] h3 {
+      font-size: 1.6em !important;
+    }
+    [id^="card"] .def-text,
+    [id^="card"] p {
+      font-size: 0.9em !important;
+    }
+    /* Grid de tres direcciones en tarjeta 4 se convierte en columna */
+    .directions-grid {
+      flex-direction: column !important;
+      gap: 12px !important;
+    }
+    .directions-grid > div {
+      width: 100% !important;
+    }
+  }
 </style>
 </head>
 <body style="margin:0; padding:20px; background:#F0FDF4; font-family:'Nunito',sans-serif;">
@@ -79,10 +101,9 @@
   <input type="radio" name="slide" id="s11" style="display:none;">
 
   <!-- ==================== TARJETA 1: Introducción ==================== -->
-  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#15803D); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card1" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#15803D); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(21,128,61,0.2); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
-    <!-- Decoración de cuadrícula tipo mapa -->
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
 
     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; position:relative; z-index:1;">
@@ -133,7 +154,7 @@
   </div>
 
   <!-- ==================== TARJETA 2: Verbos esenciales ==================== -->
-  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#2563EB); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card2" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1D4ED8,#2563EB); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(37,99,235,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -206,7 +227,7 @@
   </div>
 
   <!-- ==================== TARJETA 3: Puntos cardinales y orientación ==================== -->
-  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card3" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#7C2D12,#C2410C); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(194,65,12,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -223,7 +244,6 @@
         <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Los <strong style="color:#FCD34D;">puntos cardinales</strong> son la base de la orientación geográfica. Se usan para dar direcciones amplias o en ciudades con cuadrícula urbana.</p>
       </div>
 
-      <!-- Rosa de los vientos visual -->
       <div style="background:rgba(194,65,12,0.25); border-left:4px solid #FED7AA; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
         <p style="color:#FED7AA; margin:0 0 14px 0; font-size:0.9em; font-weight:700; text-transform:uppercase;">🧭 LOS CUATRO PUNTOS CARDINALES</p>
         <div style="background:rgba(255,255,255,0.08); border-radius:12px; padding:16px; margin-bottom:12px;">
@@ -276,8 +296,8 @@
     </div>
   </div>
 
-  <!-- ==================== TARJETA 4: Izquierda, derecha y recto ==================== -->
-  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A5F,#0369A1); position:relative; overflow:hidden; min-height:380px;">
+  <!-- ==================== TARJETA 4: Izquierda, derecha y recto (CORREGIDA) ==================== -->
+  <div id="card4" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#1E3A5F,#0369A1); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(3,105,161,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -294,20 +314,20 @@
         <p style="color:white; line-height:1.7; margin:0; font-size:1em;">Las tres direcciones más usadas al navegar son <strong style="color:#FCD34D;">izquierda</strong>, <strong style="color:#FCD34D;">derecha</strong> y <strong style="color:#FCD34D;">recto/derecho</strong>. Son la base de cualquier indicación.</p>
       </div>
 
-      <!-- Diagrama visual de direcciones -->
+      <!-- Diagrama visual de direcciones mejorado para móvil -->
       <div style="background:rgba(3,105,161,0.25); border-left:4px solid #BAE6FD; border-radius:0 10px 10px 0; padding:16px; margin-bottom:14px;">
-        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-bottom:14px;">
-          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center;">
+        <div class="directions-grid" style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:14px;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center; flex:1; min-width:100px;">
             <p style="color:white; margin:0; font-size:2em;">⬅️</p>
             <p style="color:#FCD34D; margin:8px 0 4px 0; font-size:1em; font-weight:700;">a la izquierda</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.75em;">to the left</p>
           </div>
-          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center; flex:1; min-width:100px;">
             <p style="color:white; margin:0; font-size:2em;">⬆️</p>
             <p style="color:#FCD34D; margin:8px 0 4px 0; font-size:1em; font-weight:700;">recto / derecho</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.75em;">straight ahead</p>
           </div>
-          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center;">
+          <div style="background:rgba(255,255,255,0.12); border-radius:12px; padding:16px; text-align:center; flex:1; min-width:100px;">
             <p style="color:white; margin:0; font-size:2em;">➡️</p>
             <p style="color:#FCD34D; margin:8px 0 4px 0; font-size:1em; font-weight:700;">a la derecha</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.75em;">to the right</p>
@@ -316,19 +336,19 @@
 
         <p style="color:#BAE6FD; margin:0 0 10px 0; font-size:0.85em; font-weight:700; text-transform:uppercase;">🔄 DAR VUELTA</p>
         <div style="display:flex; flex-direction:column; gap:8px;">
-          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
             <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Gira / Dobla a la izquierda</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Turn left</p>
           </div>
-          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
             <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Gira / Dobla a la derecha</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Turn right</p>
           </div>
-          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
             <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Sigue / Continúa recto</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Keep going straight</p>
           </div>
-          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="background:rgba(255,255,255,0.1); border-radius:8px; padding:11px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
             <p style="color:#FCD34D; margin:0; font-size:0.95em; font-weight:700;">Da la vuelta / Regresa</p>
             <p style="color:rgba(255,255,255,0.6); margin:0; font-size:0.8em; font-style:italic;">Turn around / Go back</p>
           </div>
@@ -343,7 +363,7 @@
   </div>
 
   <!-- ==================== TARJETA 5: Preposiciones y expresiones de lugar ==================== -->
-  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#6D28D9); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card5" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#4C1D95,#6D28D9); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(109,40,217,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -402,7 +422,7 @@
   </div>
 
   <!-- ==================== TARJETA 6: Pedir direcciones ==================== -->
-  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#065F46,#059669); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card6" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#065F46,#059669); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(5,150,105,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -462,7 +482,7 @@
   </div>
 
   <!-- ==================== TARJETA 7: Dar direcciones ==================== -->
-  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#DC2626,#EF4444); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card7" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#DC2626,#EF4444); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(239,68,68,0.15); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -519,7 +539,7 @@
   </div>
 
   <!-- ==================== TARJETA 8: Lugares de referencia ==================== -->
-  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#92400E,#B45309); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card8" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#92400E,#B45309); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(180,83,9,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -599,7 +619,7 @@
   </div>
 
   <!-- ==================== TARJETA 9: Vocabulario de calles ==================== -->
-  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#374151,#4B5563); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card9" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#374151,#4B5563); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(75,85,99,0.3); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -681,7 +701,7 @@
   </div>
 
   <!-- ==================== TARJETA 10: Diálogo modelo ==================== -->
-  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F766E,#14B8A6); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card10" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#0F766E,#14B8A6); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(20,184,166,0.18); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
@@ -754,7 +774,7 @@
   </div>
 
   <!-- ==================== TARJETA 11: FINAL - Resumen y botón aula ==================== -->
-  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#16A34A); position:relative; overflow:hidden; min-height:380px;">
+  <div id="card11" style="border-radius:20px; padding:40px; background:linear-gradient(145deg,#14532D,#16A34A); position:relative; overflow:visible; min-height:auto;">
     <div style="position:absolute; top:-40px; right:-40px; width:200px; height:200px; background:rgba(22,163,74,0.2); border-radius:50%;"></div>
     <div style="position:absolute; bottom:-60px; left:-30px; width:220px; height:220px; background:rgba(255,255,255,0.04); border-radius:50%;"></div>
     <div style="position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:32px 32px; border-radius:20px;"></div>
