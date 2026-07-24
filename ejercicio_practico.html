@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pronombres Personales · Actividad Interactiva</title>
+  <title>Personal Pronouns · Interactive Activity</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* --- ESTILOS (Sin cambios) --- */
     :root {
       --navy: #1a2e4a;
       --navy-mid: #2c4a72;
@@ -466,46 +467,46 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (Texto en inglés) -->
 <div class="header">
   <div class="header-inner">
-    <div class="header-badge">📌 Temática 1 · Bloque 2</div>
-    <h1>Arrastra el <span>pronombre</span> correcto</h1>
-    <p>Completa cada oración con el pronombre personal que corresponde</p>
+    <div class="header-badge">📌 Topic 1 · Block 2</div>
+    <h1>Drag the correct <span>pronoun</span></h1>
+    <p>Complete each sentence with the right personal pronoun in Spanish</p>
   </div>
 </div>
 
-<!-- PROGRESS -->
+<!-- PROGRESS (Texto en inglés) -->
 <div class="progress-wrap">
   <div class="progress-info">
-    <span class="progress-label">Progreso</span>
-    <span class="progress-count" id="progressCount">Ejercicio 1 de 8</span>
+    <span class="progress-label">Progress</span>
+    <span class="progress-count" id="progressCount">Exercise 1 of 8</span>
   </div>
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
   </div>
 </div>
 
-<!-- SCORE -->
+<!-- SCORE (Texto en inglés) -->
 <div class="score-strip">
-  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctas</div>
-  <div class="score-chip"><span class="dot dot-error"></span> <span id="wrongCount">0</span> incorrectas</div>
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correct</div>
+  <div class="score-chip"><span class="dot dot-error"></span> <span id="wrongCount">0</span> incorrect</div>
 </div>
 
 <!-- MAIN -->
 <div class="main">
-  <div class="touch-hint" id="touchHint">💡 Toca un pronombre y luego toca el espacio en blanco para colocarlo</div>
+  <div class="touch-hint" id="touchHint">💡 Tap a pronoun, then tap the blank space to place it</div>
 
   <!-- EJERCICIO -->
   <div class="exercise-card" id="exerciseCard">
     <div class="exercise-top">
       <div class="ex-num" id="exNum">1</div>
-      <span class="ex-instruction">Arrastra el pronombre correcto al espacio en blanco</span>
+      <span class="ex-instruction">Drag the correct pronoun to the blank space</span>
     </div>
     <div class="exercise-body">
       <div class="sentence-wrap" id="sentenceWrap"></div>
 
-      <div class="options-label">Pronombres disponibles</div>
+      <div class="options-label">Available pronouns</div>
       <div class="options-grid" id="optionsGrid"></div>
 
       <div class="feedback-box" id="feedbackBox">
@@ -516,47 +517,47 @@
       <div class="hint-box" id="hintBox"></div>
 
       <div class="btn-row">
-        <button class="btn btn-primary" id="btnCheck" onclick="checkAnswer()" disabled>Verificar</button>
-        <button class="btn btn-secondary" id="btnHint" onclick="showHint()">💡 Pista</button>
-        <button class="btn btn-secondary" id="btnNext" onclick="nextExercise()" style="display:none">Siguiente →</button>
+        <button class="btn btn-primary" id="btnCheck" onclick="checkAnswer()" disabled>Check</button>
+        <button class="btn btn-secondary" id="btnHint" onclick="showHint()">💡 Hint</button>
+        <button class="btn btn-secondary" id="btnNext" onclick="nextExercise()" style="display:none">Next →</button>
       </div>
     </div>
   </div>
 
-  <!-- RESULTADOS -->
+  <!-- RESULTADOS (Texto en inglés) -->
   <div class="results-screen" id="resultsScreen">
     <div class="results-emoji" id="resultsEmoji">🎉</div>
-    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
-    <div class="results-subtitle" id="resultsSubtitle">Has completado todos los ejercicios</div>
+    <div class="results-title" id="resultsTitle">Excellent work!</div>
+    <div class="results-subtitle" id="resultsSubtitle">You've completed all the exercises.</div>
     <div class="results-score" id="resultsScore">8/8</div>
     <div class="results-breakdown">
       <div class="breakdown-item">
         <div class="breakdown-num color-success" id="finalCorrect">0</div>
-        <div class="breakdown-label">Correctas</div>
+        <div class="breakdown-label">Correct</div>
       </div>
       <div class="breakdown-item">
         <div class="breakdown-num color-error" id="finalWrong">0</div>
-        <div class="breakdown-label">Incorrectas</div>
+        <div class="breakdown-label">Incorrect</div>
       </div>
       <div class="breakdown-item">
         <div class="breakdown-num color-navy" id="finalPct">0%</div>
-        <div class="breakdown-label">Puntuación</div>
+        <div class="breakdown-label">Score</div>
       </div>
     </div>
-    <button class="btn btn-primary" onclick="restartGame()" style="margin: 0 auto; display: inline-block;">🔄 Intentar de nuevo</button>
+    <button class="btn btn-primary" onclick="restartGame()" style="margin: 0 auto; display: inline-block;">🔄 Try again</button>
   </div>
-<!-- CTA -->
+<!-- CTA (Texto en inglés) -->
         <div style="text-align: center;">
           <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=84"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=315"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to Virtual Classroom
 </a>
 
 <script>
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=84';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=84';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=315';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=315';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
@@ -567,6 +568,7 @@
 </div>
 
 <script>
+// --- DATOS DEL EJERCICIO (Todo el contenido lingüístico en español) ---
 const exercises = [
   {
     parts: ['___', 'soy', 'estudiante', 'de', 'español.'],
@@ -574,7 +576,7 @@ const exercises = [
     answer: 'Yo',
     options: ['Yo', 'Tú', 'Él', 'Nosotros'],
     hint: 'Primera persona del singular — hablas de ti mismo.',
-    feedback: '¡Correcto! <strong>Yo</strong> = I en inglés. Primera persona del singular.'
+    feedback: '¡Correcto! <strong>Yo</strong> = I in English. Primera persona del singular.'
   },
   {
     parts: ['Mi', 'amigo', 'James', '___ ', 'de', 'Nueva', 'York.'],
@@ -596,7 +598,7 @@ const exercises = [
     answer: 'Tú',
     options: ['Yo', 'Tú', 'Ella', 'Ellos'],
     hint: 'Segunda persona singular informal — le hablas directamente a alguien.',
-    feedback: '¡Correcto! <strong>Tú</strong> = You (informal) en inglés.'
+    feedback: '¡Correcto! <strong>Tú</strong> = You (informal) in English.'
   },
   {
     parts: ['___ ', 'somos', 'estudiantes', 'de', 'nivel', 'A1.'],
@@ -604,7 +606,7 @@ const exercises = [
     answer: 'Nosotros',
     options: ['Yo', 'Tú', 'Nosotros', 'Ellas'],
     hint: 'Primera persona del plural — hablas de un grupo que te incluye a ti.',
-    feedback: '¡Correcto! <strong>Nosotros</strong> = We en inglés.'
+    feedback: '¡Correcto! <strong>Nosotros</strong> = We in English.'
   },
   {
     parts: ['___ ', 'se', 'llama', 'Sophie', 'y', 'es', 'francesa.'],
@@ -612,7 +614,7 @@ const exercises = [
     answer: 'Ella',
     options: ['Él', 'Ella', 'Usted', 'Ellas'],
     hint: 'Sophie es una mujer. Usa el pronombre femenino singular.',
-    feedback: '¡Correcto! <strong>Ella</strong> = She en inglés. Se usa para personas femeninas.'
+    feedback: '¡Correcto! <strong>Ella</strong> = She in English. Se usa para personas femeninas.'
   },
   {
     parts: ['Profesor,', '___ ', 'habla', 'muy', 'rápido.'],
@@ -628,7 +630,7 @@ const exercises = [
     answer: '—',
     options: ['ellos', 'ellas', 'nosotros', 'ustedes'],
     hint: 'James y Kenji son dos hombres. ¿Qué pronombre representa a un grupo masculino o mixto?',
-    feedback: '¡Correcto! <strong>Ellos</strong> = They (masc. o mixto). <strong>Ellas</strong> se usa solo cuando todas son mujeres.',
+    feedback: '¡Correcto! <strong>Ellos</strong> = They (masc. or mixed). <strong>Ellas</strong> se usa solo cuando todas son mujeres.',
     answerOverride: 'ellos'
   },
   {
@@ -637,7 +639,7 @@ const exercises = [
     answer: '—',
     options: ['ellos', 'ellas', 'ustedes', 'nosotras'],
     hint: 'Sophie y Claire son dos mujeres. ¿Cuál es el pronombre femenino plural?',
-    feedback: '¡Correcto! <strong>Ellas</strong> = They (femenino). Se usa cuando todas las personas del grupo son mujeres.',
+    feedback: '¡Correcto! <strong>Ellas</strong> = They (feminine). Se usa cuando todas las personas del grupo son mujeres.',
     answerOverride: 'ellas'
   }
 ];
@@ -654,7 +656,7 @@ function initExercise() {
   const ex = exercises[current];
 
   document.getElementById('exNum').textContent = current + 1;
-  document.getElementById('progressCount').textContent = `Ejercicio ${current + 1} de ${exercises.length}`;
+  document.getElementById('progressCount').textContent = `Exercise ${current + 1} of ${exercises.length}`;
   document.getElementById('progressBar').style.width = `${(current / exercises.length) * 100}%`;
 
   // Sentence
@@ -799,7 +801,7 @@ function checkAnswer() {
     slot.className = 'drop-slot incorrect';
     feedback.className = 'feedback-box error show';
     icon.textContent = '❌';
-    text.innerHTML = `Incorrecto. La respuesta correcta es <strong>${ex.answerOverride || ex.correct || ex.answer}</strong>. ${ex.feedbackText || ex.feedback}`;
+    text.innerHTML = `Incorrect. The correct answer is <strong>${ex.answerOverride || ex.correct || ex.answer}</strong>. ${ex.feedbackText || ex.feedback}`;
     document.getElementById('wrongCount').textContent = wrong;
   }
 
@@ -816,7 +818,7 @@ function checkAnswer() {
 function showHint() {
   const ex = exercises[current];
   const hint = document.getElementById('hintBox');
-  hint.innerHTML = `💡 <strong>Pista:</strong> ${ex.hintText || ex.hint}`;
+  hint.innerHTML = `💡 <strong>Hint:</strong> ${ex.hintText || ex.hint}`;
   hint.className = 'hint-box show';
 }
 
@@ -842,20 +844,20 @@ function showResults() {
 
   if (pct === 100) {
     document.getElementById('resultsEmoji').textContent = '🏆';
-    document.getElementById('resultsTitle').textContent = '¡Perfecto! ¡Excelente!';
-    document.getElementById('resultsSubtitle').textContent = 'Dominaste todos los pronombres. ¡Sigue así!';
+    document.getElementById('resultsTitle').textContent = 'Perfect! Excellent!';
+    document.getElementById('resultsSubtitle').textContent = 'You mastered all the pronouns. Keep it up!';
   } else if (pct >= 75) {
     document.getElementById('resultsEmoji').textContent = '🎉';
-    document.getElementById('resultsTitle').textContent = '¡Muy bien hecho!';
-    document.getElementById('resultsSubtitle').textContent = 'Casi perfecto. Revisa los errores y sigue practicando.';
+    document.getElementById('resultsTitle').textContent = 'Great job!';
+    document.getElementById('resultsSubtitle').textContent = 'Almost perfect. Review your mistakes and keep practicing.';
   } else if (pct >= 50) {
     document.getElementById('resultsEmoji').textContent = '💪';
-    document.getElementById('resultsTitle').textContent = '¡Buen intento!';
-    document.getElementById('resultsSubtitle').textContent = 'Vas por buen camino. ¡Inténtalo de nuevo!';
+    document.getElementById('resultsTitle').textContent = 'Good try!';
+    document.getElementById('resultsSubtitle').textContent = 'You\'re on the right track. Give it another shot!';
   } else {
     document.getElementById('resultsEmoji').textContent = '📚';
-    document.getElementById('resultsTitle').textContent = '¡Sigue practicando!';
-    document.getElementById('resultsSubtitle').textContent = 'Repasa el bloque de pronombres y vuelve a intentarlo.';
+    document.getElementById('resultsTitle').textContent = 'Keep practicing!';
+    document.getElementById('resultsSubtitle').textContent = 'Review the pronouns section and try again.';
   }
 }
 
