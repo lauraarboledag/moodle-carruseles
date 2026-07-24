@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bloque 1 · Your name</title>
+  <title>Bloque 1 · Tu nombre</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -388,12 +388,13 @@
         <p>¡Ahora estás listo para presentarte y preguntar el nombre de otras personas en español!</p>
       </div>
       <!-- CTA -->
-       <div style="text-align: center;">
-         <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=322"
-   style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Return to Virtual Classroom
-</a>
+      <div style="text-align: center; margin-top: 16px;">
+        <a id="btn-volver"
+          href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=322"
+          style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Return to the Virtual Classroom
+        </a>
+      </div>
     </div>
   </div>
 
@@ -410,7 +411,6 @@
   var TOTAL = 7;
   var current = 1;
   var colores = ['','#E74C3C','#52B788','#8888ff','#bb88ff','#5dade2','#ff88d8','#F1C40F'];
-  
 
   // Crear puntos
   var dotsEl = document.getElementById('dots');
@@ -448,8 +448,8 @@
   document.getElementById('btnNext').addEventListener('touchend', function(e){ e.preventDefault(); cambiar(1); });
 
   var btn = document.getElementById('btn-volver');
-  var cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48';
-  var appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=48';
+  var cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=322';
+  var appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=322';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
