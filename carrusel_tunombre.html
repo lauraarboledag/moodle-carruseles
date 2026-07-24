@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bloque 1 · Tu nombre</title>
+  <title>Bloque 1 · Your name</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -97,6 +97,10 @@
     .dot.active { width: 13px; height: 13px; transform: scale(1.35); }
 
     .contador { text-align: center; color: #999; font-size: 0.85em; margin-top: 10px; }
+    
+    /* Estilo para texto en inglés (explicaciones) */
+    .en { color: rgba(255,255,255,0.7); font-size: 0.92em; }
+    .en strong { color: #f1c40f; }
   </style>
 </head>
 <body>
@@ -104,12 +108,12 @@
 
   <!-- TÍTULO -->
   <div class="titulo">
-    <div class="titulo-badge"><span>BLOQUE 1 · Tu nombre</span></div>
+    <div class="titulo-badge"><span>BLOQUE 1 · YOUR NAME</span></div>
     <h2>¡Habla de tu nombre!</h2>
-    <p>Haz clic en → ← o los puntos para navegar</p>
+    <p>Click ← → or the dots to navigate</p>
   </div>
 
-  <!-- TARJETA 1 -->
+  <!-- TARJETA 1 - INTRO -->
   <div id="card1" class="slide active" style="background: linear-gradient(145deg,#1a1a2e,#16213e);">
     <div class="blob1" style="background: rgba(231,76,60,0.15);"></div>
     <div class="blob2" style="background: rgba(241,196,15,0.06);"></div>
@@ -118,23 +122,23 @@
       <span class="slide-icon">👤</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#e74c3c;">Introducción</p>
-      <h3 class="slide-title">¿Por qué es importante tu nombre?</h3>
+      <p class="tag" style="color:#e74c3c;">Introduction</p>
+      <h3 class="slide-title">Why is your name important?</h3>
       <div class="box">
-        <p>Tu nombre es lo más <strong style="color:#f1c40f;">personal que tienes</strong>. Es la primera información que compartimos cuando conocemos a alguien.</p>
-        <p>¡Es tu identidad en cada conversación!</p>
+        <p class="en"><strong>Your name is the most personal thing you have.</strong> It's the first information we share when we meet someone.</p>
+        <p><strong style="color:#f1c40f;">¡Es tu identidad en cada conversación!</strong> (It's your identity in every conversation!)</p>
       </div>
-      <p class="label-gold">¿Cuándo dices tu nombre?</p>
+      <p class="label-gold">When do you say your name?</p>
       <div class="items">
-        <div class="item"><span>👋</span><p>Al <strong>presentarte</strong> por primera vez</p></div>
-        <div class="item"><span>📋</span><p>Al <strong>llenar formularios</strong> o documentos</p></div>
-        <div class="item"><span>📞</span><p>Al hacer <strong>reservaciones</strong> o citas</p></div>
-        <div class="item"><span>💼</span><p>En <strong>entrevistas de trabajo</strong> o reuniones formales</p></div>
+        <div class="item"><span>👋</span><p><strong>When introducing yourself</strong> — <span style="color:rgba(255,255,255,0.6);">Al presentarte</span></p></div>
+        <div class="item"><span>📋</span><p><strong>When filling out forms</strong> — <span style="color:rgba(255,255,255,0.6);">Al llenar formularios</span></p></div>
+        <div class="item"><span>📞</span><p><strong>When making reservations</strong> — <span style="color:rgba(255,255,255,0.6);">Al hacer reservaciones</span></p></div>
+        <div class="item"><span>💼</span><p><strong>In job interviews</strong> — <span style="color:rgba(255,255,255,0.6);">En entrevistas de trabajo</span></p></div>
       </div>
     </div>
   </div>
 
-  <!-- TARJETA 2 -->
+  <!-- TARJETA 2 - ASKING -->
   <div id="card2" class="slide" style="background: linear-gradient(145deg,#1B4332,#2D6A4F);">
     <div class="blob1" style="background: rgba(82,183,136,0.15);"></div>
     <div class="blob2" style="background: rgba(255,255,255,0.04);"></div>
@@ -143,32 +147,49 @@
       <span class="slide-icon">❓</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#52b788;">Preguntar</p>
-      <h3 class="slide-title">¿Cómo preguntar el nombre?</h3>
-      <div class="box"><p>Existen diferentes formas de preguntar el nombre según el <strong style="color:#f1c40f;">nivel de formalidad</strong>.</p></div>
+      <p class="tag" style="color:#52b788;">Asking</p>
+      <h3 class="slide-title">How to ask for someone's name?</h3>
+      <div class="box">
+        <p class="en">There are different ways to ask for a name depending on the <strong style="color:#f1c40f;">level of formality</strong>.</p>
+      </div>
       <div class="rows">
         <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
           <span style="font-size:1.2em;">😊</span>
-          <div class="ri-text"><p>¿Cómo te llamas?</p><p>Informal - con amigos, personas de tu edad</p></div>
+          <div class="ri-text">
+            <p><span style="color:#52b788;">"¿Cómo te llamas?"</span></p>
+            <p>Informal — with friends, people your age</p>
+          </div>
         </div>
         <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
           <span style="font-size:1.2em;">🤝</span>
-          <div class="ri-text"><p>¿Cuál es tu nombre?</p><p>Neutral - situaciones cotidianas</p></div>
+          <div class="ri-text">
+            <p><span style="color:#52b788;">"¿Cuál es tu nombre?"</span></p>
+            <p>Neutral — everyday situations</p>
+          </div>
         </div>
         <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
           <span style="font-size:1.2em;">👔</span>
-          <div class="ri-text"><p>¿Cómo se llama usted?</p><p>Formal - con personas mayores, en el trabajo</p></div>
+          <div class="ri-text">
+            <p><span style="color:#52b788;">"¿Cómo se llama usted?"</span></p>
+            <p>Formal — with elders, at work</p>
+          </div>
         </div>
         <div class="row-item" style="background:rgba(82,183,136,0.15);border-left:3px solid #52B788;">
           <span style="font-size:1.2em;">📋</span>
-          <div class="ri-text"><p>¿Cuál es su nombre completo?</p><p>Formal - en oficinas, hospitales, trámites</p></div>
+          <div class="ri-text">
+            <p><span style="color:#52b788;">"¿Cuál es su nombre completo?"</span></p>
+            <p>Formal — in offices, hospitals, procedures</p>
+          </div>
         </div>
       </div>
-      <div class="tip"><span style="font-size:1.2em;">💡</span><p>La diferencia clave está en usar <strong>"tú"</strong> (informal) o <strong>"usted"</strong> (formal)</p></div>
+      <div class="tip">
+        <span style="font-size:1.2em;">💡</span>
+        <p class="en">The key difference is using <strong>"tú"</strong> (informal) or <strong>"usted"</strong> (formal)</p>
+      </div>
     </div>
   </div>
 
-  <!-- TARJETA 3 -->
+  <!-- TARJETA 3 - RESPONDING -->
   <div id="card3" class="slide" style="background: linear-gradient(145deg,#1a1a6e,#2d2d8e);">
     <div class="blob1" style="background: rgba(100,100,255,0.15);"></div>
     <div class="blob2" style="background: rgba(241,196,15,0.06);"></div>
@@ -177,26 +198,35 @@
       <span class="slide-icon">💬</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#8888ff;">Responder</p>
-      <h3 class="slide-title">¿Cómo decir tu nombre?</h3>
+      <p class="tag" style="color:#8888ff;">Responding</p>
+      <h3 class="slide-title">How to say your name?</h3>
       <div class="box">
-        <p style="color:#f1c40f;font-size:0.78em;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">TRES FORMAS PRINCIPALES</p>
+        <p style="color:#f1c40f;font-size:0.78em;font-weight:bold;margin-bottom:10px;letter-spacing:1px;">THREE MAIN WAYS</p>
         <div style="display:flex;flex-direction:column;gap:10px;">
-          <div class="subbox" style="background:rgba(100,100,255,0.2);"><p>1️⃣ Me llamo + [tu nombre]</p><p>"Me llamo Ana" / "Me llamo Carlos"</p></div>
-          <div class="subbox" style="background:rgba(100,100,255,0.2);"><p>2️⃣ Mi nombre es + [tu nombre]</p><p>"Mi nombre es Ana" / "Mi nombre es Carlos"</p></div>
-          <div class="subbox" style="background:rgba(100,100,255,0.2);"><p>3️⃣ Soy + [tu nombre]</p><p>"Soy Ana" / "Soy Carlos"</p></div>
+          <div class="subbox" style="background:rgba(100,100,255,0.2);">
+            <p>1️⃣ <span style="color:#8888ff;">"Me llamo"</span> + [your name]</p>
+            <p>"Me llamo Ana" / "Me llamo Carlos"</p>
+          </div>
+          <div class="subbox" style="background:rgba(100,100,255,0.2);">
+            <p>2️⃣ <span style="color:#8888ff;">"Mi nombre es"</span> + [your name]</p>
+            <p>"Mi nombre es Ana" / "Mi nombre es Carlos"</p>
+          </div>
+          <div class="subbox" style="background:rgba(100,100,255,0.2);">
+            <p>3️⃣ <span style="color:#8888ff;">"Soy"</span> + [your name]</p>
+            <p>"Soy Ana" / "Soy Carlos"</p>
+          </div>
         </div>
       </div>
-      <p class="label-gold">¿CUÁL USAR?</p>
+      <p class="label-gold">WHICH ONE TO USE?</p>
       <div class="check-list">
-        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Me llamo"</strong> → La más común y segura</p></div>
-        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Mi nombre es"</strong> → Más formal</p></div>
-        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Soy"</strong> → Más informal y rápida</p></div>
+        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Me llamo"</strong> → The most common and safest</p></div>
+        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Mi nombre es"</strong> → More formal</p></div>
+        <div class="check-item"><span style="color:#8888ff;">✓</span><p><strong>"Soy"</strong> → More informal and quick</p></div>
       </div>
     </div>
   </div>
 
-  <!-- TARJETA 4 -->
+  <!-- TARJETA 4 - DIALOGUES -->
   <div id="card4" class="slide" style="background: linear-gradient(145deg,#2a1a6e,#3d2d8e);">
     <div class="blob1" style="background: rgba(150,100,255,0.15);"></div>
     <div class="blob2" style="background: rgba(241,196,15,0.06);"></div>
@@ -205,10 +235,10 @@
       <span class="slide-icon">🗣️</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#bb88ff;">En contexto</p>
-      <h3 class="slide-title">Diálogos de ejemplo</h3>
+      <p class="tag" style="color:#bb88ff;">In context</p>
+      <h3 class="slide-title">Example dialogues</h3>
       <div class="dialog-box" style="background:rgba(100,255,150,0.1);border:1px solid rgba(100,255,150,0.25);">
-        <p class="dialog-label" style="color:#52b788;">😊 SITUACIÓN INFORMAL (En una fiesta)</p>
+        <p class="dialog-label" style="color:#52b788;">😊 INFORMAL SITUATION (At a party)</p>
         <div class="dialog-lines">
           <p><strong style="color:#52b788;">Luis:</strong> "¡Hola! ¿Cómo te llamas?"</p>
           <p><strong style="color:#52b788;">María:</strong> "Me llamo María. ¿Y tú?"</p>
@@ -217,7 +247,7 @@
         </div>
       </div>
       <div class="dialog-box" style="background:rgba(93,173,226,0.1);border:1px solid rgba(93,173,226,0.25);">
-        <p class="dialog-label" style="color:#7fb3d3;">🤝 SITUACIÓN FORMAL (En una entrevista)</p>
+        <p class="dialog-label" style="color:#7fb3d3;">🤝 FORMAL SITUATION (At a job interview)</p>
         <div class="dialog-lines">
           <p><strong style="color:#7fb3d3;">Entrevistador:</strong> "Buenos días. ¿Cómo se llama usted?"</p>
           <p><strong style="color:#7fb3d3;">Candidato:</strong> "Buenos días. Mi nombre es Roberto García."</p>
@@ -227,7 +257,7 @@
     </div>
   </div>
 
-  <!-- TARJETA 5 -->
+  <!-- TARJETA 5 - FULL NAME -->
   <div id="card5" class="slide" style="background: linear-gradient(145deg,#1B3A6B,#1a5276);">
     <div class="blob1" style="background: rgba(52,152,219,0.15);"></div>
     <div class="blob2" style="background: rgba(255,255,255,0.04);"></div>
@@ -236,34 +266,45 @@
       <span class="slide-icon">📝</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#5dade2;">Información completa</p>
-      <h3 class="slide-title">Tu nombre completo</h3>
-      <div class="box"><p>En español, el nombre completo generalmente incluye <strong style="color:#f1c40f;">nombre(s) + apellido(s)</strong>.</p></div>
+      <p class="tag" style="color:#5dade2;">Full name</p>
+      <h3 class="slide-title">Your complete name</h3>
+      <div class="box">
+        <p class="en">In Spanish, the full name generally includes <strong style="color:#f1c40f;">first name(s) + last name(s)</strong>.</p>
+      </div>
       <div class="rows">
         <div class="row-item" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
           <span style="font-size:1.2em;">1️⃣</span>
-          <div class="ri-text"><p>Nombre(s)</p><p>Pueden ser uno o varios: "Ana", "Juan Carlos"</p></div>
+          <div class="ri-text">
+            <p><span style="color:#5dade2;">Nombre(s)</span> — First name(s)</p>
+            <p>Can be one or more: "Ana", "Juan Carlos"</p>
+          </div>
         </div>
         <div class="row-item" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
           <span style="font-size:1.2em;">2️⃣</span>
-          <div class="ri-text"><p>Primer apellido</p><p>Apellido paterno: "García", "Rodríguez"</p></div>
+          <div class="ri-text">
+            <p><span style="color:#5dade2;">Primer apellido</span> — First last name (father's)</p>
+            <p>"García", "Rodríguez"</p>
+          </div>
         </div>
         <div class="row-item" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
           <span style="font-size:1.2em;">3️⃣</span>
-          <div class="ri-text"><p>Segundo apellido (opcional)</p><p>Apellido materno: "López", "Martínez"</p></div>
+          <div class="ri-text">
+            <p><span style="color:#5dade2;">Segundo apellido</span> — Second last name (mother's, optional)</p>
+            <p>"López", "Martínez"</p>
+          </div>
         </div>
       </div>
-      <p class="label-gold">EJEMPLOS</p>
+      <p class="label-gold">EXAMPLES</p>
       <div class="example-box" style="background:rgba(52,152,219,0.15);border-left:3px solid #5dade2;">
         <p>✓ <strong>Ana María García López</strong></p>
-        <p class="sub">Nombre: Ana María | Apellidos: García López</p>
+        <p class="sub">First name: Ana María | Last names: García López</p>
         <p>✓ <strong>Carlos Rodríguez</strong></p>
-        <p style="color:rgba(255,255,255,0.6);font-size:0.82em;padding-left:15px;margin:0;">Nombre: Carlos | Apellido: Rodríguez</p>
+        <p style="color:rgba(255,255,255,0.6);font-size:0.82em;padding-left:15px;margin:0;">First name: Carlos | Last name: Rodríguez</p>
       </div>
     </div>
   </div>
 
-  <!-- TARJETA 6 -->
+  <!-- TARJETA 6 - SPELLING -->
   <div id="card6" class="slide" style="background: linear-gradient(145deg,#4A1942,#6D2B5E);">
     <div class="blob1" style="background: rgba(255,100,200,0.12);"></div>
     <div class="blob2" style="background: rgba(255,255,255,0.04);"></div>
@@ -272,16 +313,24 @@
       <span class="slide-icon">🔤</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#ff88d8;">Deletrear</p>
-      <h3 class="slide-title">¿Cómo se deletrea?</h3>
-      <div class="box"><p>A veces necesitas <strong style="color:#f1c40f;">deletrear tu nombre</strong> para que lo escriban correctamente.</p></div>
-      <p class="label-gold">FRASES ÚTILES</p>
-      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
-        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;"><p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Pregunta:</strong> "¿Cómo se escribe?"</p></div>
-        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;"><p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Respuesta:</strong> "Se escribe: A-N-A"</p></div>
-        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;"><p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Alternativa:</strong> "¿Puede deletrearlo?"</p></div>
+      <p class="tag" style="color:#ff88d8;">Spelling</p>
+      <h3 class="slide-title">How do you spell it?</h3>
+      <div class="box">
+        <p class="en">Sometimes you need to <strong style="color:#f1c40f;">spell your name</strong> so they write it correctly.</p>
       </div>
-      <p class="label-gold">EJEMPLO COMPLETO</p>
+      <p class="label-gold">USEFUL PHRASES</p>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:14px;">
+        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;">
+          <p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Ask:</strong> <span style="color:#ff88d8;">"¿Cómo se escribe?"</span> (How is it written?)</p>
+        </div>
+        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;">
+          <p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Answer:</strong> <span style="color:#ff88d8;">"Se escribe: A-N-A"</span> (It's written: A-N-A)</p>
+        </div>
+        <div style="background:rgba(255,100,200,0.15);border-radius:8px;padding:10px 14px;">
+          <p style="color:white;margin:0;font-size:0.9em;"><strong style="color:#ff88d8;">Alternative:</strong> <span style="color:#ff88d8;">"¿Puede deletrearlo?"</span> (Can you spell it?)</p>
+        </div>
+      </div>
+      <p class="label-gold">COMPLETE EXAMPLE</p>
       <div style="background:rgba(255,100,200,0.15);border-left:3px solid #ff88d8;border-radius:0 10px 10px 0;padding:14px 18px;">
         <p style="color:white;margin:0;font-size:0.95em;line-height:1.7;">
           <strong style="color:#ff88d8;">Recepcionista:</strong> "¿Cuál es su nombre?"<br>
@@ -292,12 +341,12 @@
       </div>
       <div style="margin-top:14px;display:flex;gap:8px;align-items:start;">
         <span style="font-size:1.1em;">💡</span>
-        <p style="color:rgba(255,255,255,0.7);margin:0;font-size:0.85em;line-height:1.5;font-style:italic;">Es especialmente útil cuando tu nombre tiene letras poco comunes o puede escribirse de diferentes formas</p>
+        <p class="en" style="margin:0;font-size:0.85em;line-height:1.5;font-style:italic;">This is especially useful when your name has uncommon letters or can be written in different ways</p>
       </div>
     </div>
   </div>
 
-  <!-- TARJETA 7 -->
+  <!-- TARJETA 7 - SUMMARY -->
   <div id="card7" class="slide" style="background: linear-gradient(145deg,#2C3E50,#3D5166);">
     <div class="blob1" style="background: rgba(241,196,15,0.1);"></div>
     <div class="blob2" style="background: rgba(231,76,60,0.07);"></div>
@@ -306,32 +355,46 @@
       <span class="slide-icon">🌟</span>
     </div>
     <div class="slide-body">
-      <p class="tag" style="color:#f1c40f;">Resumen</p>
-      <h3 class="slide-title">¡Repasemos!</h3>
+      <p class="tag" style="color:#f1c40f;">Summary</p>
+      <h3 class="slide-title">Let's review!</h3>
       <div style="background:rgba(241,196,15,0.1);border:1px solid rgba(241,196,15,0.3);border-radius:12px;padding:20px;margin-bottom:18px;">
-        <p style="color:#f1c40f;font-size:0.78em;font-weight:bold;margin:0 0 12px 0;letter-spacing:1px;text-align:center;">📋 RESUMEN RÁPIDO</p>
+        <p style="color:#f1c40f;font-size:0.78em;font-weight:bold;margin:0 0 12px 0;letter-spacing:1px;text-align:center;">📋 QUICK SUMMARY</p>
         <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;margin-bottom:10px;">
-          <p style="color:#52b788;margin:0 0 6px 0;font-size:0.85em;font-weight:bold;">PREGUNTAR EL NOMBRE</p>
-          <p style="color:white;margin:0;font-size:0.88em;">Informal: <strong>"¿Cómo te llamas?"</strong><br>Formal: <strong>"¿Cómo se llama usted?"</strong></p>
+          <p style="color:#52b788;margin:0 0 6px 0;font-size:0.85em;font-weight:bold;">ASKING FOR A NAME</p>
+          <p style="color:white;margin:0;font-size:0.88em;">
+            Informal: <strong>"¿Cómo te llamas?"</strong><br>
+            Formal: <strong>"¿Cómo se llama usted?"</strong>
+          </p>
         </div>
         <div style="background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;">
-          <p style="color:#8888ff;margin:0 0 6px 0;font-size:0.85em;font-weight:bold;">DECIR TU NOMBRE</p>
-          <p style="color:white;margin:0;font-size:0.88em;">✓ <strong>Me llamo</strong> [nombre]<br>✓ <strong>Mi nombre es</strong> [nombre]<br>✓ <strong>Soy</strong> [nombre]</p>
+          <p style="color:#8888ff;margin:0 0 6px 0;font-size:0.85em;font-weight:bold;">SAYING YOUR NAME</p>
+          <p style="color:white;margin:0;font-size:0.88em;">
+            ✓ <strong>Me llamo</strong> [name]<br>
+            ✓ <strong>Mi nombre es</strong> [name]<br>
+            ✓ <strong>Soy</strong> [name]
+          </p>
         </div>
       </div>
       <div class="practice-box">
-        <p>✏️ PRACTICA AHORA</p>
-        <p>Completa estas frases con tu información:<br><br>Me llamo <strong>____________</strong><br>Mi nombre completo es <strong>____________</strong><br>Se escribe <strong>____________</strong></p>
+        <p>✏️ PRACTICE NOW</p>
+        <p>Complete these phrases with your information:<br><br>
+          Me llamo <strong>____________</strong><br>
+          Mi nombre completo es <strong>____________</strong><br>
+          Se escribe <strong>____________</strong>
+        </p>
       </div>
-      <div class="cta-box"><span style="font-size:1.3em;">🎯</span><p>¡Ahora estás listo para presentarte y preguntar el nombre de otras personas en español!</p></div>
-    <!-- CTA -->
-        <div style="text-align: center;">
-          <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48"
-   style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
-</a>
-        </div>
+      <div class="cta-box">
+        <span style="font-size:1.3em;">🎯</span>
+        <p>¡Ahora estás listo para presentarte y preguntar el nombre de otras personas en español!</p>
+      </div>
+      <!-- CTA -->
+      <div style="text-align: center; margin-top: 16px;">
+        <a id="btn-volver"
+          href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=48"
+          style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
+          🏫 Regresar al Aula Virtual
+        </a>
+      </div>
     </div>
   </div>
 
@@ -341,7 +404,7 @@
     <div class="dots" id="dots"></div>
     <button class="nav-btn" id="btnNext" onclick="cambiar(1)">→</button>
   </div>
-  <p class="contador" id="contador">Tarjeta 1 de 7</p>
+  <p class="contador" id="contador">Card 1 of 7</p>
 </div>
     
 <script>
@@ -370,7 +433,7 @@
     var d = document.getElementById('dot' + current);
     d.classList.add('active');
     d.style.background = colores[current];
-    document.getElementById('contador').textContent = 'Tarjeta ' + current + ' de ' + TOTAL;
+    document.getElementById('contador').textContent = 'Card ' + current + ' of ' + TOTAL;
   }
 
   function cambiar(dir) {
