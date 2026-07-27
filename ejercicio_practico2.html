@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Árbol Genealógico · Actividad Interactiva</title>
+  <title>Family Tree · Interactive Activity</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* --- ESTILOS (Sin cambios) --- */
     :root {
       --navy: #1a2e4a;
       --navy-mid: #2c4a72;
@@ -344,31 +345,31 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (Texto en inglés) -->
 <div class="header">
   <div class="header-inner">
-    <div class="header-badge">🌳 Unidad 2 · Mi familia y mi casa</div>
-    <h1>El <span>árbol genealógico</span></h1>
-    <p>Arrastra cada miembro de la familia a su lugar correcto en el árbol</p>
+    <div class="header-badge">🌳 Unit 2 · My family and my house</div>
+    <h1>The <span>family tree</span></h1>
+    <p>Drag each family member to their correct place in the tree</p>
   </div>
 </div>
 
-<!-- SCORE -->
+<!-- SCORE (Texto en inglés) -->
 <div class="score-strip">
-  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctos</div>
-  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">8</span> pendientes</div>
-  <div class="score-chip"><span class="dot dot-error"></span> <span id="wrongCount">0</span> incorrectos</div>
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correct</div>
+  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">8</span> pending</div>
+  <div class="score-chip"><span class="dot dot-error"></span> <span id="wrongCount">0</span> incorrect</div>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
-  <!-- INSTRUCCIÓN -->
+  <!-- INSTRUCCIÓN (Texto en inglés) -->
   <div class="instruction-card">
     <div class="instruction-icon">📋</div>
     <div class="instruction-text">
-      <p>Instrucciones</p>
-      <p>Arrastra o toca cada palabra y colócala en el miembro de la familia que corresponde. Cuando termines, usa el botón <strong>Comprobar</strong> para verificar tus respuestas.</p>
+      <p>Instructions</p>
+      <p>Drag or tap each word and place it on the correct family member. When you're done, use the <strong>Check</strong> button to verify your answers.</p>
     </div>
   </div>
 
@@ -378,13 +379,13 @@
     <div class="tree-card">
       <div class="tree-card-header">
         <span>🌳</span>
-        <span>Árbol genealógico · La familia García</span>
+        <span>Family tree · The García family</span>
       </div>
       <div class="tree-body">
 
         <!-- NIVEL 1: ABUELOS -->
         <div style="text-align:center; margin-bottom:4px;">
-          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generación 1</span>
+          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generation 1</span>
         </div>
         <div class="tree-level">
           <div class="node">
@@ -407,7 +408,7 @@
 
         <!-- NIVEL 2: PADRES + TÍO/TÍA -->
         <div style="text-align:center; margin-bottom:4px;">
-          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generación 2</span>
+          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generation 2</span>
         </div>
         <div class="tree-level" style="gap:12px;">
           <div class="node">
@@ -436,7 +437,7 @@
 
         <!-- NIVEL 3: HIJOS + PRIMO/PRIMA -->
         <div style="text-align:center; margin-bottom:4px;">
-          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generación 3</span>
+          <span style="font-size:0.7em; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2c4a72; font-family:sans-serif;">Generation 3</span>
         </div>
         <div class="tree-level" style="gap:12px;">
           <div class="node">
@@ -458,10 +459,10 @@
           </div>
         </div>
 
-        <!-- BOTONES -->
+        <!-- BOTONES (Texto en inglés) -->
         <div class="btn-row">
-          <button class="btn btn-primary" onclick="checkAll()">✅ Comprobar</button>
-          <button class="btn btn-secondary" onclick="resetAll()">🔄 Reiniciar</button>
+          <button class="btn btn-primary" onclick="checkAll()">✅ Check</button>
+          <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset</button>
         </div>
 
       </div>
@@ -470,75 +471,75 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
 
-      <!-- PALABRAS -->
+      <!-- PALABRAS (Texto en inglés) -->
       <div class="words-card">
         <div class="words-card-header">
           <span>🏷️</span>
-          <span>Miembros de la familia</span>
+          <span>Family members</span>
         </div>
         <div class="words-body">
-          <p style="font-size:0.78em; color:#718096; margin-bottom:12px; font-family:sans-serif;">Arrastra o toca cada palabra</p>
+          <p style="font-size:0.78em; color:#718096; margin-bottom:12px; font-family:sans-serif;">Drag or tap each word</p>
           <div class="words-grid" id="wordsGrid"></div>
         </div>
       </div>
 
-      <!-- FEEDBACK -->
+      <!-- FEEDBACK (Texto en inglés) -->
       <div class="feedback-card">
         <div class="feedback-card-header">
           <span>💬</span>
-          <span>Retroalimentación</span>
+          <span>Feedback</span>
         </div>
         <div class="feedback-body">
-          <div class="feedback-msg" id="feedbackMsg">Arrastra un miembro de la familia para comenzar...</div>
+          <div class="feedback-msg" id="feedbackMsg">Drag a family member to get started...</div>
         </div>
       </div>
 
-      <!-- LEYENDA -->
+      <!-- LEYENDA (Texto bilingüe) -->
       <div style="background:white; border-radius:14px; border:1px solid #e2e8f0; overflow:hidden; box-shadow:0 2px 10px rgba(26,46,74,0.06);">
         <div style="background:linear-gradient(135deg,#1a2e4a,#2c4a72); padding:10px 16px; display:flex; align-items:center; gap:8px;">
           <span style="color:#e8c96a;">💡</span>
-          <span style="color:white; font-size:0.85em; font-weight:600;">¿Sabías que?</span>
+          <span style="color:white; font-size:0.85em; font-weight:600;">Did you know?</span>
         </div>
         <div style="padding:14px 16px;">
-          <p style="font-size:0.82em; color:#718096; line-height:1.65; font-family:sans-serif;">En español, los sustantivos tienen género. <strong style="color:#1a2e4a;">Abuelo/abuela, tío/tía, primo/prima</strong>. El masculino plural también se usa para grupos mixtos: <strong style="color:#1a2e4a;">"los abuelos"</strong> puede referirse al abuelo y la abuela juntos.</p>
+          <p style="font-size:0.82em; color:#718096; line-height:1.65; font-family:sans-serif;">In Spanish, nouns have gender. <strong style="color:#1a2e4a;">Abuelo/abuela, tío/tía, primo/prima</strong> (grandfather/grandmother, uncle/aunt, cousin m./cousin f.). The masculine plural is also used for mixed groups: <strong style="color:#1a2e4a;">"los abuelos"</strong> can refer to both grandfather and grandmother together.</p>
         </div>
       </div>
 
     </div>
   </div>
 
-  <!-- RESULTADOS -->
+  <!-- RESULTADOS (Texto en inglés) -->
   <div class="results-screen" id="resultsScreen">
     <div class="results-emoji" id="resultsEmoji">🎉</div>
-    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
-    <div class="results-sub" id="resultsSub">Completaste el árbol genealógico</div>
+    <div class="results-title" id="resultsTitle">Excellent work!</div>
+    <div class="results-sub" id="resultsSub">You completed the family tree</div>
     <div class="results-score" id="resultsScore">8/8</div>
     <div class="results-breakdown">
       <div class="breakdown-item">
         <div class="breakdown-num color-success" id="finalCorrect">0</div>
-        <div class="breakdown-label">Correctos</div>
+        <div class="breakdown-label">Correct</div>
       </div>
       <div class="breakdown-item">
         <div class="breakdown-num color-error" id="finalWrong">0</div>
-        <div class="breakdown-label">Incorrectos</div>
+        <div class="breakdown-label">Incorrect</div>
       </div>
       <div class="breakdown-item">
         <div class="breakdown-num color-navy" id="finalPct">0%</div>
-        <div class="breakdown-label">Puntuación</div>
+        <div class="breakdown-label">Score</div>
       </div>
     </div>
     <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Intentar de nuevo</button>
-     <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=110"
+      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Try again</button>
+      <a id="btn-volver"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=364"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
 
 <script>
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=110';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=110';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=364';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=364';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
@@ -551,17 +552,18 @@
 </div>
 
 <script>
+  // --- DATOS DEL EJERCICIO (Todo el contenido lingüístico en español) ---
   const members = [
-    { id: 'abuelo', label: 'abuelo',  feedback: '✅ ¡Correcto! El <strong>abuelo</strong> es el padre del padre o de la madre.' },
-    { id: 'abuela', label: 'abuela',  feedback: '✅ ¡Correcto! La <strong>abuela</strong> es la madre del padre o de la madre.' },
-    { id: 'padre',  label: 'padre',   feedback: '✅ ¡Correcto! El <strong>padre</strong> es el hombre de la familia que tiene hijos.' },
-    { id: 'madre',  label: 'madre',   feedback: '✅ ¡Correcto! La <strong>madre</strong> es la mujer de la familia que tiene hijos.' },
-    { id: 'tío',    label: 'tío',     feedback: '✅ ¡Correcto! El <strong>tío</strong> es el hermano del padre o de la madre.' },
-    { id: 'tía',    label: 'tía',     feedback: '✅ ¡Correcto! La <strong>tía</strong> es la hermana del padre o de la madre.' },
-    { id: 'hijo',   label: 'hijo',    feedback: '✅ ¡Correcto! El <strong>hijo</strong> es el niño de la familia.' },
-    { id: 'hija',   label: 'hija',    feedback: '✅ ¡Correcto! La <strong>hija</strong> es la niña de la familia.' },
-    { id: 'primo',  label: 'primo',   feedback: '✅ ¡Correcto! El <strong>primo</strong> es el hijo del tío o de la tía.' },
-    { id: 'prima',  label: 'prima',   feedback: '✅ ¡Correcto! La <strong>prima</strong> es la hija del tío o de la tía.' },
+    { id: 'abuelo', label: 'abuelo',  feedback: '✅ ¡Correcto! El <strong>abuelo</strong> es el padre del padre o de la madre. (Grandfather)' },
+    { id: 'abuela', label: 'abuela',  feedback: '✅ ¡Correcto! La <strong>abuela</strong> es la madre del padre o de la madre. (Grandmother)' },
+    { id: 'padre',  label: 'padre',   feedback: '✅ ¡Correcto! El <strong>padre</strong> es el hombre de la familia que tiene hijos. (Father)' },
+    { id: 'madre',  label: 'madre',   feedback: '✅ ¡Correcto! La <strong>madre</strong> es la mujer de la familia que tiene hijos. (Mother)' },
+    { id: 'tío',    label: 'tío',     feedback: '✅ ¡Correcto! El <strong>tío</strong> es el hermano del padre o de la madre. (Uncle)' },
+    { id: 'tía',    label: 'tía',     feedback: '✅ ¡Correcto! La <strong>tía</strong> es la hermana del padre o de la madre. (Aunt)' },
+    { id: 'hijo',   label: 'hijo',    feedback: '✅ ¡Correcto! El <strong>hijo</strong> es el niño de la familia. (Son)' },
+    { id: 'hija',   label: 'hija',    feedback: '✅ ¡Correcto! La <strong>hija</strong> es la niña de la familia. (Daughter)' },
+    { id: 'primo',  label: 'primo',   feedback: '✅ ¡Correcto! El <strong>primo</strong> es el hijo del tío o de la tía. (Cousin - male)' },
+    { id: 'prima',  label: 'prima',   feedback: '✅ ¡Correcto! La <strong>prima</strong> es la hija del tío o de la tía. (Cousin - female)' },
   ];
 
   const slots = document.querySelectorAll('.slot');
@@ -643,7 +645,7 @@
       if (btn) btn.remove();
     } else {
       slot.className = 'slot incorrect filled';
-      setFeedback(`❌ <strong>${word}</strong> no va aquí. Piensa en la posición en el árbol e inténtalo de nuevo.`, 'error');
+      setFeedback(`❌ <strong>${word}</strong> no va aquí. Piensa en la posición en el árbol e inténtalo de nuevo. (Think about the position in the tree and try again)`, 'error');
       setTimeout(() => {
         if (!slot.dataset.locked) returnWord(slot);
       }, 900);
@@ -688,7 +690,7 @@
     if (correct === total) {
       setTimeout(() => showResults(correct, wrong, pct), 600);
     } else {
-      setFeedback(`Tienes <strong>${correct} de ${total}</strong> correctos. Revisa los marcados en rojo e inténtalo de nuevo.`, correct > wrong ? 'success' : 'error');
+      setFeedback(`You have <strong>${correct} of ${total}</strong> correct. Review the ones marked in red and try again.`, correct > wrong ? 'success' : 'error');
     }
     updateCounts();
   }
@@ -703,16 +705,16 @@
 
     if (pct === 100) {
       document.getElementById('resultsEmoji').textContent = '🏆';
-      document.getElementById('resultsTitle').textContent = '¡Perfecto! ¡Excelente!';
-      document.getElementById('resultsSub').textContent = 'Conoces todos los miembros de la familia. ¡Sigue así!';
+      document.getElementById('resultsTitle').textContent = '¡Perfecto! ¡Excelente! (Perfect! Excellent!)';
+      document.getElementById('resultsSub').textContent = 'You know all the family members. Keep it up!';
     } else if (pct >= 75) {
       document.getElementById('resultsEmoji').textContent = '🎉';
-      document.getElementById('resultsTitle').textContent = '¡Muy bien hecho!';
-      document.getElementById('resultsSub').textContent = 'Casi perfecto. Repasa los que fallaste.';
+      document.getElementById('resultsTitle').textContent = '¡Muy bien hecho! (Great job!)';
+      document.getElementById('resultsSub').textContent = 'Almost perfect. Review the ones you missed.';
     } else {
       document.getElementById('resultsEmoji').textContent = '💪';
-      document.getElementById('resultsTitle').textContent = '¡Buen intento!';
-      document.getElementById('resultsSub').textContent = 'Sigue practicando el vocabulario familiar.';
+      document.getElementById('resultsTitle').textContent = '¡Buen intento! (Good try!)';
+      document.getElementById('resultsSub').textContent = 'Keep practicing the family vocabulary.';
     }
   }
 
@@ -728,7 +730,7 @@
     correctCount = 0; wrongCount = 0;
     buildWords();
     updateCounts();
-    setFeedback('Arrastra un miembro de la familia para comenzar...', '');
+    setFeedback('Drag a family member to get started...', '');
   }
 
   function updateCounts() {
@@ -758,6 +760,7 @@
   }
 
   buildWords();
+  updateCounts();
 </script>
 </body>
 </html>
