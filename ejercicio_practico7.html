@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Actividades Cotidianas – Español A1</title>
+<title>Daily Activities · Spanish A1</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
+  /* --- ESTILOS (Sin cambios) --- */
   :root {
     --navy: #0a1628;
     --navy-mid: #132040;
@@ -658,25 +659,25 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (Texto en inglés) -->
 <header class="header">
   <div class="header-brand">
     <div class="header-badge">🇪🇸</div>
     <div>
-      <div class="header-title">Español A1 · Unidad 3</div>
-      <div class="header-sub">Actividades Cotidianas</div>
+      <div class="header-title">Spanish A1 · Unit 3</div>
+      <div class="header-sub">Daily Activities</div>
     </div>
   </div>
   <div class="score-bar">
-    <span class="score-label">Puntos</span>
+    <span class="score-label">Points</span>
     <span class="score-value" id="scoreDisplay">0</span>
   </div>
 </header>
 
-<!-- PROGRESS -->
+<!-- PROGRESS (Texto en inglés) -->
 <div class="progress-wrap" id="progressSection" style="display:none;">
   <div class="progress-info">
-    <span id="progressLabel">Pregunta 1 de 10</span>
+    <span id="progressLabel">Question 1 of 10</span>
     <span id="progressPct">0%</span>
   </div>
   <div class="progress-track">
@@ -695,13 +696,13 @@
     <div class="feedback-correct-answer" id="fbCorrect"></div>
     <p class="feedback-msg" id="fbMsg"></p>
     <div class="feedback-score-delta" id="fbDelta"></div>
-    <button class="btn-next" id="btnNext">Continuar →</button>
+    <button class="btn-next" id="btnNext">Continue →</button>
   </div>
 </div>
 
 <script>
 // ═══════════════════════════════════════════
-//  DATA
+//  DATA (Todo el contenido en español)
 // ═══════════════════════════════════════════
 const questions = [
   {
@@ -768,18 +769,18 @@ const questions = [
 
 const feedbackMessages = {
   correct: [
-    ["¡Excelente trabajo! 🌟", "Cada respuesta correcta te acerca más a dominar el español. ¡Sigue con esa energía y llegarás muy lejos!"],
-    ["¡Perfecto! ✨", "Tienes un gran ojo para los detalles del idioma. ¡Tu esfuerzo está dando frutos — no te detengas ahora!"],
-    ["¡Muy bien hecho! 🏆", "Vas acumulando puntos y conocimiento al mismo tiempo. ¡El español te espera — sigue adelante!"],
-    ["¡Correcto! 🎯", "Una respuesta más en el camino al éxito. ¡Confía en ti mismo y sigue conquistando el vocabulario!"],
-    ["¡Genial! 🌟", "¡Estás demostrando que practicar vale la pena! Cada pregunta bien respondida es un paso más hacia la fluidez."]
+    ["¡Excelente trabajo! 🌟", "Cada respuesta correcta te acerca más a dominar el español. ¡Sigue con esa energía y llegarás muy lejos! (Every correct answer brings you closer to mastering Spanish. Keep that energy and you'll go far!)"],
+    ["¡Perfecto! ✨", "Tienes un gran ojo para los detalles del idioma. ¡Tu esfuerzo está dando frutos — no te detengas ahora! (You have a great eye for language details. Your effort is paying off - don't stop now!)"],
+    ["¡Muy bien hecho! 🏆", "Vas acumulando puntos y conocimiento al mismo tiempo. ¡El español te espera — sigue adelante! (You're accumulating points and knowledge at the same time. Spanish awaits you - keep going!)"],
+    ["¡Correcto! 🎯", "Una respuesta más en el camino al éxito. ¡Confía en ti mismo y sigue conquistando el vocabulario! (One more answer on the path to success. Trust yourself and keep conquering vocabulary!)"],
+    ["¡Genial! 🌟", "¡Estás demostrando que practicar vale la pena! Cada pregunta bien respondida es un paso más hacia la fluidez. (You're showing that practice pays off! Each correctly answered question is another step towards fluency!)"]
   ],
   wrong: [
-    ["¡Casi lo tienes! 💪", "Los errores son los mejores maestros del idioma. Revisa la respuesta correcta y en la próxima pregunta podrás recuperar puntos."],
-    ["¡No te rindas! 🚀", "Aprender un idioma tiene sus retos, pero tú tienes la perseverancia. ¡La próxima es tuya — confía en tu proceso!"],
-    ["¡Sigue intentando! 🌱", "Cada error es semilla de aprendizaje. Ahora ya sabes la respuesta correcta, ¡úsala a tu favor en las siguientes!"],
-    ["¡Buen intento! 🔄", "El español requiere práctica, y tú estás aquí haciéndolo. ¡Esa actitud ya vale mucho! Recupera puntos en las siguientes."],
-    ["¡Tú puedes! 💡", "Recuerda: los mejores hablantes cometieron errores al principio. ¡Observa la respuesta correcta y sigue adelante con fuerza!"]
+    ["¡Casi lo tienes! 💪", "Los errores son los mejores maestros del idioma. Revisa la respuesta correcta y en la próxima pregunta podrás recuperar puntos. (Errors are the best language teachers. Review the correct answer and in the next question you can recover points.)"],
+    ["¡No te rindas! 🚀", "Aprender un idioma tiene sus retos, pero tú tienes la perseverancia. ¡La próxima es tuya — confía en tu proceso! (Learning a language has its challenges, but you have perseverance. The next one is yours - trust your process!)"],
+    ["¡Sigue intentando! 🌱", "Cada error es semilla de aprendizaje. Ahora ya sabes la respuesta correcta, ¡úsala a tu favor en las siguientes! (Every mistake is a seed of learning. Now you know the correct answer, use it to your advantage in the next ones!)"],
+    ["¡Buen intento! 🔄", "El español requiere práctica, y tú estás aquí haciéndolo. ¡Esa actitud ya vale mucho! Recupera puntos en las siguientes. (Spanish requires practice, and you're here doing it. That attitude is already worth a lot! Recover points in the next ones.)"],
+    ["¡Tú puedes! 💡", "Recuerda: los mejores hablantes cometieron errores al principio. ¡Observa la respuesta correcta y sigue adelante con fuerza! (Remember: the best speakers made mistakes at the beginning. Look at the correct answer and move forward with strength!)"]
   ]
 };
 
@@ -808,7 +809,7 @@ function updateScore(val) {
 function updateProgress(q) {
   const pct = Math.round((q / questions.length) * 100);
   document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = `Pregunta ${q} de ${questions.length}`;
+  document.getElementById('progressLabel').textContent = `Question ${q} of ${questions.length}`;
   document.getElementById('progressPct').textContent = pct + '%';
 }
 
@@ -827,16 +828,16 @@ function showSplash() {
   stage.innerHTML = `
     <div class="card splash-card" style="animation:cardIn 0.6s cubic-bezier(0.22,1,0.36,1) both;">
       <span class="splash-icon">📅</span>
-      <div class="splash-pretitle">Español A1 · Unidad 3 · Tema 1</div>
-      <h1 class="splash-title">Actividades<br><em>Cotidianas</em></h1>
-      <p class="splash-desc">Pon a prueba tu vocabulario sobre las rutinas diarias. Lee cada situación con atención y elige la opción correcta.</p>
+      <div class="splash-pretitle">Spanish A1 · Unit 3 · Topic 1</div>
+      <h1 class="splash-title">Daily<br><em>Activities</em></h1>
+      <p class="splash-desc">Test your vocabulary about daily routines. Read each situation carefully and choose the correct option.</p>
       <div class="splash-tags">
-        <span class="tag">10 preguntas</span>
-        <span class="tag">20 seg. por pregunta</span>
-        <span class="tag">Nivel A1</span>
-        <span class="tag">Vocabulario cotidiano</span>
+        <span class="tag">10 questions</span>
+        <span class="tag">20 sec. per question</span>
+        <span class="tag">Level A1</span>
+        <span class="tag">Everyday vocabulary</span>
       </div>
-      <button class="btn-start" onclick="startQuiz()">Comenzar actividad →</button>
+      <button class="btn-start" onclick="startQuiz()">Start activity →</button>
     </div>`;
 }
 
@@ -862,7 +863,7 @@ function showQuestion() {
   stage.innerHTML = `
     <div class="card question-card" id="qCard">
       <div class="q-meta">
-        <span class="q-num">Pregunta ${currentQ + 1} / ${questions.length}</span>
+        <span class="q-num">Question ${currentQ + 1} / ${questions.length}</span>
         <span class="q-category">${q.category}</span>
       </div>
       <p class="question-text">${q.text}</p>
@@ -901,7 +902,6 @@ function showQuestion() {
 function timeOut() {
   answered = true;
   const q = questions[currentQ];
-  // Disable all buttons & reveal
   revealAnswers(null, q.correct);
   showFeedback(false, q.options[q.correct], true);
 }
@@ -939,7 +939,6 @@ function revealAnswers(selected, correct) {
       btn.classList.add('wrong');
     }
   });
-  // Re-mark correct clearly if wrong selection
   if (selected !== correct && selected !== null) {
     document.getElementById('opt-' + correct).classList.remove('reveal-correct');
     document.getElementById('opt-' + correct).classList.add('correct');
@@ -951,18 +950,18 @@ function showFeedback(isCorrect, correctAnswer, timedOut, pts) {
   const pick  = rand(msgs);
 
   document.getElementById('fbIcon').textContent    = isCorrect ? '🎉' : (timedOut ? '⏰' : '😅');
-  document.getElementById('fbTitle').textContent   = timedOut ? '¡Tiempo agotado!' : pick[0];
+  document.getElementById('fbTitle').textContent   = timedOut ? '¡Tiempo agotado! (Time\'s up!)' : pick[0];
   document.getElementById('fbTitle').className     = 'feedback-title ' + (isCorrect ? 'ok' : 'fail');
   document.getElementById('fbMsg').textContent     = timedOut
-    ? '¡El tiempo se acabó! Revisa la respuesta correcta y la próxima vez confía más en ti. ¡Tú puedes recuperar esos puntos!'
+    ? '¡El tiempo se acabó! Revisa la respuesta correcta y la próxima vez confía más en ti. ¡Tú puedes recuperar esos puntos! (Time\'s up! Review the correct answer and next time trust yourself more. You can recover those points!)'
     : pick[1];
 
   if (isCorrect) {
-    document.getElementById('fbCorrect').innerHTML = `Respuesta: <span>${correctAnswer}</span>`;
-    document.getElementById('fbDelta').textContent  = `+${pts} puntos ✨`;
+    document.getElementById('fbCorrect').innerHTML = `Answer: <span>${correctAnswer}</span>`;
+    document.getElementById('fbDelta').textContent  = `+${pts} points ✨`;
   } else {
-    document.getElementById('fbCorrect').innerHTML = `La correcta era: <span>${correctAnswer}</span>`;
-    document.getElementById('fbDelta').textContent  = 'Sin puntos esta vez — ¡a la siguiente!';
+    document.getElementById('fbCorrect').innerHTML = `The correct answer was: <span>${correctAnswer}</span>`;
+    document.getElementById('fbDelta').textContent  = 'No points this time — next one!';
   }
 
   document.getElementById('feedbackOverlay').style.display = 'flex';
@@ -989,60 +988,60 @@ function showResults() {
 
   if (pct === 100) {
     trophy = '🏆';
-    msg = '"¡Perfección absoluta! Tienes un dominio impresionante del vocabulario cotidiano en español. Eres un ejemplo de dedicación y esfuerzo. ¡Sigue así y el español no tendrá secretos para ti!"';
+    msg = '"¡Perfección absoluta! Tienes un dominio impresionante del vocabulario cotidiano en español. Eres un ejemplo de dedicación y esfuerzo. ¡Sigue así y el español no tendrá secretos para ti! (Absolute perfection! You have an impressive command of everyday Spanish vocabulary. You are an example of dedication and effort. Keep it up and Spanish will have no secrets for you!)"';
   } else if (pct >= 80) {
     trophy = '🌟';
-    msg = '"¡Resultado excelente! Dominas muy bien las actividades cotidianas. Con un poco más de práctica, alcanzarás la perfección. ¡El A1 está casi conquistado!"';
+    msg = '"¡Resultado excelente! Dominas muy bien las actividades cotidianas. Con un poco más de práctica, alcanzarás la perfección. ¡El A1 está casi conquistado! (Excellent result! You master daily activities very well. With a little more practice, you\'ll reach perfection. A1 is almost conquered!)"';
   } else if (pct >= 60) {
     trophy = '📚';
-    msg = '"¡Buen trabajo! Ya reconoces muchas actividades del día a día. Te invitamos a repasar las preguntas que fallaste y a volver a intentarlo. ¡Cada intento te hace más fuerte!"';
+    msg = '"¡Buen trabajo! Ya reconoces muchas actividades del día a día. Te invitamos a repasar las preguntas que fallaste y a volver a intentarlo. ¡Cada intento te hace más fuerte! (Good work! You already recognize many daily activities. We invite you to review the questions you missed and try again. Every attempt makes you stronger!)"';
   } else if (pct >= 40) {
     trophy = '💪';
-    msg = '"¡Vas por buen camino! El aprendizaje de un idioma requiere práctica constante. Revisa el vocabulario de esta unidad y vuelve a intentarlo. ¡Tú puedes superar este desafío!"';
+    msg = '"¡Vas por buen camino! El aprendizaje de un idioma requiere práctica constante. Revisa el vocabulario de esta unidad y vuelve a intentarlo. ¡Tú puedes superar este desafío! (You\'re on the right track! Learning a language requires constant practice. Review the vocabulary from this unit and try again. You can overcome this challenge!)"';
   } else {
     trophy = '🌱';
-    msg = '"¡No te desanimes! Todos comenzamos desde cero. Cada intento es una oportunidad de aprender. Repasa las actividades cotidianas, practica en voz alta y regresa con más confianza. ¡El español te espera!"';
+    msg = '"¡No te desanimes! Todos comenzamos desde cero. Cada intento es una oportunidad de aprender. Repasa las actividades cotidianas, practica en voz alta y regresa con más confianza. ¡El español te espera! (Don\'t get discouraged! We all start from zero. Every attempt is an opportunity to learn. Review daily activities, practice out loud and come back with more confidence. Spanish awaits you!)"';
   }
 
   const stage = document.getElementById('stage');
   stage.innerHTML = `
     <div class="card results-card" style="animation:cardIn 0.6s cubic-bezier(0.22,1,0.36,1) both;">
       <span class="results-trophy">${trophy}</span>
-      <h2 class="results-title">Actividad completada</h2>
-      <p class="results-subtitle">Español A1 · Actividades Cotidianas</p>
+      <h2 class="results-title">Activity completed</h2>
+      <p class="results-subtitle">Spanish A1 · Daily Activities</p>
       <div class="score-display">
         <span class="score-big">${score}</span>
-        <span class="score-total">&nbsp;puntos</span>
+        <span class="score-total">&nbsp;points</span>
       </div>
       <div class="score-breakdown">
         <div class="breakdown-item">
           <span class="breakdown-num ok">${correctCount}</span>
-          <span class="breakdown-label">Correctas</span>
+          <span class="breakdown-label">Correct</span>
         </div>
         <div class="breakdown-item">
           <span class="breakdown-num fail">${wrongCount}</span>
-          <span class="breakdown-label">Incorrectas</span>
+          <span class="breakdown-label">Incorrect</span>
         </div>
         <div class="breakdown-item">
           <span class="breakdown-num" style="color:var(--gold-light)">${pct}%</span>
-          <span class="breakdown-label">Precisión</span>
+          <span class="breakdown-label">Accuracy</span>
         </div>
       </div>
       <div class="divider"></div>
       <p class="results-msg">${msg}</p>
       <div class="results-actions">
-        <button class="btn-restart" onclick="startQuiz()">🔄 Reintentar</button>
+        <button class="btn-restart" onclick="startQuiz()">🔄 Try again</button>
         <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=165"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=419"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
 </div>
 </div>`;
   
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=165';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=165';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=419';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=419';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
