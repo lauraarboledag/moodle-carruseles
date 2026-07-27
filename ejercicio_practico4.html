@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>¿A dónde voy? · Actividad de direcciones</title>
+<title>Where to go? · Directions Activity</title>
 <style>
+  /* --- ESTILOS (Sin cambios) --- */
   :root {
     --navy: #1a2e4a;
     --navy-mid: #2c4a72;
@@ -319,25 +320,25 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (Texto en inglés) -->
 <div class="header">
-  <div class="header-badge">📍 Actividad · Temática 4</div>
-  <h1>¿A dónde voy? <span>Sigue las instrucciones</span></h1>
-  <p>Arrastra la instrucción correcta según lo que dice el turista</p>
+  <div class="header-badge">📍 Activity · Topic 4</div>
+  <h1>Where do I go? <span>Follow the instructions</span></h1>
+  <p>Drag the correct instruction according to what the tourist says</p>
 </div>
 
-<!-- SCORE STRIP -->
+<!-- SCORE STRIP (Texto en inglés) -->
 <div class="score-strip">
-  <div class="score-item">📍 <strong>8</strong> situaciones</div>
-  <div class="score-item">✅ <strong id="correct-count">0</strong> correctas</div>
+  <div class="score-item">📍 <strong>8</strong> situations</div>
+  <div class="score-item">✅ <strong id="correct-count">0</strong> correct</div>
   <div class="score-item">⏱️ <strong>~8 min</strong></div>
 </div>
 
 <div class="main">
 
-  <!-- BANCO — sticky -->
+  <!-- BANCO (Texto en inglés) -->
   <div class="bank-section">
-    <div class="bank-label">Banco de instrucciones</div>
+    <div class="bank-label">Instruction bank</div>
     <div class="word-bank" id="word-bank">
       <div class="chip" draggable="true" data-word="Gira a la derecha">Gira a la derecha</div>
       <div class="chip" draggable="true" data-word="Gira a la izquierda">Gira a la izquierda</div>
@@ -350,7 +351,7 @@
     </div>
   </div>
 
-  <!-- EJERCICIOS -->
+  <!-- EJERCICIOS (Todo el contenido en español) -->
   <div id="exercises">
 
     <!-- 1 -->
@@ -358,13 +359,13 @@
       <div class="ex-left">
         <div class="ex-num">1</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista está en la calle principal. El mapa de su teléfono indica que debe <strong>continuar por la misma calle</strong> sin doblar en ningún cruce.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">La instrucción es:</div>
-        <div class="drop-zone" data-index="0">Arrastra aquí</div>
+        <div class="drop-label">The instruction is:</div>
+        <div class="drop-zone" data-index="0">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -374,13 +375,13 @@
       <div class="ex-left">
         <div class="ex-num">2</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista llega a una intersección. El teléfono muestra una flecha que apunta hacia el lado de su <strong>mano dominante</strong>.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">La instrucción es:</div>
-        <div class="drop-zone" data-index="1">Arrastra aquí</div>
+        <div class="drop-label">The instruction is:</div>
+        <div class="drop-zone" data-index="1">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -390,13 +391,13 @@
       <div class="ex-left">
         <div class="ex-num">3</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista ve el parque que busca, pero está <strong>al otro lado de la avenida</strong>. El semáforo está en verde para los peatones.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">La instrucción es:</div>
-        <div class="drop-zone" data-index="2">Arrastra aquí</div>
+        <div class="drop-label">The instruction is:</div>
+        <div class="drop-zone" data-index="2">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -406,13 +407,13 @@
       <div class="ex-left">
         <div class="ex-num">4</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista camina hacia el <strong>norte</strong>. Su teléfono indica que debe doblar hacia el <strong>oeste</strong> en la próxima esquina.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">La instrucción es:</div>
-        <div class="drop-zone" data-index="3">Arrastra aquí</div>
+        <div class="drop-label">The instruction is:</div>
+        <div class="drop-zone" data-index="3">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -422,13 +423,13 @@
       <div class="ex-left">
         <div class="ex-num">5</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista busca la farmacia. Le explican que está <strong>justo al otro lado de la calle</strong>, mirando directamente al banco.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">La farmacia:</div>
-        <div class="drop-zone" data-index="4">Arrastra aquí</div>
+        <div class="drop-label">The pharmacy:</div>
+        <div class="drop-zone" data-index="4">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -438,13 +439,13 @@
       <div class="ex-left">
         <div class="ex-num">6</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista está en la parte <strong>baja de una calle con pendiente</strong>. El hotel está más arriba, en dirección norte.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">La instrucción es:</div>
-        <div class="drop-zone" data-index="5">Arrastra aquí</div>
+        <div class="drop-label">The instruction is:</div>
+        <div class="drop-zone" data-index="5">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -454,13 +455,13 @@
       <div class="ex-left">
         <div class="ex-num">7</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista pregunta dónde está el supermercado. Le responden que <strong>no está lejos</strong>: solo hay que caminar dos minutos.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El supermercado:</div>
-        <div class="drop-zone" data-index="6">Arrastra aquí</div>
+        <div class="drop-label">The supermarket:</div>
+        <div class="drop-zone" data-index="6">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -470,37 +471,37 @@
       <div class="ex-left">
         <div class="ex-num">8</div>
         <div>
-          <div class="phone-tag">📱 Turista</div>
+          <div class="phone-tag">📱 Tourist</div>
           <div class="situation-text">El turista llega a la plaza central. El restaurante está en el mismo lado de la calle, pero en la <strong>dirección opuesta a su mano dominante</strong>.</div>
         </div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El restaurante:</div>
-        <div class="drop-zone" data-index="7">Arrastra aquí</div>
+        <div class="drop-label">The restaurant:</div>
+        <div class="drop-zone" data-index="7">Drag here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
 
   </div>
 
-  <!-- RESULTADOS -->
+  <!-- RESULTADOS (Texto en inglés con algunos elementos en español) -->
   <div class="results" id="results">
     <div class="results-emoji" id="results-emoji">🎉</div>
     <div class="results-score" id="results-score">0<span>/8</span></div>
-    <h2 id="results-title">¡Bien hecho!</h2>
-    <p id="results-msg">Sigue practicando para dominar las direcciones en español.</p>
+    <h2 id="results-title">Great job!</h2>
+    <p id="results-msg">Keep practicing to master directions in Spanish.</p>
     <div class="btn-group">
-      <button class="btn btn-gold" onclick="resetActivity()">🔄 Reintentar</button>
+      <button class="btn btn-gold" onclick="resetActivity()">🔄 Try again</button>
       <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=136"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=390"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
 
 <script>
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=136';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=136';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/vview.php?id=390';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=390';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
@@ -516,6 +517,7 @@
 <div class="feedback-bar" id="feedback-bar"></div>
 
 <script>
+  // --- LÓGICA (Sin cambios) ---
   let draggedWord = null;
   let selectedChip = null;
   let correctCount = 0;
@@ -540,12 +542,12 @@
   function showResults() {
     const pct = correctCount / TOTAL;
     const emoji = pct === 1 ? '🏆' : pct >= 0.75 ? '🎉' : pct >= 0.5 ? '👍' : '💪';
-    const title = pct === 1 ? '¡Perfecto! ¡Eres un experto en direcciones!' :
-                  pct >= 0.75 ? '¡Muy bien! Casi lo tienes.' :
-                  pct >= 0.5  ? '¡Buen intento! Sigue practicando.' :
-                  '¡Puedes mejorar! Vuelve a intentarlo.';
-    const msg   = pct === 1 ? '¡Has colocado todas las instrucciones correctamente!' :
-                  `Acertaste ${correctCount} de ${TOTAL} situaciones. Repasa el vocabulario y vuelve a intentarlo.`;
+    const title = pct === 1 ? '¡Perfecto! ¡Eres un experto en direcciones! (Perfect! You\'re an expert in directions!)' :
+                  pct >= 0.75 ? '¡Muy bien! Casi lo tienes. (Very good! You almost have it.)' :
+                  pct >= 0.5  ? '¡Buen intento! Sigue practicando. (Good try! Keep practicing.)' :
+                  '¡Puedes mejorar! Vuelve a intentarlo. (You can improve! Try again.)';
+    const msg   = pct === 1 ? '¡Has colocado todas las instrucciones correctamente! (You placed all the instructions correctly!)' :
+                  `Acertaste ${correctCount} de ${TOTAL} situaciones. Repasa el vocabulario y vuelve a intentarlo. (You got ${correctCount} of ${TOTAL} situations right. Review the vocabulary and try again.)`;
 
     document.getElementById('results-emoji').textContent = emoji;
     document.getElementById('results-score').innerHTML = `${correctCount}<span>/${TOTAL}</span>`;
@@ -573,16 +575,16 @@
       icon.textContent = '✅';
       correctCount++;
       updateScore();
-      showFeedback('✅ ¡Correcto!', 'ok');
+      showFeedback('✅ ¡Correcto! (Correct!)', 'ok');
       checkAllDone();
     } else {
       zone.classList.add('wrong-ans');
       exercise.classList.add('wrong');
       icon.textContent = '❌';
-      showFeedback('❌ Incorrecto. El chip vuelve al banco.', 'ko');
+      showFeedback('❌ Incorrecto. El chip vuelve al banco. (Incorrect. The chip goes back to the bank.)', 'ko');
       setTimeout(() => {
         if (chip) chip.classList.remove('used');
-        zone.textContent = 'Arrastra aquí';
+        zone.textContent = 'Drag here';
         zone.classList.remove('filled', 'wrong-ans');
         zone.dataset.placed = '';
         exercise.classList.remove('wrong');
@@ -651,7 +653,7 @@
     selectedChip = null;
     document.querySelectorAll('.chip').forEach(c => c.classList.remove('used', 'selected', 'dragging'));
     document.querySelectorAll('.drop-zone').forEach(z => {
-      z.textContent = 'Arrastra aquí';
+      z.textContent = 'Drag here';
       z.classList.remove('filled', 'correct-ans', 'wrong-ans', 'over');
       z.dataset.placed = '';
     });
