@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tipos de Vivienda · Actividad Interactiva</title>
+  <title>Types of Housing · Interactive Activity</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* --- ESTILOS (Sin cambios) --- */
     :root {
       --navy: #1a2e4a; --navy-mid: #2c4a72; --navy-light: #3d6494;
       --gold: #c9a84c; --gold-light: #e8c96a;
@@ -118,83 +119,90 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (Texto en inglés) -->
 <div class="header">
   <div class="header-inner">
-    <div class="header-badge">🏠 Unidad 2 · Mi familia y mi casa</div>
-    <h1>Tipos de <span>vivienda</span></h1>
-    <p>Lee cada descripción y arrastra el nombre de la vivienda que corresponde</p>
+    <div class="header-badge">🏠 Unit 2 · My family and my house</div>
+    <h1>Types of <span>housing</span></h1>
+    <p>Read each description and drag the name of the correct type of housing</p>
   </div>
 </div>
 
-<!-- SCORE -->
+<!-- SCORE (Texto en inglés) -->
 <div class="score-strip">
-  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctas</div>
-  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">6</span> pendientes</div>
-  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrectas</div>
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correct</div>
+  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">6</span> pending</div>
+  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrect</div>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
+  <!-- INSTRUCCIÓN (Texto en inglés) -->
   <div class="instruction-card">
     <div class="instruction-icon">📋</div>
     <div class="instruction-text">
-      <p>Instrucciones</p>
-      <p>Arrastra o toca el nombre correcto desde el banco de palabras y colócalo debajo de la descripción que le corresponde. En móvil: toca primero la palabra y luego la tarjeta.</p>
+      <p>Instructions</p>
+      <p>Drag or tap the correct name from the word bank and place it under the matching description. On mobile: tap the word first, then the card.</p>
     </div>
   </div>
 
+  <!-- BANCO DE PALABRAS (Texto en inglés) -->
   <div class="bank-card">
     <div class="bank-header">
       <span>🏷️</span>
-      <span>Banco de palabras — Tipos de vivienda</span>
+      <span>Word bank — Types of housing</span>
     </div>
     <div class="bank-body" id="wordBank"></div>
   </div>
 
+  <!-- NOTA CULTURAL (Texto en español) -->
   <div class="cultural-note">
     <span class="cn-icon">🌍</span>
     <div>
-      <p class="cn-label">Nota cultural</p>
-      <p class="cn-text">En España se dice <strong style="color:#e8c96a;">piso</strong> para referirse a un apartamento. En Latinoamérica es más común <strong style="color:#e8c96a;">apartamento</strong> o <strong style="color:#e8c96a;">departamento</strong>. El <strong style="color:#e8c96a;">ático</strong> (España) equivale al <strong style="color:#e8c96a;">penthouse</strong> en otros países hispanohablantes.</p>
+      <p class="cn-label">Cultural note</p>
+      <p class="cn-text">In Spain, <strong style="color:#e8c96a;">piso</strong> is used for an apartment. In Latin America, <strong style="color:#e8c96a;">apartamento</strong> or <strong style="color:#e8c96a;">departamento</strong> is more common. The <strong style="color:#e8c96a;">ático</strong> (Spain) is equivalent to a <strong style="color:#e8c96a;">penthouse</strong> in other Spanish-speaking countries.</p>
     </div>
   </div>
 
+  <!-- TARJETAS -->
   <div class="cards-grid" id="cardsGrid"></div>
 
+  <!-- FEEDBACK (Texto en inglés) -->
   <div class="feedback-bar">
     <span class="feedback-icon" id="feedbackIcon">💬</span>
-    <span class="feedback-text" id="feedbackText">Arrastra un nombre para comenzar...</span>
+    <span class="feedback-text" id="feedbackText">Drag a word to get started...</span>
   </div>
 
+  <!-- BOTONES (Texto en inglés) -->
   <div class="btn-row">
-    <button class="btn btn-primary"   onclick="checkAll()">✅ Comprobar todo</button>
-    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reiniciar</button>
+    <button class="btn btn-primary"   onclick="checkAll()">✅ Check all</button>
+    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset</button>
   </div>
 
+  <!-- RESULTADOS (Texto en inglés) -->
   <div class="results-screen" id="resultsScreen">
     <div class="results-emoji" id="resultsEmoji">🎉</div>
-    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
-    <div class="results-sub"   id="resultsSub">Completaste la actividad</div>
+    <div class="results-title" id="resultsTitle">Excellent work!</div>
+    <div class="results-sub"   id="resultsSub">You completed the activity</div>
     <div class="results-score" id="resultsScore">6/6</div>
     <div class="results-breakdown">
-      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correctas</div></div>
-      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrectas</div></div>
-      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Puntuación</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correct</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrect</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Score</div></div>
     </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Intentar de nuevo</button>
+      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Try again</button>
       <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=118"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=372"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
 
 <script>
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=118';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=118';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=372';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=372';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
@@ -207,48 +215,49 @@
 </div>
 
 <script>
+// --- DATOS DEL EJERCICIO (Todo el contenido lingüístico en español) ---
 const housing = [
   {
     id: 'casa',
     label: 'la casa',
     emoji: '🏡',
     description: 'Es una vivienda <strong>independiente</strong> con puerta propia a la calle. Generalmente tiene jardín, garaje y varios pisos. Vive una sola familia.',
-    feedback: '🏡 <strong>¡Correcto!</strong> <strong>La casa</strong> es una vivienda independiente. También se llama <em>casa unifamiliar</em> cuando es para una sola familia.'
+    feedback: '🏡 <strong>¡Correcto!</strong> <strong>La casa</strong> es una vivienda independiente. También se llama <em>casa unifamiliar</em> cuando es para una sola familia. (A single-family home)'
   },
   {
     id: 'apartamento',
     label: 'el apartamento',
     emoji: '🏢',
     description: 'Es una vivienda dentro de un <strong>edificio</strong>. Comparte paredes con otras viviendas. En España se llama <em>piso</em>.',
-    feedback: '🏢 <strong>¡Correcto!</strong> <strong>El apartamento</strong> está dentro de un edificio y comparte estructura con otras viviendas. En España se dice <em>piso</em>.'
+    feedback: '🏢 <strong>¡Correcto!</strong> <strong>El apartamento</strong> está dentro de un edificio y comparte estructura con otras viviendas. En España se dice <em>piso</em>. (Apartment)'
   },
   {
     id: 'estudio',
     label: 'el estudio',
     emoji: '🛋️',
     description: 'Es una vivienda muy <strong>pequeña</strong> donde la sala, el dormitorio y la cocina están en un solo espacio abierto. Ideal para una persona.',
-    feedback: '🛋️ <strong>¡Correcto!</strong> <strong>El estudio</strong> tiene todo en un mismo espacio. También se llama <em>monoambiente</em> en algunos países.'
+    feedback: '🛋️ <strong>¡Correcto!</strong> <strong>El estudio</strong> tiene todo en un mismo espacio. También se llama <em>monoambiente</em> en algunos países. (Studio apartment)'
   },
   {
     id: 'atico',
     label: 'el ático',
     emoji: '🌇',
     description: 'Es una vivienda en el <strong>último piso</strong> de un edificio. Suele tener terraza con vistas panorámicas y es considerada de lujo.',
-    feedback: '🌇 <strong>¡Correcto!</strong> <strong>El ático</strong> está en el piso más alto del edificio y suele tener terraza. En otros países se dice <em>penthouse</em>.'
+    feedback: '🌇 <strong>¡Correcto!</strong> <strong>El ático</strong> está en el piso más alto del edificio y suele tener terraza. En otros países se dice <em>penthouse</em>. (Penthouse)'
   },
   {
     id: 'habitacion',
     label: 'la habitación compartida',
     emoji: '🛏️',
     description: 'Es un <strong>cuarto dentro de una vivienda</strong> que se alquila de forma independiente. Se comparte cocina y baño con otras personas.',
-    feedback: '🛏️ <strong>¡Correcto!</strong> <strong>La habitación compartida</strong> es muy común entre estudiantes universitarios. También se llama <em>cuarto en arriendo</em>.'
+    feedback: '🛏️ <strong>¡Correcto!</strong> <strong>La habitación compartida</strong> es muy común entre estudiantes universitarios. También se llama <em>cuarto en arriendo</em>. (Shared room)'
   },
   {
     id: 'cabana',
     label: 'la cabaña',
     emoji: '🛖',
     description: 'Es una vivienda pequeña de <strong>madera</strong>, generalmente en el campo, la montaña o el bosque. Se usa sobre todo para vacaciones.',
-    feedback: '🛖 <strong>¡Correcto!</strong> <strong>La cabaña</strong> es típica de zonas rurales o de montaña. En algunos países también se llama <em>refugio</em> o <em>chalet</em>.'
+    feedback: '🛖 <strong>¡Correcto!</strong> <strong>La cabaña</strong> es típica de zonas rurales o de montaña. En algunos países también se llama <em>refugio</em> o <em>chalet</em>. (Cabin)'
   }
 ];
 
@@ -283,7 +292,7 @@ function build() {
         <p class="card-description">${h.description}</p>
       </div>
       <div class="card-slot-wrap">
-        <div class="slot" id="slot-${h.id}" data-answer="${h.id}">¿Qué tipo de vivienda es?</div>
+        <div class="slot" id="slot-${h.id}" data-answer="${h.id}">What type of housing is this?</div>
       </div>`;
     grid.appendChild(card);
   });
@@ -296,7 +305,7 @@ function build() {
   });
 
   updateCounts();
-  setFeedback('💬', 'Arrastra un nombre para comenzar...', '');
+  setFeedback('💬', 'Drag a word to get started...', '');
 }
 
 function handleChipClick(chip) {
@@ -337,7 +346,7 @@ function placeWord(slot, chip) {
     setFeedback('✅', h.feedback, 'success');
   } else {
     slot.className = 'slot incorrect filled';
-    setFeedback('❌', `<strong>${h.label}</strong> no corresponde a esta descripción. Vuelve a intentarlo.`, 'error');
+    setFeedback('❌', `<strong>${h.label}</strong> no corresponde a esta descripción. Vuelve a intentarlo. (Doesn't match this description. Try again.)`, 'error');
     setTimeout(() => { if (!slot.dataset.locked) returnWord(slot); }, 950);
   }
   updateCounts();
@@ -348,7 +357,7 @@ function returnWord(slot) {
   const value = slot.dataset.placed;
   if (!value) return;
   const h = housing.find(x => x.id === value);
-  slot.innerHTML = '¿Qué tipo de vivienda es?';
+  slot.innerHTML = 'What type of housing is this?';
   slot.className = 'slot';
   delete slot.dataset.placed;
   const chip = document.getElementById('chip-' + value);
@@ -370,7 +379,7 @@ function checkAll() {
   });
   updateCounts();
   if (correct === housing.length) { setTimeout(() => showResults(correct, wrong), 600); }
-  else setFeedback('📊', `Tienes <strong>${correct} de ${housing.length}</strong> correctas. Revisa las marcadas en rojo.`, correct >= wrong ? 'success' : 'error');
+  else setFeedback('📊', `You have <strong>${correct} of ${housing.length}</strong> correct. Review the ones marked in red.`, correct >= wrong ? 'success' : 'error');
 }
 
 function showResults(correct, wrong) {
@@ -382,10 +391,10 @@ function showResults(correct, wrong) {
   document.getElementById('finalWrong').textContent   = wrong;
   document.getElementById('finalPct').textContent     = `${pct}%`;
   const [emoji, title, sub] = pct === 100
-    ? ['🏆', '¡Perfecto! ¡Excelente!',  '¡Conoces todos los tipos de vivienda en español!']
+    ? ['🏆', '¡Perfecto! ¡Excelente! (Perfect! Excellent!)',  'You know all the types of housing in Spanish!']
     : pct >= 66
-    ? ['🎉', '¡Muy bien!',              'Casi perfecto. Repasa las que fallaste.']
-    : ['💪', '¡Buen intento!',          'Sigue practicando el vocabulario de vivienda.'];
+    ? ['🎉', '¡Muy bien! (Very good!)',              'Almost perfect. Review the ones you missed.']
+    : ['💪', '¡Buen intento! (Good try!)',          'Keep practicing the housing vocabulary.'];
   document.getElementById('resultsEmoji').textContent = emoji;
   document.getElementById('resultsTitle').textContent = title;
   document.getElementById('resultsSub').textContent   = sub;
