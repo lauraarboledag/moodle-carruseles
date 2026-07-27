@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hay, tener y estar · Completa las oraciones</title>
+<title>Hay, Tener & Estar · Complete the Sentences</title>
 <style>
+  /* --- ESTILOS (Sin cambios) --- */
   :root {
     --navy: #1a2e4a;
     --navy-mid: #2c4a72;
@@ -300,22 +301,25 @@
 </head>
 <body>
 
+<!-- HEADER (Texto en inglés) -->
 <div class="header">
-  <div class="header-badge">📝 Actividad · Temática 5</div>
-  <h1>Completa con <span>hay</span>, <span>estar</span> o <span>tener</span></h1>
-  <p>Arrastra la forma verbal correcta para completar cada oración</p>
+  <div class="header-badge">📝 Activity · Topic 5</div>
+  <h1>Complete with <span>hay</span>, <span>estar</span> or <span>tener</span></h1>
+  <p>Drag the correct verb form to complete each sentence</p>
 </div>
 
+<!-- SCORE STRIP (Texto en inglés) -->
 <div class="score-strip">
-  <div class="score-item">📋 <strong>8</strong> oraciones</div>
-  <div class="score-item">✅ <strong id="correct-count">0</strong> correctas</div>
+  <div class="score-item">📋 <strong>8</strong> sentences</div>
+  <div class="score-item">✅ <strong id="correct-count">0</strong> correct</div>
   <div class="score-item">⏱️ <strong>~8 min</strong></div>
 </div>
 
 <div class="main">
 
+  <!-- BANCO DE VERBOS (Texto en inglés) -->
   <div class="bank-section">
-    <div class="bank-label">Banco de verbos</div>
+    <div class="bank-label">Verb bank</div>
     <div class="word-bank" id="word-bank">
       <!-- hay aparece dos veces: ejercicios 1 y 4 lo necesitan -->
       <div class="chip" draggable="true" data-word="hay" data-id="hay-1">hay</div>
@@ -330,17 +334,18 @@
     </div>
   </div>
 
+  <!-- EJERCICIOS (Todo el contenido en español) -->
   <div id="exercises">
 
     <!-- 1 -->
     <div class="exercise" data-answer="hay">
       <div class="ex-left">
         <div class="ex-num">1</div>
-        <div class="sentence">En mi barrio <strong>___</strong> un supermercado muy grande. <em>(existencia)</em></div>
+        <div class="sentence">En mi barrio <strong>___</strong> un supermercado muy grande. <em>(existence)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -349,11 +354,11 @@
     <div class="exercise" data-answer="está">
       <div class="ex-left">
         <div class="ex-num">2</div>
-        <div class="sentence">El museo <strong>___</strong> enfrente del parque central. <em>(ubicación)</em></div>
+        <div class="sentence">El museo <strong>___</strong> enfrente del parque central. <em>(location)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -362,11 +367,11 @@
     <div class="exercise" data-answer="tengo">
       <div class="ex-left">
         <div class="ex-num">3</div>
-        <div class="sentence">Yo <strong>___</strong> dos hermanos y una hermana. <em>(posesión)</em></div>
+        <div class="sentence">Yo <strong>___</strong> dos hermanos y una hermana. <em>(possession)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -375,11 +380,11 @@
     <div class="exercise" data-answer="hay">
       <div class="ex-left">
         <div class="ex-num">4</div>
-        <div class="sentence">En esta ciudad <strong>___</strong> muchos restaurantes de comida colombiana. <em>(existencia)</em></div>
+        <div class="sentence">En esta ciudad <strong>___</strong> muchos restaurantes de comida colombiana. <em>(existence)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -388,11 +393,11 @@
     <div class="exercise" data-answer="tienen">
       <div class="ex-left">
         <div class="ex-num">5</div>
-        <div class="sentence">Mis vecinos <strong>___</strong> un jardín con flores muy bonitas. <em>(posesión)</em></div>
+        <div class="sentence">Mis vecinos <strong>___</strong> un jardín con flores muy bonitas. <em>(possession)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -401,11 +406,11 @@
     <div class="exercise" data-answer="están">
       <div class="ex-left">
         <div class="ex-num">6</div>
-        <div class="sentence">Las llaves <strong>___</strong> encima de la mesa de la cocina. <em>(ubicación)</em></div>
+        <div class="sentence">Las llaves <strong>___</strong> encima de la mesa de la cocina. <em>(location)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -414,11 +419,11 @@
     <div class="exercise" data-answer="tienes">
       <div class="ex-left">
         <div class="ex-num">7</div>
-        <div class="sentence">¿Tú <strong>___</strong> hambre? Hay un restaurante muy bueno cerca de aquí. <em>(posesión / expresión)</em></div>
+        <div class="sentence">¿Tú <strong>___</strong> hambre? Hay un restaurante muy bueno cerca de aquí. <em>(possession / expression)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
@@ -427,34 +432,35 @@
     <div class="exercise" data-answer="tenemos">
       <div class="ex-left">
         <div class="ex-num">8</div>
-        <div class="sentence">Nosotros <strong>___</strong> clase de español los lunes y los miércoles. <em>(posesión)</em></div>
+        <div class="sentence">Nosotros <strong>___</strong> clase de español los lunes y los miércoles. <em>(possession)</em></div>
       </div>
       <div class="ex-right">
-        <div class="drop-label">El verbo es:</div>
-        <div class="drop-zone">Arrastra aquí</div>
+        <div class="drop-label">The verb is:</div>
+        <div class="drop-zone">Drop here</div>
         <div class="feedback-icon"></div>
       </div>
     </div>
 
   </div>
 
+  <!-- RESULTADOS (Texto en inglés con algunos elementos en español) -->
   <div class="results" id="results">
     <div class="results-emoji" id="results-emoji">🎉</div>
     <div class="results-score" id="results-score">0<span>/8</span></div>
-    <h2 id="results-title">¡Bien hecho!</h2>
+    <h2 id="results-title">Great job!</h2>
     <p id="results-msg"></p>
     <div class="btn-group">
-      <button class="btn btn-gold" onclick="resetActivity()">🔄 Reintentar</button>
+      <button class="btn btn-gold" onclick="resetActivity()">🔄 Try again</button>
       <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=144"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=398"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
 
 <script>
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=144';
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=144';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=398';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=398';
 
   const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if (esMóvil) {
@@ -466,9 +472,11 @@
 
 </div>
 
+<!-- FEEDBACK BAR -->
 <div class="feedback-bar" id="feedback-bar"></div>
 
 <script>
+  // --- LÓGICA (Sin cambios) ---
   const TOTAL = 8;
   let correctCount = 0;
   let draggedChipId = null;
@@ -493,13 +501,13 @@
   function showResults() {
     const pct = correctCount / TOTAL;
     const emoji = pct === 1 ? '🏆' : pct >= 0.75 ? '🎉' : pct >= 0.5 ? '👍' : '💪';
-    const title = pct === 1 ? '¡Perfecto! ¡Dominas estos verbos!' :
-                  pct >= 0.75 ? '¡Muy bien! Casi lo tienes.' :
-                  pct >= 0.5  ? '¡Buen intento! Sigue practicando.' :
-                  '¡Puedes mejorar! Vuelve a intentarlo.';
+    const title = pct === 1 ? '¡Perfecto! ¡Dominas estos verbos! (Perfect! You\'ve mastered these verbs!)' :
+                  pct >= 0.75 ? '¡Muy bien! Casi lo tienes. (Very good! You almost have it.)' :
+                  pct >= 0.5  ? '¡Buen intento! Sigue practicando. (Good try! Keep practicing.)' :
+                  '¡Puedes mejorar! Vuelve a intentarlo. (You can improve! Try again.)';
     const msg = pct === 1
-      ? '¡Has completado todas las oraciones correctamente! Ya manejas hay, estar y tener con confianza.'
-      : `Acertaste ${correctCount} de ${TOTAL} oraciones. Repasa la diferencia entre hay, estar y tener y vuelve a intentarlo.`;
+      ? '¡Has completado todas las oraciones correctamente! Ya manejas hay, estar y tener con confianza. (You\'ve completed all sentences correctly! You now handle hay, estar and tener with confidence.)'
+      : `Acertaste ${correctCount} de ${TOTAL} oraciones. Repasa la diferencia entre hay, estar y tener y vuelve a intentarlo. (You got ${correctCount} of ${TOTAL} sentences right. Review the difference between hay, estar and tener and try again.)`;
 
     document.getElementById('results-emoji').textContent = emoji;
     document.getElementById('results-score').innerHTML = `${correctCount}<span>/${TOTAL}</span>`;
@@ -537,20 +545,20 @@
       icon.textContent = '✅';
       correctCount++;
       updateScore();
-      showFeedback('✅ ¡Correcto!', 'ok');
+      showFeedback('✅ ¡Correcto! (Correct!)', 'ok');
       checkAllDone();
     } else {
       zone.classList.add('wrong-ans');
       exercise.classList.add('wrong');
       icon.textContent = '❌';
-      showFeedback('❌ Incorrecto. El verbo vuelve al banco.', 'ko');
+      showFeedback('❌ Incorrecto. El verbo vuelve al banco. (Incorrect. The verb goes back to the bank.)', 'ko');
       const usedChipId = zone.dataset.chipId;
       setTimeout(() => {
         const returnChip = usedChipId
           ? document.querySelector(`.chip[data-id="${usedChipId}"]`)
           : getAvailableChip(word);
         if (returnChip) returnChip.classList.remove('used');
-        zone.textContent = 'Arrastra aquí';
+        zone.textContent = 'Drop here';
         zone.classList.remove('filled', 'wrong-ans');
         zone.dataset.placed = '';
         zone.dataset.chipId = '';
@@ -620,7 +628,7 @@
     selectedChip = null;
     document.querySelectorAll('.chip').forEach(c => c.classList.remove('used', 'selected', 'dragging'));
     document.querySelectorAll('.drop-zone').forEach(z => {
-      z.textContent = 'Arrastra aquí';
+      z.textContent = 'Drop here';
       z.classList.remove('filled', 'correct-ans', 'wrong-ans', 'over');
       z.dataset.placed = '';
       z.dataset.chipId = '';
