@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>¡Diploma A1 – Español para Extranjeros!</title>
+<title>Diploma A1 – Spanish for Foreigners!</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ═══════════════════════════════════════════
@@ -603,7 +603,6 @@ body::after {
    PRINT STYLES
 ══════════════════════════════════════════════ */
 @media print {
-  /* Hide everything except the diploma */
   body { background: white !important; padding: 0 !important; }
   body::before, body::after { display: none !important; }
   #confetti-canvas, #screen-welcome,
@@ -640,48 +639,48 @@ body::after {
 ════════════════════════════════════════════ -->
 <div class="screen active" id="screen-welcome">
 
-  <div class="stars-badge">⭐ Nivel A1 Completado · Instituto Innova</div>
+  <div class="stars-badge">⭐ Level A1 Completed · Instituto Innova</div>
 
   <div class="trophy-wrap">
     <div class="trophy-glow"></div>
     <div class="trophy-icon">🏆</div>
   </div>
 
-  <div class="welcome-tag">Español para Extranjeros</div>
+  <div class="welcome-tag">Spanish for Foreigners</div>
 
   <h1 class="welcome-h1">
-    ¡Felicidades por<br>completar el <em>nivel A1</em>! 🎉
+    Congratulations on<br>completing <em>Level A1</em>! 🎉
   </h1>
 
   <p class="welcome-p">
-    Has dado un gran paso en tu aprendizaje del español.
-    Genera tu diploma personalizado para celebrar este logro.
+    You have taken a big step in your Spanish learning journey.
+    Generate your personalized diploma to celebrate this achievement.
   </p>
 
   <div class="input-card">
-    <label class="input-label" for="student-name">Tu nombre completo</label>
+    <label class="input-label" for="student-name">Your full name</label>
     <input
       class="name-input"
       id="student-name"
       type="text"
-      placeholder="Escribe tu nombre aquí…"
+      placeholder="Type your name here…"
       maxlength="60"
       autocomplete="given-name"
       spellcheck="false"
     >
     <div class="input-error" id="input-error">
-      ⚠️ Por favor escribe tu nombre para generar el diploma.
+      ⚠️ Please enter your name to generate the diploma.
     </div>
   </div>
 
   <button class="btn-generate" onclick="generateDiploma()">
-    🎓 Generar mi diploma
+    🎓 Generate my diploma
   </button>
 
   <div class="stats-row">
-    <div class="stat-chip">📚 Unidades completadas · 4</div>
-    <div class="stat-chip">✅ Nivel A1 · Aprobado</div>
-    <div class="stat-chip">🌍 Español para extranjeros</div>
+    <div class="stat-chip">📚 Units completed · 4</div>
+    <div class="stat-chip">✅ Level A1 · Passed</div>
+    <div class="stat-chip">🌍 Spanish for foreigners</div>
   </div>
 
 </div><!-- /screen-welcome -->
@@ -698,8 +697,8 @@ body::after {
 
       <!-- Gold top band -->
       <div class="diploma-band">
-        <div class="diploma-school">Instituto Innova · Español para Extranjeros</div>
-        <div class="diploma-band-title">Certificado de Reconocimiento</div>
+        <div class="diploma-school">Instituto Innova · Spanish for Foreigners</div>
+        <div class="diploma-band-title">Certificate of Recognition</div>
       </div>
 
       <!-- Decorative SVG corners inside diploma body -->
@@ -721,7 +720,7 @@ body::after {
       <!-- Diploma body content -->
       <div class="diploma-body">
 
-        <div class="diploma-subtitle">Este diploma se otorga a</div>
+        <div class="diploma-subtitle">This diploma is awarded to</div>
 
         <!-- Student Name (filled by JS) -->
         <div class="diploma-name-wrap">
@@ -730,13 +729,13 @@ body::after {
         <div class="diploma-name-line"></div>
 
         <div class="diploma-this-certifies">
-          por haber completado satisfactoriamente
+          for having successfully completed
         </div>
 
         <div class="diploma-description">
-          el <strong>Nivel A1 de Español para Extranjeros</strong>,
-          demostrando dominio de vocabulario esencial,
-          rutinas diarias, compras y expresiones de cortesía.
+          the <strong>Level A1 of Spanish for Foreigners</strong>,
+          demonstrating mastery of essential vocabulary,
+          daily routines, shopping, and courtesy expressions.
         </div>
 
         <!-- Seal + Level badge -->
@@ -744,23 +743,23 @@ body::after {
           <div class="seal-circle">
             <span class="seal-emoji">🌍</span>
           </div>
-          <div class="seal-text">Instituto Innova<br>Español A1</div>
+          <div class="seal-text">Instituto Innova<br>Spanish A1</div>
         </div>
 
-        <div class="level-badge">✅ Nivel A1 · Aprobado</div>
+        <div class="level-badge">✅ Level A1 · Passed</div>
 
         <!-- Signatures row -->
         <div class="diploma-footer">
           <div class="diploma-sig">
             <div class="sig-name" style="font-size:1.1rem;color:#4a3000;">Instituto Innova</div>
             <div class="sig-line"></div>
-            <div class="sig-label">Institución</div>
+            <div class="sig-label">Institution</div>
           </div>
           <div class="diploma-date" id="diploma-date"></div>
           <div class="diploma-sig">
-            <div class="sig-name">Español A1</div>
+            <div class="sig-name">Spanish A1</div>
             <div class="sig-line"></div>
-            <div class="sig-label">Programa</div>
+            <div class="sig-label">Program</div>
           </div>
         </div>
 
@@ -768,8 +767,8 @@ body::after {
 
       <!-- Disclaimer -->
       <div class="diploma-disclaimer">
-        * Este certificado es simbólico y no tiene validez oficial.
-        Forma parte de los recursos educativos del Instituto Innova.
+        * This certificate is symbolic and has no official validity.
+        It is part of the educational resources of Instituto Innova.
       </div>
 
     </div><!-- /diploma -->
@@ -778,21 +777,21 @@ body::after {
   <!-- ACTION BUTTONS -->
   <div class="diploma-actions">
     <button class="btn-print" onclick="printDiploma()">
-      🖨️ Imprimir diploma
+      🖨️ Print diploma
     </button>
     <a class="btn-a2" href="https://institutoinnova.moodlecloud.com" onclick="startA2(event)">
-      🚀 Empezar el Nivel A2
+      🚀 Start Level A2
     </a>
     <button class="btn-back" onclick="goBack()">
-      ← Volver y editar mi nombre
+      ← Go back and edit my name
     </button>
   </div>
 
   <!-- Moodle return button -->
   <a id="btn-volver"
-     href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=96"
+     href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=511
      style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;width:100%;max-width:560px;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:800;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);margin-top:4px;">
-    🏫 Regresar al Aula Virtual
+    🏫 Return to Virtual Classroom
   </a>
 
 </div><!-- /screen-diploma -->
@@ -806,7 +805,7 @@ body::after {
 /* ── Moodle deep-link ── */
 (function(){
   const btn = document.getElementById('btn-volver');
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=96';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=511';
   if (/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href = appUrl;
 })();
 
@@ -859,7 +858,6 @@ class Particle {
     ctx.translate(this.x, this.y);
     ctx.rotate(this.angle);
     ctx.fillStyle = this.color;
-    /* alternates between rect and ellipse */
     if (this.color === '#ffffff') {
       ctx.beginPath();
       ctx.ellipse(0, 0, this.w / 2, this.h / 2, 0, 0, Math.PI * 2);
@@ -875,13 +873,12 @@ function startConfetti(count = 120) {
   stopConfetti();
   particles = Array.from({ length: count }, () => new Particle());
   let ticks = 0;
-  const maxTicks = 260; // runs for ~4.5 seconds at 60fps then fades
+  const maxTicks = 260;
 
   function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => { p.update(); p.draw(); });
     ticks++;
-    // After max ticks, fade out opacity gradually
     if (ticks > maxTicks) {
       particles.forEach(p => { p.opacity = Math.max(0, p.opacity - .018); });
       if (particles[0].opacity <= 0) { stopConfetti(); return; }
@@ -905,7 +902,6 @@ function generateDiploma() {
   const errorEl  = document.getElementById('input-error');
   const rawName  = input.value.trim();
 
-  /* Validation */
   if (!rawName) {
     errorEl.classList.add('show');
     input.focus();
@@ -917,31 +913,23 @@ function generateDiploma() {
     return;
   }
 
-  /* Capitalize each word */
   const studentName = rawName
     .split(' ')
     .map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
     .join(' ');
 
-  /* Insert name */
   document.getElementById('diploma-name').textContent = studentName;
 
-  /* Insert date */
   const now = new Date();
   const opts = { year: 'numeric', month: 'long', day: 'numeric' };
   document.getElementById('diploma-date').innerHTML =
-    `<div style="font-size:.7rem;color:#888;font-weight:600;">Fecha de emisión</div>
+    `<div style="font-size:.7rem;color:#888;font-weight:600;">Issue date</div>
      <div style="font-family:'Cormorant Garamond',serif;font-size:.88rem;color:#8a7050;font-style:italic;">
        ${now.toLocaleDateString('es-ES', opts)}
      </div>`;
 
-  /* Switch screens */
   switchScreen('screen-welcome', 'screen-diploma');
-
-  /* Celebration */
   setTimeout(() => startConfetti(160), 200);
-
-  /* Scroll top */
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -977,12 +965,11 @@ function printDiploma() {
    START A2
 ════════════════════════════════════ */
 function startA2(e) {
-  /* If you have a real A2 URL, remove this handler and let the href work */
   e.preventDefault();
   const ok = confirm(
-    '🚀 ¡Excelente decisión!\n\n' +
-    'Serás redirigido al Nivel A2 de Español para Extranjeros.\n\n' +
-    '(Conecta esta acción a la URL real de tu curso A2)'
+    '🚀 Great decision!\n\n' +
+    'You will be redirected to Level A2 of Spanish for Foreigners.\n\n' +
+    '(Connect this action to your real A2 course URL)'
   );
   if (ok) {
     window.location.href = 'https://institutoinnova.moodlecloud.com';
