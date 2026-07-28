@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>¡El Gran Cajero! – Español A1</title>
+<title>The Great Cashier! – Spanish A1</title>
 <link href="https://fonts.googleapis.com/css2?family=Righteous&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
@@ -207,7 +207,7 @@ h2.section{font-family:'Righteous',cursive;font-size:1.3rem;color:var(--bg2);mar
 .checkout-row.two{grid-template-columns:1fr 1fr;}
 .checkout-row.one{grid-template-columns:1fr;}
 
-/* Bolsa */
+/* Bag */
 .bag-zone{
   background:rgba(255,255,255,.05);border:2px dashed rgba(134,239,172,.25);
   border-radius:var(--r);padding:11px;
@@ -253,7 +253,7 @@ h2.section{font-family:'Righteous',cursive;font-size:1.3rem;color:var(--bg2);mar
 .total-val{font-family:'Righteous',cursive;font-size:1.15rem;color:var(--lime);}
 .total-val.big{font-size:1.5rem;color:var(--yellow);}
 
-/* ── CHANGE PANEL (nivel 3) ── */
+/* ── CHANGE PANEL (level 3) ── */
 .change-panel{
   background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);
   border-radius:var(--r);padding:13px;
@@ -356,44 +356,44 @@ h2.section{font-family:'Righteous',cursive;font-size:1.3rem;color:var(--bg2);mar
     <div class="card-head">
       <div style="font-size:3.2rem;margin-bottom:8px;">🏪</div>
       <h1 class="big">¡El Gran<br><span>Cajero!</span></h1>
-      <div class="sub">Español A1 · Unidad 4 · Precios y Cantidades</div>
+      <div class="sub">Spanish A1 · Unit 4 · Prices and Quantities</div>
     </div>
     <div class="card-body">
       <p class="desc">
-        ¡Bienvenido al supermercado! Eres el cajero y debes pasar los productos
-        por la caja, arrastrarlos a la bolsa del cliente y cobrar el precio correcto.
-        En el nivel avanzado, ¡también debes calcular el cambio! 🧾
+        Welcome to the supermarket! You are the cashier and must scan the products,
+        drag them into the customer's bag, and charge the correct price.
+        In the advanced level, you also have to calculate the change! 🧾
       </p>
-      <h2 class="section">Elige tu nivel</h2>
+      <h2 class="section">Choose your level</h2>
       <div class="level-grid">
         <div class="lvl-card" onclick="chooseLevel(1)" id="lvl1">
           <div class="lvl-icon">🧺</div>
-          <div class="lvl-name">Fácil</div>
-          <div class="lvl-desc">Arrastra 2 productos · confirma el total · 70 s</div>
+          <div class="lvl-name">Easy</div>
+          <div class="lvl-desc">Drag 2 products · confirm total · 70s</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(2)" id="lvl2">
           <div class="lvl-icon">🛒</div>
-          <div class="lvl-name">Medio</div>
-          <div class="lvl-desc">3–4 productos · verifica el precio · 55 s</div>
+          <div class="lvl-name">Medium</div>
+          <div class="lvl-desc">3–4 products · verify price · 55s</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(3)" id="lvl3">
           <div class="lvl-icon">💰</div>
-          <div class="lvl-name">Difícil</div>
-          <div class="lvl-desc">4–5 productos · calcula el cambio · 45 s</div>
+          <div class="lvl-name">Hard</div>
+          <div class="lvl-desc">4–5 products · calculate change · 45s</div>
         </div>
       </div>
       <button class="btn btn-green btn-full" id="btn-start" onclick="startGame()" disabled>
-        🚀 ¡Empezar!
+        🚀 Start!
       </button>
       <div style="text-align:center;margin-top:6px;">
-        <span style="font-size:.74rem;color:rgba(10,26,15,.4);">Arrastre y toque táctil · responsive</span>
+        <span style="font-size:.74rem;color:rgba(10,26,15,.4);">Drag & drop · touch · responsive</span>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ════════════════════════════════════
-     JUEGO
+     GAME
 ════════════════════════════════════ -->
 <div class="screen" id="screen-game">
   <div class="hud">
@@ -403,36 +403,36 @@ h2.section{font-family:'Righteous',cursive;font-size:1.3rem;color:var(--bg2);mar
       <div class="hpill">⭐ <span id="score-val">0</span></div>
       <div class="hpill">✅<span id="ok-val">0</span> ❌<span id="bad-val">0</span></div>
     </div>
-    <div class="hud-lvl" id="hud-lvl-lbl">Nivel 1</div>
+    <div class="hud-lvl" id="hud-lvl-lbl">Level 1</div>
   </div>
   <div class="arena" id="arena"></div>
 </div>
 
 <!-- ════════════════════════════════════
-     RESULTADOS
+     RESULTS
 ════════════════════════════════════ -->
 <div class="screen" id="screen-results">
   <div class="card" style="max-width:480px;">
     <div class="card-head">
       <span class="res-icon" id="res-icon">🏆</span>
-      <div class="res-title righteous" id="res-title">¡Turno completado!</div>
-      <div class="res-sub">Español A1 · El Gran Cajero · Precios y Cantidades</div>
+      <div class="res-title righteous" id="res-title">Shift completed!</div>
+      <div class="res-sub">Spanish A1 · El Gran Cajero · Prices and Quantities</div>
     </div>
     <div class="card-body">
       <div class="stats-row">
-        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Puntos</span></div>
-        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Aciertos</span></div>
-        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errores</span></div>
-        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Precisión</span></div>
+        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Points</span></div>
+        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Correct</span></div>
+        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errors</span></div>
+        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Accuracy</span></div>
       </div>
       <div class="res-divider"></div>
       <p class="res-msg" id="res-msg"></p>
       <div class="res-actions">
-        <button class="btn btn-green btn-full" onclick="restart()">🔄 Jugar de nuevo</button>
+        <button class="btn btn-green btn-full" onclick="restart()">🔄 Play again</button>
         <a id="btn-volver"
-           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=234"
+           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=488"
            style="display:inline-flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-          🏫 Regresar al Aula Virtual
+          🏫 Return to the Virtual Classroom
         </a>
       </div>
     </div>
@@ -446,12 +446,12 @@ h2.section{font-family:'Righteous',cursive;font-size:1.3rem;color:var(--bg2);mar
 /* ── Moodle deep-link ── */
 (function(){
   const btn=document.getElementById('btn-volver');
-  const appUrl='moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=234';
+  const appUrl='moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=488';
   if(/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href=appUrl;
 })();
 
 /* ════════════════════════════════════
-   CATÁLOGO
+   CATALOG
 ════════════════════════════════════ */
 const PRODUCTS=[
   {id:'leche',    emoji:'🥛', name:'leche',           price:1.20},
@@ -490,7 +490,7 @@ const CUSTOMERS=[
 ];
 
 /* ════════════════════════════════════
-   NIVELES
+   LEVELS
 ════════════════════════════════════ */
 const LEVELS={
   1:{ time:70, rounds:4, pts_drag:15, pts_total:20, pts_change:0,
@@ -505,7 +505,7 @@ const LEVELS={
 };
 
 /* ════════════════════════════════════
-   ESTADO
+   STATE
 ════════════════════════════════════ */
 let level=1, round=0, totalRounds=4;
 let score=0, okCount=0, badCount=0;
@@ -550,7 +550,7 @@ function startGame(){
   totalRounds=cfg.rounds;
   round=0;score=0;okCount=0;badCount=0;
   updateHUD();
-  $('hud-lvl-lbl').textContent='Nivel '+level;
+  $('hud-lvl-lbl').textContent='Level '+level;
   showScreen('screen-game');
   nextRound();
 }
@@ -605,12 +605,12 @@ function renderRound(){
   /* Banner */
   const banner=document.createElement('div');
   banner.className='round-banner';
-  banner.textContent=`Turno ${round} de ${totalRounds} — ¡Pasa los productos y cobra!`;
+  banner.textContent=`Round ${round} of ${totalRounds} — Scan the products and charge!`;
   arena.appendChild(banner);
 
   /* Conveyor */
   const convWrap=document.createElement('div');
-  convWrap.innerHTML=`<div class="conveyor-label">🛒 Cinta transportadora — arrastra cada producto a la bolsa</div>
+  convWrap.innerHTML=`<div class="conveyor-label">🛒 Conveyor belt — drag each product to the bag</div>
     <div class="conveyor" id="conveyor"></div>`;
   arena.appendChild(convWrap);
 
@@ -632,7 +632,7 @@ function renderRound(){
       <div class="bag-icon">${rs.customer.emoji}</div>
       <div class="bag-info">
         <div class="bag-client">${rs.customer.name}</div>
-        <div class="bag-paid">Paga con: <strong style="color:var(--yellow2)">${fmt(rs.paid)}</strong></div>
+        <div class="bag-paid">Pays with: <strong style="color:var(--yellow2)">${fmt(rs.paid)}</strong></div>
       </div>
     </div>
     <div class="bag-drop" id="bag-drop"></div>`;
@@ -670,7 +670,7 @@ function buildTotalPanel(){
 
   let rows=`
     <div class="total-row">
-      <span class="total-label">📦 Productos (${bagged}/${rs.products.length})</span>
+      <span class="total-label">📦 Products (${bagged}/${rs.products.length})</span>
       <span class="total-val" style="font-size:.9rem;color:var(--green3)">${progress}%</span>
     </div>`;
 
@@ -695,18 +695,18 @@ function buildTotalPanel(){
       const wrong2=roundN(total-0.20-Math.random().toFixed(1)*0.8);
       const opts=shuffle([total,Math.max(0.10,wrong1),Math.max(0.10,wrong2)]);
       rows+=`<div style="margin-top:8px;">
-        <div class="total-label" style="margin-bottom:6px;">¿Cuánto cobra? Elige el total correcto:</div>
+        <div class="total-label" style="margin-bottom:6px;">How much to charge? Choose the correct total:</div>
         <div style="display:flex;gap:7px;flex-wrap:wrap;">
           ${opts.map(o=>`<button class="change-opt" onclick="confirmTotal(${o})">${fmt(o)}</button>`).join('')}
         </div>
       </div>`;
     } else {
       rows+=`<div style="margin-top:8px;padding:7px 10px;background:var(--ok-bg);border-radius:8px;
-        font-size:.78rem;color:#bbf7d0;font-weight:600;">✅ Total confirmado: ${fmt(total)}</div>`;
+        font-size:.78rem;color:#bbf7d0;font-weight:600;">✅ Total confirmed: ${fmt(total)}</div>`;
     }
   } else {
     rows+=`<div style="font-size:.74rem;color:rgba(255,255,255,.3);margin-top:6px;font-style:italic;">
-      Arrastra todos los productos a la bolsa para ver el total.</div>`;
+      Drag all products to the bag to see the total.</div>`;
   }
   return rows;
 }
@@ -721,9 +721,9 @@ function buildChangePanel(){
   const opts=shuffle([correctChange,w1,w2]);
 
   return `<div class="change-question">
-    💬 ${rs.customer.name} paga <strong style="color:var(--yellow)">${fmt(rs.paid)}</strong>.
-    El total es <strong style="color:var(--lime)">${fmt(rs.total)}</strong>.
-    ¿Cuánto cambio le debes dar?
+    💬 ${rs.customer.name} pays <strong style="color:var(--yellow)">${fmt(rs.paid)}</strong>.
+    The total is <strong style="color:var(--lime)">${fmt(rs.total)}</strong>.
+    How much change should you give?
   </div>
   <div class="change-options" id="change-opts">
     ${opts.map(o=>`<button class="change-opt" onclick="answerChange(${o},this)">${fmt(o)}</button>`).join('')}
@@ -776,7 +776,7 @@ function handleDrop(itemId){
     bagDrop.appendChild(chip);
     badCount++;
     score=Math.max(0,score-8);
-    showToast(`❌ Producto incorrecto`,'fail');
+    showToast(`❌ Wrong product`,'fail');
     const bagZone=$('bag-zone');
     bagZone.classList.add('wrong-drop');
     setTimeout(()=>{bagZone.classList.remove('wrong-drop');chip.remove();},900);
@@ -790,7 +790,7 @@ function handleDrop(itemId){
     rs.bagged.push(itemId);
     okCount++;
     score+=LEVELS[level].pts_drag;
-    showToast(`✅ +${LEVELS[level].pts_drag} puntos`,'ok');
+    showToast(`✅ +${LEVELS[level].pts_drag} points`,'ok');
     showPop('+'+LEVELS[level].pts_drag,'#86efac');
 
     const origEl=document.querySelector(`.prod-chip[data-id="${itemId}"]`);
@@ -821,7 +821,7 @@ function confirmTotal(chosen){
   const pts=LEVELS[level].pts_total;
   if(isOk){
     score+=pts;okCount++;
-    showToast(`✅ ¡Total correcto! +${pts} puntos`,'ok');
+    showToast(`✅ Correct total! +${pts} points`,'ok');
     showPop('+'+pts,'#86efac');
     rs.totalConfirmed=true;
     refreshTotalPanel();
@@ -836,7 +836,7 @@ function confirmTotal(chosen){
     }
   } else {
     badCount++;score=Math.max(0,score-8);
-    showToast('❌ Total incorrecto, intenta de nuevo','fail');
+    showToast('❌ Incorrect total, try again','fail');
     updateHUD();
   }
 }
@@ -855,7 +855,7 @@ function answerChange(chosen, btn){
 
   if(isOk){
     score+=pts;okCount++;rs.changeAnswered=true;
-    showToast(`✅ ¡Cambio correcto! +${pts} puntos`,'ok');
+    showToast(`✅ Correct change! +${pts} points`,'ok');
     showPop('+'+pts,'#fbbf24');
     updateHUD();
     stopTimer();
@@ -867,7 +867,7 @@ function answerChange(chosen, btn){
       if(Math.abs(parseFloat(b.textContent.replace('€',''))-rs.change)<0.01)
         b.classList.add('chosen-ok');
     });
-    showToast(`❌ El cambio correcto era ${fmt(rs.change)}`,'fail');
+    showToast(`❌ The correct change was ${fmt(rs.change)}`,'fail');
     rs.changeAnswered=true;
     updateHUD();
     stopTimer();
@@ -939,7 +939,7 @@ function timeOut(){
   const rs=roundState;
   const missing=rs.products.length-rs.bagged.length;
   badCount+=missing+(rs.allBagged&&!rs.totalConfirmed?1:0)+(LEVELS[level].needChange&&rs.totalConfirmed&&!rs.changeAnswered?1:0);
-  showToast('⏰ ¡Tiempo! Siguiente turno…','fail');
+  showToast('⏰ Time\'s up! Next round…','fail');
   updateHUD();
   setTimeout(()=>nextRound(),1200);
 }
