@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>¡El Gran Mesero! – Español A1</title>
+<title>El Gran Mesero! – Spanish A1</title>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
@@ -496,36 +496,36 @@ p.desc{
     <div class="card-head">
       <div style="font-size:3.4rem;margin-bottom:6px;">🍽️</div>
       <h1 class="big">¡El Gran Mesero!</h1>
-      <div class="sub">Español A1 · Unidad 4 · Alimentos y Bebidas</div>
+      <div class="sub">Spanish A1 · Unit 4 · Food and Drinks</div>
     </div>
     <div class="card-body">
       <p class="desc">
-        ¡Bienvenido al restaurante! Eres el mesero y debes llevar los pedidos correctos a cada mesa.<br>
-        <strong>Arrastra</strong> cada plato o bebida a la mesa que lo pidió antes de que se acabe el tiempo. 🕐
+        Welcome to the restaurant! You are the waiter and must deliver the correct orders to each table.<br>
+        <strong>Drag</strong> each dish or drink to the table that ordered it before time runs out. 🕐
       </p>
-      <h2 class="section">Elige tu nivel</h2>
+      <h2 class="section">Choose your level</h2>
       <div class="level-grid">
         <div class="lvl-card" onclick="chooseLevel(1)" id="lvl1">
           <div class="lvl-icon">🌱</div>
-          <div class="lvl-name">Fácil</div>
-          <div class="lvl-desc">2 mesas · 60 s · vocabulario básico</div>
+          <div class="lvl-name">Easy</div>
+          <div class="lvl-desc">2 tables · 60s · basic vocabulary</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(2)" id="lvl2">
           <div class="lvl-icon">🍳</div>
-          <div class="lvl-name">Medio</div>
-          <div class="lvl-desc">3 mesas · 50 s · más platos</div>
+          <div class="lvl-name">Medium</div>
+          <div class="lvl-desc">3 tables · 50s · more dishes</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(3)" id="lvl3">
           <div class="lvl-icon">🔥</div>
-          <div class="lvl-name">Difícil</div>
-          <div class="lvl-desc">4 mesas · 40 s · menú completo</div>
+          <div class="lvl-name">Hard</div>
+          <div class="lvl-desc">4 tables · 40s · full menu</div>
         </div>
       </div>
       <button class="btn btn-gold btn-full" id="btn-start" onclick="startGame()" disabled>
-        🚀 ¡Empezar!
+        🚀 Start!
       </button>
       <div style="text-align:center;margin-top:6px;">
-        <span style="font-size:.78rem;color:rgba(61,31,10,.4);">Funciona con arrastre y toque táctil</span>
+        <span style="font-size:.78rem;color:rgba(61,31,10,.4);">Works with drag & drop and touch</span>
       </div>
     </div>
   </div>
@@ -543,7 +543,7 @@ p.desc{
       <div class="pill">⭐ <span id="score-val">0</span></div>
       <div class="pill">✅ <span id="ok-val">0</span> &nbsp;❌ <span id="bad-val">0</span></div>
     </div>
-    <div class="hud-lvl" id="hud-lvl-label">Nivel 1</div>
+    <div class="hud-lvl" id="hud-lvl-label">Level 1</div>
   </div>
 
   <!-- Arena (filled by JS) -->
@@ -557,24 +557,24 @@ p.desc{
   <div class="card" style="max-width:480px;">
     <div class="card-head">
       <span class="results-trophy" id="res-trophy">🏆</span>
-      <div class="results-title lobster" id="res-title">¡Turno completado!</div>
-      <div class="results-sub" id="res-sub">Español A1 · El Gran Mesero</div>
+      <div class="results-title lobster" id="res-title">Shift completed!</div>
+      <div class="results-sub" id="res-sub">Spanish A1 · El Gran Mesero</div>
     </div>
     <div class="card-body">
       <div class="stats-row">
-        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Puntos</span></div>
-        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Aciertos</span></div>
-        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errores</span></div>
-        <div class="stat"><span class="stat-n" style="color:var(--teal)" id="res-pct">0%</span><span class="stat-l">Precisión</span></div>
+        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Points</span></div>
+        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Correct</span></div>
+        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errors</span></div>
+        <div class="stat"><span class="stat-n" style="color:var(--teal)" id="res-pct">0%</span><span class="stat-l">Accuracy</span></div>
       </div>
       <div class="results-divider"></div>
       <p class="results-msg" id="res-msg"></p>
       <div class="results-actions">
-        <button class="btn btn-gold btn-full" onclick="restart()">🔄 Jugar de nuevo</button>
+        <button class="btn btn-gold btn-full" onclick="restart()">🔄 Play again</button>
         <a id="btn-volver"
-           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=218"
+           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=472"
            style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);text-align:center;width:100%;">
-          🏫 Regresar al Aula Virtual
+          🏫 Return to the Virtual Classroom
         </a>
       </div>
     </div>
@@ -588,8 +588,8 @@ p.desc{
 /* ── Moodle deep-link ── */
 (function(){
   const btn = document.getElementById('btn-volver');
-  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=218';
-  const appUrl   = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=218';
+  const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=472';
+  const appUrl   = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=472';
   const esMóvil  = /Android|iPhone|iPad/i.test(navigator.userAgent);
   if(esMóvil) btn.href = appUrl;
 })();
@@ -680,7 +680,7 @@ function startGame(){
   totalRounds=cfg.rounds;
   round=0; score=0; okCount=0; badCount=0;
   updateHUD();
-  document.getElementById('hud-lvl-label').textContent='Nivel '+level;
+  document.getElementById('hud-lvl-label').textContent='Level '+level;
   showScreen('screen-game');
   nextRound();
 }
@@ -733,13 +733,13 @@ function renderRound(){
   // Round heading
   const rh=document.createElement('div');
   rh.className='round-info';
-  rh.textContent=`Turno ${round} de ${totalRounds} — ¡Lleva los pedidos a las mesas correctas!`;
+  rh.textContent=`Round ${round} of ${totalRounds} — Deliver the orders to the correct tables!`;
   arena.appendChild(rh);
 
   // Tray
   const traySection=document.createElement('div');
   traySection.className='tray-section';
-  traySection.innerHTML=`<div class="tray-label">🎒 Tu bandeja — arrastra cada pedido a su mesa</div>
+  traySection.innerHTML=`<div class="tray-label">🎒 Your tray — drag each order to its table</div>
     <div class="tray" id="tray"></div>`;
   arena.appendChild(traySection);
 
@@ -766,7 +766,7 @@ function renderRound(){
       <div class="table-header">
         <div class="table-num">${table.num}</div>
         <div class="table-order">
-          <span class="order-label">Mesa ${table.num} pide:</span>
+          <span class="order-label">Table ${table.num} orders:</span>
           ${orderLines}
         </div>
       </div>
@@ -837,7 +837,7 @@ function handleDrop(zone, itemId){
     okCount++;
     const pts=LEVELS[level].pts_ok;
     score+=pts;
-    showToast(`✅ +${pts} puntos`,  'ok');
+    showToast(`✅ +${pts} points`,  'ok');
     showScorePop('+'+pts, '#2ECC71');
     pendingItems--;
 
@@ -854,7 +854,7 @@ function handleDrop(zone, itemId){
     badCount++;
     const pen=LEVELS[level].pts_fail;
     score=Math.max(0,score-pen);
-    showToast(`❌ −${pen} puntos`, 'fail');
+    showToast(`❌ −${pen} points`, 'fail');
     zone.classList.add('wrong-drop');
     setTimeout(()=>zone.classList.remove('wrong-drop'),500);
     // Return tray item
@@ -944,7 +944,7 @@ function stopTimer(){ clearInterval(timerInt); timerInt=null; }
 function updateTimerDisplay(){ document.getElementById('timer-val').textContent=timerSec; }
 
 function timeOut(){
-  showToast('⏰ ¡Tiempo! Siguiente turno…','fail');
+  showToast('⏰ Time\'s up! Next round…','fail');
   badCount+=pendingItems; // remaining undelivered count as fails
   updateHUD();
   setTimeout(()=>nextRound(),1200);
