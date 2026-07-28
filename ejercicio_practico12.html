@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Verbos gustar y encantar · Español A1</title>
+  <title>Verbs "Gustar" and "Encantar" · Spanish A1</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -137,17 +137,17 @@
 <!-- HEADER -->
 <div class="header">
   <div class="header-inner">
-    <div class="header-badge">⭐ Unidad 3 · Rutinas diarias y tiempo libre</div>
-    <h1>Verbos <span>gustar y encantar</span></h1>
-    <p>Arrastra la forma verbal correcta para completar cada oración</p>
+    <div class="header-badge">⭐ Unit 3 · Daily routines and free time</div>
+    <h1>Verbs <span>Gustar and Encantar</span></h1>
+    <p>Drag the correct verb form to complete each sentence</p>
   </div>
 </div>
 
 <!-- SCORE -->
 <div class="score-strip">
-  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctas</div>
-  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">10</span> pendientes</div>
-  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrectas</div>
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correct</div>
+  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">10</span> pending</div>
+  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrect</div>
 </div>
 
 <!-- MAIN -->
@@ -156,8 +156,8 @@
   <div class="instruction-card">
     <div class="instruction-icon">📌</div>
     <div class="instruction-text">
-      <p>Instrucciones</p>
-      <p>Arrastra o toca la forma verbal correcta (<strong>gusta, gustan, encanta, encantan</strong>) desde el banco de palabras y colócala en el espacio en blanco. Cada oración tiene su propia palabra en el banco.</p>
+      <p>Instructions</p>
+      <p>Drag or tap the correct verb form (<strong>gusta, gustan, encanta, encantan</strong>) from the word bank and place it into the blank space. Each sentence has its own word in the bank.</p>
     </div>
   </div>
 
@@ -165,7 +165,7 @@
   <div class="bank-card">
     <div class="bank-header">
       <span>🏷️</span>
-      <span>Banco de palabras — diez palabras (una por oración)</span>
+      <span>Word Bank — ten words (one per sentence)</span>
     </div>
     <div class="bank-body" id="wordBank"></div>
   </div>
@@ -173,8 +173,8 @@
   <div class="grammar-note">
     <span class="gn-icon">📘</span>
     <div>
-      <p class="gn-label">Nota gramatical</p>
-      <p class="gn-text">Los verbos <strong>gustar</strong> y <strong>encantar</strong> se conjugan según lo que gusta (sujeto). Usamos <strong>gusta / encanta</strong> con un sustantivo singular o infinitivo, y <strong>gustan / encantan</strong> con un sustantivo plural. Siempre van acompañados de un pronombre de objeto indirecto (me, te, le, nos, os, les).</p>
+      <p class="gn-label">Grammatical note</p>
+      <p class="gn-text">The verbs <strong>gustar</strong> and <strong>encantar</strong> are conjugated according to what is liked (the subject). We use <strong>gusta / encanta</strong> with a singular noun or infinitive, and <strong>gustan / encantan</strong> with a plural noun. They are always accompanied by an indirect object pronoun (me, te, le, nos, os, les).</p>
     </div>
   </div>
 
@@ -182,30 +182,30 @@
 
   <div class="feedback-bar">
     <span class="feedback-icon" id="feedbackIcon">💬</span>
-    <span class="feedback-text" id="feedbackText">Arrastra un verbo para comenzar...</span>
+    <span class="feedback-text" id="feedbackText">Drag a verb to begin...</span>
   </div>
 
   <div class="btn-row">
-    <button class="btn btn-primary"   onclick="checkAll()">✅ Comprobar todo</button>
-    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reiniciar</button>
+    <button class="btn btn-primary"   onclick="checkAll()">✅ Check all</button>
+    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset</button>
   </div>
 
   <div class="results-screen" id="resultsScreen">
     <div class="results-emoji" id="resultsEmoji">🎉</div>
     <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
-    <div class="results-sub"   id="resultsSub">Completaste la actividad</div>
+    <div class="results-sub"   id="resultsSub">You completed the activity</div>
     <div class="results-score" id="resultsScore">10/10</div>
     <div class="results-breakdown">
-      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correctas</div></div>
-      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrectas</div></div>
-      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Puntuación</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correct</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrect</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Score</div></div>
     </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Intentar de nuevo</button>
+      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Try again</button>
       <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=205"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=459"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
     </div>
   </div>
@@ -219,98 +219,95 @@ const oraciones = [
     label: 'gusta',
     emoji: '☕',
     description: 'A mí me ___ el café por las mañanas.',
-    hint: '🔍 Pista: el sujeto "el café" es singular → se usa "gusta"',
-    feedback: '☕ <strong>¡Correcto!</strong> "A mí me gusta el café" → "gusta" porque el sujeto (el café) es singular.'
+    hint: '🔍 Hint: the subject "el café" is singular → use "gusta"',
+    feedback: '☕ <strong>¡Correcto!</strong> "A mí me gusta el café" → "gusta" because the subject (el café) is singular.'
   },
   {
     id: 'gustan1',
     label: 'gustan',
     emoji: '🐱',
     description: 'A ella le ___ los gatos y los perros.',
-    hint: '🔍 Pista: el sujeto "los gatos y los perros" es plural → se usa "gustan"',
-    feedback: '🐱 <strong>¡Correcto!</strong> "A ella le gustan los gatos" → "gustan" porque el sujeto (los gatos y los perros) es plural.'
+    hint: '🔍 Hint: the subject "los gatos y los perros" is plural → use "gustan"',
+    feedback: '🐱 <strong>¡Correcto!</strong> "A ella le gustan los gatos" → "gustan" because the subject (los gatos y los perros) is plural.'
   },
   {
     id: 'encanta1',
     label: 'encanta',
     emoji: '✈️',
     description: 'A nosotros nos ___ viajar a países nuevos.',
-    hint: '🔍 Pista: el sujeto es el verbo en infinitivo "viajar" → se usa "encanta"',
-    feedback: '✈️ <strong>¡Correcto!</strong> "Nos encanta viajar" → "encanta" porque el sujeto es un verbo en infinitivo (viajar).'
+    hint: '🔍 Hint: the subject is the infinitive "viajar" → use "encanta"',
+    feedback: '✈️ <strong>¡Correcto!</strong> "Nos encanta viajar" → "encanta" because the subject is an infinitive (viajar).'
   },
   {
     id: 'encantan1',
     label: 'encantan',
     emoji: '🎬',
     description: 'A ellos les ___ las películas de terror.',
-    hint: '🔍 Pista: el sujeto "las películas" es plural → se usa "encantan"',
-    feedback: '🎬 <strong>¡Correcto!</strong> "Les encantan las películas" → "encantan" porque el sujeto (las películas) es plural.'
+    hint: '🔍 Hint: the subject "las películas" is plural → use "encantan"',
+    feedback: '🎬 <strong>¡Correcto!</strong> "Les encantan las películas" → "encantan" because the subject (las películas) is plural.'
   },
   {
     id: 'gusta2',
     label: 'gusta',
     emoji: '🏀',
     description: 'A ti te ___ el deporte, ¿verdad?',
-    hint: '🔍 Pista: el sujeto "el deporte" es singular → se usa "gusta"',
-    feedback: '🏀 <strong>¡Correcto!</strong> "Te gusta el deporte" → "gusta" porque el deporte es singular.'
+    hint: '🔍 Hint: the subject "el deporte" is singular → use "gusta"',
+    feedback: '🏀 <strong>¡Correcto!</strong> "Te gusta el deporte" → "gusta" because el deporte is singular.'
   },
   {
     id: 'gustan2',
     label: 'gustan',
     emoji: '🌸',
     description: 'A mí me ___ las flores de colores.',
-    hint: '🔍 Pista: el sujeto "las flores" es plural → se usa "gustan"',
-    feedback: '🌸 <strong>¡Correcto!</strong> "Me gustan las flores" → "gustan" porque el sujeto es plural.'
+    hint: '🔍 Hint: the subject "las flores" is plural → use "gustan"',
+    feedback: '🌸 <strong>¡Correcto!</strong> "Me gustan las flores" → "gustan" because the subject is plural.'
   },
   {
     id: 'encanta2',
     label: 'encanta',
     emoji: '💃',
     description: 'A María le ___ bailar salsa los fines de semana.',
-    hint: '🔍 Pista: el sujeto es el infinitivo "bailar" → se usa "encanta"',
-    feedback: '💃 <strong>¡Correcto!</strong> "Le encanta bailar" → "encanta" porque el sujeto es un infinitivo (bailar).'
+    hint: '🔍 Hint: the subject is the infinitive "bailar" → use "encanta"',
+    feedback: '💃 <strong>¡Correcto!</strong> "Le encanta bailar" → "encanta" because the subject is an infinitive (bailar).'
   },
   {
     id: 'encantan2',
     label: 'encantan',
     emoji: '🐶',
     description: 'A mis padres les ___ los animales pequeños.',
-    hint: '🔍 Pista: el sujeto "los animales" es plural → se usa "encantan"',
-    feedback: '🐶 <strong>¡Correcto!</strong> "Les encantan los animales" → "encantan" porque el sujeto (animales) es plural.'
+    hint: '🔍 Hint: the subject "los animales" is plural → use "encantan"',
+    feedback: '🐶 <strong>¡Correcto!</strong> "Les encantan los animales" → "encantan" because the subject (animales) is plural.'
   },
   {
     id: 'gusta3',
     label: 'gusta',
     emoji: '🎶',
     description: 'A vosotros os ___ la música clásica.',
-    hint: '🔍 Pista: el sujeto "la música" es singular → se usa "gusta"',
-    feedback: '🎶 <strong>¡Correcto!</strong> "Os gusta la música" → "gusta" porque la música es singular.'
+    hint: '🔍 Hint: the subject "la música" is singular → use "gusta"',
+    feedback: '🎶 <strong>¡Correcto!</strong> "Os gusta la música" → "gusta" because la música is singular.'
   },
   {
     id: 'gustan3',
     label: 'gustan',
     emoji: '🍕',
     description: 'A Pedro y a mí nos ___ las pizzas con queso.',
-    hint: '🔍 Pista: el sujeto "las pizzas" es plural → se usa "gustan"',
-    feedback: '🍕 <strong>¡Correcto!</strong> "Nos gustan las pizzas" → "gustan" porque el sujeto (las pizzas) es plural.'
+    hint: '🔍 Hint: the subject "las pizzas" is plural → use "gustan"',
+    feedback: '🍕 <strong>¡Correcto!</strong> "Nos gustan las pizzas" → "gustan" because the subject (las pizzas) is plural.'
   }
 ];
 
 let selected = null;
 
 function build() {
-  // Crear diez palabras en el banco, una por cada oración, usando su id único y su label.
   const bank = document.getElementById('wordBank');
   bank.innerHTML = '';
-  // Mezclamos el array de oraciones para que las palabras aparezcan en orden aleatorio
   const shuffledSentences = shuffle([...oraciones]);
   shuffledSentences.forEach(item => {
     const chip = document.createElement('div');
     chip.className = 'word-chip';
-    chip.id = 'chip-' + item.id;        // id único basado en la oración
-    chip.dataset.value = item.label;    // el valor es la forma verbal (gusta, gustan, encanta, encantan)
+    chip.id = 'chip-' + item.id;
+    chip.dataset.value = item.label;
     chip.draggable = true;
-    // Elegir un emoji según la forma verbal para dar variedad visual
     let formEmoji = '❤️';
     if (item.label === 'gusta') formEmoji = '❤️';
     else if (item.label === 'gustan') formEmoji = '❤️';
@@ -323,7 +320,6 @@ function build() {
     bank.appendChild(chip);
   });
 
-  // Tarjetas con las 10 oraciones (no se mezclan para mantener el orden visual)
   const grid = document.getElementById('cardsGrid');
   grid.innerHTML = '';
   oraciones.forEach(item => {
@@ -336,7 +332,7 @@ function build() {
         <div class="card-hint">${item.hint}</div>
       </div>
       <div class="card-slot-wrap">
-        <div class="slot" id="slot-${item.id}" data-answer="${item.label}">Arrastra la forma correcta</div>
+        <div class="slot" id="slot-${item.id}" data-answer="${item.label}">Drop the correct form here</div>
       </div>`;
     grid.appendChild(card);
   });
@@ -349,7 +345,7 @@ function build() {
   });
 
   updateCounts();
-  setFeedback('💬', 'Arrastra una forma verbal para comenzar...', '');
+  setFeedback('💬', 'Drag a verb form to start...', '');
 }
 
 function handleChipClick(chip) {
@@ -370,17 +366,17 @@ function placeWord(slot, chip) {
   if (!chip || slot.dataset.locked) return;
   if (slot.dataset.placed) returnWord(slot);
 
-  const value    = chip.dataset.value;      // la forma verbal (ej: "gusta")
-  const expected = slot.dataset.answer;     // la forma correcta esperada
+  const value    = chip.dataset.value;
+  const expected = slot.dataset.answer;
   const isOk     = value === expected;
   const item     = oraciones.find(x => x.id === slot.id.replace('slot-', ''));
 
   slot.dataset.placed = value;
-  // Mostrar la palabra con un emoji representativo
+  slot.dataset.chipId = chip.id;
+
   let formEmoji = value === 'gusta' || value === 'gustan' ? '❤️' : '⭐';
   slot.innerHTML = `${formEmoji} ${value} <span class="slot-remove" onclick="returnWord(document.getElementById('slot-${slot.id.replace('slot-', '')}'))">✕</span>`;
 
-  // Marcar el chip específico como usado y quitar selección
   chip.classList.add('used');
   chip.classList.remove('selected');
   selected = null;
@@ -392,7 +388,7 @@ function placeWord(slot, chip) {
     setFeedback('✅', item.feedback, 'success');
   } else {
     slot.className = 'slot incorrect filled';
-    setFeedback('❌', `<strong>${value}</strong> no es la forma correcta para esta oración. ${item.hint}`, 'error');
+    setFeedback('❌', `<strong>${value}</strong> is not the correct form for this sentence. ${item.hint}`, 'error');
     setTimeout(() => { if (!slot.dataset.locked) returnWord(slot); }, 950);
   }
   updateCounts();
@@ -401,62 +397,9 @@ function placeWord(slot, chip) {
 function returnWord(slot) {
   if (slot.dataset.locked) return;
   const value = slot.dataset.placed;
-  if (!value) return;
-  // Encontrar el chip que tiene este valor y que no esté ya usado (el que corresponde a la oración original)
-  // Pero como cada chip es único por id de oración, debemos buscar por el id del chip asociado a esa oración.
-  // No tenemos una relación directa en este momento; necesitamos identificar qué chip fue el que se usó.
-  // La solución: al colocar la palabra, guardamos también el id del chip en el slot.
-  // En este código, no guardamos esa relación. Entonces al devolver, no sabemos qué chip reactivar.
-  // Vamos a mejorar: en placeWord, almacenamos el id del chip en el slot (ej: slot.dataset.chipId = chip.id).
-  // Luego en returnWord, usamos ese id para reactivar el chip.
-  // Implementemos esa mejora.
-  // Para no romper, reescribamos la función placeWord para que guarde el chipId.
-  // Pero ya hemos escrito el código, así que lo corregiremos.
-  // Voy a reemplazar placeWord y returnWord con la versión que guarda chipId.
-}
-
-// Reiniciar las funciones con la versión corregida
-// Para que todo funcione, reemplazamos las funciones placeWord y returnWord con versiones que almacenan chipId.
-
-// (Reemplazo de las funciones desde aquí)
-window.placeWord = function(slot, chip) {
-  if (!chip || slot.dataset.locked) return;
-  if (slot.dataset.placed) returnWord(slot);
-
-  const value    = chip.dataset.value;
-  const expected = slot.dataset.answer;
-  const isOk     = value === expected;
-  const item     = oraciones.find(x => x.id === slot.id.replace('slot-', ''));
-
-  slot.dataset.placed = value;
-  slot.dataset.chipId = chip.id;   // guardamos el id del chip para poder devolverlo después
-
-  let formEmoji = value === 'gusta' || value === 'gustan' ? '❤️' : '⭐';
-  slot.innerHTML = `${formEmoji} ${value} <span class="slot-remove" onclick="returnWord(document.getElementById('slot-${slot.id.replace('slot-', '')}'))">✕</span>`;
-
-  chip.classList.add('used');
-  chip.classList.remove('selected');
-  selected = null;
-
-  if (isOk) {
-    slot.className = 'slot correct';
-    slot.dataset.locked = 'true';
-    const rem = slot.querySelector('.slot-remove'); if (rem) rem.remove();
-    setFeedback('✅', item.feedback, 'success');
-  } else {
-    slot.className = 'slot incorrect filled';
-    setFeedback('❌', `<strong>${value}</strong> no es la forma correcta para esta oración. ${item.hint}`, 'error');
-    setTimeout(() => { if (!slot.dataset.locked) returnWord(slot); }, 950);
-  }
-  updateCounts();
-};
-
-window.returnWord = function(slot) {
-  if (slot.dataset.locked) return;
-  const value = slot.dataset.placed;
   const chipId = slot.dataset.chipId;
   if (!value || !chipId) return;
-  slot.innerHTML = 'Arrastra la forma correcta';
+  slot.innerHTML = 'Drop the correct form here';
   slot.className = 'slot';
   delete slot.dataset.placed;
   delete slot.dataset.chipId;
@@ -466,15 +409,11 @@ window.returnWord = function(slot) {
     chip.classList.remove('selected');
   }
   updateCounts();
-};
+}
 
-// Sobrescribir las funciones originales
 window.placeWord = placeWord;
 window.returnWord = returnWord;
 
-// Reemplazar también las referencias en los eventos
-// Ya que el código se ejecuta después de build, pero build usa las funciones definidas antes.
-// Para asegurar, volvemos a llamar a build después de redefinir las funciones.
 build();
 
 function updateCounts() {
@@ -519,7 +458,7 @@ function checkAll() {
   });
   updateCounts();
   if (correct === oraciones.length) { setTimeout(() => showResults(correct, wrong), 600); }
-  else setFeedback('📊', `Tienes <strong>${correct} de ${oraciones.length}</strong> correctas. Revisa las marcadas en rojo.`, correct >= wrong ? 'success' : 'error');
+  else setFeedback('📊', `You have <strong>${correct} of ${oraciones.length}</strong> correct. Review those marked in red.`, correct >= wrong ? 'success' : 'error');
 }
 
 function showResults(correct, wrong) {
@@ -531,10 +470,10 @@ function showResults(correct, wrong) {
   document.getElementById('finalWrong').textContent   = wrong;
   document.getElementById('finalPct').textContent     = `${pct}%`;
   const [emoji, title, sub] = pct === 100
-    ? ['🏆', '¡Perfecto! ¡Excelente!',  '¡Dominas el uso de gustar y encantar como un experto!']
+    ? ['🏆', '¡Perfecto! ¡Excelente!',  'You master the use of gustar and encantar like an expert!']
     : pct >= 66
-    ? ['🎉', '¡Muy bien!',              'Casi perfecto. Repasa las formas que fallaste.']
-    : ['💪', '¡Buen intento!',          'Sigue practicando con los verbos gustar y encantar.'];
+    ? ['🎉', '¡Muy bien!',              'Almost perfect. Review the forms you got wrong.']
+    : ['💪', '¡Buen intento!',          'Keep practicing the verbs gustar and encantar.'];
   document.getElementById('resultsEmoji').textContent = emoji;
   document.getElementById('resultsTitle').textContent = title;
   document.getElementById('resultsSub').textContent   = sub;
@@ -547,10 +486,9 @@ function resetAll() {
   build();
 }
 
-// Script para el botón de regreso al aula virtual (compatible con móvil)
 const btn = document.getElementById('btn-volver');
-const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=205';
-const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=205';
+const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=459';
+const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=459';
 const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
 if (esMóvil) {
   btn.href = appUrl;
