@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>¡El Barista Perfecto! – Español A1</title>
+<title>The Perfect Barista! – Spanish A1</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
@@ -67,7 +67,7 @@ body::before{
   padding:0;
   justify-content:flex-start;
   align-items:stretch;
-  background:var(--espresso); /* fondo para que no se vea transparente al scroll */
+  background:var(--espresso);
 }
 
 /* ══════════════════════════════════════
@@ -98,11 +98,11 @@ body::before{
   color:rgba(255,255,255,.28);align-self:center;}
 
 /* ══════════════════════════════════════
-   BANCO DE FRASES (sticky debajo del HUD)
+   PHRASE BANK (sticky debajo del HUD)
 ══════════════════════════════════════ */
 #phrase-bank-container {
   position: sticky;
-  top: 48px; /* altura aproximada del HUD, ajustable */
+  top: 48px;
   z-index: 40;
   background: rgba(28,15,8,.92);
   backdrop-filter: blur(8px);
@@ -131,7 +131,6 @@ body::before{
   min-height:50px;
   align-content:flex-start;
 }
-/* Estilos de los chips igual que antes */
 .phrase-chip{
   padding:7px 13px;
   border-radius:10px;font-size:.83rem;font-weight:600;
@@ -172,11 +171,11 @@ body::before{
 .phrase-chip.used{opacity:.25;pointer-events:none;}
 
 /* ══════════════════════════════════════
-   ARENA (zona de clientes scrolleable)
+   ARENA (client zone scrollable)
 ══════════════════════════════════════ */
 .arena {
   flex:1;
-  padding: 16px 12px 40px; /* espacio superior para que no se esconda bajo el banco */
+  padding: 16px 12px 40px;
   display:flex;
   flex-direction:column;
   gap:12px;
@@ -271,7 +270,7 @@ body::before{
 }
 
 /* ══════════════════════════════════════
-   TOAST, POP, GHOST, RESULTS (sin cambios)
+   TOAST, POP, GHOST, RESULTS
 ══════════════════════════════════════ */
 .toast{
   position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
@@ -385,49 +384,48 @@ h2.section{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--espresso);
 <div id="drag-ghost"></div>
 <div class="toast" id="toast"></div>
 
-<!-- SPLASH (sin cambios) -->
+<!-- SPLASH -->
 <div class="screen active" id="screen-splash">
   <div class="card" style="max-width:500px;">
     <div class="card-head">
       <div style="font-size:3.2rem;margin-bottom:8px;">☕</div>
       <h1 class="big">¡El Barista<br><span>Perfecto!</span></h1>
-      <div class="sub">Español A1 · Unidad 4 · Cortesía en cafeterías</div>
+      <div class="sub">Spanish A1 · Unit 4 · Politeness in Cafés</div>
     </div>
     <div class="card-body">
       <p class="desc">
-        ¡Bienvenido a la cafetería! Eres el barista y debes ayudar a los
-        clientes a hacer su pedido. Arrastra las frases correctas — el saludo,
-        el pedido y las especificaciones — al lugar que corresponde. ☕🥐
+        Welcome to the café! You are the barista and must help customers place their orders.
+        Drag the correct phrases — greetings, orders, specifications, extras, and goodbyes — to the right place. ☕🥐
       </p>
-      <h2 class="section">Elige tu nivel</h2>
+      <h2 class="section">Choose your level</h2>
       <div class="level-grid">
         <div class="lvl-card" onclick="chooseLevel(1)" id="lvl1">
           <div class="lvl-icon">🌱</div>
-          <div class="lvl-name">Fácil</div>
-          <div class="lvl-desc">2 clientes · saludo + pedido · 90 s</div>
+          <div class="lvl-name">Easy</div>
+          <div class="lvl-desc">2 customers · greeting + order · 90s</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(2)" id="lvl2">
           <div class="lvl-icon">☕</div>
-          <div class="lvl-name">Medio</div>
-          <div class="lvl-desc">3 clientes · + especificación · 80 s</div>
+          <div class="lvl-name">Medium</div>
+          <div class="lvl-desc">3 customers · + specification · 80s</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(3)" id="lvl3">
           <div class="lvl-icon">🔥</div>
-          <div class="lvl-name">Difícil</div>
-          <div class="lvl-desc">4 clientes · + extra y despedida · 70 s</div>
+          <div class="lvl-name">Hard</div>
+          <div class="lvl-desc">4 customers · + extra and farewell · 70s</div>
         </div>
       </div>
       <button class="btn btn-coffee btn-full" id="btn-start" onclick="startGame()" disabled>
-        🚀 ¡Empezar!
+        🚀 Start!
       </button>
       <div style="text-align:center;margin-top:6px;">
-        <span style="font-size:.74rem;color:rgba(28,15,8,.38);">Arrastre y toque táctil · responsive</span>
+        <span style="font-size:.74rem;color:rgba(28,15,8,.38);">Drag & drop · touch · responsive</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- JUEGO: con banco de frases separado y sticky -->
+<!-- GAME -->
 <div class="screen" id="screen-game">
   <div class="hud">
     <div class="hud-brand">☕ El Barista Perfecto</div>
@@ -436,44 +434,44 @@ h2.section{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--espresso);
       <div class="hpill">⭐ <span id="score-val">0</span></div>
       <div class="hpill">✅<span id="ok-val">0</span> ❌<span id="bad-val">0</span></div>
     </div>
-    <div class="hud-lvl" id="hud-lvl-lbl">Nivel 1</div>
+    <div class="hud-lvl" id="hud-lvl-lbl">Level 1</div>
   </div>
 
-  <!-- Contenedor para el banco de palabras sticky -->
+  <!-- Phrase bank sticky container -->
   <div id="phrase-bank-container">
     <div class="bank-section">
-      <div class="bank-label">💬 Banco de frases — arrastra la frase al lugar correcto</div>
+      <div class="bank-label">💬 Phrase bank — drag the phrase to the correct spot</div>
       <div class="phrase-bank" id="phrase-bank"></div>
     </div>
   </div>
 
-  <!-- Área scrolleable con clientes -->
+  <!-- Scrollable arena with customers -->
   <div class="arena" id="arena"></div>
 </div>
 
-<!-- RESULTADOS (sin cambios) -->
+<!-- RESULTS -->
 <div class="screen" id="screen-results">
   <div class="card" style="max-width:480px;">
     <div class="card-head">
       <span class="res-icon" id="res-icon">🏆</span>
-      <div class="res-title fraunces" id="res-title">¡Turno completado!</div>
-      <div class="res-sub">Español A1 · El Barista Perfecto</div>
+      <div class="res-title fraunces" id="res-title">Shift completed!</div>
+      <div class="res-sub">Spanish A1 · El Barista Perfecto</div>
     </div>
     <div class="card-body">
       <div class="stats-row">
-        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Puntos</span></div>
-        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Aciertos</span></div>
-        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errores</span></div>
-        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Precisión</span></div>
+        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Points</span></div>
+        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Correct</span></div>
+        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errors</span></div>
+        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Accuracy</span></div>
       </div>
       <div class="res-divider"></div>
       <p class="res-msg" id="res-msg"></p>
       <div class="res-actions">
-        <button class="btn btn-coffee btn-full" onclick="restart()">🔄 Jugar de nuevo</button>
+        <button class="btn btn-coffee btn-full" onclick="restart()">🔄 Play again</button>
         <a id="btn-volver"
-           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=242"
+           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=496"
            style="display:inline-flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-          🏫 Regresar al Aula Virtual
+          🏫 Return to the Virtual Classroom
         </a>
       </div>
     </div>
@@ -484,12 +482,12 @@ h2.section{font-family:'Fraunces',serif;font-size:1.3rem;color:var(--espresso);
 /* ── Moodle deep-link ── */
 (function(){
   const btn=document.getElementById('btn-volver');
-  const appUrl='moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=242';
+  const appUrl='moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=496';
   if(/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href=appUrl;
 })();
 
 /* ════════════════════════════════════
-   PHRASE LIBRARY (sin cambios)
+   PHRASE LIBRARY
 ════════════════════════════════════ */
 const PHRASES={
   greeting:[
@@ -556,40 +554,40 @@ const PHRASES={
 };
 
 /* ════════════════════════════════════
-   CLIENT SCENARIOS (sin cambios)
+   CLIENT SCENARIOS
 ════════════════════════════════════ */
 const SCENARIOS=[
   // EASY
   { avatar:'👩', name:'Ana',     wish:'Quiere un café con leche por las mañanas.',
-    slots:[{label:'Saludo',  type:'greeting', correct:'g3'},{label:'Pedido',  type:'order',    correct:'o1'}]},
+    slots:[{label:'Greeting',  type:'greeting', correct:'g3'},{label:'Order',  type:'order',    correct:'o1'}]},
   { avatar:'👨', name:'Carlos',  wish:'Quiere un cortado, sin más.',
-    slots:[{label:'Saludo',  type:'greeting', correct:'g1'},{label:'Pedido',  type:'order',    correct:'o2'}]},
+    slots:[{label:'Greeting',  type:'greeting', correct:'g1'},{label:'Order',  type:'order',    correct:'o2'}]},
   { avatar:'👧', name:'Sofía',   wish:'Quiere un zumo de naranja.',
-    slots:[{label:'Saludo',  type:'greeting', correct:'g4'},{label:'Pedido',  type:'order',    correct:'o7'}]},
+    slots:[{label:'Greeting',  type:'greeting', correct:'g4'},{label:'Order',  type:'order',    correct:'o7'}]},
   { avatar:'👴', name:'Don Luis',wish:'Quiere un té verde tranquilo.',
-    slots:[{label:'Saludo',  type:'greeting', correct:'g2'},{label:'Pedido',  type:'order',    correct:'o5'}]},
+    slots:[{label:'Greeting',  type:'greeting', correct:'g2'},{label:'Order',  type:'order',    correct:'o5'}]},
   // MEDIUM
   { avatar:'👩‍💼', name:'Andrea', wish:'Quiere un latte con leche de almendras.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g3'},{label:'Pedido',type:'order',correct:'o4'},{label:'Especif.',type:'spec',correct:'s1'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g3'},{label:'Order',type:'order',correct:'o4'},{label:'Spec.',type:'spec',correct:'s1'}]},
   { avatar:'🧑', name:'Alex',    wish:'Quiere un capuchino, bien caliente.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g5'},{label:'Pedido',type:'order',correct:'o3'},{label:'Especif.',type:'spec',correct:'s4'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g5'},{label:'Order',type:'order',correct:'o3'},{label:'Spec.',type:'spec',correct:'s4'}]},
   { avatar:'👩‍🦳', name:'Doña Rosa',wish:'Quiere un café americano sin cafeína.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g1'},{label:'Pedido',type:'order',correct:'o9'},{label:'Especif.',type:'spec',correct:'s6'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g1'},{label:'Order',type:'order',correct:'o9'},{label:'Spec.',type:'spec',correct:'s6'}]},
   { avatar:'👦', name:'Miguel',  wish:'Quiere un chocolate caliente con leche de soja.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g4'},{label:'Pedido',type:'order',correct:'o6'},{label:'Especif.',type:'spec',correct:'s7'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g4'},{label:'Order',type:'order',correct:'o6'},{label:'Spec.',type:'spec',correct:'s7'}]},
   // HARD
   { avatar:'👩', name:'Laura',   wish:'Quiere un latte con leche desnatada, sin azúcar, para llevar y dice adiós.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g3'},{label:'Pedido',type:'order',correct:'o4'},{label:'Especif.',type:'spec',correct:'s3'},{label:'Extra',type:'extra',correct:'e3'},{label:'Despedida',type:'closing',correct:'c1'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g3'},{label:'Order',type:'order',correct:'o4'},{label:'Spec.',type:'spec',correct:'s3'},{label:'Extra',type:'extra',correct:'e3'},{label:'Farewell',type:'closing',correct:'c1'}]},
   { avatar:'👨‍💻', name:'Rodrigo', wish:'Quiere un café solo templado, pide la cuenta y se despide amablemente.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g2'},{label:'Pedido',type:'order',correct:'o10'},{label:'Especif.',type:'spec',correct:'s8'},{label:'Extra',type:'extra',correct:'e5'},{label:'Despedida',type:'closing',correct:'c2'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g2'},{label:'Order',type:'order',correct:'o10'},{label:'Spec.',type:'spec',correct:'s8'},{label:'Extra',type:'extra',correct:'e5'},{label:'Farewell',type:'closing',correct:'c2'}]},
   { avatar:'👩‍🍳', name:'Carmen',  wish:'Quiere una infusión de menta con canela, agua y dice hasta luego.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g5'},{label:'Pedido',type:'order',correct:'o8'},{label:'Especif.',type:'spec',correct:'s9'},{label:'Extra',type:'extra',correct:'e1'},{label:'Despedida',type:'closing',correct:'c4'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g5'},{label:'Order',type:'order',correct:'o8'},{label:'Spec.',type:'spec',correct:'s9'},{label:'Extra',type:'extra',correct:'e1'},{label:'Farewell',type:'closing',correct:'c4'}]},
   { avatar:'👴', name:'Don Pedro',wish:'Quiere un capuchino sin azúcar con hielo y carta de postres, y dice gracias.',
-    slots:[{label:'Saludo',type:'greeting',correct:'g1'},{label:'Pedido',type:'order',correct:'o3'},{label:'Especif.',type:'spec',correct:'s2'},{label:'Extra',type:'extra',correct:'e2'},{label:'Despedida',type:'closing',correct:'c3'}]},
+    slots:[{label:'Greeting',type:'greeting',correct:'g1'},{label:'Order',type:'order',correct:'o3'},{label:'Spec.',type:'spec',correct:'s2'},{label:'Extra',type:'extra',correct:'e2'},{label:'Farewell',type:'closing',correct:'c3'}]},
 ];
 
 /* ════════════════════════════════════
-   LEVELS (tiempos extendidos)
+   LEVELS (extended times)
 ════════════════════════════════════ */
 const LEVELS={
   1:{ time:90, rounds:3, clientsPerRound:2, pts_ok:20, pts_fail:6,
@@ -618,13 +616,13 @@ let completedClients=0;
 let totalSlots=0, filledOk=0;
 
 let dragPhraseId=null, dragOriginEl=null;
-let lastTouchTarget=null; // para móvil
+let lastTouchTarget=null;
 
 const $=id=>document.getElementById(id);
 const shuffle=a=>a.slice().sort(()=>Math.random()-.5);
 const getPhrase=id=>{
   for(const cat of Object.values(PHRASES)){
-    const f=cat.find(p=>p.id===id);if(f) return f;
+    const f=cat.find(p=>p.id===id);if(f)return f;
   }return null;
 };
 const allPhrasesFlat=()=>Object.values(PHRASES).flat();
@@ -646,7 +644,7 @@ function startGame(){
   totalRounds=cfg.rounds;
   round=0;score=0;okCount=0;badCount=0;
   updateHUD();
-  $('hud-lvl-lbl').textContent='Nivel '+level;
+  $('hud-lvl-lbl').textContent='Level '+level;
   showScreen('screen-game');
   nextRound();
 }
@@ -666,19 +664,16 @@ function nextRound(){
 }
 
 function renderRound(){
-  // Limpiar arena y banco
   const arena=$('arena');
   arena.innerHTML='';
   const bank=$('phrase-bank');
   bank.innerHTML='';
 
-  // Banner
   const banner=document.createElement('div');
   banner.className='round-banner';
-  banner.textContent=`Turno ${round} de ${totalRounds} — ¡Ayuda a tus clientes a pedir correctamente!`;
+  banner.textContent=`Round ${round} of ${totalRounds} — Help your customers order correctly!`;
   arena.appendChild(banner);
 
-  // Tarjetas de clientes
   roundClients.forEach((rc,ci)=>{
     const sc=rc.scenario;
     const card=document.createElement('div');
@@ -688,7 +683,7 @@ function renderRound(){
       <div class="client-header">
         <div class="client-avatar">${sc.avatar}</div>
         <div class="client-bubble">
-          <div class="client-name">${sc.name} dice:</div>
+          <div class="client-name">${sc.name} says:</div>
           <div class="client-wish">"${sc.wish}"</div>
         </div>
       </div>
@@ -706,7 +701,7 @@ function renderRound(){
       slot.dataset.slot=si;
       slot.dataset.correct=sl.correct;
       slot.dataset.type=sl.type;
-      slot.innerHTML=`<span class="slot-placeholder">Arrastra aquí la frase correcta…</span>`;
+      slot.innerHTML=`<span class="slot-placeholder">Drag the correct phrase here…</span>`;
       slot.addEventListener('dragover',e=>{e.preventDefault();slot.classList.add('drag-over');});
       slot.addEventListener('dragleave',()=>slot.classList.remove('drag-over'));
       slot.addEventListener('drop',e=>{e.preventDefault();slot.classList.remove('drag-over');handleDrop(slot,dragPhraseId);});
@@ -716,7 +711,6 @@ function renderRound(){
     arena.appendChild(card);
   });
 
-  // Construir banco de frases
   const neededIds=new Set();
   roundClients.forEach(rc=>rc.scenario.slots.forEach(sl=>neededIds.add(sl.correct)));
   const cfg=LEVELS[level];
@@ -776,7 +770,7 @@ function handleDrop(slot, phraseId){
     rc.filledSlots[si]=phraseId;
     okCount++; filledOk++;
     score+=LEVELS[level].pts_ok;
-    showToast(`✅ +${LEVELS[level].pts_ok} puntos`,'ok');
+    showToast(`✅ +${LEVELS[level].pts_ok} points`,'ok');
     showPop('+'+LEVELS[level].pts_ok,'#d4882a');
     updateHUD();
     const totalClientSlots=rc.scenario.slots.length;
@@ -794,7 +788,7 @@ function handleDrop(slot, phraseId){
     badCount++;
     score=Math.max(0,score-LEVELS[level].pts_fail);
     slot.classList.add('slot-err');
-    showToast('❌ Esa frase no corresponde aquí','fail');
+    showToast('❌ That phrase doesn\'t belong here','fail');
     updateHUD();
     setTimeout(()=>{
       slot.classList.remove('slot-err');
@@ -802,7 +796,7 @@ function handleDrop(slot, phraseId){
       if(!slot.querySelector('.placed-phrase') && !slot.classList.contains('slot-ok')){
         const ph=document.createElement('span');
         ph.className='slot-placeholder';
-        ph.textContent='Arrastra aquí la frase correcta…';
+        ph.textContent='Drag the correct phrase here…';
         slot.appendChild(ph);
       }
     },900);
@@ -881,7 +875,7 @@ function timeOut(){
     const missing=rc.scenario.slots.length-Object.keys(rc.filledSlots).length;
     badCount+=missing;
   });
-  showToast('⏰ ¡Tiempo! Siguiente turno…','fail');
+  showToast('⏰ Time\'s up! Next round…','fail');
   updateHUD();
   setTimeout(()=>nextRound(),1200);
 }
