@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>¡La Gran Tienda! – Español A1</title>
+<title>La Gran Tienda! – Spanish A1</title>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════
@@ -408,50 +408,50 @@ p.desc{font-size:.95rem;color:#5a4a3a;line-height:1.65;margin-bottom:20px;}
 <div class="toast" id="toast"></div>
 
 <!-- ════════════════════════════════════
-     PANTALLA 1 — SPLASH
+     SCREEN 1 — SPLASH
 ════════════════════════════════════ -->
 <div class="screen active" id="screen-splash">
   <div class="card" style="max-width:490px;">
     <div class="card-head">
       <div style="font-size:3.2rem;margin-bottom:8px;">🛍️</div>
       <h1 class="big">¡La Gran<br><span>Tienda!</span></h1>
-      <div class="sub">Español A1 · Unidad 4 · Ropa y Productos Básicos</div>
+      <div class="sub">Spanish A1 · Unit 4 · Clothing and Basic Products</div>
     </div>
     <div class="card-body">
       <p class="desc">
-        ¡Bienvenido a la tienda! Eres el dependiente y debes entregar los productos correctos a cada cliente.<br>
-        <strong>Arrastra</strong> cada prenda o producto al cliente que lo pidió antes de que se acabe el tiempo. 🕐
+        Welcome to the store! You are the shop assistant and must deliver the right products to each customer.<br>
+        <strong>Drag</strong> each item of clothing or product to the customer who ordered it before time runs out. 🕐
       </p>
-      <h2 class="section">Elige tu nivel</h2>
+      <h2 class="section">Choose your level</h2>
       <div class="level-grid">
         <div class="lvl-card" onclick="chooseLevel(1)" id="lvl1">
           <div class="lvl-icon">🧦</div>
-          <div class="lvl-name">Fácil</div>
-          <div class="lvl-desc">2 clientes · 60 s · ropa básica</div>
+          <div class="lvl-name">Easy</div>
+          <div class="lvl-desc">2 customers · 60s · basic clothing</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(2)" id="lvl2">
           <div class="lvl-icon">👔</div>
-          <div class="lvl-name">Medio</div>
-          <div class="lvl-desc">3 clientes · 50 s · más productos</div>
+          <div class="lvl-name">Medium</div>
+          <div class="lvl-desc">3 customers · 50s · more products</div>
         </div>
         <div class="lvl-card" onclick="chooseLevel(3)" id="lvl3">
           <div class="lvl-icon">🔥</div>
-          <div class="lvl-name">Difícil</div>
-          <div class="lvl-desc">4 clientes · 40 s · tienda completa</div>
+          <div class="lvl-name">Hard</div>
+          <div class="lvl-desc">4 customers · 40s · full store</div>
         </div>
       </div>
       <button class="btn btn-teal btn-full" id="btn-start" onclick="startGame()" disabled>
-        🚀 ¡Empezar!
+        🚀 Start!
       </button>
       <div style="text-align:center;margin-top:6px;">
-        <span style="font-size:.76rem;color:rgba(15,25,35,.4);">Funciona con arrastre y toque táctil</span>
+        <span style="font-size:.76rem;color:rgba(15,25,35,.4);">Works with drag & drop and touch</span>
       </div>
     </div>
   </div>
 </div>
 
 <!-- ════════════════════════════════════
-     PANTALLA 2 — JUEGO
+     SCREEN 2 — GAME
 ════════════════════════════════════ -->
 <div class="screen" id="screen-game">
   <div class="hud">
@@ -461,36 +461,36 @@ p.desc{font-size:.95rem;color:#5a4a3a;line-height:1.65;margin-bottom:20px;}
       <div class="hpill">⭐ <span id="score-val">0</span></div>
       <div class="hpill">✅ <span id="ok-val">0</span> &nbsp;❌ <span id="bad-val">0</span></div>
     </div>
-    <div class="hud-lvl" id="hud-lvl-lbl">Nivel 1</div>
+    <div class="hud-lvl" id="hud-lvl-lbl">Level 1</div>
   </div>
   <div class="arena" id="arena"></div>
 </div>
 
 <!-- ════════════════════════════════════
-     PANTALLA 3 — RESULTADOS
+     SCREEN 3 — RESULTS
 ════════════════════════════════════ -->
 <div class="screen" id="screen-results">
   <div class="card" style="max-width:480px;">
     <div class="card-head">
       <span class="res-icon" id="res-icon">🏆</span>
-      <div class="res-title josefin" id="res-title">¡Turno completado!</div>
-      <div class="res-sub">Español A1 · La Gran Tienda</div>
+      <div class="res-title josefin" id="res-title">Shift completed!</div>
+      <div class="res-sub">Spanish A1 · La Gran Tienda</div>
     </div>
     <div class="card-body">
       <div class="stats-row">
-        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Puntos</span></div>
-        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Aciertos</span></div>
-        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errores</span></div>
-        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Precisión</span></div>
+        <div class="stat"><span class="stat-n pts" id="res-pts">0</span><span class="stat-l">Points</span></div>
+        <div class="stat"><span class="stat-n ok"  id="res-ok">0</span><span class="stat-l">Correct</span></div>
+        <div class="stat"><span class="stat-n bad" id="res-bad">0</span><span class="stat-l">Errors</span></div>
+        <div class="stat"><span class="stat-n pct" id="res-pct">0%</span><span class="stat-l">Accuracy</span></div>
       </div>
       <div class="res-divider"></div>
       <p class="res-msg" id="res-msg"></p>
       <div class="res-actions">
-        <button class="btn btn-teal btn-full" onclick="restart()">🔄 Jugar de nuevo</button>
+        <button class="btn btn-teal btn-full" onclick="restart()">🔄 Play again</button>
         <a id="btn-volver"
-           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=226"
+           href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=480"
            style="display:inline-flex;align-items:center;justify-content:center;width:100%;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-          🏫 Regresar al Aula Virtual
+          🏫 Return to the Virtual Classroom
         </a>
       </div>
     </div>
@@ -504,15 +504,15 @@ p.desc{font-size:.95rem;color:#5a4a3a;line-height:1.65;margin-bottom:20px;}
 /* ── Moodle deep-link ── */
 (function(){
   const btn = document.getElementById('btn-volver');
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=226';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=480';
   if(/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href = appUrl;
 })();
 
 /* ════════════════════════════════════
-   CATÁLOGO DE PRODUCTOS
+   CATALOG OF PRODUCTS
 ════════════════════════════════════ */
 const CATALOG = [
-  /* Ropa */
+  /* Clothing */
   {id:'camiseta',   emoji:'👕', name:'camiseta'},
   {id:'pantalon',   emoji:'👖', name:'pantalón'},
   {id:'vestido',    emoji:'👗', name:'vestido'},
@@ -525,13 +525,13 @@ const CATALOG = [
   {id:'gorra',      emoji:'🧢', name:'gorra'},
   {id:'sombrero',   emoji:'👒', name:'sombrero'},
   {id:'guantes',    emoji:'🧤', name:'guantes'},
-  /* Calzado */
+  /* Footwear */
   {id:'zapatos',    emoji:'👞', name:'zapatos'},
   {id:'botas',      emoji:'👢', name:'botas'},
   {id:'sandalias',  emoji:'👡', name:'sandalias'},
   {id:'tenis',      emoji:'👟', name:'tenis'},
   {id:'zapatillas', emoji:'🥿', name:'zapatillas'},
-  /* Aseo personal */
+  /* Personal care */
   {id:'jabon',      emoji:'🧼', name:'jabón'},
   {id:'shampoo',    emoji:'🧴', name:'champú'},
   {id:'cepillo',    emoji:'🪥', name:'cepillo de dientes'},
@@ -539,7 +539,7 @@ const CATALOG = [
   {id:'desodorante',emoji:'🧴', name:'desodorante'},
   {id:'perfume',    emoji:'🫧', name:'perfume'},
   {id:'peine',      emoji:'💈', name:'peine'},
-  /* Accesorios */
+  /* Accessories */
   {id:'bolso',      emoji:'👜', name:'bolso'},
   {id:'mochila',    emoji:'🎒', name:'mochila'},
   {id:'cinturon',   emoji:'🪢', name:'cinturón'},
@@ -548,7 +548,7 @@ const CATALOG = [
   {id:'paraguas',   emoji:'☂️', name:'paraguas'},
 ];
 
-/* Avatares y nombres de clientes */
+/* Customer avatars and names */
 const CUSTOMERS = [
   {emoji:'👩',name:'Laura'},
   {emoji:'👨',name:'Carlos'},
@@ -559,7 +559,7 @@ const CUSTOMERS = [
 ];
 
 /* ════════════════════════════════════
-   NIVELES
+   LEVELS
 ════════════════════════════════════ */
 const LEVELS = {
   1:{ clients:2, time:60, rounds:3, pts_ok:20, pts_fail:5,
@@ -574,7 +574,7 @@ const LEVELS = {
 };
 
 /* ════════════════════════════════════
-   ESTADO
+   STATE
 ════════════════════════════════════ */
 let level=1, round=0, totalRounds=3;
 let score=0, okCount=0, badCount=0;
@@ -594,7 +594,7 @@ const pick=(a,n)=>shuffle(a).slice(0,n);
 const getItem=id=>CATALOG.find(c=>c.id===id);
 
 /* ════════════════════════════════════
-   NIVEL / SPLASH
+   LEVEL / SPLASH
 ════════════════════════════════════ */
 function chooseLevel(l){
   chosenLevel=l;
@@ -610,7 +610,7 @@ function showScreen(id){
 }
 
 /* ════════════════════════════════════
-   INICIAR / REINICIAR
+   START / RESTART
 ════════════════════════════════════ */
 function startGame(){
   if(!chosenLevel) return;
@@ -618,14 +618,14 @@ function startGame(){
   totalRounds=LEVELS[level].rounds;
   round=0;score=0;okCount=0;badCount=0;
   updateHUD();
-  $('hud-lvl-lbl').textContent='Nivel '+level;
+  $('hud-lvl-lbl').textContent='Level '+level;
   showScreen('screen-game');
   nextRound();
 }
 function restart(){ clearInterval(timerInt); showScreen('screen-splash'); }
 
 /* ════════════════════════════════════
-   RONDA
+   ROUND
 ════════════════════════════════════ */
 function nextRound(){
   if(round>=totalRounds){ endGame(); return; }
@@ -652,7 +652,7 @@ function nextRound(){
 }
 
 /* ════════════════════════════════════
-   RENDER RONDA
+   RENDER ROUND
 ════════════════════════════════════ */
 function renderRound(){
   const cfg=LEVELS[level];
@@ -662,19 +662,19 @@ function renderRound(){
   /* Banner */
   const banner=document.createElement('div');
   banner.className='round-banner';
-  banner.textContent=`Turno ${round} de ${totalRounds} — ¡Entrega los productos correctos a cada cliente!`;
+  banner.textContent=`Round ${round} of ${totalRounds} — Deliver the right products to each customer!`;
   arena.appendChild(banner);
 
-  /* Estante */
+  /* Shelf */
   const shelfSection=document.createElement('div');
-  shelfSection.innerHTML=`<div class="shelf-label">🗂️ Estante — arrastra cada producto al cliente correcto</div>
+  shelfSection.innerHTML=`<div class="shelf-label">🗂️ Shelf — drag each product to the correct customer</div>
     <div class="shelf" id="shelf"></div>`;
   arena.appendChild(shelfSection);
 
   const shelf=shelfSection.querySelector('#shelf');
   roundData.shelf.forEach(item=>shelf.appendChild(createChip(item)));
 
-  /* Clientes */
+  /* Customers */
   const grid=document.createElement('div');
   const cols=cfg.clients<=2?'cols-2':cfg.clients===3?'cols-3':'cols-4';
   grid.className=`customers-grid ${cols}`;
@@ -755,7 +755,7 @@ function handleDrop(zone, itemId){
     okCount++;
     const pts=LEVELS[level].pts_ok;
     score+=pts;
-    showToast(`✅ +${pts} puntos`,'ok');
+    showToast(`✅ +${pts} points`,'ok');
     showPop('+'+pts,'#34d399');
     pendingItems--;
     const okCount2=dz.querySelectorAll('.ok-chip').length;
@@ -764,7 +764,7 @@ function handleDrop(zone, itemId){
   } else {
     badCount++;
     score=Math.max(0,score-LEVELS[level].pts_fail);
-    showToast(`❌ −${LEVELS[level].pts_fail} puntos`,'fail');
+    showToast(`❌ −${LEVELS[level].pts_fail} points`,'fail');
     zone.classList.add('wrong-drop');
     setTimeout(()=>zone.classList.remove('wrong-drop'),500);
     if(origEl) origEl.classList.remove('placed');
@@ -834,7 +834,7 @@ function startTimer(){
 }
 function stopTimer(){ clearInterval(timerInt); timerInt=null; }
 function timeOut(){
-  showToast('⏰ ¡Tiempo! Siguiente turno…','fail');
+  showToast('⏰ Time\'s up! Next round…','fail');
   badCount+=pendingItems;
   updateHUD();
   setTimeout(()=>nextRound(),1200);
@@ -869,7 +869,7 @@ function showPop(text,color){
 }
 
 /* ════════════════════════════════════
-   RESULTADOS
+   RESULTS
 ════════════════════════════════════ */
 function endGame(){
   stopTimer();
