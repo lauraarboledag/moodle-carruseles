@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presente de indicativo · Verbos frecuentes</title>
+  <title>Present Indicative · Common Verbs</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    /* --- ESTILOS (Sin cambios) --- */
     :root {
       --navy: #1a2e4a; --navy-mid: #2c4a72; --navy-light: #3d6494;
       --gold: #c9a84c; --gold-light: #e8c96a;
@@ -134,78 +135,84 @@
 </head>
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (Texto en inglés) -->
 <div class="header">
   <div class="header-inner">
-    <div class="header-badge">📖 Unidad 3 · Rutinas diarias y tiempo libre</div>
-    <h1>Presente de <span>indicativo</span></h1>
-    <p>Arrastra la forma verbal correcta para completar cada oración</p>
+    <div class="header-badge">📖 Unit 3 · Daily Routines & Free Time</div>
+    <h1>Present <span>indicative</span></h1>
+    <p>Drag the correct verb form to complete each sentence</p>
   </div>
 </div>
 
-<!-- SCORE -->
+<!-- SCORE (Texto en inglés) -->
 <div class="score-strip">
-  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correctas</div>
-  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">10</span> pendientes</div>
-  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrectas</div>
+  <div class="score-chip"><span class="dot dot-success"></span> <span id="correctCount">0</span> correct</div>
+  <div class="score-chip"><span class="dot dot-pending"></span> <span id="pendingCount">10</span> pending</div>
+  <div class="score-chip"><span class="dot dot-error"></span>   <span id="wrongCount">0</span> incorrect</div>
 </div>
 
 <!-- MAIN -->
 <div class="main">
 
+  <!-- INSTRUCCIÓN (Texto en inglés) -->
   <div class="instruction-card">
     <div class="instruction-icon">📌</div>
     <div class="instruction-text">
-      <p>Instrucciones</p>
-      <p>Arrastra o toca el verbo correcto desde el banco de palabras y colócalo debajo de la oración que le corresponde. En móvil: toca primero la palabra y luego la tarjeta.</p>
+      <p>Instructions</p>
+      <p>Drag or tap the correct verb from the word bank and place it under the matching sentence. On mobile: tap the word first, then the card.</p>
     </div>
   </div>
 
-  <!-- BANCO DE PALABRAS - AHORA STICKY -->
+  <!-- BANCO DE PALABRAS (Texto en inglés) -->
   <div class="bank-card">
     <div class="bank-header">
       <span>🏷️</span>
-      <span>Banco de palabras — Verbos en presente</span>
+      <span>Word bank — Present tense verbs</span>
     </div>
     <div class="bank-body" id="wordBank"></div>
   </div>
 
+  <!-- NOTA GRAMATICAL (Texto bilingüe) -->
   <div class="grammar-note">
     <span class="gn-icon">📘</span>
     <div>
-      <p class="gn-label">Nota gramatical</p>
-      <p class="gn-text">El presente de indicativo se usa para acciones habituales, hechos verdaderos o situaciones actuales. Recuerda las terminaciones: -ar: -o, -as, -a, -amos, -áis, -an / -er: -o, -es, -e, -emos, -éis, -en / -ir: -o, -es, -e, -imos, -ís, -en.</p>
+      <p class="gn-label">Grammar note</p>
+      <p class="gn-text">The present indicative is used for habitual actions, true facts, or current situations. Remember the endings: -ar: -o, -as, -a, -amos, -áis, -an / -er: -o, -es, -e, -emos, -éis, -en / -ir: -o, -es, -e, -imos, -ís, -en.</p>
     </div>
   </div>
 
+  <!-- TARJETAS -->
   <div class="cards-grid" id="cardsGrid"></div>
 
+  <!-- FEEDBACK (Texto en inglés) -->
   <div class="feedback-bar">
     <span class="feedback-icon" id="feedbackIcon">💬</span>
-    <span class="feedback-text" id="feedbackText">Arrastra un verbo para comenzar...</span>
+    <span class="feedback-text" id="feedbackText">Drag a verb to get started...</span>
   </div>
 
+  <!-- BOTONES (Texto en inglés) -->
   <div class="btn-row">
-    <button class="btn btn-primary"   onclick="checkAll()">✅ Comprobar todo</button>
-    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reiniciar</button>
+    <button class="btn btn-primary"   onclick="checkAll()">✅ Check all</button>
+    <button class="btn btn-secondary" onclick="resetAll()">🔄 Reset</button>
   </div>
 
+  <!-- RESULTADOS (Texto en inglés con algunos elementos en español) -->
   <div class="results-screen" id="resultsScreen">
     <div class="results-emoji" id="resultsEmoji">🎉</div>
-    <div class="results-title" id="resultsTitle">¡Excelente trabajo!</div>
-    <div class="results-sub"   id="resultsSub">Completaste la actividad</div>
+    <div class="results-title" id="resultsTitle">Great job!</div>
+    <div class="results-sub"   id="resultsSub">You completed the activity</div>
     <div class="results-score" id="resultsScore">10/10</div>
     <div class="results-breakdown">
-      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correctas</div></div>
-      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrectas</div></div>
-      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Puntuación</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-success" id="finalCorrect">0</div><div class="breakdown-label">Correct</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-error"   id="finalWrong">0</div>  <div class="breakdown-label">Incorrect</div></div>
+      <div class="breakdown-item"><div class="breakdown-num color-navy"    id="finalPct">0%</div>   <div class="breakdown-label">Score</div></div>
     </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Intentar de nuevo</button>
+      <button class="btn btn-secondary" onclick="resetAll()" style="margin-top:8px;">🔄 Try again</button>
       <a id="btn-volver"
-   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=197"
+   href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=451"
    style="display:inline-block;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-  🏫 Regresar al Aula Virtual
+  🏫 Return to the Virtual Classroom
 </a>
     </div>
   </div>
@@ -213,76 +220,77 @@
 </div>
 
 <script>
+// --- DATOS DEL EJERCICIO (Todo el contenido en español) ---
 const verbos = [
   {
     id: 'hablo',
     label: 'hablo',
     emoji: '🗣️',
     description: 'Yo ___ español todos los días.',
-    feedback: '🗣️ <strong>¡Correcto!</strong> "Yo hablo" es la forma correcta del presente de indicativo para el verbo <em>hablar</em>.'
+    feedback: '🗣️ <strong>¡Correcto!</strong> "Yo hablo" es la forma correcta del presente de indicativo para el verbo <em>hablar</em>. (I speak)'
   },
   {
     id: 'come',
     label: 'come',
     emoji: '🍎',
     description: 'Ella ___ frutas y verduras cada mañana.',
-    feedback: '🍎 <strong>¡Correcto!</strong> "Ella come" es la conjugación para el verbo <em>comer</em> en tercera persona singular.'
+    feedback: '🍎 <strong>¡Correcto!</strong> "Ella come" es la conjugación para el verbo <em>comer</em> en tercera persona singular. (She eats)'
   },
   {
     id: 'vivimos',
     label: 'vivimos',
     emoji: '🏠',
     description: 'Nosotros ___ en una ciudad pequeña cerca del mar.',
-    feedback: '🏠 <strong>¡Correcto!</strong> "Nosotros vivimos" es la forma de <em>vivir</em> para la primera persona del plural.'
+    feedback: '🏠 <strong>¡Correcto!</strong> "Nosotros vivimos" es la forma de <em>vivir</em> para la primera persona del plural. (We live)'
   },
   {
     id: 'trabajas',
     label: 'trabajas',
     emoji: '💼',
     description: 'Tú ___ en una oficina moderna.',
-    feedback: '💼 <strong>¡Correcto!</strong> "Tú trabajas" es la conjugación de <em>trabajar</em> para la segunda persona singular.'
+    feedback: '💼 <strong>¡Correcto!</strong> "Tú trabajas" es la conjugación de <em>trabajar</em> para la segunda persona singular. (You work)'
   },
   {
     id: 'estudian',
     label: 'estudian',
     emoji: '📚',
     description: 'Ellos ___ en la biblioteca por las tardes.',
-    feedback: '📚 <strong>¡Correcto!</strong> "Ellos estudian" corresponde al verbo <em>estudiar</em> en tercera persona plural.'
+    feedback: '📚 <strong>¡Correcto!</strong> "Ellos estudian" corresponde al verbo <em>estudiar</em> en tercera persona plural. (They study)'
   },
   {
     id: 'tiene',
     label: 'tiene',
     emoji: '👨‍👩‍👧',
     description: 'Él ___ dos hermanos y una hermana.',
-    feedback: '👨‍👩‍👧 <strong>¡Correcto!</strong> "Él tiene" es la forma correcta del verbo irregular <em>tener</em> en presente.'
+    feedback: '👨‍👩‍👧 <strong>¡Correcto!</strong> "Él tiene" es la forma correcta del verbo irregular <em>tener</em> en presente. (He has)'
   },
   {
     id: 'vamos',
     label: 'vamos',
     emoji: '🎬',
     description: 'María y yo ___ al cine los viernes.',
-    feedback: '🎬 <strong>¡Correcto!</strong> "Nosotros vamos" es la conjugación de <em>ir</em> (verbo irregular) para la primera persona plural.'
+    feedback: '🎬 <strong>¡Correcto!</strong> "Nosotros vamos" es la conjugación de <em>ir</em> (verbo irregular) para la primera persona plural. (We go)'
   },
   {
     id: 'es',
     label: 'es',
     emoji: '👩‍🏫',
     description: 'Usted ___ profesor de español, ¿verdad?',
-    feedback: '👩‍🏫 <strong>¡Correcto!</strong> "Usted es" es la forma formal del verbo <em>ser</em> en presente de indicativo.'
+    feedback: '👩‍🏫 <strong>¡Correcto!</strong> "Usted es" es la forma formal del verbo <em>ser</em> en presente de indicativo. (You are - formal)'
   },
   {
     id: 'juegan',
     label: 'juegan',
     emoji: '⚽',
     description: 'Los niños ___ en el parque después de la escuela.',
-    feedback: '⚽ <strong>¡Correcto!</strong> "Juegan" es la forma de <em>jugar</em> (diptongo u→ue) para la tercera persona plural.'
+    feedback: '⚽ <strong>¡Correcto!</strong> "Juegan" es la forma de <em>jugar</em> (diptongo u→ue) para la tercera persona plural. (They play)'
   },
   {
     id: 'cocina',
     label: 'cocina',
     emoji: '🍳',
     description: 'Mi madre ___ muy bien los platos tradicionales.',
-    feedback: '🍳 <strong>¡Correcto!</strong> "Mi madre cocina" usa la tercera persona singular del verbo <em>cocinar</em>.'
+    feedback: '🍳 <strong>¡Correcto!</strong> "Mi madre cocina" usa la tercera persona singular del verbo <em>cocinar</em>. (My mother cooks)'
   }
 ];
 
@@ -317,7 +325,7 @@ function build() {
         <p class="card-description">${v.description}</p>
       </div>
       <div class="card-slot-wrap">
-        <div class="slot" id="slot-${v.id}" data-answer="${v.id}">Arrastra el verbo aquí</div>
+        <div class="slot" id="slot-${v.id}" data-answer="${v.id}">Drop verb here</div>
       </div>`;
     grid.appendChild(card);
   });
@@ -330,7 +338,7 @@ function build() {
   });
 
   updateCounts();
-  setFeedback('💬', 'Arrastra un verbo para comenzar...', '');
+  setFeedback('💬', 'Drag a verb to get started...', '');
 }
 
 function handleChipClick(chip) {
@@ -371,7 +379,7 @@ function placeWord(slot, chip) {
     setFeedback('✅', v.feedback, 'success');
   } else {
     slot.className = 'slot incorrect filled';
-    setFeedback('❌', `<strong>${v.label}</strong> no es la forma correcta para esta oración. Vuelve a intentarlo.`, 'error');
+    setFeedback('❌', `<strong>${v.label}</strong> no es la forma correcta para esta oración. Vuelve a intentarlo. (Not the correct form for this sentence. Try again.)`, 'error');
     setTimeout(() => { if (!slot.dataset.locked) returnWord(slot); }, 950);
   }
   updateCounts();
@@ -382,7 +390,7 @@ function returnWord(slot) {
   const value = slot.dataset.placed;
   if (!value) return;
   const v = verbos.find(x => x.id === value);
-  slot.innerHTML = 'Arrastra el verbo aquí';
+  slot.innerHTML = 'Drop verb here';
   slot.className = 'slot';
   delete slot.dataset.placed;
   const chip = document.getElementById('chip-' + value);
@@ -404,7 +412,7 @@ function checkAll() {
   });
   updateCounts();
   if (correct === verbos.length) { setTimeout(() => showResults(correct, wrong), 600); }
-  else setFeedback('📊', `Tienes <strong>${correct} de ${verbos.length}</strong> correctas. Revisa las marcadas en rojo.`, correct >= wrong ? 'success' : 'error');
+  else setFeedback('📊', `You have <strong>${correct} of ${verbos.length}</strong> correct. Review the ones marked in red.`, correct >= wrong ? 'success' : 'error');
 }
 
 function showResults(correct, wrong) {
@@ -416,10 +424,10 @@ function showResults(correct, wrong) {
   document.getElementById('finalWrong').textContent   = wrong;
   document.getElementById('finalPct').textContent     = `${pct}%`;
   const [emoji, title, sub] = pct === 100
-    ? ['🏆', '¡Perfecto! ¡Excelente!',  '¡Conjugas los verbos en presente como un experto!']
+    ? ['🏆', '¡Perfecto! ¡Excelente! (Perfect! Excellent!)',  '¡Conjugas los verbos en presente como un experto! (You conjugate present tense verbs like an expert!)']
     : pct >= 66
-    ? ['🎉', '¡Muy bien!',              'Casi perfecto. Repasa las formas que fallaste.']
-    : ['💪', '¡Buen intento!',          'Sigue practicando las conjugaciones del presente.'];
+    ? ['🎉', '¡Muy bien! (Very good!)',              'Casi perfecto. Repasa las formas que fallaste. (Almost perfect. Review the forms you missed.)']
+    : ['💪', '¡Buen intento! (Good try!)',          'Sigue practicando las conjugaciones del presente. (Keep practicing present tense conjugations.)'];
   document.getElementById('resultsEmoji').textContent = emoji;
   document.getElementById('resultsTitle').textContent = title;
   document.getElementById('resultsSub').textContent   = sub;
@@ -464,8 +472,8 @@ build();
 
 // Script para el botón de regreso al aula virtual (compatible con móvil)
 const btn = document.getElementById('btn-volver');
-const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=197';
-const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=197';
+const cursoUrl = 'https://institutoinnova.moodlecloud.com/mod/page/view.php?id=451';
+const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=451';
 const esMóvil = /Android|iPhone|iPad/i.test(navigator.userAgent);
 if (esMóvil) {
   btn.href = appUrl;
