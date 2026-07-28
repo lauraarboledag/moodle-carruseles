@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Cafetería Innova – Español A1</title>
+<title>Cafetería Innova – Spanish A1</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════
@@ -486,15 +486,15 @@ body {
     <div class="topbar-avatar">☕</div>
     <div class="topbar-info">
       <div class="topbar-name">Cafetería Innova</div>
-      <div class="topbar-status"><span class="status-dot"></span> Carlos, tu camarero</div>
+      <div class="topbar-status"><span class="status-dot"></span> Carlos, your waiter</div>
     </div>
-    <button class="topbar-reset" onclick="resetChat()" title="Reiniciar">🔄</button>
+    <button class="topbar-reset" onclick="resetChat()" title="Restart">🔄</button>
   </div>
 
   <!-- PROGRESS -->
   <div class="progress-wrap" id="progress-wrap">
     <div class="progress-label">
-      <span id="prog-label">Paso 1 de 8</span>
+      <span id="prog-label">Step 1 of 8</span>
       <span id="prog-pct">0%</span>
     </div>
     <div class="progress-bar">
@@ -513,19 +513,19 @@ body {
     <div class="result-trophy" id="res-trophy">🏆</div>
     <div class="result-title"  id="res-title">¡Pedido completado!</div>
     <div class="score-row">
-      <div class="score-pill"><span class="sp-n pts" id="res-pts">0</span><span class="sp-l">Puntos</span></div>
-      <div class="score-pill"><span class="sp-n ok"  id="res-ok">0</span><span class="sp-l">Correctas</span></div>
-      <div class="score-pill"><span class="sp-n bad" id="res-bad">0</span><span class="sp-l">Errores</span></div>
+      <div class="score-pill"><span class="sp-n pts" id="res-pts">0</span><span class="sp-l">Points</span></div>
+      <div class="score-pill"><span class="sp-n ok"  id="res-ok">0</span><span class="sp-l">Correct</span></div>
+      <div class="score-pill"><span class="sp-n bad" id="res-bad">0</span><span class="sp-l">Errors</span></div>
     </div>
     <div class="result-divider"></div>
     <p class="result-msg" id="res-msg"></p>
     <div class="result-actions">
-      <button class="btn-restart" onclick="resetChat()">🔄 Practicar de nuevo</button>
+      <button class="btn-restart" onclick="resetChat()">🔄 Practice again</button>
       <!-- MOODLE BUTTON -->
       <a id="btn-volver"
-         href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=250"
-         style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'Nunito',sans-serif;font-weight:800;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);">
-        🏫 Regresar al Aula Virtual
+         href="https://institutoinnova.moodlecloud.com/mod/page/view.php?id=504"
+         style="display:inline-flex;align-items:center;justify-content:center;min-height:52px;background:linear-gradient(135deg,#FFE066,#F59E0B);color:#2D1B0E;font-family:'Nunito',sans-serif;font-weight:800;font-size:1em;padding:14px 36px;border-radius:50px;text-decoration:none;letter-spacing:1px;box-shadow:0 4px 20px rgba(245,158,11,0.45);width:100%;">
+        🏫 Return to the Virtual Classroom
       </a>
     </div>
   </div>
@@ -539,7 +539,7 @@ body {
 /* ── Moodle deep-link ── */
 (function(){
   const btn = document.getElementById('btn-volver');
-  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=250';
+  const appUrl = 'moodlemobile://https://institutoinnova.moodlecloud.com?redirect=/mod/page/view.php?id=504';
   if (/Android|iPhone|iPad/i.test(navigator.userAgent)) btn.href = appUrl;
 })();
 
@@ -683,7 +683,7 @@ let currentStep  = 0;
 let score        = 0;
 let correctCount = 0;
 let wrongCount   = 0;
-let stepLocked   = false; // prevents double-click during transitions
+let stepLocked   = false;
 
 /* ══════════════════════════════════════════════
    INIT
@@ -695,7 +695,6 @@ function init() {
   wrongCount   = 0;
   stepLocked   = false;
 
-  // Show chat, hide result
   document.getElementById('chat-area').innerHTML     = '';
   document.getElementById('options-panel').style.display = 'none';
   document.getElementById('result-screen').classList.remove('active');
@@ -704,9 +703,8 @@ function init() {
 
   updateProgress();
 
-  // First message after a short delay
   setTimeout(() => {
-    addTimestamp('Hoy · Ahora');
+    addTimestamp('Today · Now');
     showBotMessages(DIALOGUE[0], () => showOptions(DIALOGUE[0]));
   }, 400);
 }
@@ -718,7 +716,7 @@ function updateProgress() {
   const total  = DIALOGUE.length;
   const done   = currentStep;
   const pct    = Math.round((done / total) * 100);
-  document.getElementById('prog-label').textContent  = `Paso ${done + 1} de ${total}`;
+  document.getElementById('prog-label').textContent  = `Step ${done + 1} of ${total}`;
   document.getElementById('prog-pct').textContent    = pct + '%';
   document.getElementById('progress-fill').style.width = pct + '%';
 }
@@ -740,7 +738,6 @@ function addTimestamp(text) {
 function showBotMessages(step, callback) {
   const msgs = Array.isArray(step.botMsg) ? step.botMsg : [step.botMsg];
 
-  // Show typing first
   const typingEl = addTypingIndicator();
 
   let delay = 700;
@@ -748,12 +745,6 @@ function showBotMessages(step, callback) {
     setTimeout(() => {
       if (i === 0) typingEl.remove();
       addBotBubble(msg, step.emoji && i === 0 ? step.emoji : null);
-      if (i < msgs.length - 1) {
-        // Add typing between multiple bot messages
-        if (i === msgs.length - 2) {
-          // last gap — nothing extra
-        }
-      }
       if (i === msgs.length - 1) {
         setTimeout(callback, 300);
       }
@@ -835,10 +826,9 @@ function showOptions(step) {
   panel.innerHTML = '';
   panel.style.display = 'flex';
 
-  // Hint
   const hint = document.createElement('div');
   hint.className = 'options-hint';
-  hint.textContent = '✏️ Elige la respuesta correcta:';
+  hint.textContent = '✏️ Choose the correct answer:';
   panel.appendChild(hint);
 
   step.options.forEach((opt, idx) => {
@@ -878,24 +868,20 @@ function handleChoice(opt, idx, step) {
     correctCount++;
     score += 20;
 
-    // Style button
     btn.classList.add('correct');
     const badge = document.createElement('span');
     badge.className = 'opt-badge badge-ok';
     badge.textContent = '✓';
     btn.appendChild(badge);
 
-    // Disable all other buttons
     document.querySelectorAll('.opt-btn').forEach((b, i) => {
       if (i !== idx) b.classList.add('disabled-opt');
     });
 
-    // Show feedback bubble
     setTimeout(() => {
       addFeedbackBubble(opt.feedback, true);
     }, 200);
 
-    // Show user message & advance
     setTimeout(() => {
       document.getElementById('options-panel').style.display = 'none';
       addUserBubble(step.userMsg);
@@ -916,20 +902,18 @@ function handleChoice(opt, idx, step) {
     badge.textContent = '✗';
     btn.appendChild(badge);
 
-    // Show error feedback
     addFeedbackBubble(opt.feedback, false);
 
-    // Re-enable after animation
     setTimeout(() => {
       btn.classList.remove('wrong');
-      btn.classList.add('disabled-opt'); // disable wrong option permanently
+      btn.classList.add('disabled-opt');
       badge.remove();
     }, 900);
   }
 }
 
 /* ══════════════════════════════════════════════
-   FEEDBACK BUBBLE (small inline tip)
+   FEEDBACK BUBBLE
 ══════════════════════════════════════════════ */
 function addFeedbackBubble(text, isOk) {
   const el = document.createElement('div');
@@ -950,7 +934,6 @@ function addFeedbackBubble(text, isOk) {
   document.getElementById('chat-area').appendChild(el);
   scrollToBottom();
 
-  // Auto-remove feedback after a moment
   if (isOk) {
     setTimeout(() => el.remove(), 2000);
   } else {
@@ -979,12 +962,10 @@ function advanceStep() {
    RESULT
 ══════════════════════════════════════════════ */
 function showResult() {
-  // Hide chat UI
   document.getElementById('options-panel').style.display = 'none';
   document.getElementById('progress-wrap').style.display = 'none';
   document.getElementById('chat-area').style.display     = 'none';
 
-  // Fill result
   const pct = Math.round((correctCount / (correctCount + wrongCount)) * 100) || 0;
 
   let trophy, title, msg;
